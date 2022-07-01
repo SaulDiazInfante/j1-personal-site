@@ -1,0 +1,86 @@
+# ------------------------------------------------------------------------------
+# ~/_data/modules/attics.yml
+# User configuration settings for attics used on all layouts|pages.
+#
+# Product/Info:
+# https://jekyll.one
+#
+# Copyright (C) 2022 Juergen Adams
+#
+# J1 Template is licensed under the MIT License.
+# See: https://github.com/jekyll-one-org/J1 Template/blob/master/LICENSE
+#
+# ------------------------------------------------------------------------------
+# NOTE:
+#   If NO attic (top page header) is assigned to a LAYOUT, all pages based
+#   on this layout will have NO top page header.
+# ------------------------------------------------------------------------------
+# NOTE:
+#   By J1 template, "Liquid Procedures" are being used intensively. To load
+#   HTML data for a layout, the loader procedure places the data based this
+#   YAML data file into the REGION specified with a LANE.
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Description (used for J1 CC only)
+#
+description:
+
+  title:                                Attics
+  scope:                                User settings
+  location:                             _data/modules/attics.yml
+
+# ------------------------------------------------------------------------------
+# SETTINGS
+#
+settings:
+
+  # ----------------------------------------------------------------------------
+  # Global properties (all layouts)
+  #
+  debug:                                false
+
+  # ----------------------------------------------------------------------------
+  # Layout specific properties
+  #
+  attics:
+
+    # --------------------------------------------------------------------------
+    # Home page
+    #
+    - name:                             Home
+      attic:
+        enabled:                        true
+        id:                             attic_home
+        layout:                         home
+        padding_top:                    400
+        padding_bottom:                 50
+        opacity:                        0.5
+#       title_animate:                  fadeInDown
+#       raised_level:                   15
+#       background_color_1:             "#512DA8"                               # deep-purple-700
+#       background_color_2:             "#B39DDB"                               # deep-purple-200
+
+    # --------------------------------------------------------------------------
+    # layouts posts|pages
+    #
+    - name:                             Page_Post
+      attic:
+        enabled:                        true
+        id:                             attic_page_post
+        layout:                         [ page, post, blog_archive ]
+        padding_top:                    400
+        padding_bottom:                 50
+        opacity:                        0.5
+
+    # --------------------------------------------------------------------------
+    #  layouts collection|app|raw
+    #
+    - name:                             Text attic
+      attic:
+        enabled:                        true
+        id:                             attic_text
+        layout:                         [ collection, app, raw ]
+
+# ------------------------------------------------------------------------------
+# END config

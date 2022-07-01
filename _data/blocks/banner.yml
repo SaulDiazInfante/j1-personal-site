@@ -1,0 +1,227 @@
+# ------------------------------------------------------------------------------
+#  ~/_data/blocks/banner.yml
+#  User configuration settings for BANNERS
+#
+#  Product/Info:
+#  https://jekyll.one
+#
+#  Copyright (C) 2022 Juergen Adams
+#
+#  J1 Template is licensed under the MIT License.
+#  See: https://github.com/jekyll-one-org/J1 Template/blob/master/LICENSE
+#
+# ------------------------------------------------------------------------------
+
+# ------------------------------------------------------------------------------
+# Description
+#
+description:
+
+  title:                                Banner
+  scope:                                User settings
+  location:                             _data/blocks/banner.yml
+
+# ------------------------------------------------------------------------------
+# SETTINGS
+#
+settings:
+
+  # ----------------------------------------------------------------------------
+  # DIVIDER banner
+  #
+  #   Place a (dotted) line as a simple divider.
+  #
+  # ----------------------------------------------------------------------------
+  #
+  divider:
+    # --------------------------------------------------------------------------
+    # DIVIDER properties
+    #
+    - name:                             Divider Banner 1
+      banner:
+        enabled:                        true
+
+        id:                             divider-1
+        comment:                        Divider Banner 1
+        type:                           divider
+
+    - name:                             Divider Banner 2
+      banner:
+        enabled:                        true
+
+        id:                             divider-2
+        comment:                        Divider Banner 2
+        type:                           divider
+
+
+  # ----------------------------------------------------------------------------
+  # TEASER banner
+  #
+  #   Simple intro element for a page to give an overview on the contents
+  #   provided. Find the configuration with
+  #
+  # ----------------------------------------------------------------------------
+  #
+  teaser:
+    # --------------------------------------------------------------------------
+    # HOME Teaser Banner
+    #
+    - name:                             Home Teaser Banner
+      banner:
+        enabled:                        true
+
+        id:                             home_teaser_banner
+        comment:                        Top teaser shown on home page
+        type:                           teaser
+        badges:                         false
+        icon_family:                    MDI
+        properties:                     mt-3 mb-5
+
+        cards:
+
+          - name:                       Teaser Content
+            card:
+              enabled:                  true
+              width:                    12
+              type:                     text
+              title:                    Academic Personal Site
+              translate_title:          notranslate                             # translate|notranslate
+              tagline:                  <b> Academic, professionl info and Python,
+                                            R, Julia, laTex code</b>
+              description_properties:   mt-3 mb-3
+              description: >
+                                        <p class="dropcap">
+                                          In this site you can find the resent version of my CV
+                                          another stuff that I'm woring on. First, let me
+                                          say thakyou for visit this site. I hope you can get
+                                          something that helps you.
+                                        </p>
+                                        <p>
+                                        This site is an intention to make
+                                        available my research and
+                                        contributions. Here we can find links to
+                                        code repositores that has been used in
+                                        my thesis, book chapters and
+                                        per-reviewed articles. If you have any
+                                        questio, please, just let me know?
+                                        </p>
+                                        <p>
+                                          Also any suggestion is wellcome.
+                                        </p>
+#              buttons:
+#
+#                - name:                 Roundtrip
+#                  button:
+#                    id:                 roundtrip
+#                    translate:          notranslate                             # translate|notranslate
+#                    title:              Roundtrip
+#                    tagline:            learn top features
+#                    class:              btn btn-xl btn-primary text-uppercase text-left mr-2 mb-2
+#                    style:              "min-width: 270px"
+#                    icon:               briefcase-search-outline
+#                    icon_color:
+#                    icon_size:          3x
+#                    href:               /pages/public/learn/roundtrip/present_images/
+#                    target:
+#
+#                - name:                 Download
+#                  button:
+#                    id:                 download
+#                    translate:          notranslate                             # translate|notranslate
+#                    title:              Download
+#                    tagline:            get on rubygems
+#                    class:              btn btn-xl btn-primary text-uppercase text-left mr-2 mb-2
+#                    style:              "min-width: 270px"
+#                    icon:               briefcase-download-outline
+#                    icon_color:
+#                    icon_size:          3x
+#                    href:               "https://rubygems.org/gems/j1-template"
+#                    target:             blank
+#
+#                - name:                 Rocketstart
+#                  button:
+#                    id:                 rocketstart
+#                    translate:          notranslate                             # translate|notranslate
+#                    title:              Rocketstart
+#                    tagline:            finished in minutes
+#                    class:              btn btn-raised btn-xl btn-primary text-uppercase text-left mr-2 mb-2
+#                    style:              "min-width: 270px"
+#                    icon:               rocket-launch
+#                    icon_color:
+#                    icon_size:          3x
+#                    href:               "https://jekyll.one/pages/public/learn/rocketstart/"
+#                    target:             blank
+
+
+  # ----------------------------------------------------------------------------
+  # PARALLAX banner
+  #
+  #   Places an image (full width) with a parallax effect. Additionally,
+  #   a quotation text is configurable and placed centered on top of
+  #   the image.
+  #
+  # ----------------------------------------------------------------------------
+  #
+  parallax:
+    # --------------------------------------------------------------------------
+    # home_parallax_banner
+    #
+    - name:                               Home Parallax Banner
+      banner:
+        enabled:                          true
+
+        id:                               home_parallax_banner
+        comment:                          Main parallax banner shown on home page
+        type:                             parallax
+        properties:
+
+        cards:
+
+          - name:                         Quote settings
+            card:
+              enabled:                    true
+              type:                       quote
+#             cite:                       J1 Team
+              cite_text_size:             300%
+              cite_text_quotes:           false
+              cite_text: >
+                                          <strong><span class="text-primary">Thinking is</span>
+                                          like Wanting, <br> but Making is even
+                                          <span class="text-primary">Better</span></strong>
+              text_color:                 "#E0E0E0"
+              gridify:                    true
+              size_y:                     450
+              darken:                     6
+              background_image:           /assets/images/modules/attics/wrongtog-1920x1280.jpg
+
+  # ----------------------------------------------------------------------------
+  # IMAGE banner
+  #
+  #   Place an image (full width).
+  #
+  # ----------------------------------------------------------------------------
+  #
+  image:
+    # --------------------------------------------------------------------------
+    # home_image_banner
+    #
+    - name:                               Home Image Banner
+      banner:
+        enabled:                          true
+
+        id:                               home_image_banner
+        comment:                          Image banner shown on home page
+        type:                             image
+        properties:                       mt-6 mb-6
+
+        image:
+          gridify:                        false
+          height:                         450
+          justify:                        true
+          brightness:                     80
+          opacity:                        false
+          picture:                        /assets/images/modules/attics/ideas-start-here-1920x1280-bw.jpg
+
+
+# ------------------------------------------------------------------------------
+# END config

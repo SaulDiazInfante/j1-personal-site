@@ -1,0 +1,178 @@
+---
+title:                                  Curriculum Vitae
+tagline:                                Short version
+date:                                   2022-01-01 00:00:00
+description: >
+                                        Things you should know about this site,
+                                        the people and the software and/or
+                                        services provided.
+
+tags:                                   [ Overview ]
+categories:                             [ Software, Platforms, Contributers ]
+
+scrollbar:                              false
+
+permalink:                              /pages/public/resume/site/
+regenerate:                             false
+
+resources:                              []
+resource_options:
+  - attic:
+      padding_top:                      400
+      padding_bottom:                   50
+      opacity:                          0.5
+      slides:
+        - url:                          /assets/images/modules/attics/sigmund-1920x1280.jpg
+---
+
+// Page Initializer
+// =============================================================================
+// Enable the Liquid Preprocessor
+:page-liquid:
+
+// Set (local) page attributes here
+// -----------------------------------------------------------------------------
+// :page--attr:                         <attr-value>
+:badges-enabled:                        false
+
+//  Load Liquid procedures
+// -----------------------------------------------------------------------------
+{% capture load_attributes %}themes/{{site.template.name}}/procedures/global/attributes_loader.proc{%endcapture%}
+
+// Load page attributes
+// -----------------------------------------------------------------------------
+{% include {{load_attributes}} scope="global" %}
+
+
+// Page content
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+ifeval::[{badges-enabled} == true]
+{badge-j1--license} {badge-j1--version-latest} {badge-j1-gh--last-commit} {badge-j1--downloads}
+endif::[]
+
+// Include sub-documents (if any)
+// -----------------------------------------------------------------------------
+
+== Personal Details
+
+Name:: Saul Diaz Infante Velasco
+Address:: Mariano Jiménez, 833, Col. Nueva Castilla, Hermosillo, Sonora, Mexico.
+CP:: 83126
+phone numbers: +52 473 75 60 109,
+e-mail:: saul.diazinfante@unison.mx
+
+// Include sub-documents (if any)
+// -----------------------------------------------------------------------------
+
+== Education
+
+.Degrees
+[cols="1,2,1"]
+|===
+|Grade |Institution |Grade
+
+|Bacherols degree on Electronic and computation
+|Centro de Enseñanza Tecnico Industrial CeTi, Guadalajara Jalisco, Mexico
+|1997-2002
+#
+|Bacherols degree in Mathematics
+|Centro Universtiario de Ciencias Exactas e Ingenirías,
+Universidad de Guadalara, Guadalaraja, Jalisco, Mexico.
+|2001-2005
+
+|Master in Eductation for Mathematics
+|Universidad Autonoma de Guadalara, Guadalajra, Jalisco, Mexico
+|2006-2008
+
+|Master in Science on Applied Mathematics
+|Centro de Investigacion en Matemáticas, A.C. CIMAT, Guanajuato, Guanajuato, Mexico
+|2009-2011
+
+|Phd in Applied Mathematics
+|Centro de Investigacion en Matemáticas, A.C. CIMAT, Guanajuato, Guanajuato, Mexico
+|2011-2015
+
+|===
+
+// -----------------------------------------------------------------------------
+== Publications
+
+=== Accepted peer-reviewed articles
+
++++{% bibliography --query @Article[] %}+++
+
+=== Submited peer-reviewed articles
+
+=== Book chapters
++++{% bibliography --query @InBook %}+++
+
+=== Forthcoming Publications
+lorem:sentences[5]
+
+=== Thesis
+lorem:sentences[5]
+
+== Research
+lorem:sentences[5]
+
+== Honors and awards
+lorem:sentences[5]
+
+== Funding
+lorem:sentences[5]
+
+== teaching
+++++
+include::./Cursos.html[]
+++++
+
+== Administrative Experience
+lorem:sentences[5]
+
+== Professional  Experience
+lorem:sentences[5]
+
+== Other skills and qualifications
+lorem:sentences[5]
+
+== Professional affiliations and memberships
+AMS, mex-SIAM, SMM
+
+== Attendance at conferences and seminars
+
+== 2011
+
+== 2012
+
+== 2013
+
+== 2014
+
+== 2015
+
+== 2016
+
+== 2017
+
+== 2018
+
+=== 2019
+
++++{% bibliography --query @Unpublished[year=2019] %}+++
+
+=== 2020
++++{% bibliography --query @Unpublished[year=2020] %}+++
+
+=== 2021
++++{% bibliography --query @Unpublished[year=2021] %}+++
+
+=== 2022
++++{% bibliography --query @Unpublished[year=2022] %}+++
+
+
+== References
+++++
+include::./references.html[]
+++++
+== Appendices

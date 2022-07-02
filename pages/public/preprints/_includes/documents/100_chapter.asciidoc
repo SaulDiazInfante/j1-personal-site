@@ -1,11 +1,7 @@
-== Configuration
 
-Jekyll allows you to configure your sites in any way you can dream up, and it’s
-thanks to the powerful and flexible configuration options that this is possible.
+== Abstract
 
-These options can either be specified in a `_config.yml` file placed in your
-site’s root directory, or can be specified as flags for the `jekyll` executable
-on command-line.
+Resume of the current preprints
 
 === Global Configuration
 

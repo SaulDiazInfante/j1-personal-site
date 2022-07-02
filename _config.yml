@@ -238,14 +238,14 @@ keywords: >
                                         j1, template, jekyllone, comment
 
 author:
-  name:                                 Juergen Adams
-  email:                                juergen@jekyll.one
-  github:                               username
+  name:                                 Saul Diaz-Infante Velasco
+  email:                                saul.diazinfante@unison.mx
+  github:                               saul.diazinfante@unison.mx
   twitter:                              username
   feedburner:                           feedname
 
 webmaster:
-  email:                                webmaster@jekyll.one
+  email:                                saul.diazinfante@unison.mx
 
 # Crawling/Indexing ENABLED for default. Settings managed page-wise using
 # frontmatter defaults or by page default settings to make sure that only
@@ -427,8 +427,8 @@ sass:
 # Control how post articles are generated
 #
 future:                                 true                                    # workaround (non US) TZ issues (of April 2021)
-show_drafts:                            false
-unpublished:                            false
+show_drafts:                            true
+unpublished:                            true
 limit_posts:                            1000000                                 # set to UNLIMITED
 
 # ------------------------------------------------------------------------------
@@ -551,7 +551,7 @@ defaults:
       path:                             assets/data
 
     values:
-      sitemap:                          false
+      sitemap:                          true
 
   # ----------------------------------------------------------------------------
   # Module HTML docs and examples excluded from sitemap
@@ -803,19 +803,15 @@ scholar:
   bibliography-hyperlinks: true
   sort_by: year
   order: ascending
-
   source: ./_bibliography
   bibliography: references.bib
   bibliography_template: bibliography
   # bibliography_template: {{reference}}
   replace_strings: true
   join_strings:    true
-
   #details_dir:    bibliography
   #details_layout: bibtex.html
   #details_link:   Details
-
   query: "@*"
-
 # ------------------------------------------------------------------------------
 # END config

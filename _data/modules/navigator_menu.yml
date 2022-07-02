@@ -338,7 +338,7 @@
   sublevel:
     - title:                            MLE estimation of a stochastic SEIR structure
       icon:                             image-edit-outline
-      href:                             /pages/public/about/site
+      href:                             /pages/public/preprints/multi/
     - title:                            Traffic-Light COVID-19 Policies
       icon:                             image-edit-outline
       href:                             /pages/public/legal/en/privacy/

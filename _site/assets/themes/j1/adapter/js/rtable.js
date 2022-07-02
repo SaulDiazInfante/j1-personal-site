@@ -13,7 +13,7 @@
  # J1 Template is licensed under the MIT License.
  # For details, see: https://github.com/jekyll-one-org/j1-template/blob/main/LICENSE.md
  # -----------------------------------------------------------------------------
- #  Adapter generated: 2022-07-02 01:56:15 +0200
+ #  Adapter generated: 2022-07-02 03:14:41 +0200
  # -----------------------------------------------------------------------------
 */
 // -----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ j1.adapter.rtable = (function (j1, window) {
       // -----------------------------------------------------------------------
       var settings = $.extend({
         module_name: 'j1.adapter.rtable',
-        generated:   '2022-07-02 01:56:15 +0200'
+        generated:   '2022-07-02 03:14:41 +0200'
       }, options);
       // -----------------------------------------------------------------------
       // Global variable settings

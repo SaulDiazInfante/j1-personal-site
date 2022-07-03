@@ -1,0 +1,6 @@
+= Maximum likelihood estimation for a stochastic SEIR
+system for COVID-19
+
+++++
+include::./main_sto_mle.html[]
+++++

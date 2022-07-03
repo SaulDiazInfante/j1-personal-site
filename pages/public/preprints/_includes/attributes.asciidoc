@@ -11,15 +11,12 @@ tag::urls[]
 :url-fontawesome--home:                           https://fontawesome.com/
 :url-fontawesome--icons:                          https://fontawesome.com/icons?d=gallery/
 :url-fontawesome--get-started:                    https://fontawesome.com/get-started/
-
 :url-mdi--home:                                   https://materialdesignicons.com/
 :url-mdi-icons--cheatsheet:                       https://cdn.materialdesignicons.com/3.3.92/
-
 :url-iconify--home:                               https://iconify.design/
 :url-iconify--icon-sets:                          https://iconify.design/icon-sets/
 :url-iconify--medical-icons:                      https://iconify.design/icon-sets/medical-icon/
 :url-iconify--brand-icons:                        https://iconify.design/icon-sets/logos/
-
 :url-roundtrip--mdi-icons:                        /pages/public/learn/roundtrip/mdi_icon_font/#material-design-icons
 :url-roundtrip--fontawesome-icons:                /pages/public/learn/roundtrip/mdi_icon_font/#fontawesome-icons
 :url-roundtrip--iconify-icons:                    /pages/public/learn/roundtrip/mdi_icon_font/#iconify-icons
@@ -37,8 +34,6 @@ end::footnotes[]
 // -----------------------------------------------------------------------------
 tag::tags[]
 end::tags[]
-
-
 // Data - Data elements for Asciidoctor extensions
 // -----------------------------------------------------------------------------
 tag::data[]
@@ -46,12 +41,12 @@ tag::data[]
 :data-images-group:                               "pages/roundtrip/100_present_images/lightbox-image-1.jpg, Golden Gate Bridge with San Francisco in distance, pages/roundtrip/100_present_images/lightbox-image-2.jpg, Forest with mountains behind"
 end::data[]
 
-
 // Images - Images from local include/images folder
 // -----------------------------------------------------------------------------
 tag::images[]
 end::images[]
-
+tag::Figures[]
+end::Figures[]
 
 // PRODUCTS, local product information (e.g. release)
 // -----------------------------------------------------------------------------

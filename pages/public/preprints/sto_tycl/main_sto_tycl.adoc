@@ -1,0 +1,290 @@
+---
+title:
+    Threshold behaviour of a stochastic vector
+  plant model for Tomato Yellow Curl Leaves disease
+tagline:
+  a study based on mathematical analysis and simulation
+
+date:                                   2022-01-01 00:00:00
+description: >
+  TODO: Rewrite
+
+categories:                             [ Knowledge ]
+tags:                                   [ Asciidoc, Skeleton, Document ]
+
+robots:
+  index:                                false
+  follow:                               false
+
+permalink:                              /pages/public/preprints/sto_mle/main_sto_tycl/
+regenerate:                             false
+
+resources:                              []
+resource_options:
+  - attic:
+      slides:
+        - url:                          /assets/images/modules/attics/annie-spratt-1920x1280.jpg
+          alt:                          Photo by Annie on Unsplash
+          alignY:                       0.3
+          badge:
+            type:                       unsplash
+            author:                     Sigmund
+            href:                       https://unsplash.com/@sigmund
+---
+// Page Initializer
+// =============================================================================
+// Enable the Liquid Preprocessor
+:page-liquid:
+:badges-enabled:                        false
+
+// Set (local) page attributes here
+// -----------------------------------------------------------------------------
+// :page--attr:                         <attr-value>
+
+//  Load Liquid procedures
+// -----------------------------------------------------------------------------
+{% capture load_attributes %}themes/{{site.template.name}}/procedures/global/attributes_loader.proc{%endcapture%}
+
+// Load page attributes
+// -----------------------------------------------------------------------------
+{% include {{load_attributes}} scope="global" %}
+
+// Page content
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:stem: latexmath
+:eqnums: AMS
+:xrefstyle: short
+:section-refsig: Section
+:toc:
+
+== Abstract
+Diseases transmitted by vectors in crops represent a severe risk to
+the farmer, causing low production and lower quality, which results
+in a drastic reduction in crop yield. Here we study a stochastic
+plant-vector-host epidemic model with direct transmission.
+Perturbing with Brownian motion plant replanting and vector
+fumigation rates, we formulate an Ito stochastic differential
+equations that capture the uncertainty of the controls.
+We derive conditions to assure extinction and persistence
+of disease using two different stochastic versions of the so-called
+basic reproductive number.
+Finally, we verify and illustrate our theory by numerical experiments.
+Our simulations suggest that uncertainty could drive dramatic stability changes.
+Because in practice, to confirm an infected plant via laboratory
+tests is not necessarily feasible, replanting and fumigation strategies
+suffer considerable uncertainty.
+Here, we quantify and study the impact and consequences of this uncertainty.
+We conclude that environmental noise promotes dramatic stability
+changes.
+
+== Introduction
+
+Whitefly (Bemisia tabaci) is the responsible vector for
+critical insect-transmitted diseases in crops like
+tomato, soybeans, and cotton
++++{% cite Yan2021 faiz2021 Swathi2021 Ali2021 %}+++.
+Begomoviruses transmitted by this insect provoke reductions in the
+production and quality of this and other products in India, Mexico,
+USA, Colombia, and other producer countries
++++{% cite Li2021 Lee2021 %}+++.
+For example, Tomato Yellow Curl Lives (TYCL) disease cause that tomato
+plants to become futile and diminish their growth
++++{% cite Yan2021 Cohen2007 %}+++.
+
+Despite control strategies like fumigation or replanting,
+it is complicated to eradicate this vector. This insect has
+sophisticated survival mechanism that permits shelter itself
+in another perennial--and abundant on the borders of
+the plantation--insecticide-resistant plants.
+Thus, fumigation promotes partial migration instead of extinction.
+In addition, plant symptoms like curl leaves and yellow
+discolouration also are associated with iron or phosphate soil
+deficiencies. Consequently, control methods like replanting
+neighbours or physical barriers suffer from high
+uncertainty--a farmer could replant a healthy plant instead of
+a latent one and vice-versa.
+
+There is well-established literature that treats deterministic
+models for vector plant structures. Our primary reference is the work of
++++{% cite Holt1999 Cohen2007 Chan1994 %}+++ and other important reference.
+Recently, control strategies have been studied as optimal control
+problems by Lenhart et al. in
++++{% cite Bokil2019 %}+++
+for a tomato diseaseand Luo et al. +++{% cite Luo2021 %}+++ for Huanglongbing.
+However, the uncertainty quantification or stochastic counterparts
+still are under development. In this direction, we mention the
+recent works of Allen et al. +++{% cite Hebert2016 %}+++, Stella \& Ghosh
++++{% cite Stella2019 %}+++ Agarwal et al. +++{% cite Agarwal2019 %}+++,
+and Chen-Charpentier +++{% cite Chen-Charpentier2021 %}+++
+as significant contributions.
+
+Here, we aim to quantify the uncertainty due to possible errors
+in identifying infected plants and random fluctuations of vector
+migration produced in fumigation. Our study attempts to capture
+the impact of ambient noise and try to explain it by formal
+analysis and simulation.
+
+According to Britton et al. +++{% cite Britton2019 %}+++, stochastic effects
+of an epidemic model are essential when the underlying
+population size is relatively small (at most hundreds).
+However, recently have been reported studies that attempt
+the same methodology of deterministic models in
+mathematical epidemiology—being positivity,
+invariance, extinction, and persistence the primary
+objects of study. In respect of this regard, we refer
+the reader to
++++{% cite Gray2011 Cao2016a Acuna-Zegarra2018 %}+++.
+However, the application to a specific disease
+driven with data is still under development.
+Roughly speaking, the methodology bases
+the analysis on study versions of a SIR structure
+and characterizes conditions to extinction-persistence
+for a convenient definition of a stochastic
+reproductive number, see
++++{% cite Cao2016a  ZhaoJiang2015 Rifhat2021 Ji2014 %}+++.
+
+Regarding plant-vector-host structures, we see relevant
+the contributions of Allen et al. +++{% cite Gray2011 %}+++
+and Agarwal et al. +++{% cite Agarwal2019 %}+++.
+These works would apply the most common techniques to
+formulate stochastic models for epidemics
+based on Ito differential equations. Agarwal studied
+pine wilt disease with a stochastic optimal control
+problem, where the controls are related to prevention and
+fumigation. Allen considers a stochastic plant-vector-host
+structure deduced as the limit of a Continuous Markov chain
+model. With this structure, Allen et al. study the effects
+of vector aggregation and dispersal subject to noise.
+On this occasion, we deploy a compartmental $SLI-SI$
+plant vector structure with Brownian noise by formulating
+an It\^{o} stochastic differential equation (SDE).
+Our main results characterize conditions to assure
+extinction and persistence.
+First, we identify requirements to ensure extinction
+due only to noise intensity. Then, for sufficiently small noise, we
+develop the threshold theory for two proposals of the
+stochastic reproductive number. Finally, we verify and
+illustrate our results by numerical simulation.
+
+We aim to quantify the effects of uncertainty
+of the mentioned controls over the extinction and persistence
+of the disease.
+We conclude that noise would play a crucial role
+in the trade-off between extinction and persistence.
+In other words, the combination of errors due by plant
+identification and random fluctuations of vector migration
+would lead to the death of healthy and infected plants and or
+its prevalence.
+Consequently, the local behaviour of vectors follows similar
+codependency.
+
+Using the package **DifferentialEquation.jl** from *Julia*
++++{% cite rackauckas2017differentialequations %}+++, we simulate
+our stochastic model. This package provides the most
+recent solvers for stiff It\^{o} problems.
+We apply the parallel implementation of **S-ROCK** method
++++{% cite Abdulle2008 %}+++---getting a stable, and high convergent
+simulation of \numprint{10000} paths after a reasonable computational
+time.
+Our simulations suggest that environmental noise induces large dispersion.
+Thus, we deduce that uncertainty would lead to unexpected results.
+Therefore, a significant implication is related to the good identification
+of healthy crops---our recommendation is to balance replanting
+with efficiency.
+
+After this brief introduction, in link:#sec:model_formulation[Section 2]
+we discuss the dynamic properties of the deterministic base. Then, Section
+link:#sec:stochastic_extension[Section 3] extends this base by stochastic
+perturbation to formulate our SDE model.  link:#sec:solution_existence[Section 4]
+deploys the results about the existence and uniqueness of the global
+positivity solution. After that, Section link:#sec:extinction[Section 5] characterizes
+conditions on the noise intensity and other parameters to assure disease
+extinction.  Then we complete the analysis with results to ensure disease
+persistence in link:#sec:persistence[Section 6]. Finally, we verify and
+illustrate our theory in Section link:#sec:numerics[Section 7].
+
+[#sec:model_formulation]
+== Deterministic base dynamics
+Here, we adapt the deterministic dynamics presented by
+Holt et al. \cite{Holt1999}. Following the authors,
+we split the plant population according to,
+susceptible $ (S_p) $, latent $ (L_p) $, and infected
+$ (I_p) $. And divide vector population into susceptible
+$S_v$ and $I_v$ infected classes.
+We consider the following assumptions: Susceptible plants become latent
+plants when an infected vector feeds on them at constant rate, $\beta_p$.
+Latent plants become infected plants at a rate of $b$. We replant latent and
+infected plants that are detected at rate $r_1$ and $r_2$, respectively.
+Removed plants are replanting as susceptible plants in the crop.
+For vector dynamics, we consider that susceptible vectors become acquirer
+disease, at rate $\beta_v$, when they eat an infected plant. We assume natural
+vector die at rate $\gamma$, and by fumigation at rate $\gamma_f$. A proportion
+of the susceptible and infected vectors migrates from alternatives host plants
+to the crop.
+
+
+With these hypotheses, the model has the following equations
+
+++++
+	\begin{equation}
+		\label{sys::DeterministicSystem}
+		\begin{aligned}
+			\dot{S_p} &=
+				-\beta_p S_p
+				\frac{I_v}{N_v} + r_1 L_p + r_2 I_p
+			\\
+			\dot{L_p} &=
+				\beta_p S_p
+				\frac{I_v}{N_v} - (b + r_1) L_p
+			\\
+			\dot{I_p} &=
+				b L_p - r_2 I_p  \\
+			\dot{S_v} &=
+				-\beta_v S_v
+				\frac{I_p}{N_p} - (\gamma + \gamma_f) S_v
+				+(1-\theta) \mu
+			\\
+			\dot{I_v} &=
+				\beta_v S_v \frac{I_p}{N_p}
+				- (\gamma + \gamma_f) I_v
+				+ \theta \mu
+				 \\
+				S_p(0) &=S_{p0},
+				L_p(0) = L_{p0},
+				I_p(0) = I_{p0},
+				\\
+				 S_v(0) &= S_{v0},
+				  I_v(0) = I_{v0},
+				 \\
+				 N_p(t) &= S_p(t) + L_p(t) + I_p(t),
+				 \\
+				 N_v(t) &= S_v(t) + I_v(t).
+		\end{aligned}
+	\end{equation}
+++++
+We conduct a calibration of the model \eqref{sys::DeterministicSystem}
+based on the parameters and data reported in \cite{Holt1999} and  via
+Multi Chain Montecarlo Method (MCMC). Here we used the R-Stan
+implementation and followed the workflow from \cite{Grinsztajn2021}.
+We refer the reader to the supplementary material \cite{Salcedo-varela2021}
+for more details.
+
+
+[#sec:stochastic_extension]
+== Stochastic Extension
+
+[#sec:solution_existence]
+== Existence and uniqueness of positive Solution
+
+[#sec:extinction]
+== Extinction
+
+[#sec:persistence]
+== Persistence
+
+[#sec:numerics]
+== References
+
+++++
+{% bibliography --file References.bib %}
+++++

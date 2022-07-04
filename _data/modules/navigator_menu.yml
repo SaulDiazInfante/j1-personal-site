@@ -338,13 +338,13 @@
   sublevel:
     - title:                            MLE estimation of a stochastic SEIR structure
       icon:                             image-edit-outline
-      href:                             /pages/public/preprints/multi/
+      href:                             /pages/public/preprints/sto_mle/multi/
     - title:                            Traffic-Light COVID-19 Policies
       icon:                             image-edit-outline
       href:                             /pages/public/legal/en/privacy/
     - title:                            Threshold behaviour of a stochastic vector plant 
                                         model for Tomato Yellow Curl Leaves disease
       icon:                             image-edit-outline
-      # href:
+      href:                             /pages/public/preprints/sto_mle/main_sto_tycl/
 
 # END config

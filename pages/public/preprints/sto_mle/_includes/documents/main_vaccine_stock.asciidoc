@@ -1,0 +1,18 @@
+== Uncertinity Quantification of Vaccine Stocks
+
+JHG
+JAMS
+SDIV
+
+## Abstract
+
+### Introdcution
+
+### Model Formulation
+
+### Numeric Results
+\begin{equation}
+    \begin{aligned}
+        X = \max\{0, K_t\}
+    \end{aligned}
+\end{equation}

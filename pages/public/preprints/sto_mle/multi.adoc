@@ -16,7 +16,7 @@ robots:
   index:                                false
   follow:                               false
 
-permalink:                              /pages/public/preprints/multi/
+permalink:                              /pages/public/preprints/sto_mle/multi/
 regenerate:                             true
 
 resources:                              [ animate, clipboard, lightbox, rouge ]
@@ -50,5 +50,6 @@ resource_options:
 
 // Page content
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 include::{documentdir}/sto_mle.asciidoc[]
-include::{documentdir}/200_chapter.asciidoc[]
+include::{documentdir}/main_vaccine_stock.asciidoc[]

@@ -62,9 +62,6 @@ CP:: 83126
 phone numbers: +52 473 75 60 109,
 e-mail:: saul.diazinfante@unison.mx
 
-// Include sub-documents (if any)
-// -----------------------------------------------------------------------------
-
 == Education
 
 .Degrees
@@ -100,12 +97,12 @@ Universidad de Guadalara, Guadalaraja, Jalisco, Mexico.
 
 === Accepted peer-reviewed articles
 
-+++{% bibliography --query @Article[] %}+++
++++{% bibliography --file references.bib --query @Article[] %}+++
 
 === Submited peer-reviewed articles
 
 === Book chapters
-+++{% bibliography --query @InBook %}+++
++++{% bibliography --file references.bib --query @InBook %}+++
 
 === Forthcoming Publications
 lorem:sentences[5]
@@ -159,16 +156,16 @@ AMS, mex-SIAM, SMM
 
 === 2019
 
-+++{% bibliography --query @Unpublished[year=2019] %}+++
++++{% bibliography --file references.bib --query @Unpublished[year=2019] %}+++
 
 === 2020
-+++{% bibliography --query @Unpublished[year=2020] %}+++
++++{% bibliography --file references.bib --query @Unpublished[year=2020] %}+++
 
 === 2021
-+++{% bibliography --query @Unpublished[year=2021] %}+++
++++{% bibliography --file references.bib --query @Unpublished[year=2021] %}+++
 
 === 2022
-+++{% bibliography --query @Unpublished[year=2022] %}+++
++++{% bibliography --file references.bib --query @Unpublished[year=2022] %}+++
 
 
 == References

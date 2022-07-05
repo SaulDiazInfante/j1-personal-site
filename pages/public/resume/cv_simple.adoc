@@ -97,12 +97,17 @@ Universidad de Guadalara, Guadalaraja, Jalisco, Mexico.
 
 === Accepted peer-reviewed articles
 
-+++{% bibliography --file references.bib --query @Article[] %}+++
+++++
+{% bibliography --file references.bib --query @Article[] %}
+++++
 
 === Submited peer-reviewed articles
 
 === Book chapters
-+++{% bibliography --file references.bib --query @InBook %}+++
+
+++++
+{% bibliography --file references.bib --query @InBook %}
+++++
 
 === Forthcoming Publications
 lorem:sentences[5]
@@ -156,20 +161,32 @@ AMS, mex-SIAM, SMM
 
 === 2019
 
-+++{% bibliography --file references.bib --query @Unpublished[year=2019] %}+++
+++++
+{% bibliography --file references.bib --query @Unpublished[year=2019] %}
+++++
 
 === 2020
-+++{% bibliography --file references.bib --query @Unpublished[year=2020] %}+++
+
+++++
+{% bibliography --file references.bib --query @Unpublished[year=2020] %}
+++++
 
 === 2021
-+++{% bibliography --file references.bib --query @Unpublished[year=2021] %}+++
+
++++++
+{% bibliography --file references.bib --query @Unpublished[year=2021] %}
+++++
 
 === 2022
-+++{% bibliography --file references.bib --query @Unpublished[year=2022] %}+++
 
+++++
+{% bibliography --file references.bib --query @Unpublished[year=2022] %}
+++++
 
 == References
+
 ++++
 include::./references.html[]
 ++++
+
 == Appendices

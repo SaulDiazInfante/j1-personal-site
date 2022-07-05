@@ -19,7 +19,7 @@ robots:
 permalink:                              /pages/public/preprints/sto_mle/main_sto_tycl/
 regenerate:                             false
 
-resources:                              []
+resources:                              [ animate, clipboard, lightbox, rouge ]
 resource_options:
   - attic:
       slides:
@@ -56,6 +56,48 @@ resource_options:
 :xrefstyle: short
 :section-refsig: Section
 :toc:
+++++
+<script>
+    MathJax = {
+        loader: {load: ['[tex]/textmacros']},
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            tags: 'ams',
+            packages: {'[+]': ['textmacros']},
+            macros: {
+                oe: '\u0153',
+                OE: '\u0152',
+                ae: '\u00E6',
+                AE: '\u00C6',
+                aa: '\u00E5',
+                AA: '\u00C5',
+                o: '\u00F8',
+                O: '\u00D8',
+                l: '\u0142',
+                L: '\u0141',
+                ss: '\u00DF',
+                SS: '\u1E9E',
+                dag: '\u2020',
+                ddag: '\u2021',
+                P: '\u00B6',
+                copyright: '\u00A9',
+                pounds: '\u00A3'
+            }
+        },
+        chtml: {
+            mtextInheritFont: true
+        },
+        sag: {
+            mtextInheritFont: true
+        },
+        svg: {fontCache: 'global'}
+    };
+</script>
+<script
+        async id="MathJax-script"
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+++++
 
 == Abstract
 Diseases transmitted by vectors in crops represent a severe risk to
@@ -206,7 +248,7 @@ illustrate our theory in Section link:#sec:numerics[Section 7].
 [#sec:model_formulation]
 == Deterministic base dynamics
 Here, we adapt the deterministic dynamics presented by
-Holt et al. \cite{Holt1999}. Following the authors,
+Holt et al. +++{% cite Holt1999 %}+++. Following the authors,
 we split the plant population according to,
 susceptible $ (S_p) $, latent $ (L_p) $, and infected
 $ (I_p) $. And divide vector population into susceptible
@@ -225,9 +267,10 @@ to the crop.
 
 With these hypotheses, the model has the following equations
 
+[#eq:DeterministicSystem]
 ++++
 	\begin{equation}
-		\label{sys::DeterministicSystem}
+		\label{eq:DeterministicSystem}
 		\begin{aligned}
 			\dot{S_p} &=
 				-\beta_p S_p
@@ -249,11 +292,11 @@ With these hypotheses, the model has the following equations
 				- (\gamma + \gamma_f) I_v
 				+ \theta \mu
 				 \\
-				S_p(0) &=S_{p0},
-				L_p(0) = L_{p0},
+				S_p(0) &=S_{p0}, \qquad
+				L_p(0) = L_{p0}, \qquad
 				I_p(0) = I_{p0},
 				\\
-				 S_v(0) &= S_{v0},
+				 S_v(0) &= S_{v0}, \qquad
 				  I_v(0) = I_{v0},
 				 \\
 				 N_p(t) &= S_p(t) + L_p(t) + I_p(t),
@@ -262,12 +305,39 @@ With these hypotheses, the model has the following equations
 		\end{aligned}
 	\end{equation}
 ++++
-We conduct a calibration of the model \eqref{sys::DeterministicSystem}
-based on the parameters and data reported in \cite{Holt1999} and  via
-Multi Chain Montecarlo Method (MCMC). Here we used the R-Stan
-implementation and followed the workflow from \cite{Grinsztajn2021}.
-We refer the reader to the supplementary material \cite{Salcedo-varela2021}
+We conduct a calibration of the model
+link:#eq:DeterministicSystem[(1)]
+based on the parameters and data reported in
++++{% cite Holt1999 %}+++ and  via Multi Chain Montecarlo Method (MCMC).
+Here we used the *R-Stan* implementation and followed the workflow from
++++{% cite Grinsztajn2021 %}+++.
+We refer the reader to the supplementary material
++++{% cite Salcedo-varela2021 %}+++
 for more details.
+
+[#tbl:deterministic_tbl]
+[cols="1,1,1"]
+|===
+| Par.| Description| Reference sources
+
+| $\beta_p$
+|infection rate of susceptible plants by infected vectors
+|+++{% cite Butter1978%}+++, +++{% cite ramappa1994%}+++
+
+|$r_1$, $r_2$
+|replanting rate of latent and infected plants
+| +++{% cite Nateshan1996 %}+++
+
+|$b$
+| latency rate
+| {% cite Nateshan1996 %}
+
+| $\gamma$, $\gamma_f$
+|  natural and fumigation vector death rate
+| +++{% cite Holt1999 %}+++
+|===
+
+
 
 
 [#sec:stochastic_extension]
@@ -283,6 +353,9 @@ for more details.
 == Persistence
 
 [#sec:numerics]
+== Numerical Experiments
+
+
 == References
 
 ++++

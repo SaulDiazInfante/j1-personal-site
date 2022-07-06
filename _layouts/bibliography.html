@@ -6,7 +6,9 @@
         {% if entry.abstract %}
             <li>
                 <a data-toggle="collapse" href="#{{key}}-abstract">
-                    &#32;Abstract&#32;
+                    <br>
+                        [Abstract]
+                    <br>
                 </a>
             </li>
         {% endif %}
@@ -15,7 +17,9 @@
                     data-toggle="collapse"
                     href="javascript:toggleDiv('{{key}}-bibtex')"
             >
-                &#32;BibTeX&#32;
+                <br>
+                    [BibTeX]
+                <br>
             </a>
         </li>
         <div id="{{key}}-bibtex" style="display:none;">
@@ -26,17 +30,22 @@
         {% if link %}
             <li>
                 <a href="{{link}}">
-                    &#32;Download&#32;
+                    <br>
+                        [Download]
+                    <br>
                 </a>
             </li>
         {% endif %}
         {% if entry.doi %}
             <div>
                 <li>
-                    DOI:&#32;
-                        <a href="http://dx.doi.org/{{entry.doi}}">
-                            {{entry.doi}}&#32;
-                        </a>
+                    <a href="http://dx.doi.org/{{entry.doi}}">
+                        <br>
+                            [DOI:
+                                {{entry.doi}}
+                            ]
+                        <br>
+                    </a>
                 </li>
             </div>
         {% endif %}

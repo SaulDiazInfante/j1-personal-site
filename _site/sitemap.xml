@@ -257,6 +257,9 @@
 <loc>http://localhost:40000/bibliography/Mao2008/</loc>
 </url>
 <url>
+<loc>http://localhost:40000/bibliography/Abdulle2008/</loc>
+</url>
+<url>
 <loc>http://localhost:40000/bibliography/Jeger2009a/</loc>
 </url>
 <url>
@@ -290,6 +293,9 @@
 <loc>http://localhost:40000/bibliography/ZhaoJiang2015/</loc>
 </url>
 <url>
+<loc>http://localhost:40000/bibliography/Schurz2015/</loc>
+</url>
+<url>
 <loc>http://localhost:40000/bibliography/Cao2016a/</loc>
 </url>
 <url>
@@ -306,6 +312,9 @@
 </url>
 <url>
 <loc>http://localhost:40000/bibliography/Meiss2007/</loc>
+</url>
+<url>
+<loc>http://localhost:40000/bibliography/rackauckas2017differentialequations/</loc>
 </url>
 <url>
 <loc>http://localhost:40000/bibliography/Acuna-Zegarra2018/</loc>
@@ -369,6 +378,12 @@
 </url>
 <url>
 <loc>http://localhost:40000/bibliography/GitHubJuliaSourcesForTYCLD/</loc>
+</url>
+<url>
+<loc>http://localhost:40000/bibliography/Salcedo-varela2021/</loc>
+</url>
+<url>
+<loc>http://localhost:40000/bibliography/Grinsztajn2021/</loc>
 </url>
 <url>
 <loc>http://localhost:40000/pages/public/blog/navigator/</loc>
@@ -444,7 +459,7 @@
 </url>
 <url>
 <loc>http://localhost:40000/pages/public/resume/references.html</loc>
-<lastmod>2022-07-01T01:26:04+02:00</lastmod>
+<lastmod>2022-07-06T00:52:07+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:40000/references.html</loc>

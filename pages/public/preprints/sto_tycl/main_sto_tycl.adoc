@@ -19,7 +19,9 @@ robots:
 permalink:                              /pages/public/preprints/sto_mle/main_sto_tycl/
 regenerate:                             false
 
-resources:                              [ animate, clipboard, lightbox, rouge ]
+resources:                              [animate, clipboard, carousel,
+                                          justifiedGallery,lightbox, lightGallery,
+                                          rouge]
 resource_options:
   - attic:
       slides:
@@ -35,7 +37,7 @@ resource_options:
 // =============================================================================
 // Enable the Liquid Preprocessor
 :page-liquid:
-:badges-enabled:                        false
+:badges-enabled: true
 
 // Set (local) page attributes here
 // -----------------------------------------------------------------------------
@@ -47,7 +49,9 @@ resource_options:
 
 // Load page attributes
 // -----------------------------------------------------------------------------
-{% include {{load_attributes}} scope="global" %}
+{% include {{load_attributes}} scope="all" %}
+
+//:images-dir: pages/preprints/sto_tycl/main_sto_tycl/Figrues/
 
 // Page content
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -56,6 +60,7 @@ resource_options:
 :xrefstyle: short
 :section-refsig: Section
 :toc:
+:prose: text-indent-inner: 18
 ++++
 <script>
     MathJax = {
@@ -182,8 +187,7 @@ Roughly speaking, the methodology bases
 the analysis on study versions of a SIR structure
 and characterizes conditions to extinction-persistence
 for a convenient definition of a stochastic
-reproductive number, see
-+++{% cite Cao2016a  ZhaoJiang2015 Rifhat2021 Ji2014 %}+++.
+reproductive number, see +++{% cite Cao2016a  ZhaoJiang2015 Rifhat2021 Ji2014 %}+++.
 
 Regarding plant-vector-host structures, we see relevant
 the contributions of Allen et al. +++{% cite Gray2011 %}+++
@@ -199,7 +203,7 @@ model. With this structure, Allen et al. study the effects
 of vector aggregation and dispersal subject to noise.
 On this occasion, we deploy a compartmental $SLI-SI$
 plant vector structure with Brownian noise by formulating
-an It\^{o} stochastic differential equation (SDE).
+an Itô stochastic differential equation (SDE).
 Our main results characterize conditions to assure
 extinction and persistence.
 First, we identify requirements to ensure extinction
@@ -223,10 +227,10 @@ codependency.
 Using the package **DifferentialEquation.jl** from *Julia*
 +++{% cite rackauckas2017differentialequations %}+++, we simulate
 our stochastic model. This package provides the most
-recent solvers for stiff It\^{o} problems.
+recent solvers for stiff Itô problems.
 We apply the parallel implementation of **S-ROCK** method
 +++{% cite Abdulle2008 %}+++---getting a stable, and high convergent
-simulation of \numprint{10000} paths after a reasonable computational
+simulation of 10 000 paths after a reasonable computational
 time.
 Our simulations suggest that environmental noise induces large dispersion.
 Thus, we deduce that uncertainty would lead to unexpected results.
@@ -235,15 +239,15 @@ of healthy crops---our recommendation is to balance replanting
 with efficiency.
 
 After this brief introduction, in link:#sec:model_formulation[Section 2]
-we discuss the dynamic properties of the deterministic base. Then, Section
+we discuss the dynamic properties of the deterministic base. Then,
 link:#sec:stochastic_extension[Section 3] extends this base by stochastic
 perturbation to formulate our SDE model.  link:#sec:solution_existence[Section 4]
 deploys the results about the existence and uniqueness of the global
-positivity solution. After that, Section link:#sec:extinction[Section 5] characterizes
+positivity solution. After that, link:#sec:extinction[Section 5] characterizes
 conditions on the noise intensity and other parameters to assure disease
 extinction.  Then we complete the analysis with results to ensure disease
-persistence in link:#sec:persistence[Section 6]. Finally, we verify and
-illustrate our theory in Section link:#sec:numerics[Section 7].
+persistence in link:#sec:persistence[Section 6]. Finally in link:#sec:numerics[Section 7],
+we verify and illustrate our theory with numerical experiments.
 
 [#sec:model_formulation]
 == Deterministic base dynamics
@@ -305,6 +309,7 @@ With these hypotheses, the model has the following equations
 		\end{aligned}
 	\end{equation}
 ++++
+
 We conduct a calibration of the model
 link:#eq:DeterministicSystem[(1)]
 based on the parameters and data reported in
@@ -316,6 +321,8 @@ We refer the reader to the supplementary material
 for more details.
 
 [#tbl:deterministic_tbl]
+[caption="Table 1. "]
+.Parameters description of deterministic dynamics in ODE link:#eq:DeterministicSystem[(1)]
 [cols="1,1,1"]
 |===
 | Par.| Description| Reference sources
@@ -324,24 +331,135 @@ for more details.
 |infection rate of susceptible plants by infected vectors
 |+++{% cite Butter1978%}+++, +++{% cite ramappa1994%}+++
 
+|$\beta_v$
+|infection rate of susceptible vectors by an infected plant
+| +++{%cite Butter1978 ramappa1994 %}+++
+
 |$r_1$, $r_2$
 |replanting rate of latent and infected plants
 | +++{% cite Nateshan1996 %}+++
 
 |$b$
 | latency rate
-| {% cite Nateshan1996 %}
+| +++{% cite Nateshan1996 %}+++
 
 | $\gamma$, $\gamma_f$
-|  natural and fumigation vector death rate
-| +++{% cite Holt1999 %}+++
+| natural and fumigation vector death rate
+| +++{% cite Holt1999 Cohen2007 %}+++
+
+|$\mu$
+| vector migration rate from alternative plants to crop
+| +++{% cite Ramappa1998 %}+++
+
+| $\theta$
+| proportion of infected vector from migration
+| +++{% cite ramappa1994 Ramappa1998 %}+++
 |===
 
-
-
+// TODO: Table and figures of this section
+// lightbox::example-standalone[ 800, {data-images-standalone}, role="mb-4" ]
+//image::pages/preprints/sto_tycl/Figrues/Figure1.jpg[]
 
 [#sec:stochastic_extension]
 == Stochastic Extension
+
+In this section, we derive our stochastic differential equation from
+system link:#eq:DeterministicSystem[(1)]. Following ideas from
++++{% cite Schurz2015 %}+++,
+we quantify uncertainty in plant-replanting $r_1$, $r_2$, and vector-die
+by fumigation $\gamma_f$
+using a standard Brownian process and the suitable smooth functions.
+Let $x:=(S_p, I_p, L_p, S_v,I_v)^{\top}$, then we consider the functions
+$F_i: \mathbb{R} \to \mathbb{R}$, $i \in\{ r_1, r_2, \gamma_f \}$
+defined by
+
+\begin{equation}
+        F_{r_1}(x)
+            :=
+            \sigma_L
+            \frac{S_p}{N_p},
+        \qquad
+        F_{r_2}(x)
+            :=
+            \sigma_I
+            \frac{S_p}{N_p},
+        \qquad
+        F_{\gamma_f}(x)
+            :=
+            \sigma_v.
+\end{equation}
+
+Where $F_i$ are locally Lipschitz-continuous on $\Gamma$. Let
+$B(t) = (B_p(t), B_v(t))^{\top}$ be a 2-dimensional standard Brownian process
+defined on a filtered complete probability space
+$(\Omega,\mathcal{F},\{\mathcal{F}_t\}_{t\geq 0},\P)$.
+%, and $dB(t)=B(t+dt)-B(t)$ denotes the increment of a standard Brownian process.
+Thus, we perturb the deterministic model link:#eq:DeterministicSystem[(1)]
+replacing the rates $r_1$, $r_2$, and $\gamma_f$ by
+
+[#eqn:NoisePerturbation]
+\begin{equation}
+	\label{eqn:NoisePerturbation}
+	\begin{aligned}
+		r_1 dt \rightsquigarrow r_1 dt
+		+ \sigma_L \frac{S_p}{N_p} dB_p(t),
+    		\\
+		r_2 dt \rightsquigarrow r_2 dt
+		+ \sigma_I \frac{S_p}{N_p} dB_p(t),
+		\\
+		\gamma_f dt \rightsquigarrow \gamma_f dt + \sigma_v dB_v(t).
+	\end{aligned}
+\end{equation}
+
+Note that the right-hand side of link:eqn:NoisePerturbation[(4)] denotes a
+stochastic perturbation of $r_1$, $r_2$, $\gamma_f$.
+
+So, we deduce a stochastic extension from deterministic system
+link:#eq:DeterministicSystem[(1)] given the following Itô SDE:
+
+\begin{equation}
+	\label{sys::StochasticSystem}
+	\begin{aligned}
+		d S_p &=
+			\left(
+				-\beta_p S_p \frac{I_v}{N_v} + r_1 L_p + r_2 I_p
+			\right)dt
+			+ \frac{S_p(\sigma_L L_p
+			+
+			\sigma_I I_p)}{N_p}dB_p(t),
+		\\
+		dL_p &=
+			\left(
+				\beta_p S_p \frac{I_v}{N_v} - (b + r_1) L_p
+			\right) dt
+			- \sigma_L \frac{S_pL_p}{N_p} dB_p(t),
+		\\
+		d I_p &=
+			\left(
+				b L_p - r_2 I_p
+			\right) dt
+			- \sigma_I \frac{S_pI_p}{N_p} dB_p(t),
+		\\
+		dS_v &=
+			\left(
+				-\beta_v S_v \frac{I_p}{N_p} - (\gamma + \gamma_f) S_v  +
+				 (1-\theta) \mu	\right)dt - \sigma_v S_v dB_v(t),
+		\\
+		d I_v &=
+			\left(
+				\beta_v S_v \frac{I_p}{N_p} - (\gamma + \gamma_f) I_v + \theta \mu
+			\right) dt
+			- \sigma_v I_v dB_v(t),
+			 \\
+			& S_p(0) = S_{p}^{0}, \quad
+            L_p(0) = L_{p}^{0}, \quad
+            I_p(0) = I_{p}^{0}, \quad
+            \\
+            & S_v(0) = S_{v}^{0},
+              I_v(0) = I_{v}^{0}.
+	\end{aligned}
+\end{equation}
+
 
 [#sec:solution_existence]
 == Existence and uniqueness of positive Solution
@@ -361,3 +479,4 @@ for more details.
 ++++
 {% bibliography --file References.bib %}
 ++++
+

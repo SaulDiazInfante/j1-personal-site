@@ -47,7 +47,7 @@ GEM
       concurrent-ruby (~> 1.0)
     j1-paginator (2021.1.1)
       jekyll (>= 3.6, < 5.0)
-    j1-template (2022.4.5)
+    j1-template (2022.4.6)
       bump (~> 0.8)
       colorator (~> 1.0)
       date (~> 2.0)

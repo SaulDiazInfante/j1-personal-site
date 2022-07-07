@@ -173,7 +173,7 @@ AMS, mex-SIAM, SMM
 
 === 2021
 
-+++++
+++++
 {% bibliography --file references.bib --query @Unpublished[year=2021] %}
 ++++
 
@@ -181,6 +181,18 @@ AMS, mex-SIAM, SMM
 
 ++++
 {% bibliography --file references.bib --query @Unpublished[year=2022] %}
+<script>
+    $(document).ready(function(){
+        var str =$(this).attr('id');
+
+        $(".btnId").click(function(){
+            var str = $(this).attr('id');
+            var ret = str.split("_");
+            var id = ret[1];
+            $('#' + id).toggle();
+        });
+    });
+</script>
 ++++
 
 == References

@@ -799,7 +799,7 @@ compress_html:
   envs:                                 []
 
 scholar:
-  # style: chicago-fullnote-bibliography-with-ibid
+  style: _bibliography/csl_styles/apa-with-abstract.csl
   locale: en
   bibliography-hyperlinks: true
   sort_by: year

@@ -799,7 +799,7 @@ compress_html:
   envs:                                 []
 
 scholar:
-  style: _bibliography/csl_styles/apa-with-abstract.csl
+  style: _bibliography/csl_styles/apa-6th-edition.csl
   locale: en
   bibliography-hyperlinks: true
   sort_by: year
@@ -810,9 +810,9 @@ scholar:
   # bibliography_template: {{reference}}
   replace_strings: true
   join_strings:    true
-  details_dir:    bibliography
+  # details_dir:    bibliography
   details_layout: bibliography.html
-  details_link:   Details
+  #details_link:   Details
   query: "@*"
 # ------------------------------------------------------------------------------
 # END config

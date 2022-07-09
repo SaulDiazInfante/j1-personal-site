@@ -20,7 +20,7 @@ permalink:                              /pages/public/preprints/sto_mle/main_sto
 regenerate:                             false
 
 resources:                              [animate, clipboard, carousel,
-                                          justifiedGallery,lightbox, lightGallery,
+                                          justifiedGallery, lightbox, lightGallery,
                                           rouge]
 resource_options:
   - attic:
@@ -51,7 +51,7 @@ resource_options:
 // -----------------------------------------------------------------------------
 {% include {{load_attributes}} scope="all" %}
 
-//:images-dir: pages/preprints/sto_tycl/main_sto_tycl/Figrues/
+:images-dir: {imagesdir}/pages/preprints/sto_tycl/figrues
 
 // Page content
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -102,6 +102,50 @@ resource_options:
         async id="MathJax-script"
         src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
+<style>
+    .theorem {
+        display: block;
+        font-style: italic;
+    }
+    p{
+        text-indent: 30px;
+    }
+    .theorem:before {
+        content: "Theorem. ";
+        font-weight: bold;
+        font-style: normal;
+    }
+    .theorem[text]:before {
+        content: "Theorem (" attr(text) ") ";
+    }
+    .definition {
+        display: block;
+        font-style: italic;
+    }
+    .definition:before {
+        content: "Definition. ";
+        font-weight: bold;
+        font-style: normal;
+    }
+    .definition[text]:before {
+        content: "Definition (" attr(text) ") ";
+    }
+    .proof {
+        display: block;
+        font-style: italic;
+    }
+    .proof:before {
+        content: "Proof. ";
+        font-weight: bold;
+        font-style: normal;
+    }
+    .proof[text]:before {
+        content: "Proof (" attr(text) ") ";
+    }
+    span.right{
+        float:right
+    }
+</style>
 ++++
 
 == Abstract
@@ -357,8 +401,457 @@ for more details.
 |===
 
 // TODO: Table and figures of this section
-// lightbox::example-standalone[ 800, {data-images-standalone}, role="mb-4" ]
-//image::pages/preprints/sto_tycl/Figrues/Figure1.jpg[]
+//
+. Callibration Confidence bands for cumulative disease incidence of link:#eq:DeterministicSystem[model (1)] for non-resistant tomato data. Squares denote Rashmi, and points PSCL-4 tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in Table 2. Data from Holt and Muniyappa. Digital edition figures feasible in url:https://plotly.com/ AdrianSalcedo/347/.
+
+
+lightbox::example-standalone[ 800, {data-image-figure-1}, role="mb-4" ]
+
+[#subsec:deterministic_fixed_points]
+=== Deterministic Fixed Points
+
+According to  ODE link:#eq:DeterministicSystem[(1)], let
+$N_v^{\infty}:= {\mu}/{( \gamma + \gamma_f)}$.
+Let $\mathbf{R} ^ 5$ and consider the set
+
+++++
+    \begin{equation*}
+        %\label{eqn:invariant_set}
+	    \Gamma:=
+		    \left \{
+			(S_p, L_p, I_p, S_v, I_v)^{\top} \in \mathbf{R} ^ 5: \
+			0\leq S_p + L_p + I_p \leq N_p, \quad
+			0 \leq S_v + I_v \leq N_v^{\infty}
+		\right \}.
+    \end{equation*}
+++++
+Note that
+
+[#eqn:plant_size]
+++++
+\begin{equation}\label{eqn:plant_size}
+    \begin{aligned}
+        \frac{d N_p}{dt} &=
+			\frac{d}{dt}(S_p + L_p + I_p) = 0,
+			\\
+        \frac{d N_v}{dt} &=
+            \mu - ( \gamma + \gamma_f) N_v.
+    \end{aligned}
+\end{equation}
+++++
+
+Thus the whole plant population $N_p(t)$ remains
+constant for all $t\geq 0$. In addition,
+
+
+\begin{equation}
+    \label{eqn:vector_size}
+    N_v(t)= N^{\infty}_v +
+        (N_v(0) - N^{\infty}_v) \exp(-( \gamma + \gamma_f) t) .
+\end{equation}
+
+From this relation, we conclude that
+$
+    \lim_{t\to\infty}
+    N_v(t) = N_v^{\infty},
+$
+and that population sizes $N_p(t)$, $N_v(t)$ satisfies a
+conservative law. To summarize, we prove that set $\Gamma$
+is positive invariant in the sense of the following
+definition +++{% cite Meiss2007 %}+++. [p.106]
+
+++++
+<div class="definition", text='Invariant set '>
+        Let $f:[0,T]\times \Gamma \subset \mathbb{R}^n\to \mathbb{R}^n$.
+    We say that $\Gamma $ is an invariant set under $f$,
+    if $f(t,\Gamma)\subset \Gamma$ for all $t\in [0, T]$.
+</div>
+++++
+
+[#thm:positive_invariance]
+++++
+    <div class="theorem", text='Positive-invariance'>
+        <p>
+            The set $\Gamma$ is positive invariant.
+        </p>
+    </div>
+++++
+
+++++
+<div class="proof">
+    <p>
+        Let $(S_p,L_p,I_p,S_v,I_v)^\top \in \Gamma$ and apply the
+        right-hand side of dynamic \eqref{sys::DeterministicSystem}.
+        We have
+        \begin{align*}
+                \frac{dS_p}{dt}
+                    &=
+                    -\beta_p S_p
+                \frac{I_v}{N_v} + r_1 L_p + r_2 I_p ,
+            \\
+                \frac{dL_p}{dt}
+                    &=
+                        \beta_p S_p\frac{I_v}{N_v} - (b + r_1) L_p ,
+            \\
+                \frac{dI_p}{dt}
+                    &=
+                        b L_p - r_2 I_p,
+            \\
+                \frac{dS_v}{dt}
+                    &=
+                        -\beta_v S_v\frac{I_p}{N_p} -
+                        ( \gamma + \gamma_f) S_v+(1-\theta) \mu ,
+            \\
+                \frac{dI_v}{dt}
+                    &=
+                        \beta_v S_v \frac{I_p}{N_p} - ( \gamma + \gamma_f) I_v
+                        + \theta \mu.
+         \end{align*}
+    </p>
+    <p>
+        Now, verifying $\Gamma$ conditions, we get
+        $dS_p / dt + dL_p / dt + dI_p / dt \leq dN_p / dt$.
+        By law conservation
+        <a href="#eqn:plant_size">
+            (2)
+        </a>,
+        $S_p+L_p+I_p\leq N_p$.
+    </p>
+    <p>
+        Similarly,
+        $
+            dS_v / dt +  dI_v / dt \leq \mu  -(\gamma + \gamma_f) (S_v + I_v) \leq
+            \mu - ( \gamma + \gamma_f) N_v
+        $.
+        By \eqref{eqn:vector_size}, we obtain
+        $S_v+I_v\leq N^{\infty}_v+(N_v(0)-N^{\infty}_v)\exp{(-
+     	( \gamma + \gamma_f) t)}$.
+        Since this is for all $t$, we have $S_v+I_v\leq N^{\infty}_v$, hence
+        $f(S_p,L_p,I_p,S_v,I_v) \in \Gamma$. Therefore, $\Gamma$ is
+        invariant under
+        <a href="#eq:DeterministicSystem">
+            System (1)
+        </a>
+        <span class="right">
+            $\square$.
+        </span>
+    </p>
+</div>
+++++
+
+System link:#eq:DeterministicSystem[(1)] has the following fixed points:
+++++
+Free disase Equilibrium
+$$
+    FDE:= \left(
+        N_p,0,0,N^{\infty}_v,0
+        \right)^{\top}.
+$$
+++++
+
+and the Endemic Equilibrium
+++++
+$$
+    EE:=(S_p^{**},
+    L_p^{**},
+    I_p^{**},
+    S_v^{**},
+    I_v^{**}).
+$$
+++++
+Details of fixed point calculations in +++{% cite Salcedo-varela2021 %}+++.
+
+Here we compute this deterministic fixed points of ODE
+link:#eq:DeterministicSystem[(1)] and show that its uniqueness.
+To determine this fixed points, we solve,
+
+[#eqn:fixed_points]
+\begin{equation}
+     \label{eqn:fixed_points}
+ 	\begin{aligned}
+ 		-\beta_p S_p \frac{I_v}{N_v} + r_1L_p+r_2I_p &= 0\\
+ 		\beta_p S_p \frac{I_v}{N_v} - (b + r_1) L_p &= 0\\
+ 		b L_p - r_2 I_p &= 0\\
+ 		-\beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) S_v +(1-\theta) \mu &= 0\\
+ 		\beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) I_v + \theta \mu &= 0.
+ 	\end{aligned}
+ \end{equation}
+
+Note that link:#eqn:fixed_points[Eq. (4)] has at least
+two solutions---the free disease $(FDE)$
+and the endemic $(EE)$ fixed point. To characterize
+the free disease solution
++++$ FDE:= (S_{p} ^ *, L_{p}^*, I_{p}^*, S_{v}^*, I_{v}^*)$+++,
+we assume that
++++${L^*_p = I_p^* = I_v^* = 0}$+++.
+
+Consequently, from relation link:eqn:plant_size[(2)],
+the first component of link:#eqn:fixed_points[Eq. (4)]
+implies +++${S_p ^ * = N_p}$+++. Moreover,
+from \eqref{eqn:vector_size} we see that
++++$S_v ^ * + I_v ^ * \to N^{\infty}_v $+++ as
+$t \to \infty$, then
++++$ S_v^* \to N^{\infty}_v$+++.
+
+Therefore, FDE results
++++
+$$
+     FDE:= \left(
+         N_p,0,0,N^{\infty}_v,0
+         \right)^{\top}.
+$$
++++
+For the endemic fixed point
++++$
+     EE:=(S_p^{**},
+     L_p^{**},
+     I_p^{**},
+     S_v^{**},
+     I_v^{**})
+$+++,
+we assume that components +++$L_p^{**}$+++, +++$I_p^{**}$+++, +++$I_v^{**}$+++
+are positive and solve the right-hand side of
+\eqref{sys::DeterministicSystem} in terms of +++$I_v^{**}$+++.
+From link:#eqn:fixed_points[Eq. (4)] we obtain
+++++
+\begin{equation*}
+	\begin{aligned}
+		S^{**}_p &=
+ 		    \frac{
+                (r_1 L^{**}_p + r_2 I ^ {**} _ p) N_v
+            }{
+                I^{**}_v \beta_{p}
+            }
+         \\
+ 		L^{**}_p &=
+		    \frac{
+ 		        \beta_{p} S_p^{**} I_v^{**}
+ 		    }{
+ 		        N_v \left( b+r_1 \right)
+ 		    },
+ 		\\
+ 		I ^ {**} _ p &=
+            \frac{b L^{**}_p}{r_2},
+ 		\\
+ 		S^{**}_v &=
+ 			\frac{
+ 				\left(
+ 					1-\theta
+ 				\right)
+ 				\mu\, N_{p}
+ 			}{
+ 				( \gamma + \gamma_f)\, N_{p} + I^{**}_p
+ 				\beta_{v}
+ 			}.
+ 	\end{aligned}
+ \end{equation*}
+++++
+
+Expressing the above relations in terms of +++$L_p^{**}, I^{**}_p$+++ results
+
+++++
+\begin{equation}
+     \label{eqn:endemic_point_components}
+ 	\begin{aligned}
+ 	    S^{**}_p &=
+ 		    \frac{
+                (r_1 L^{**}_p + r_2 I^{**}_p) N_v
+            }{
+                I^{**}_v \beta_{p}
+            },
+ 	\\
+ 	L^{**}_p &=
+ 		\frac{
+ 			r_1L_p^{**} + r_2 I^{**}_p
+ 		}{
+ 		b + r_1
+ 		},
+ 	\\
+ 	I^{**}_p &=
+ 		\frac{
+ 			b (r_1 L_p^{**} + r_2 I_p^{**})
+ 		}{
+ 			 \left(
+ 			 	 b + r_1
+ 			 \right)
+ 			  r_2
+ 		},
+ 	\\
+ 	S^{**}_v &=
+ 		\frac{
+ 			 \left(
+ 			 	1 - \theta
+ 			 \right)
+ 			 \mu(b + r_1)
+ 			 r_2N_p
+ 		}{
+ 			( \gamma + \gamma_f) N_p(b + r_1)
+ 			r_2 +
+            b
+            (
+                r_1 L_p ^ {**} + r_2
+                I_p ^ {**}
+            )
+            \beta_v
+ 		}.
+ 	\end{aligned}
+ \end{equation}
+++++
+
+Substituting the above relations into the $I_v$ component of
+link:#eq:DeterministicSystem[ODE (1)] yields
+++++
+\begin{align*}
+ 		&[
+ 		    b ( \gamma + \gamma_f) \beta_p I ^ {**}_v +
+ 		    b ( \gamma + \gamma_f) N_v r_2 +
+ 		    b \beta_p \beta_v I^{**}_v +
+ 		    ( \gamma + \gamma_f) \beta_p r_2 I^{**}_v
+ 		    \\
+ 		    &+
+ 		    ( \gamma + \gamma_f) N_v r_1 r_2
+ 		] I^{**}_v
+  		=
+  		N_v
+  		(
+  		    b ( \gamma + \gamma_f) \theta \beta_p I^{**}_v +
+  		    b ( \gamma + \gamma_f) \theta N_v r_2
+  		 \\
+  		 &+
+  		    ( \gamma + \gamma_f) \theta \beta_p r_2 I^{**}_v +
+  		    ( \gamma + \gamma_f) \theta N_v r_1 r_2 +
+  		    b \beta_p \beta_v I^{**}_v
+  		).
+ 	\end{align*}
+++++
+ Let
+
+++++
+ \begin{align*}
+ 	a_1 &:=
+ 		(\gamma + \gamma_f) \beta_p (b + r_2) +
+ 		b \beta_p \beta_v
+ 		,\\
+ 	a_2 &:=
+ 	    (\gamma + \gamma_f) N_v [r_2 (b + r_1) - \beta_p \theta (b + r_2)]
+ 	    - N_v b \beta_p \beta_v
+ 	    ,
+ 	\\
+ 	a_3 &:=
+ 	    (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1).
+ \end{align*}
+++++
+
+So, after some algebraic manipulations, we establish
+the following quadratic equation
+
+++++
+ \begin{equation}\label{eqn::QuadraticInfectedFP}
+     	    a_1 I_v^{**2} + a_2 I^{**}_v - a_3 = 0.
+ \end{equation}
+++++
+
+According to the discriminant $\Delta = a_2  ^ 2 -  4a_1 a_3$,
+we get
+
+++++
+ \begin{equation*}
+     \begin{aligned}
+         \Delta
+             &=
+                 \{
+                 (\gamma + \gamma_f) N_v [r_2 (b + r_1)
+                 - \beta_p \theta (b + r_2)]
+ 	            - N_v b \beta_p \beta_v
+                 \} ^ 2
+             \\
+             & +
+                 4[
+                 ( \gamma + \gamma_f) \beta_p (b + r_2) +
+ 	            b \beta_p \beta_v
+                 )
+                 (
+                 (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1)
+                 ].
+     \end{aligned}
+ \end{equation*}
+++++
+
+Note that $\Delta$ is positive, this implies two real solutions
+
+++++
+ \begin{equation}
+     \label{eqn:I_v_positiity}
+ 	I^{**}_{v} =
+ 		\frac{
+ 			-a_2 +
+ 			\sqrt{a_2^2 - 4a_1 a_3}}%
+ 		{2a_1}.
+ \end{equation}
+++++
+
+From relations \eqref{eqn:endemic_point_components} and \eqref{eqn:I_v_positiity}
+we obtain endemic fixed point $EE$.
+
+And using van den Driessche's \cite{VandenDriessche2017a} definition of basic reproductive
+number to obtain Van den Driesshe in  \cite{VandenDriessche2017a} compute basic reproductivenumber $\mathcal{R}^d_0$ as the spectral radius of the next-generation matrix.
+
+For the system \eqref{sys::DeterministicSystem} next-generation matrix results
+++++
+\begin{equation*}\label{Mtx::NextGenerationMatrix}
+     K:=
+         \begin{bmatrix}
+         0 & 0 &\frac{\beta_p S^*_p}{N^{\infty}_v ( \gamma + \gamma_f)}
+         \\
+         0 & 0 & 0
+         \\
+         \frac{\beta_v S^*_v b}{N_p (b+r_1) r_2} &
+         \frac{\beta_v S^*_v}{N_p r_2} & 0
+         \\
+         \end{bmatrix}.
+ \end{equation*}
+++++
+
+Matrix $K$  has $(i, j)$ entry equal to the expected number of secondary
+infections in the compartment $i$ produced by an infected individual introduced
+in the compartment $j$. Calculating the basic reproductive number for the system
+\eqref{sys::DeterministicSystem} we have
+
+++++
+\begin{equation*}%\label{eqn::DeterministicBRN}
+    \mathcal{R}^d_0:=\frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
+\end{equation*}
+++++
+
+The following result give a criteria for the stability of fixed points using basic
+reproductive number $\mathcal{R}^d_0$ +++{% cite VandenDriessche2017a %}+++.
+
+++++
+<div class="theorem" text="Thm.1, p.292 VandenDriessche(2017)">
+
+    If $\mathcal{R}^d_0 < 1$, then the fixed point FDE of system
+    (1) is locally asymptotically stable.
+</div>
+++++
+
+Besides,  when $\mathcal{R}^d_0>1$ we have the instability
+of free disease fixed point, but we obtain the stability
+of the endemic fixed point, and we establish the following result.
+
+[#Thm::StabilityEndemicPointBasicReproNumberDeter]
+++++
+<div class="theorem">
+    <p>
+        If $\mathcal{R}^d_0>1$, then the fixed point EE of
+        <a href="#eq:DeterministicSystem">
+            System (1)
+        </a>
+        is locally asymptotically stable.
+    </p>
+</div>
+++++
+
+
 
 [#sec:stochastic_extension]
 == Stochastic Extension
@@ -460,9 +953,40 @@ link:#eq:DeterministicSystem[(1)] given the following Itô SDE:
 	\end{aligned}
 \end{equation}
 
-
 [#sec:solution_existence]
 == Existence and uniqueness of positive Solution
+++++
+<p>
+        Here, we prove the existence of a unique positive solution.
+    Since we study the asymptotic behavior of a biological model,
+    we have to assure the existence of unique-globally-positive
+    invariant solution of SDE
+    \eqref{sys::StochasticSystem}. The following result prove that
+    this set is positive invariant-- see supplementary material.
+</p>
+
+<div class="theorem" id="thm::existence-unique">
+
+        For any initial values
+        $
+            (S_p(0), L_p(0), I_p(0), S_v(0), I_v(0))^{\top}
+            \in \Gamma
+        $,
+        exists a unique a.s. invariant global positive solution to SDE
+        \eqref{sys::StochasticSystem} in $\Gamma$, that is, the solution
+        $x(t) = (S_p(t), L_p(t), I_p(t), S_v(t), I_v(t)) ^\top$, satisfies
+        \begin{equation*}
+            \probX{
+                x(t)
+                \in
+                \Gamma, \
+                \forall t \geq 0
+            } = 1.
+        \end{equation*}
+    </div>
+++++
+
+
 
 [#sec:extinction]
 == Extinction

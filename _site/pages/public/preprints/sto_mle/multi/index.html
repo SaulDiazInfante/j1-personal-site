@@ -7,7 +7,7 @@
   
             <!DOCTYPE html>
 <html lang="en">
-  <!-- [INFO   ] [j1.layout.default.html                ] [ page generated: 2022-07-07 18:01:47 +0200 ] -->
+  <!-- [INFO   ] [j1.layout.default.html                ] [ page generated: 2022-07-09 03:31:20 +0200 ] -->
   <!-- [INFO   ] [j1.layout.default.html                ] [ environment detected as: development ] -->
   <!-- [INFO   ] [j1.layout.default.html                ] [ version detected as: 2022.4.4 ] -->
   <head data-proofer-ignore>
@@ -553,6 +553,9 @@
           <div id="preamble">
             <div class="sectionbody">
               <script>
+                const Cite = require('citation-js')
+              </script>
+              <script>
                 MathJax = {
                     loader: {load: ['[tex]/textmacros']},
                     tex: {
@@ -588,10 +591,18 @@
                     svg: {fontCache: 'global'}
                 };
               </script>
-              <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-              <script>
-                const Cite = require('citation-js')
+              <script type="text/x-mathjax-config">
+                MathJax.Hub.Config({
+                  tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+                //  	errorSettings: {message: undefined},
+                  TeX: { extensions: [
+                    "[siunitx]/siunitx.js",
+                    "color.js"
+                  ] }
+                });
+                MathJax.Ajax.config.path['siunitx']  = '..';
               </script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML&amp;delayStartupUntil=configured"></script>
               <style>
                 h1 {
                     font-size: 34px;
@@ -645,6 +656,7 @@
                 code {
                 white-space: pre;
                 }
+                .tab { margin-left: 40px; }
               </style>
               <script type="text/javascript">
                 if (window.hljs) {
@@ -714,6 +726,57 @@
                     left: -100%;
                     margin-left: 10px;
                     border-radius: 6px 0 6px 6px;
+                }
+                .theorem {
+                    display: block;
+                    font-style: italic;
+                }
+                .theorem:before {
+                    content: "Theorem. ";
+                    font-weight: bold;
+                    font-style: normal;
+                }
+                .theorem[text]:before {
+                    content: "Theorem (" attr(text) ") ";
+                }
+                .definition {
+                    display: block;
+                    font-style: italic;
+                }
+                .definition:before {
+                    content: "Definition. ";
+                    font-weight: bold;
+                    font-style: normal;
+                }
+                .definition[text]:before {
+                    content: "Definition (" attr(text) ") ";
+                }
+                .proof {
+                    display: block;
+                    font-style: italic;
+                }
+                .proof:before {
+                    content: "Proof. ";
+                    font-weight: bold;
+                    font-style: normal;
+                }
+                .proof[text]:before {
+                    content: "Proof (" attr(text) ") ";
+                }
+                .example {
+                    display: block;
+                    font-style: italic;
+                }
+                .example:before {
+                    content: "Example. ";
+                    font-weight: bold;
+                    font-style: normal;
+                }
+                .example[text]:before {
+                    content: "Example (" attr(text) ") ";
+                }
+                span.right{
+                    float:right;
                 }
               </style>
               <script type="text/javascript">
@@ -787,6 +850,9 @@
                 }
                 .tabset-dropdown > .nav-tabs > li {
                     display: none;
+                }
+                p {
+                    text-indent: 30px;
                 }
               </style>
               <div class="container-fluid main-container">
@@ -993,23 +1059,26 @@
                 from Mexico City, we also have a natural discretised version
                 of the MLE to estimate the parameters in the model.
               </p>
-              On the other hand, there are complex stochastic models similar to
-              the one considered in this manuscript that are only studied on a
-              theoretical basis and/or with numerical simulations.
-              However, this does not address estimations methods.
-              For example, in
-              <span>
-                <a href="ref-faranda2020modeling">
-                </a>
-              </span>, the authors propose a SEIR model, with four classes of
-              individuals, given by a random differential equation.
-              Indeed, they consider a model where two parameters are Brownian
-              motion with drift and one parameter is the solution of a SDE with
-              a log-normal perturbation.
-              Nevertheless, the authors do not estimate parameters
-              from actual data to fit the model, the parameters are instead taken from
-              previous works. Additionally, they used date information about
-              confinement in Italy and France to validate the model.
+              <p>
+                On the other hand, there are complex stochastic models similar to
+                the one considered in this manuscript that are only studied on a
+                theoretical basis and/or with numerical simulations.
+                However, this does not address estimations methods.
+                For example, in
+                <span>
+                  <a href="ref-faranda2020modeling">
+                  </a>
+                </span>,
+                the authors propose a SEIR model, with four classes of
+                individuals, given by a random differential equation.
+                Indeed, they consider a model where two parameters are Brownian
+                motion with drift and one parameter is the solution of a SDE with
+                a log-normal perturbation.
+                Nevertheless, the authors do not estimate parameters
+                from actual data to fit the model, the parameters are instead taken from
+                previous works. Additionally, they used date information about
+                confinement in Italy and France to validate the model.
+              </p>
               <p>
                 In
                 <span>
@@ -1032,12 +1101,14 @@
                 Nevertheless, estimation methods to fit the model is an open problem
                 for their model.
               </p>
-              This manuscript focus on the calibration of a stochastic SEIR
-              (Susceptible-Exposed-Infective-Recovered) model
-              with data of symptomatic reported and confirmed
-              cases in Mexico City. According to a specific time window—where the
-              outbreak follows an increasing profile—, our approach relies on the
-              maximum likelihood estimation method.
+              <p>
+                This manuscript focus on the calibration of a stochastic SEIR
+                (Susceptible-Exposed-Infective-Recovered) model
+                with data of symptomatic reported and confirmed
+                cases in Mexico City. According to a specific time window—where the
+                outbreak follows an increasing profile—, our approach relies on the
+                maximum likelihood estimation method.
+              </p>
               <p>
                 Here, we formulate our stochastic SEIR model
                 through a stochastic perturbation of the natural death rate of the
@@ -1045,9 +1116,11 @@
                 coupled It\^o stochastic differential equation (SDE), driven by
                 an affine Gaussian multiplicative noise.
               </p>
-              Our main objective pursuit the development of consistent
-              Maximum Likelihood Estimator (MLE) for a stochastic
-              SEIR structure.
+              <p>
+                Our main objective pursuit the development of consistent
+                Maximum Likelihood Estimator (MLE) for a stochastic
+                SEIR structure.
+              </p>
               <p>
                 Parameter estimation for SDEs is an active
                 area in the statistical literature.
@@ -1087,8 +1160,8 @@
                 <span>
                   <a href="#ref-Fintzi2017">
                     Fintzi (2017)
-                  </a>
-                </span>,
+                  </a>,
+                </span>
                 and techniques from data science such as
                 Artificial Intelligence and machine learning
                 <span>
@@ -1097,14 +1170,17 @@
                   </a>
                 </span>
               </p>
+              <h2>
+                Our Contribution
+              </h2>
               <p>
-                Our work is related to
+                This work is related to
                 <span>
                   <a href="#ref-Liu">
                     Liu (2018),
                   </a>
                   <a href="#ref-PaGrGrMa">
-                    Pan (2014)
+                    Pan (2014),
                   </a>
                   <a href="#ref-Ndanguza">
                     Ndanguza (2011),
@@ -1113,8 +1189,8 @@
                     Hotta (2010),
                   </a>
                   <a href="#ref-Rios">
-                    Rios (2020),
-                  </a>
+                    Rios (2020)
+                  </a>.
                 </span>
                 Liu face the estimation
                 for a system of SDEs in
@@ -1153,17 +1229,19 @@
                 In short, this likelihood and a mechanism to manage incomplete data
                 form the core mechanism that allows us to estimate the parameters.
               </p>
-              Data-driven epidemic models usually treat observations as counters.
-              Assuming that data follows a given distribution, this could be a Poisson,
-              negative binomial, and so on.
-              <a href="#ref-ONeill2010">
-                ONeill (2010)
-              </a>.
-              Then, by applying some statistical inference tools to estimate some parameters,
-              the model is fitted to the incidence data.
               <p>
+                Data-driven epidemic models usually treat observations as counters.
+                Assuming that data follows a given distribution, this could be a Poisson,
+                negative binomial, and so on.
+                <a href="#ref-ONeill2010">
+                  ONeill (2010)
+                </a>.
+                Then, by applying some statistical inference tools to estimate some parameters,
+                the model is fitted to the incidence data.
                 Here, we avoid this assumption.
                 A description of the procedure follows.
+              </p>
+              <p>
                 We use the Radon-Nikodym derivative of two equivalent
                 measures—which, in our case, are the respective solutions
                 of the stochastic SEIR system with two different sets of values of
@@ -1175,11 +1253,13 @@
                 therefore,—we assume that the data have
                 an abstract distribution.
               </p>
-              We pursue estimators that satisfy strong consistency and
-              numerical schemes of high order to its computing.
-              With these ideas, we also illustrate their efficacy
-              in the time of computing and performance with real-data
-              by simulation.
+              <p>
+                We pursue estimators that satisfy strong consistency and
+                numerical schemes of high order to its computing.
+                With these ideas, we also illustrate their efficacy
+                in the time of computing and performance with real-data
+                by simulation.
+              </p>
               <p>
                 Our simulations suggest that the methodology developed
                 here improves a particular outcome of a fitting with MCMC.
@@ -1221,7 +1301,6 @@
                 with synthetic generated data and data of confirmed symptomatic
                 cases from Mexico City.
               </p>
-              <!--- Deterministic section--->
               <div style="display:none">
                 \(
                 \def\&lt;#1&gt;{\left&lt;#1\right&gt;}
@@ -1551,20 +1630,20 @@
                   </caption>
                   <thead>
                     <tr class="header">
-                      <th style="text-align: right;">Parameter</th>
-                      <th style="text-align: left;">Value</th>
-                      <th style="text-align: center;">Reference</th>
+                      <th>Parameter</th>
+                      <th>Value</th>
+                      <th>Reference</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="odd">
-                      <td style="text-align: right;">
+                      <td>
                         <span class="math inline">
                           \(\mu^{-1}\)
                         </span>
                       </td>
-                      <td style="text-align: left;">
-                        70  365 days
+                      <td>
+                        \si{70 * 365}{days}
                       </td>
                       <td style="text-align: center;">
                         <span class="math inline">
@@ -1579,7 +1658,7 @@
                         </span>
                       </td>
                       <td style="text-align: left;">
-                        0.0582153226067555
+                        \(\num{0.0582153226067555}\)
                       </td>
                       <td style="text-align: center;">
                         Estimated
@@ -1616,7 +1695,8 @@
                     </tr>
                     <tr class="odd">
                       <td style="text-align: right;">
-                        <span class="math inline">\(p\)
+                        <span class="math inline">
+                          \(p\)
                         </span>
                       </td>
                       <td style="text-align: left;">
@@ -1641,7 +1721,7 @@
                     <tr class="odd">
                       <td style="text-align: right;">
                         <span class="math inline">
-                          \(\alpha_{s}^{-1}\)
+                          \(\alpha_{s}\)
                         </span>
                       </td>
                       <td style="text-align: left;">
@@ -1656,7 +1736,7 @@
                     <tr class="even">
                       <td style="text-align: right;">
                         <span class="math inline">
-                          \(\alpha_{a}^{-1}\)
+                          \(\alpha_{a}\)
                         </span>
                       </td>
                       <td style="text-align: left;">
@@ -1789,7 +1869,7 @@
               </div>
               <div class="figure*">
                 <figure>
-                  <img alt="image" src="../Figures/MCMC_CDMXDataFitting.jpeg" style="width:80.0%">
+                  <img alt="image" src="../Figures/MCMC_CDMXDataFitting.png" style="background-color : #ffffff">
                   <figcaption>
                     MCMC fit to CDMX of model \eqref{eqn:base_dynamics}
                   </figcaption>
@@ -1849,7 +1929,8 @@
                 following idea:
               </p>
               <blockquote>
-                <p>Perturb the parameters that lead to a tractable likelihood, optimize
+                <p>
+                  Perturb the parameters that lead to a tractable likelihood, optimize
                   and then deduce your desirable estimators.
                 </p>
               </blockquote>
@@ -1861,13 +1942,8 @@
                 In this section, we consider a stochastic version of the model given
                 by \eqref{eqn:base_dynamics}. We aim to quantify uncertainty.
                 To this end, we conveniently perturb the natural mortality rate
-                <span class="math inline">
-                  \(\mu\)
-                </span>
-                by a standard Wiener process
-                <span class="math inline">
-                  \(W(t)\)
-                </span>.
+                $\mu$ by a standard Wiener process
+                $W(t)$.
                 That is, we add a stochastic infinitesimal fluctuation of the parameter
                 <span class="math inline">
                   \(\mu\)
@@ -2200,7 +2276,7 @@
                 We apply the version of the Girsanov formula presented in
                 <span class="citation" data-cites="saso19">
                   <a href="#ref-saso19">
-                    Saso (2019)
+                    Saso (2019) [Thm 7.4]
                   </a>
                 </span> for the system in.
                 We assume that the true value of the parameters
@@ -2219,8 +2295,8 @@
                 <span class="math inline">
                   \({\beta,p}\)
                 </span>
+                [
                 <span class="citation" data-cites="iacus">
-                  [
                   see for instance
                   <a href="#ref-iacus">
                     Iacus (2008)
@@ -2235,8 +2311,8 @@
                   <a href="#ref-saso19">
                     Särkkä and Solin (2019)
                   </a>
-                  ]
-                </span>.
+                </span>
+                ].
                 Then, by Theorem 7.4 in
                 <span class="citation" data-cites="saso19">
                   <a href="#ref-saso19">
@@ -2265,26 +2341,35 @@
                   \Bigg],
                   \end{aligned}
                   \end{equation}
-                </span> where <span class="math inline">\(Q\)</span>,
+                </span> where
+                <span class="math inline">
+                  \(Q\)
+                </span>,
                 in our case, is the five-identity matrix and
                 <span class="math display">
-                  \begin{equation}
-                  \begin{aligned}
-                  d\mathbf{W}
-                  &amp;=
+                  \begin{equation*}
+                  [
+                  F ( \mathbf{X}_{\beta, p}(t))
+                  -
+                  F ( \mathbf{X}_{\beta_{0}, p_{0}}(t))
+                  ]
+                  =
                   \begin{pmatrix}
-                  -(f_\beta-f_{\beta_0}) \dfrac{S(t) }{\sigma (1-S(t))}
+                  -(f_\beta-f_{\beta_0})
+                  \dfrac{S(t) }{\sigma (1-S(t))}
                   \\
-                  -(f_\beta-f_{\beta_0}) \dfrac{S(t) }{\sigma E(t)}
+                  -(f_\beta-f_{\beta_0})
+                  \dfrac{S(t) }{\sigma E(t)}
                   \\
-                  -(p - p_0) \dfrac{\kappa E(t)}{\sigma I_a(t)}
+                  -(p - p_0)
+                  \dfrac{\kappa E(t)}{\sigma I_a(t)}
                   \\
-                  (p-p_0) \dfrac{\kappa E(t)}{\sigma I_s(t)}
+                  (p-p_0)
+                  \dfrac{\kappa E(t)}{\sigma I_s(t)}
                   \\
                   0
                   \end{pmatrix},
-                  \end{aligned}
-                  \end{equation}
+                  \end{equation*}
                 </span>
                 with
                 <span class="math display">
@@ -2345,9 +2430,11 @@
                 <span class="math display">
                   \begin{equation}
                   \begin{aligned}
-                  d\mathbf{W}(t) ^{T}
-                  Q^{-1}
-                  d\mathbf{W}(t)
+                  [                   [
+                  F ( \mathbf{X}_{\beta, p}(t))
+                  -
+                  F ( \mathbf{X}_{\beta_{0}, p_{0}}(t))
+                  ]^{\top} Q ^ {-1} dW(t)
                   =&amp;  -(f_\beta-f_{\beta_0})
                   [
                   \dfrac{S(t)}{\sigma (1 - S(t)) }
@@ -2373,7 +2460,12 @@
                 <span class="math display">
                   \begin{equation}
                   \begin{aligned}
-                  d\mathbf{W}^{T} Q^{-1}
+                  [                   [
+                  F ( \mathbf{X}_{\beta, p}(t))
+                  -
+                  F ( \mathbf{X}_{\beta_{0}, p_{0}}(t))
+                  ]^{\top}
+                  Q ^ {-1}
                   [
                   F(
                   \mathbf{X}_{\beta,p}(t)
@@ -2449,14 +2541,14 @@
                 and vice versa.
               </p>
               <p>
-                Then, by maximising the log likelihood with respect to
+                Then, maximising the log likelihood with respect to
                 <span class="math inline">
                   \(\beta_\star\)
                 </span> we have that
               </p>
               <p>
                 <span class="math display">
-                  \begin{equation}
+                  \begin{equation*}
                   \begin{aligned}
                   &amp;
                   0 =
@@ -2482,11 +2574,11 @@
                   \Big]^2
                   \right) dt.
                   \end{aligned}
-                  \end{equation}
+                  \end{equation*}
                 </span>
                 then,
                 <span class="math display">
-                  \begin{equation}
+                  \begin{equation*}
                   \begin{aligned}
                   &amp;
                   (\beta\star-\beta_{\star,0} )
@@ -2525,7 +2617,7 @@
                   +  \frac{S(t) I_\star(t)}{ E(t)}
                   \Big]  dW(t).
                   \end{aligned}
-                  \end{equation}
+                  \end{equation*}
                 </span>
                 From this expression
                 we obtain that
@@ -2564,7 +2656,7 @@
                 </span>
                 where
                 <span class="math display">
-                  \begin{equation}
+                  \begin{equation*}
                   \begin{aligned}
                   J_\star(T)
                   &amp;:=
@@ -2593,7 +2685,7 @@
                   \Big] ^ 2
                   \right) dt.
                   \end{aligned}
-                  \end{equation}
+                  \end{equation*}
                 </span>
               </p>
               <p>
@@ -2631,7 +2723,15 @@
                   \end{equation}
                 </span>
               </p>
-              <p>Meanwhile, deriving the log likelihood with respect to <span class="math inline">\(p\)</span> yields <span class="math display">\[\begin{aligned}
+              <p>
+                Meanwhile, deriving the log likelihood with respect to
+                <span class="math inline">
+                  \(p\)
+                </span>
+                yields
+                <span class="math display">
+                  \[
+                  \begin{aligned}
                   (p-p_0)
                   \left(
                   \int_0^T
@@ -2645,22 +2745,43 @@
                   \int_0^T
                   \Big[
                   -\dfrac{\kappa E(t)}{ I_a(t)} +
-                  \dfrac{\kappa E(t)}{ I_s(t)} \Big] dW(t).
-                  \end{aligned}\]</span> This implies that <span class="math display">\[\begin{aligned}
-                  \label{MLE_p}
+                  \dfrac{\kappa E(t)}{ I_s(t)}
+                  \Big] dW(t).
+                  \end{aligned}
+                  \]
+                </span>
+                This implies that
+                <span class="math display">
+                  \begin{equation}
+                  \begin{aligned} \label{MLE_p}
                   \hat{p}_{ML}-p_0 &amp;=
                   \frac{\sigma }{J_2(T)}
                   \int_0^T
                   \Big[
                   - \dfrac{\kappa E(t)}{ I_a(t)}
                   + \dfrac{\kappa E(t)}{ I_s(t)}
-                  \Big] dW(t),\end{aligned}\]</span> with <span class="math display">\[J_2(T):=
+                  \Big] dW(t),
+                  \end{aligned}
+                  \end{equation}
+                </span>
+                with
+                <span class="math display">
+                  \[
+                  J_2(T):=
                   \int_0^T
                   \Big[
                   \dfrac{\kappa ^ 2 E ^ 2(t)}{I_s^2(t)}
                   + \dfrac{\kappa ^ 2 E ^ 2(t)}{ I_a^2(t)}
-                  \Big] dt.\]</span></p>
-              <p>Let <span class="math inline">\(X_0 ^ + :=
+                  \Big] dt.
+                  \]
+                </span>
+              </p>
+              <p>
+                Let
+                <span class="math inline">
+                  \(
+                  X_0 ^ +
+                  :=
                   \{
                   (
                   S(t_0),
@@ -2668,8 +2789,14 @@
                   I_a(t_0),
                   I_s(t_0)
                   )
-                  \}\)</span> initial state where all populations classes are
-                strictly positive. Denote by <span class="math inline">\(\varphi:=
+                  \}
+                  \)
+                </span>
+                the set of initial states where all populations classes are
+                strictly positive. Denote by
+                <span class="math inline">
+                  \(
+                  \varphi:=
                   \left\{
                   \mu,
                   \beta_s,
@@ -2680,15 +2807,41 @@
                   \alpha_s ,
                   \alpha_a,
                   \gamma
-                  \right\},\)</span> a model parameter configuration. Accordingly,
+                  \right\},
+                  \)
+                </span> a model parameter configuration. Accordingly,
                 to the van den Driessche definition, the reproductive number for the
-                deterministic version of our dynamics results <span class="math display">\[\mathcal{R}_0^{D}:=
+                deterministic version of our dynamics results
+                <span class="math display">
+                  \[
+                  \mathcal{R}_0^{D}:=
                   \dfrac{p \kappa \beta_s }{(\mu + \kappa) (\mu + \alpha_s)}
                   +
                   \dfrac{(1 - p) \kappa \beta_a}{(\mu + \kappa)(\mu +
-                  \alpha_a)}.\]</span> Thus given the initial condition <span class="math inline">\(X_0 ^ +\)</span> and a parameter configuration
-                <span class="math inline">\(\varphi\)</span>, we define the set <span class="math inline">\(\Omega ^* = \Omega (X_0 ^ + , \varphi,
-                  T^*)\)</span> by <span class="math display">\[\begin{aligned}
+                  \alpha_a)}.
+                  \]
+                </span>
+                Thus given the initial condition
+                <span class="math inline">
+                  \(
+                  X_0 ^ +
+                  \)
+                </span>
+                and a parameter configuration
+                <span class="math inline">
+                  \(\varphi\)
+                </span>,
+                we define the set
+                <span class="math inline">
+                  \(
+                  \Omega ^* =
+                  \Omega (X_0 ^ + , \varphi, T^*)
+                  \)
+                </span>
+                by
+                <span class="math display">
+                  \[
+                  \begin{aligned}
                   \Omega^{*} :=
                   \left \{
                   (S, E, I_a, I_s, R) \times [t_0 , T]:
@@ -2702,125 +2855,990 @@
                   I_a(t) &gt; I_a(t_0), \
                   I_s(t) &gt; I_s(t_0)
                   \right \}.
-                  \end{aligned}\]</span> To prove consistency and asymptotic
-                normality of the parameter, we will make the following hypotheses.</p>
+                  \end{aligned}
+                  \]
+                </span>
+                To prove consistency and asymptotic
+                normality of the parameter, we will make the following hypotheses.
+              </p>
               <div class="hypotheses" id="set_hypotheses">
                 <p><strong>Hypotheses 1</strong>. <em>There exists <span class="math inline">\(T_0&gt;0\)</span> such that for all <span class="math inline">\(t\in [0,T_0]\)</span></em></p>
               </div>
               <ol>
                 <li>
-                  <p><span class="math inline">\(\mathcal{R}_0 ^ D &gt;
-                      1\)</span></p>
+                  <p>
+                    <span class="math inline">
+                      \(\mathcal{R}_0 ^ D &gt;1\)
+                    </span>
+                  </p>
                 </li>
                 <li>
-                  <p>The initial condition <span class="math inline">\(X_0 ^
-                      +\)</span> and parameter configuration <span class="math inline">\(\varphi\)</span> are such that <span class="math inline">\({\Omega^* \neq  \emptyset}\)</span></p>
+                  <p>
+                    The initial condition
+                    <span class="math inline">
+                      \(X_0 ^+\)
+                    </span> and parameter configuration
+                    <span class="math inline">
+                      \(\varphi\)
+                    </span>
+                    are such that
+                    <span class="math inline">
+                      \({\Omega^* \neq  \emptyset}\)
+                    </span>
+                  </p>
                 </li>
               </ol>
-              <p>This implies that our results are only valid in a sufficiently large
-                time window.</p>
+              <p>
+                This implies that our results are only valid in a sufficiently large
+                time window.
+              </p>
               <div class="rem">
-                <p><strong>Remark 1</strong>. <em>In other words, Hypothesis <a data-reference="set_hypotheses" data-reference-type="ref" href="#set_hypotheses">1</a> assures conditions to estimate
+                <p>
+                  <strong>Remark 1</strong>.
+                  <em>
+                    In other words,
+                    <a data-reference="set_hypotheses" data-reference-type="ref" href="#set_hypotheses">
+                      Hypothesis 1
+                    </a>
+                    assures conditions to estimate
                     parameters in a growth phase of the outbreak. Under these conditions,
                     the susceptible population decreases while the Exposed and Infected
                     classes are in the growth phase. Furthermore, according to the
-                    definition of set <span class="math inline">\(\Omega ^ {*}\)</span>,
-                    this growth phase occurs in a time window of size <span class="math inline">\((T^* - t_0)\)</span>.</em></p>
+                    definition of set
+                    <span class="math inline">
+                      \(\Omega ^ {*}\)
+                    </span>,
+                    this growth phase occurs in a time window of size
+                    <span class="math inline">
+                      \((T^* - t_0)\)
+                    </span>.
+                  </em>
+                </p>
               </div>
-              <p>Hypotheses <a data-reference="set_hypotheses" data-reference-type="ref" href="#set_hypotheses">1</a> implies that <span class="math display">\[\begin{aligned}
+              <p>
+                <a data-reference="set_hypotheses" data-reference-type="ref" href="#set_hypotheses">Hypotheses 1
+                </a>
+                implies that
+                <span class="math display">
+                  \begin{equation*}
                   \dfrac{1}{1-S(t)} &lt; \dfrac{1}{1-S(0)},
                   \qquad
                   \dfrac{1}{E(t)} &lt; \frac{1}{E(0)}
-                  \qquad \forall t\in [0, T_0].\end{aligned}\]</span> Now we prove the
-                consistency of our estimators.</p>
-              <div class="theorem">
-                <p><span id="Consitency-th" label="Consitency-th"></span> Assume that
-                  Hypotheses <a data-reference="set_hypotheses" data-reference-type="ref" href="#set_hypotheses">1</a> are satisfied. The estimators
-                  <span class="math inline">\((\hat{\beta}_{s,ML},\hat{\beta}_{a,ML},\hat{p}_{ML})\)</span>
-                  are strongly consistent; that is, <span class="math display">\[\label{consistency}
-                    \lim_{T \rightarrow T_0}
-                    \begin{pmatrix}
-                    \hat \beta_{s,ML}
-                    \\
-                    \hat \beta_{a,ML}
-                    \\
-                    \hat p_{ML}
-                    \end{pmatrix}
-                    =
-                    \begin{pmatrix}
-                    \beta_{s,0}
-                    \\
-                    \beta_{a,0}
-                    \\
-                    p_0
-                    \end{pmatrix},
-                    \qquad \mbox{with probability one.}\]</span></p>
-              </div>
-              <p>The proof of this theorem is deferred to supplementary material.</p>
-              <p>To estimate the parameter of diffusion
-                <span class="math inline">
-                  \(\sigma\)
-                </span>, we can use the quadratic
-                variation over
-                <span class="math inline">
-                  \([0,T]\)
-                </span> of the
-                processes of system of SDEs denoted by
-                <span class="math inline">
-                  \(&lt;*,*&gt;_T\)
-                </span>. The estimator is given by
-                <span class="math display">
-                  \begin{equation}
-                  \label{est_sigma}
-                  \hat{\sigma}^2:=\sum_{i=1}^5\frac{\hat{\sigma}^2_i}{5},
-                  \end{equation}
+                  \qquad \forall t\in [0, T_0].
+                  \end{equation*}
                 </span>
-                where
-                <span class="math display">
-                  \begin{equation}
-                  \label{sigmas}
-                  \begin{aligned}
-                  &amp;\hat{\sigma}^2_1
-                  = \frac{&lt;S,S&gt;_T}{\int_0^T(1-S(t))^2dt},
-                  %
-                  \qquad
-                  \hat{\sigma}^2_2
-                  = \frac{&lt;E,E&gt;_T}{\int_0^TE(t)^2dt},
-                  % %
-                  \qquad
-                  \hat{\sigma}^2_3
-                  = \frac{&lt;I_a,I_a&gt;_T}{\int_0^TI_a(t)^2dt},
-                  % %
-                  \\
-                  &amp; \hat{\sigma}^2_4
-                  = \frac{&lt;I_s,I_s&gt;_T}{\int_0^TI_s(t)^2dt},
-                  % %
-                  \qquad
-                  \hat{\sigma}^2_5
-                  = \frac{&lt;R,R&gt;_T}{\int_0^TR(t)^2dt}.
-                  \end{aligned}
-                  \end{equation}
-                </span>
+                Now we prove the  consistency of our estimators.
               </p>
+              <div class="theorem">
+                <span id="Consitency-th" label="Consitency-th">
+                  <p>
+                    Assume that
+                    <a data-reference="set_hypotheses" data-reference-type="ref" href="#set_hypotheses">
+                      Hypotheses1
+                    </a>
+                    are satisfied.
+                    Then estimators
+                    <span class="math inline">
+                      \((\hat{\beta}_{s,ML},\hat{\beta}_{a,ML},\hat{p}_{ML})\)
+                    </span>
+                    are strongly consistent, that is,
+                    <span class="math display">
+                      \begin{equation}
+                      \label{consistency}
+                      \lim_{T \to T_0}
+                      \begin{pmatrix}
+                      \hat \beta_{s,ML}
+                      \\
+                      \hat \beta_{a,ML}
+                      \\
+                      \hat p_{ML}
+                      \end{pmatrix}
+                      =
+                      \begin{pmatrix}
+                      \beta_{s,0}
+                      \\
+                      \beta_{a,0}
+                      \\
+                      p_0
+                      \end{pmatrix},
+                      \qquad \text{with probability one.}
+                      \end{equation}
+                    </span>
+                  </p>
+                </span>
+              </div>
+              <div class="proof">
+                <p>
+                  We first will get some estimates for $J_\star(T)$ and $J_{sa}(T)$.
+                  Observe that using Hypotheses \ref{set_hypotheses} we obtain
+                  \begin{align*}
+                  J_\star(T)
+                  &amp;=
+                  \int_0^T
+                  \left(
+                  \Big[
+                  \frac{S(t) I_\star(t)}{ (1-S(t))}
+                  \Big]^2
+                  +
+                  \Big[
+                  \frac{S(t) I_\star(t)}{ E(t)}
+                  \Big]^2
+                  \right)
+                  dt
+                  \\
+                  &amp; &lt;
+                  \int_0^T
+                  \left(
+                  \Big[
+                  \frac{S(t) I_\star(t)}{ (1-S(0))}
+                  \Big]^2
+                  +   \Big[ \frac{S(t) I_\star(t)}{ E(0)} \Big]^2 \right) dt
+                  \\
+                  &amp;\le
+                  \Bigg(
+                  \frac{1}{ (1-S(0))^2}   +   \frac{1}{ E^2(0)}
+                  \Bigg)
+                  2T.
+                  \end{align*}
+                </p>
+                <p>
+                  In a very similar manner
+                  \begin{align*}
+                  J_{sa}(T)
+                  &amp;=
+                  \int_0^T
+                  I_a(t) I_s(t)
+                  \left(
+                  \Big[
+                  \frac{S(t) }{(1-S(t))}
+                  \Big]^2
+                  +
+                  \Big[
+                  \frac{S(t) }{ E(t)}
+                  \Big]^2
+                  \right)
+                  dt
+                  \\
+                  &amp; &lt;
+                  \Bigg(
+                  \frac{1}{ (1-S(0))^2}
+                  +
+                  \frac{1}{ E^2(0)}
+                  \Bigg) 2T.
+                  \end{align*}
+                  which implies that
+                  \begin{align*}
+                  -J_{sa}^2(T)
+                  &amp;
+                  &gt;
+                  -
+                  \Bigg(
+                  \frac{1}{ (1-S(0))^2}   +   \frac{1}{ E^2(0)}
+                  \Bigg)^2
+                  (2T)^2.
+                  \end{align*}
+                </p>
+                <p>
+                  At other hand, since $(1-S(t))^2&lt;1$ and $E^2(t)&lt;1$ then
+                  $$
+                  \frac{1}{(1-S(t))^2}&gt;1,\quad \mbox{and } \quad \frac{1}{E^2(t)}&gt;1
+                  $$
+                  then we have
+                  \begin{align*}
+                  J_\star(T)&amp;=\int_0^T \left(  \Big[ \frac{S(t) I_\star(t)}{
+                  (1-S(t))} \Big]^2  +
+                  \Big[ \frac{S(t) I_\star(t)}{ E(t)} \Big]^2 \right) dt\\
+                  &amp; &gt;
+                  \int_0^T \left(  \Big[ S(t) I_\star(t)\Big]^2  +   \Big[ S(t)
+                  I_\star(t)\Big]^2 \right) dt
+                  \\
+                  &amp;&gt; 2
+                  \Big[ S(T) I_\star(0)\Big]^2 T.
+                  \end{align*}
+                </p>
+                <p>
+                  For $J_{sa}$ we obtain a similar bound
+                  \begin{align*}
+                  J_{sa}(T)
+                  &amp; =
+                  \int_0^T
+                  I_a(t) I_s(t)
+                  \left(
+                  \Big[
+                  \frac{S(t)}{(1-S(t))}
+                  \Big]^2
+                  +
+                  \Big[
+                  \frac{S(t)}{ E(t)}
+                  \Big]^2
+                  \right)
+                  dt
+                  \\
+                  &amp; &gt;
+                  \int_0 ^ T
+                  I_a(t) I_s(t)  2S^2(t)
+                  dt
+                  \\
+                  &amp;&gt;
+                  2T I_a(0) I_s(0)  S^2(T),
+                  \end{align*}
+                  which implies
+                  \begin{equation*}
+                  -J_{sa}(T) &lt;  -\Big( 2T I_a(0) I_s(0)  S^2(T) \Big)^2.
+                  \end{equation*}
+                  From this estimations we get
+                  \begin{align*}
+                  4T^2
+                  \Bigg(
+                  \Bigg(
+                  \frac{1}{ (1-S(0))^2}
+                  &amp;
+                  +   \frac{1}{ E^2(0)}
+                  \Bigg)^2
+                  -
+                  S^4(T) I_s ^ 2(0) I_a^2(0)
+                  \Bigg)
+                  &gt;
+                  J_a(T) J_s(T)- J_{sa}^2(T)
+                  \\
+                  &amp; &gt;
+                  4T^2
+                  \Bigg(
+                  S^4(T) I_s^2(0) I_a^2(0) -
+                  \Bigg(
+                  \frac{1}{(1-S(0))^2}
+                  +
+                  \frac{1}{ E^2(0)}
+                  \Bigg)^2
+                  \Bigg)\\
+                  &amp; =: 4T^2 C_T.
+                  \end{align*}
+                  Thus
+                  \begin{align*}
+                  \frac{1}{\mid J_a(T)J_s(T)-J_{sa}^2(T)\mid} &amp;&lt; \frac{1}{ 4T^2 C_T}
+                  \end{align*}
+                  where
+                  \begin{align*}
+                  C_T &amp;:=
+                  \Bigg \rvert
+                  \left(
+                  \frac{1}{(1-S(0))^2}
+                  +
+                  \frac{1}{ E^2(0)}\right)^2
+                  -
+                  S(T)^4  I_s(0)^2 I_a(0)^2
+                  \Bigg \rvert
+                  \end{align*}
+                  We now focus on the quantity $\hat{\beta_s}-\beta_{s,0}$, using
+                  (11) we can write
+                  \begin{align*}
+                  \hat{\beta_s}-\beta_{s,0} &amp;= \frac{-\sigma}{J_s(T)J_a(T)-
+                  J_{sa}^2(T)} J_a(T)
+                  \mathcal{I}_1(T) + \frac{\sigma}{J_s(T)J_a(T)- J_{sa}^2(T)}
+                  J_{sa}(T)
+                  \mathcal{I}_2(T)
+                  \\
+                  &amp;\le \frac{\sigma}{\rvert J_s(T)J_a(T)- J_{sa}^2(T)\rvert} J_a(T)
+                  \mathcal{I}_1(T) +
+                  \frac{\sigma}{ \rvert J_s(T)J_a(T)- J_{sa}^2(T)\rvert } J_{sa}(T)
+                  \mathcal{I}_2(T)\\
+                  &amp;=: \Lambda_{1,1}+ \Lambda_{1,2},
+                  \end{align*}
+                  where
+                  \begin{align*}
+                  \mathcal{I}_1(T):=
+                  \int_0^T
+                  \Big[
+                  \frac{S(t) I_s(t)}{ (1-S(t))}
+                  +
+                  \frac{S(t) I_s(t)}{ E(t)}
+                  \Big]  dW(t),
+                  \\
+                  \mathcal{I}_2(T):=
+                  \int_0^T
+                  \Big[
+                  \frac{S(t) I_a(t)}{ (1-S(t))}
+                  +
+                  \frac{S(t) I_a(t)}{ E(t)}
+                  \Big]  dW(t).
+                  \end{align*}
+                  We have that
+                  \begin{align*}
+                  \Lambda_{1,1}
+                  &amp;\le \frac{\sigma 2T }{4T^2 C_T} \Bigg[\frac{1}{ (1-S(0))^2}  +
+                  \frac{1}{
+                  E^2(0)} \Bigg]\mathcal{I}_1(T)
+                  \end{align*}
+                  and
+                  \begin{align*}
+                  \Lambda_{1,2}
+                  &amp;\le \frac{\sigma 2T }{4T^2 C_T}\Bigg[\frac{1}{ (1-S(0))^2}  +
+                  \frac{1}{
+                  E^2(0)} \Bigg] \mathcal{I}_2(T).
+                  \end{align*}
+                  We note that $\mathcal{I}_1(T)$ and $\mathcal{I}_2(T)$ are stochastic
+                  processes
+                  with zero mean and finite variance. Indeed, by the It\^o isometry we
+                  get, for
+                  instance for $\mathcal{I}_1(T)$
+                  \begin{align*}
+                  \E\Big[\mathcal{I}_1(T)\Big]^2 = \int_0^T \E \Big[ \frac{S(t)
+                  I_s(t)}{
+                  (1-S(t))} +  \frac{S(t) I_s(t)}{ E(t)} \Big]^2  dt
+                  \end{align*}
+                  which is finite. For $\mathcal{I}_2(T)$ is similar.
+                  Define the sequence of real numbers $t_0=0$ and $t_k=T(1-\frac{1}{k})$
+                  for $k\ge 1$. Thus, $t_k \uparrow T$ as $k \to \infty$. Moreover,
+                  $$
+                  t_{k+1} - t_k = T (\frac{1}{k}-\frac{1}{k+1})= T \frac{1}{k(k+1)}&lt; T
+                  \frac{1}{k}.
+                  $$
+                  Define the random variables
+                  \begin{align*}
+                  \xi_k := \int_{t_k}^{t_{k+1}} \Big[ \frac{S(t) I_\star(t)}{
+                  (1-S(t))} +
+                  \frac{S(t) I_\star(t)}{ E(t)} \Big]  dW(t).
+                  \end{align*}
+                  Thus, as before $\E\big[\xi_k  \big]=0$ and
+                  \begin{align*}
+                  \E\big[\xi_k^2  \big]
+                  &amp;=
+                  \E \int_{t_k}^{t_{k+1}} \Big[ \frac{S(t)
+                  I_\star(t)}{
+                  (1-S(t))} +  \frac{S(t) I_\star(t)}{ E(t)} \Big]^2 dt
+                  \\
+                  &amp;=
+                  \E \int_{t_k}^{t_{k+1}} \Big[ \frac{S^2(t) I_\star^2(t)}{
+                  (1-S(t))^2} +  2
+                  \frac{S^2(t) I_\star^2(t)}{ (1-S(t)) E(t)}  +\frac{S^2(t)
+                  I_\star^2(t)}{ E^2(t)}
+                  \Big] dt
+                  \\
+                  &amp;&lt;
+                  \int_{t_k}^{t_{k+1}}  \Big[ \frac{1)}{ (1-S(0))^2} +  2
+                  \frac{1}{ (1-S(0))
+                  E(0)}  +\frac{1}{ E^2(0)} \Big] dt\\
+                  &amp;=
+                  \Big[ \frac{1)}{ (1-S(0))^2} +  2 \frac{1}{ (1-S(0)) E(0)}
+                  +\frac{1}{
+                  E^2(0)} \Big] (t_{k+1}-t_k)
+                  \\
+                  &amp;&lt;
+                  \Big[
+                  \frac{1)}{ (1-S(0))^2} +  2 \frac{1}{ (1-S(0)) E(0)} +
+                  \frac{1}{
+                  E^2(0)} \Big]\, \frac{T}{k}.
+                  \end{align*}
+                  Then, we have that the following limit is true
+                  $$
+                  \lim_{k\to \infty } k\,
+                  \E\big[\xi_k^2  \big]  &lt; T \,
+                  \Big[
+                  \frac{1)}{(1-S(0))^2}
+                  +
+                  2 \frac{1}{ (1-S(0)) E(0)}
+                  + \frac{1}{ E^2(0)}
+                  \Big],
+                  $$
+                  This means that there exists $C&gt;0$ such that
+                  $$
+                  \lim_{k\to \infty } k^{-\alpha}
+                  \E\big[\xi_k^2  \big]  = C,
+                  \qquad
+                  \mbox{with } \alpha= -1.
+                  $$
+                  Then, by using the Strong Law of Large Numbers we have that, with probability
+                  one,
+                  \begin{equation}
+                  \label{convergence1}\
+                  \lim_{N \to \infty }
+                  \frac{\sum_{k=0}^N \xi_k }{\sum_{k=0}^N \E(\xi_k^2)}= 0.
+                  \end{equation}
+                  We observe that
+                  $$
+                  \sum_{k=0}^N \xi_k =
+                  \int_0^{t_{N+1}}
+                  \Big[
+                  \frac{S(t) I_\star(t)}{(1-S(t))}
+                  +   \frac{S(t) I_\star(t)}{ E(t)}
+                  \Big]  dW(t)
+                  $$
+                  and
+                  \begin{align*}
+                  \sum_{k=0}^N \E(\xi_k^2)
+                  &amp; &lt;
+                  \Big[
+                  \frac{1)}{ (1-S(0))^2}
+                  + 2 \frac{1}{(1-S(0)) E(0)}
+                  + \frac{1}{ E^2(0)}
+                  \Big]
+                  \sum_{k=0}^N
+                  (t_{k+1}-t_k)
+                  \\
+                  &amp; =
+                  \Big[
+                  \frac{1)}{ (1-S(0))^2}
+                  +  2 \frac{1}{ (1-S(0)) E(0)}
+                  +  \frac{1}{E^2(0)}
+                  \Big]\,
+                  t_{N+1} =: A\, t_{N+1}.
+                  \end{align*}
+                  Then, from \eqref{convergence1} we deduce that
+                  $$
+                  \dfrac{
+                  \int_0^{t_{N+1}}
+                  \Big[
+                  \dfrac{
+                  S(t) I_\star(t)
+                  }{
+                  (1-S(t))
+                  } +
+                  \dfrac{
+                  S(t) I_{\star(t)}
+                  }{
+                  E(t)}
+                  \Big]
+                  dW(t)
+                  }{
+                  t_{N+1} A
+                  } \to 0,
+                  \quad \text{when}
+                  N \to \infty \text{w.p.1}
+                  $$
+                  This relation implies that
+                  $\Lambda_{1,1}+ \Lambda_{1,2} \to 0$
+                  which consequently proves that
+                  $ \hat{\beta_s} \to \beta_{s,0}$  w.p.1.
+                </p>
+                <p>
+                  A similar procedure proves that $\hat{\beta_a}\to \beta_{a,0}$
+                  with probability one.
+                  We now focus on the proof of the consistency for $\hat p$.
+                  We rewrite{\color{blue} (12)} as
+                  \begin{align}\label{MLE_p_rew}
+                  \hat{p}_{ML}-p_0 &amp;=  \Bigg( \frac{\sigma }{\E\big(J_3(T))} \int_0^T
+                  \Big[
+                  -\frac{\kappa E(t)}{ I_a(t)} +
+                  \frac{\kappa E(t)}{ I_s(t)} \Big] dW(t)\Bigg) \times
+                  \frac{\E\big(J_3(T))}{J_2(T) } ,
+                  \end{align}
+                  with $J_2$ as defined before and
+                  $$
+                  J_3(T):=  \int_0^T  \Big[ \frac{\kappa E(t)}{ I_s(t)} +  \frac{\kappa
+                  E(t)}{
+                  I_a(t)}\Big]^2 dt.
+                  $$
+                  We will show that the first term in the right side of \eqref{MLE_p_rew}
+                  goes to
+                  zero with probability one and the second is bounded with probability
+                  one. As
+                  before, for the sequence $\{t_k\}_{k\ge 0}$ we define the random
+                  variables
+                  $$
+                  \xi_k:=\int_{t_k}^{t_{k+1}} \Big[  -\frac{\kappa E(t)}{ I_a(t)} +
+                  \frac{\kappa E(t)}{ I_s(t)} \Big] dW(t)
+                  $$
+                  and we have that $\E(\xi_k)=0$ and $\E(\xi_k^2)&gt;0$. Moreover, we can
+                  have the
+                  following estimate for $\E(\xi_k^2)$:
+                  $$
+                  \E(\xi_k^2)&lt; \Big[ \frac{\kappa }{ I_s(0)} +  \frac{\kappa }{
+                  I_a(0)}\Big]^2
+                  \frac{T}{k},
+                  $$
+                  and thus the following limit is satisfied
+                  $$
+                  \lim_{k\to \infty } k\, \E(\xi_k^2)&lt; \Big[ \frac{\kappa }{
+                  I_s(0)} +
+                  \frac{\kappa }{ I_a(0)}\Big]^2 T,
+                  $$
+                  Therefore, there exists a constant $C&gt;0$ such that
+                  $
+                  \lim_{k\to    \infty }        k\,
+                  \E(\xi_k^2)=C$. Then, by the Strong Law of Large Numbers we have that, with
+                  probability one,
+                  \begin{equation}
+                  \label{convergence2}
+                  \lim_{N \to \infty }
+                  \frac{\sum_{k=0}^N \xi_k }{\sum_{k=0}^N \E(\xi_k^2)
+                  }= 0.
+                  \end{equation}
+                  This implies that
+                  $$
+                  \lim_{N \to \infty }
+                  \dfrac{\int_0^{t_{N+1}}
+                  \Big[
+                  -\dfrac{\kappa E(t)}{ I_a(t)} +
+                  \dfrac{\kappa E(t)}{ I_s(t)}
+                  \Big] dW(t) }{
+                  \int_0^{t_{N+1}}
+                  \Big[
+                  \dfrac{\kappa E(t)}{ I_s(t)} +
+                  \dfrac{\kappa E(t)}{ I_a(t)}
+                  \Big] ^ 2 dt } = 0
+                  $$
+                  meaning that the first term in \eqref{MLE_p_rew} goes to zero with
+                  probability one.
+                  For the second term in \eqref{MLE_p_rew}, observe that
+                  $$
+                  \frac{\E\big(J_3(T))}{J_2(T) } \le  \frac{\E\big(J_2(T))}{J_2(T) }.
+                  $$
+                  Consider the random variable $\frac{J_2(T)}{\E\big(J_2(T))}$. We have
+                  that
+                  $$
+                  \E\Bigg(\frac{J_2(T)}{\E\big(J_2(T))} \Bigg)=1.
+                  $$
+                  Furthermore, the random variable $J_2(T)$ is positive with probability
+                  one and
+                  then has a moment $\E\big(J_2(T))\ge 0$, thus for $n \in \mathbb{N}$
+                  \begin{equation*}
+                  \mathbb{P}
+                  \Bigg(
+                  \frac{\E\big(J_2(T))}{J_2(T)}
+                  \ge n
+                  \Bigg)
+                  =
+                  \mathbb{P}
+                  \Bigg(
+                  \frac{J_2(T)}{\E\big(J_2(T))}\le \frac{1}{n}
+                  \Bigg)
+                  = 1 - \mathbb{P}
+                  \Bigg(
+                  \frac{J_2(T)}{\E\big(J_2(T))}
+                  \ge \frac{1}{n}
+                  \Bigg).
+                  \end{equation*}
+                  We note that the quotient
+                  $
+                  \frac{J_2(T)}{\E\big(J_2(T))}
+                  $
+                  is non negative with probability one, then we deduce that, when
+                  $n \to \infty $,
+                  \begin{align*}
+                  \mathbb{P}\Bigg(  \frac{J_2(T)}{\E\big(J_2(T))}\ge \frac{1}{n} \Bigg)
+                  \to  1,
+                  \end{align*}
+                  and therefore,
+                  \begin{equation*}
+                  \mathbb{P}
+                  \Bigg(
+                  \frac{\E\big(J_2(T))}{J_2(T)}
+                  \ge n
+                  \Bigg)
+                  \to  0 .
+                  \end{equation*}
+                  This implies that the random variable
+                  $\dfrac{\E\big(J_2(T)\big)}{J_2(T)}$ is
+                  bounded  with
+                  probability one. That is $\hat{p}_{ML}\to p_0$  with
+                  probability one,
+                  which
+                  completes the proof of the theorem.
+                  <span class="right">
+                    $\square$
+                  </span>
+                </p>
+              </div>
+              <div>
+                <p>
+                  To estimate the parameter of diffusion
+                  <span class="math inline">
+                    \(\sigma\)
+                  </span>, we can use the quadratic
+                  variation over
+                  <span class="math inline">
+                    \([0,T]\)
+                  </span> of the
+                  processes of system of SDEs denoted by
+                  <span class="math inline">
+                    \(&lt;*,*&gt;_T\)
+                  </span>. The estimator is given by
+                  <span class="math display">
+                    \begin{equation}
+                    \label{est_sigma}
+                    \hat{\sigma}^2:=\sum_{i=1}^5\frac{\hat{\sigma}^2_i}{5},
+                    \end{equation}
+                  </span>
+                  where
+                  <span class="math display">
+                    \begin{equation}
+                    \label{sigmas}
+                    \begin{aligned}
+                    &amp;\hat{\sigma}^2_1
+                    = \frac{&lt;S, S&gt;_T}{\int_0^T(1-S(t))^2dt},
+                    \qquad
+                    \hat{\sigma}^2_2
+                    = \frac{&lt;E,E&gt;_T}{\int_0^TE(t)^2dt},
+                    \qquad
+                    \hat{\sigma}^2_3
+                    = \frac{&lt;I_a,I_a&gt;_T}{\int_0^TI_a(t)^2dt},
+                    \\
+                    &amp; \hat{\sigma}^2_4
+                    = \frac{&lt;I_s,I_s&gt;_T}{\int_0^TI_s(t)^2dt},
+                    \qquad
+                    \hat{\sigma}^2_5
+                    = \frac{&lt;R,R&gt;_T}{\int_0^TR(t)^2dt}.
+                    \end{aligned}
+                    \end{equation}
+                  </span>
+                </p>
+              </div>
               <h1 id="sec:sim">
                 Simulation study
               </h1>
-              <p>
-                <span id="sec:simulation" label="sec:simulation">
-                </span>
-              </p>
+              <div>
+                <p>
+                  <span id="sec:simulation" label="sec:simulation">
+                  </span>
+                  Here, we use the Milstein scheme
+                  <a href="#ref-Kloeden1992">
+                    Kloeden (1992)
+                  </a>
+                  to generate paths of processes of system \eqref{eqn:sde_model}
+                  in a time interval $[0,T]$. Then we apply \eqref{est_sigma}
+                  to estimate $\sigma$ and expressions in
+                  \eqref{beta_hat_f}, \eqref{beta_hat_a_f}, \eqref{p_hat} to compute the MLE of
+                  $\beta_s,\beta_a$,  and $p$.
+                </p>
+                <p>
+                  Using the Milstein scheme, we divide the interval $[0,T]$ into $n$ sub-intervals of length
+                  $\Delta=\dfrac{T}{n}$ and we obtain observations of each process at the times
+                  $ 0 =t_0 &lt; t_1 &lt; \ldots &lt; t_n = T $
+                  where $t_i - t_{i-1} = \Delta, i=1,\ldots, n$.
+                  Based on these observations the diffusion parameter
+                  $\sigma$ can be estimated using the expression in
+                  \eqref{est_sigma} where
+                  \begin{equation*}
+                  \begin{aligned}
+                  \hat{\sigma}^2_1
+                  &amp;=
+                  \dfrac{
+                  2 \sum_{i=1}^{n}
+                  (S(t_i)-S(t_{i-1}))^2
+                  }{
+                  \Delta
+                  \sum_{i=1}^{n}
+                  (1-S(t_i))^2+(1-S(t_{i-1}))^2
+                  },
+                  \qquad
+                  \hat{\sigma}^2_2 =
+                  \dfrac{
+                  2 \sum_{i=1}^{n}
+                  (E(t_i)-E(t_{i-1}))^2
+                  }{
+                  \Delta
+                  \sum_{i=1}^{n}
+                  (
+                  E(t_i))^2+(E(t_{i-1})
+                  ) ^ 2
+                  },
+                  \\
+                  \hat{\sigma}^2_3
+                  &amp;=
+                  \dfrac{
+                  2 \sum_{i=1}^{n}
+                  (I_a(t_i)-I_a(t_{i-1}))^2
+                  }{
+                  \Delta \sum_{i=1}^{n}
+                  (I_a(t_i))^2 + (I_a(t_{i-1}))^2
+                  },
+                  \qquad
+                  \hat{\sigma}^2_4
+                  =
+                  \dfrac{
+                  2\sum_{i=1}^{n}
+                  (I_s(t_i)-I_s(t_{i-1}))^2
+                  }{
+                  \Delta\sum_{i=1}^{n}
+                  (
+                  I_s(t_i))^2 + (I_s(t_{i-1})
+                  )^2
+                  },
+                  \qquad
+                  \\
+                  \hat{\sigma}^2_5
+                  &amp; =
+                  \dfrac{
+                  2\sum_{i=1}^{n}
+                  (R(t_i)-R(t_{i-1}))^2
+                  }{
+                  \Delta \sum_{i=1}^{n}
+                  (R(t_i))^2+(R(t_{i-1}))^2
+                  }.
+                  \end{aligned}
+                  \end{equation*}
+                  Since
+                  $$
+                  \frac{(\hat{\sigma}^2)-\sigma^2}{\sqrt{\Delta}}
+                  \to
+                  \mathcal{N}
+                  \Big(0,\frac{2\sigma^4}{T}\Big),
+                  \qquad
+                  \Delta \to 0,
+                  $$
+                  we deduce that $\hat{\sigma}^2$
+                  is an unbiased estimator of $\sigma^2$
+                  <a href="#Wei2006">
+                    [see Wei 2006].
+                  </a>
+                  Meanwhile, to obtain the MLE of $\beta_a$, $\beta_s$, and $p$,
+                  we use the discrete time version
+                  of expressions \eqref{beta_hat_f}, \eqref{beta_hat_a_f} and \eqref{p_hat}.
+                  %
+                  Now, we present two examples with different parameters to be estimated
+                  and initial conditions. In both examples, we use the parameters of
+                  Table \ref{table:parametermodel} for $\mu,\kappa,\alpha_a,\alpha_s$ and $\gamma$.
+                </p>
+                <div class="example" text="1 With syntetic data">
+                  <p>
+                    We simulate a \num{1000} datasets in the time interval $[0,1]$.
+                    To generate the datasets we use
+                    $   \beta_a=0.251521
+                    $,
+                    $
+                    \beta_s=0.456391
+                    $,
+                    $
+                    p=0.1213
+                    $,
+                    $
+                    \sigma=1/5000
+                    $
+                    and $\Delta=1/850$ for the approximation in
+                    Milstein method and the initial conditions from
+                    Table \ref{table:initial1}.
+                  </p>
+                </div>
+                <div class="table*">
+                  <table>
+                    <caption style="caption-side:bottom">
+                      Initial Conditions for \eqref{eqn:mu_perturbation}
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th style="text-align: right;">
+                          Process
+                        </th>
+                        <th style="text-align: left;">
+                          value
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          $S(0)$
+                        </td>
+                        <td>
+                          $1-(E(0)+I_a(0)+I_s(0)+R(0))$
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          $E(0)$
+                        </td>
+                        <td>
+                          \num{1E-008}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          $I_a(0)$
+                        </td>
+                        <td>
+                          \num{1E-011}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          $I_s(0)$
+                        </td>
+                        <td>
+                          \num{5E-007}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          $R(0)$
+                        </td>
+                        <td>
+                          \num{0}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  Using the observation at times
+                  $t_0=0,t_1=\Delta,t_2=2\Delta,\ldots,t_{850}=1$,
+                  the values of Table
+                  \ref{table:parametermodel}
+                  for $\mu,\kappa,\alpha_a,\alpha_s,\gamma$ and $\Delta=1/850$,
+                  and the discrete version of expressions \eqref{est_sigma},
+                  \eqref{beta_hat_f}, \ref{beta_hat_a_f} and \eqref{p_hat}
+                  we find the corresponding estimators.
+                </p>
+                <p>
+                  The average of the $1,000$ datasets and the corresponding standard deviations are presented
+                  in Table \ref{table:MLE}.
+                </p>
+                <div class="table*" id="table:MLE">
+                  <table>
+                    <caption style="caption-side:bottom">
+                      Average and  Standard Deviation (SD) of estimator of $\sigma$ and MLEs for
+                      $\beta_a,\beta_s$, and $p$.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <td>Parameter</td>
+                        <td>Real Value</td>
+                        <td>Estimator</td>
+                        <td>SD</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>$\beta_s$</td>
+                        <td>\num{0.456391}</td>
+                        <td>\num{0.453155}</td>
+                        <td>\num{2.900549E-005}</td>
+                      </tr>
+                      <tr>
+                        <td>$\beta_a$</td>
+                        <td>\num{0.251521}</td>
+                        <td>\num{0.265229}</td>
+                        <td>\num{6.081389E-002 }</td>
+                      </tr>
+                      <tr>
+                        <td>$p$</td>
+                        <td>\num{0.1213}</td>
+                        <td>\num{0.120354}</td>
+                        <td>\num{2.554605E-006}</td>
+                      </tr>
+                      <tr>
+                        <td>$\sigma$</td>
+                        <td>1/5000</td>
+                        <td>\num{1.361178E-004}</td>
+                        <td>\num{5.325816E-009}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="example" text=" 2 With syntetic data">
+                <p>
+                  We simulate  \num{1000} datasets in the time interval $[0,1]$.
+                  To generate the datasets, we use the parameters
+                  $\Delta=1/1000$,
+                  $\gamma=1/365$,
+                  $\kappa = \num{0.196078}$,
+                  $p = \num{0.5855049}$,
+                  $\alpha_a = \num{0.167504}$,
+                  $\alpha_s = \num{0.092507}$
+                  and $N=\num{26446435}$ for the approximation in
+                  Milstein method and the initial conditions from Table \ref{table:initial}.
+                </p>
+                <div class="table*" id="table:initial">
+                  <table>
+                    <caption style="caption-side:bottom">
+                      Initial conditions for experiment in Example 2.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <td>Process</td>
+                        <td>Value</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>$E(0)$</td>
+                        <td>\num{198.504525}/N</td>
+                      </tr>
+                      <tr>
+                        <td>$I_a(0)$</td>
+                        <td>\num{99.174034}/N</td>
+                      </tr>
+                      <tr>
+                        <td>$I_s(0)$</td>
+                        <td>\num{74}/N</td>
+                      </tr>
+                      <tr>
+                        <td>$R(0)$</td>
+                        <td>\num{0}</td>
+                      </tr>
+                      <tr>
+                        <td>$S(0)$</td>
+                        <td>$1-(E(0)+I_a(0)+I_s(0)+R(0))$</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  The average of the $1,000$ paths and the corresponding
+                  95% quantiles are presented in Table \ref{table:MLE2}.
+                </p>
+                <div class="table*" id="table:MLE2">
+                  <table>
+                    <caption>
+                      Average and  95\% confidence interval of estimator of $\sigma$ and MLEs for
+                      $\beta_a,\beta_s$, and $p$.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <td></td>
+                        <td>Value </td>
+                        <td>Estimator</td>
+                        <td>CIL </td>
+                        <td>CIU</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>$\beta_s$</td>
+                        <td>\num{0.062552}</td>
+                        <td>\num{0.065287}</td>
+                        <td>\num{0.046805}</td>
+                        <td>\num{0.083769}</td>
+                      </tr>
+                      <tr>
+                        <td>$\beta_a$</td>
+                        <td>\num{0.505427}</td>
+                        <td>\num{0.506489}</td>
+                        <td>\num{0.487419 }</td>
+                        <td>\num{0.525560}</td>
+                      </tr>
+                      <tr>
+                        <td>$p$</td>
+                        <td>\num{0.585505}</td>
+                        <td>\num{0.585234}</td>
+                        <td>num{0.584544}</td>
+                        <td>\num{0.585910}</td>
+                      </tr>
+                      <tr>
+                        <td>$\sigma$</td>
+                        <td>1/100</td>
+                        <td>\num{1.361177E-002}</td>
+                        <td>\num{9.325165E-003}</td>
+                        <td>\num{2.924046E-002}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
               <h1 id="sec:application_real_data">
                 Application to real data
               </h1>
-              <h2 id="des_data">
+              <h3 id="des_data">
                 Data description and construction
-              </h2>
-              <p>In this section, we use the dataset of new symptomatic and confirmed
+              </h3>
+              <p>
+                In this section, we use the dataset of new symptomatic and confirmed
                 COVID19 reported cases daily in Mexico City considering that its
                 population is
                 <span class="math inline">
                   \(N=\num{26446435}\)
-                </span>. The dataset contains 47 records in the period March 10 to April 25 of 2020.
+                </span>.
+                The dataset contains 47 records in the period March 10 to April 25 of 2020.
                 We use these records
                 <span class="math inline">
                   \(I^o_s\)
@@ -2828,11 +3846,13 @@
                 construct the observations of the process
                 <span class="math inline">
                   \(I_s=I^{mx}_s:=I^o_s/N\)
-                </span> of the system
-                \eqref{eqn:sde_model}. Combining
+                </span>
+                of the system \eqref{eqn:sde_model}.
+                Combining
                 <span class="math inline">
                   \(I_s\)
-                </span> and Milstein scheme, we generate the
+                </span>
+                and Milstein scheme, we generate the
                 others four processes of system
                 \eqref{eqn:sde_model} using Algorithm
                 <a data-reference="Alg-ds" data-reference-type="ref" href="#Alg-ds">[Alg-ds]
@@ -3021,7 +4041,7 @@
                     symptomatic cases according
                     to the Bayesian MCMC and our MLE approach. We refer the reader to
                     https://chart-studio.plotly.com/~sauld/47 for a plot visualisation.
-            " id="fig:real_data_fitting" src="../Figures/Likening.jpeg" style="width:80.0%">
+            " id="fig:real_data_fitting" src="../Figures/Likening.png" style="background-color : #FFFFFF">
                 <figcaption aria-hidden="true">
                   Figure 2.
                   Comparison between the estimation of

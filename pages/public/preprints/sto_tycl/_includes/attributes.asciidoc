@@ -82,15 +82,25 @@ end::tags[]
 // Data - Data elements for Asciidoctor extensions
 // -----------------------------------------------------------------------------
 tag::data[]
+:data-image-figure-1: "pages/preprints/sto_tycl/figures/figure_01.jpg, CB 95% of Calibration of parameters for model (1)"
 
-:data-images-standalone:                          "modules/gallery/old_times/image_02.jpg, GrandPa's 80th Birthday"
-:data-images-group:                               "modules/gallery/old_times/image_03.jpg, GrandPa's annual journey, modules/gallery/old_times/image_04.jpg, GrandPa's annual journey"
+:data-image-figure-2: "pages/preprints/sto_tycl/figures/figure_02.jpg, Calibration of parameters"
+
+:data-image-figure-3: "pages/preprints/sto_tycl/figures/figure_03.jpg, Calibration of parameters"
+
+:data-image-figure-4: "pages/preprints/sto_tycl/figures/figure_04.jpg, Calibration of parameters"
+
+:data-image-figure-5: "pages/preprints/sto_tycl/figures/figure_05.jpg, Calibration of parameters"
+
+:data-image-figure-6: "pages/preprints/sto_tycl/figures/figure_06.jpg, Calibration of parameters"
+
+:data-image-figure-7: "pages/preprints/sto_tycl/figures/figure_07.jpg, Calibration of parameters"
+
 
 :data-images--themes-menu:                        "pages/roundtrip/500_themes/themes-menu-1280x800.jpg, Themes menu (Bootswatch)"
 
 :data-quicksearch-icon:                           "pages/roundtrip/600_quicksearch/quicksearch_icon-800x200.jpg, Search button (magnifier) in the quick access area"
 :data-quicksearch-input:                          "pages/roundtrip/600_quicksearch/quicksearch_input-800x200.jpg, Input bar for a QuickSearch"
-
 end::data[]
 
 

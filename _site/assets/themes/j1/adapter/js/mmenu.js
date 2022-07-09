@@ -19,7 +19,7 @@
  # NOTE: For getStyleValue helper see
  #  https://stackoverflow.com/questions/16965515/how-to-get-a-style-attribute-from-a-css-class-by-javascript-jquery
  # -----------------------------------------------------------------------------
- # Adapter generated: 2022-07-07 18:01:47 +0200
+ # Adapter generated: 2022-07-09 03:31:20 +0200
  # -----------------------------------------------------------------------------
 */
 // -----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ j1.adapter.mmenu = (function (j1, window) {
       // -----------------------------------------------------------------------
       var settings  = $.extend({
         module_name: 'j1.adapter.mmenu',
-        generated:   '2022-07-07 18:01:47 +0200'
+        generated:   '2022-07-09 03:31:20 +0200'
       }, options);
       // -----------------------------------------------------------------------
       // Global variable settings
@@ -272,9 +272,9 @@ j1.adapter.mmenu = (function (j1, window) {
               $('#drawer_navigator_toc_mmenu').attrchange({
                 trackValues: true,
                 callback: function (event) {
-                  logger.debug('\n' + 'drawer changed state: ' + event.newValue);
-                  logger.debug('\n' + 'hide|show the main nav menu');
+                  logger.debug('\n' + 'hide|show the nav menu');
                   // switch off|on the (main) nav menu
+                  $('#' + 'navbar-brand').toggle();
                   $('#' + navMenuOptions.nav_main_menu).toggle();
                   $('#' + navMenuOptions.nav_quicklinks).toggle();
                 }
@@ -347,9 +347,9 @@ j1.adapter.mmenu = (function (j1, window) {
               $('#drawer_navigator_sidebar_mmenu').attrchange({
                 trackValues: true,
                 callback: function (event) {
-                  logger.debug('\n' + 'drawer changed state: ' + event.newValue);
-                  logger.debug('\n' + 'hide|show the main nav menu');
+                  logger.debug('\n' + 'hide|show the nav menu');
                   // switch off|on the (main) nav menu
+                  $('#' + 'navbar-brand').toggle();
                   $('#' + navMenuOptions.nav_main_menu).toggle();
                   $('#' + navMenuOptions.nav_quicklinks).toggle();
                 }

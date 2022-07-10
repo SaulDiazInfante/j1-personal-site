@@ -148,6 +148,7 @@ resource_options:
 </style>
 ++++
 
+
 == Abstract
 Diseases transmitted by vectors in crops represent a severe risk to
 the farmer, causing low production and lower quality, which results
@@ -167,6 +168,10 @@ suffer considerable uncertainty.
 Here, we quantify and study the impact and consequences of this uncertainty.
 We conclude that environmental noise promotes dramatic stability
 changes.
+
+=== Keywords
+    Tomato yellow curl virus disease, stochastic Model, threshold behaviour,
+    vector-plant-host, persistence, extinction, Brownian motion
 
 == Introduction
 
@@ -364,6 +369,12 @@ We refer the reader to the supplementary material
 +++{% cite Salcedo-varela2021 %}+++
 for more details.
 
+Figure link:#fig:fitnonresistance[ 1] and link:#fig:fitresistance[2]
+show the confidence band, and the median for link:#eq:DeterministicSystem[model (1)]
+to each tomato data set reported by +++{% cite Holt1999 %}+++.
+autoref{tbl:parameter_value} displays the estimates of the parameters
+for each tomato species.
+
 [#tbl:deterministic_tbl]
 [caption="Table 1. "]
 .Parameters description of deterministic dynamics in ODE link:#eq:DeterministicSystem[(1)]
@@ -400,12 +411,29 @@ for more details.
 | +++{% cite ramappa1994 Ramappa1998 %}+++
 |===
 
-// TODO: Table and figures of this section
-//
-. Callibration Confidence bands for cumulative disease incidence of link:#eq:DeterministicSystem[model (1)] for non-resistant tomato data. Squares denote Rashmi, and points PSCL-4 tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in Table 2. Data from Holt and Muniyappa. Digital edition figures feasible in url:https://plotly.com/ AdrianSalcedo/347/.
+[#fig:fitnonresistance]
 
+.Figure {counter:figure-number} Callibration Confidence bands for cumulative disease incidence of link:#eq:DeterministicSystem[model (1)]
+for non-resistant tomato data. Squares denote Rashmi, and points PSCL-4 tomato species data. The blue and red line
+represents the median incidence curve. Parameter values fixed in Table 2.
+Data from Holt and Muniyappa. Digital edition figures feasible in https://plotly.com/AdrianSalcedo/347/[].
 
 lightbox::example-standalone[ 800, {data-image-figure-1}, role="mb-4" ]
+
+[#fig:fitresistance]
+
+.Figure {counter:figure-number} Confidence bands of cumulative disease incidence to resistan tdata set.
+($\color{darkblue}{\blacksquare}$,$\color{orange}{\bullet}$) LA1582, and
+Tyking tomato species data.
+The blue and red line represents the median incidence curve.
+Parameter values fixed in link:tbl:parameter_value[Table 1].
+Data from Holt and Muniyappa +++{% cite Holt1999 %}+++.
+See https://plotly.com/~AdrianSalcedo/339/[] for a interactive visualization.
+
+lightbox::example-standalone[ 800, {data-image-figure-2}, role="mb-4" ]
+
+TODO: Reproduce Table 2.
+
 
 [#subsec:deterministic_fixed_points]
 === Deterministic Fixed Points
@@ -413,7 +441,6 @@ lightbox::example-standalone[ 800, {data-image-figure-1}, role="mb-4" ]
 According to  ODE link:#eq:DeterministicSystem[(1)], let
 $N_v^{\infty}:= {\mu}/{( \gamma + \gamma_f)}$.
 Let $\mathbf{R} ^ 5$ and consider the set
-
 ++++
     \begin{equation*}
         %\label{eqn:invariant_set}
@@ -426,7 +453,6 @@ Let $\mathbf{R} ^ 5$ and consider the set
     \end{equation*}
 ++++
 Note that
-
 [#eqn:plant_size]
 ++++
 \begin{equation}\label{eqn:plant_size}
@@ -439,17 +465,13 @@ Note that
     \end{aligned}
 \end{equation}
 ++++
-
 Thus the whole plant population $N_p(t)$ remains
 constant for all $t\geq 0$. In addition,
-
-
 \begin{equation}
     \label{eqn:vector_size}
     N_v(t)= N^{\infty}_v +
         (N_v(0) - N^{\infty}_v) \exp(-( \gamma + \gamma_f) t) .
 \end{equation}
-
 From this relation, we conclude that
 $
     \lim_{t\to\infty}
@@ -458,15 +480,17 @@ $
 and that population sizes $N_p(t)$, $N_v(t)$ satisfies a
 conservative law. To summarize, we prove that set $\Gamma$
 is positive invariant in the sense of the following
-definition +++{% cite Meiss2007 %}+++. [p.106]
-
+definition +++{% cite Meiss2007 --locator 106 %}+++.
 ++++
 <div class="definition", text='Invariant set '>
-        Let $f:[0,T]\times \Gamma \subset \mathbb{R}^n\to \mathbb{R}^n$.
-    We say that $\Gamma $ is an invariant set under $f$,
-    if $f(t,\Gamma)\subset \Gamma$ for all $t\in [0, T]$.
+    <p>
+            Let $f:[0,T]\times \Gamma \subset \mathbb{R}^n\to \mathbb{R}^n$.
+        We say that $\Gamma $ is an invariant set under $f$,
+        if $f(t,\Gamma)\subset \Gamma$ for all $t\in [0, T]$.
+    </p>
 </div>
 ++++
+
 
 [#thm:positive_invariance]
 ++++
@@ -481,7 +505,7 @@ definition +++{% cite Meiss2007 %}+++. [p.106]
 <div class="proof">
     <p>
         Let $(S_p,L_p,I_p,S_v,I_v)^\top \in \Gamma$ and apply the
-        right-hand side of dynamic \eqref{sys::DeterministicSystem}.
+        right-hand side of dynamic <a href="#eq:DeterministicSystem">(1)</a>.
         We have
         \begin{align*}
                 \frac{dS_p}{dt}
@@ -507,25 +531,23 @@ definition +++{% cite Meiss2007 %}+++. [p.106]
                         \beta_v S_v \frac{I_p}{N_p} - ( \gamma + \gamma_f) I_v
                         + \theta \mu.
          \end{align*}
-    </p>
-    <p>
-        Now, verifying $\Gamma$ conditions, we get
+         Now, verifying $\Gamma$ conditions, we get
         $dS_p / dt + dL_p / dt + dI_p / dt \leq dN_p / dt$.
         By law conservation
         <a href="#eqn:plant_size">
             (2)
         </a>,
         $S_p+L_p+I_p\leq N_p$.
-    </p>
-    <p>
         Similarly,
         $
             dS_v / dt +  dI_v / dt \leq \mu  -(\gamma + \gamma_f) (S_v + I_v) \leq
             \mu - ( \gamma + \gamma_f) N_v
         $.
-        By \eqref{eqn:vector_size}, we obtain
-        $S_v+I_v\leq N^{\infty}_v+(N_v(0)-N^{\infty}_v)\exp{(-
-     	( \gamma + \gamma_f) t)}$.
+        Further, from relation \eqref{eqn:vector_size}, we obtain
+        $
+            S_v+I_v\leq N^{\infty}_v+(N_v(0)-N^{\infty}_v)\exp{(-
+     	( \gamma + \gamma_f) t)}
+        $.
         Since this is for all $t$, we have $S_v+I_v\leq N^{\infty}_v$, hence
         $f(S_p,L_p,I_p,S_v,I_v) \in \Gamma$. Therefore, $\Gamma$ is
         invariant under
@@ -548,7 +570,6 @@ $$
         \right)^{\top}.
 $$
 ++++
-
 and the Endemic Equilibrium
 ++++
 $$
@@ -559,10 +580,10 @@ $$
     I_v^{**}).
 $$
 ++++
-Details of fixed point calculations in +++{% cite Salcedo-varela2021 %}+++.
+
 
 Here we compute this deterministic fixed points of ODE
-link:#eq:DeterministicSystem[(1)] and show that its uniqueness.
+link:#eq:DeterministicSystem[(1)]---more details +++{% cite Salcedo-varela2021 %}+++ ---and show that its uniqueness.
 To determine this fixed points, we solve,
 
 [#eqn:fixed_points]
@@ -576,7 +597,6 @@ To determine this fixed points, we solve,
  		\beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) I_v + \theta \mu &= 0.
  	\end{aligned}
  \end{equation}
-
 Note that link:#eqn:fixed_points[Eq. (4)] has at least
 two solutions---the free disease $(FDE)$
 and the endemic $(EE)$ fixed point. To characterize
@@ -584,7 +604,6 @@ the free disease solution
 +++$ FDE:= (S_{p} ^ *, L_{p}^*, I_{p}^*, S_{v}^*, I_{v}^*)$+++,
 we assume that
 +++${L^*_p = I_p^* = I_v^* = 0}$+++.
-
 Consequently, from relation link:eqn:plant_size[(2)],
 the first component of link:#eqn:fixed_points[Eq. (4)]
 implies +++${S_p ^ * = N_p}$+++. Moreover,
@@ -592,7 +611,6 @@ from \eqref{eqn:vector_size} we see that
 +++$S_v ^ * + I_v ^ * \to N^{\infty}_v $+++ as
 $t \to \infty$, then
 +++$ S_v^* \to N^{\infty}_v$+++.
-
 Therefore, FDE results
 +++
 $$
@@ -646,9 +664,7 @@ From link:#eqn:fixed_points[Eq. (4)] we obtain
  	\end{aligned}
  \end{equation*}
 ++++
-
 Expressing the above relations in terms of +++$L_p^{**}, I^{**}_p$+++ results
-
 ++++
 \begin{equation}
      \label{eqn:endemic_point_components}
@@ -697,7 +713,7 @@ Expressing the above relations in terms of +++$L_p^{**}, I^{**}_p$+++ results
  	\end{aligned}
  \end{equation}
 ++++
-
+//
 Substituting the above relations into the $I_v$ component of
 link:#eq:DeterministicSystem[ODE (1)] yields
 ++++
@@ -724,8 +740,9 @@ link:#eq:DeterministicSystem[ODE (1)] yields
   		).
  	\end{align*}
 ++++
- Let
 
+Let
+//
 ++++
  \begin{align*}
  	a_1 &:=
@@ -741,19 +758,16 @@ link:#eq:DeterministicSystem[ODE (1)] yields
  	    (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1).
  \end{align*}
 ++++
-
+//
 So, after some algebraic manipulations, we establish
 the following quadratic equation
-
 ++++
  \begin{equation}\label{eqn::QuadraticInfectedFP}
      	    a_1 I_v^{**2} + a_2 I^{**}_v - a_3 = 0.
  \end{equation}
 ++++
-
 According to the discriminant $\Delta = a_2  ^ 2 -  4a_1 a_3$,
 we get
-
 ++++
  \begin{equation*}
      \begin{aligned}
@@ -776,9 +790,7 @@ we get
      \end{aligned}
  \end{equation*}
 ++++
-
 Note that $\Delta$ is positive, this implies two real solutions
-
 ++++
  \begin{equation}
      \label{eqn:I_v_positiity}
@@ -789,14 +801,12 @@ Note that $\Delta$ is positive, this implies two real solutions
  		{2a_1}.
  \end{equation}
 ++++
-
 From relations \eqref{eqn:endemic_point_components} and \eqref{eqn:I_v_positiity}
 we obtain endemic fixed point $EE$.
-
-And using van den Driessche's \cite{VandenDriessche2017a} definition of basic reproductive
-number to obtain Van den Driesshe in  \cite{VandenDriessche2017a} compute basic reproductivenumber $\mathcal{R}^d_0$ as the spectral radius of the next-generation matrix.
-
-For the system \eqref{sys::DeterministicSystem} next-generation matrix results
+And using van den Driessche's +++{% cite VandenDriessche2017a %}+++ definition of basic reproductive
+number to compute basic reproductivenumber
+$\mathcal{R}^d_0$ as the spectral radius of the next-generation matrix.
+For the system link:#eq:DeterministicSystem[(1)] next-generation matrix results
 ++++
 \begin{equation*}\label{Mtx::NextGenerationMatrix}
      K:=
@@ -811,12 +821,10 @@ For the system \eqref{sys::DeterministicSystem} next-generation matrix results
          \end{bmatrix}.
  \end{equation*}
 ++++
-
 Matrix $K$  has $(i, j)$ entry equal to the expected number of secondary
 infections in the compartment $i$ produced by an infected individual introduced
 in the compartment $j$. Calculating the basic reproductive number for the system
-\eqref{sys::DeterministicSystem} we have
-
+link:#eq:DeterministicSystem[(1)] we have
 ++++
 \begin{equation*}%\label{eqn::DeterministicBRN}
     \mathcal{R}^d_0:=\frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
@@ -833,7 +841,6 @@ reproductive number $\mathcal{R}^d_0$ +++{% cite VandenDriessche2017a %}+++.
     (1) is locally asymptotically stable.
 </div>
 ++++
-
 Besides,  when $\mathcal{R}^d_0>1$ we have the instability
 of free disease fixed point, but we obtain the stability
 of the endemic fixed point, and we establish the following result.
@@ -976,15 +983,378 @@ link:#eq:DeterministicSystem[(1)] given the following Itô SDE:
         \eqref{sys::StochasticSystem} in $\Gamma$, that is, the solution
         $x(t) = (S_p(t), L_p(t), I_p(t), S_v(t), I_v(t)) ^\top$, satisfies
         \begin{equation*}
-            \probX{
-                x(t)
-                \in
-                \Gamma, \
-                \forall t \geq 0
-            } = 1.
+            \mathbb{P}
+                \Big\{
+                    x(t)
+                    \in
+                    \Gamma, \
+                    \forall t \geq 0
+                \Big\} = 1.
         \end{equation*}
     </div>
 ++++
+
+++++
+    <div class="proof">
+        <p>
+                To prove existence of global solution, note that the right-hand side of
+            \eqref{sys::StochasticSystem} are second-order polynomials, are locally
+            Lipschitz continuous. By Theorem 3.4 {% cite Mao2008 --locator 56 %},
+            there exists a unique local solution
+            $(S_p(t),L_p(t),I_p(t),S_v(t),I_v(t))^\top$
+            defined on $[0,\tau_e)$, where $\tau_e$ is the explosion time.
+            We will show $\tau_e = \infty$ a.s.
+        </p>
+        <p>
+                Let $k_0>0$ such that
+            $$
+                (S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))^\top \in
+             	\left(
+                    \frac{1}{k_0},k_0\right)
+                    \times
+                    \dots
+                    \times
+                    \left(\frac{1}{k_0},k_0
+                \right)=
+            	\left(\frac{1}{k_0},k_0\right)^5.
+            $$
+        </p>
+
+        <p>
+                For any $k>0$ with $k>k_0$, define
+            \begin{equation*}
+         	    \tau_k :=
+                    \inf
+                        \left \{
+                            t\in [0,\tau_e)
+             	                :(S_p(t),L_p(t),I_p(t),S_v(t),I_v(t))^\top
+             	                    \not \in
+                                        \left(
+                                            \frac{1}{k},k
+                                        \right)^5
+                        \right\}.
+         	\end{equation*}
+         	Note that $\tau_k$ is an increasing sequence, because
+         	$\left(1/k,k\right)$ is an increasing sequence. Moreover,
+         	$\tau_k \leq \tau_e$. Then $\tau_k$ has a limit, denote by
+         	$\tau_{\infty}$. We will show that $\tau_{\infty}=\infty$;
+         	this implies $\tau_e = \infty$ and we conclude hat system
+         	\eqref{sys::StochasticSystem} has a unique solution and will
+         	remain in $\Gamma$ with probability one.
+        </p>
+
+        <p>
+ 	            We proceed by a contradiction. Suppose $\tau_{\infty}<\infty$.
+            Thus, there exists $T>0$ such that
+
+            $$
+         	    \mathbb{P}
+                    \Big\{
+                        \tau_{\infty} < T
+                    \Big\}
+                    >\epsilon, \quad \forall
+         	        \epsilon \in (0,1).
+         	$$
+            Thus, there exists $k_1>k_0$ such that
+         	$\mathbb{P} \Big\{ \tau_k<T \Big\} >\epsilon$ for all $k \geq k_1$.
+        <\p>
+        <p>
+            We consider the	following Lyapunov function $V:\mathbb{R}^5 \to \mathbb{R}$ by
+         	\begin{equation*}
+ 	            \begin{aligned}
+                    & V (S_p, L_p, I_p, S_v, I_v) :=
+                        \left(S_p - N_p - N_p \log{\frac{S_p}{N_p}}\right) +
+                        \left(L_p - N_p - N_p \log{\frac{L_p}{N_p}}\right)
+                    \\
+                    &+
+                        \left(I_p - N_p - N_p \log{\frac{I_p}{N_p}}\right) +
+                        \left(S_v - N^{\infty}_v - N^{\infty}_v
+                        \log{\frac{S_v}{N^{\infty}_v}}\right)
+                    \\
+                    &+
+                        \left(I_v - N^{\infty}_v - N^{\infty}_v
+                        \log{\frac{I_v}{N^{\infty}_v}}\right).
+ 	            \end{aligned}
+     	    \end{equation*}
+ 	        Applying the diffusion operator $\mathcal{L}$ see {% cite Mao2008 --locator 12 %}, to
+            $$
+                f(x) = x - N - N\
+                \log{
+                    \left( \frac{x}{N} \right)
+                },
+            $$
+            we get
+            \begin{align*}
+                &\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] =
+                    \left(
+                            1 - \frac{N_p}{S_p}
+                        \right) \left(
+                           -\frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
+                        \right)
+                        \\
+                        &+
+                            \left(
+                                1 - \frac{N_p}{L_p}
+                            \right) \left(
+                               \frac{\beta_p}{N_v} S_p I_v -(b + r_1) L_p
+                            \right) + \left(
+                                1 - \frac{N_p}{I_p}
+                            \right) \left(
+                               b L_p - r_2 I_p
+                            \right)
+                        \\
+                        &+
+                            \left(
+                                1 - \frac{N^{\infty}_v}{S_v}
+                            \right) \left(
+                           -\frac{\beta_v}{N_p} S_v I_p - (\gamma + \gamma_f) S_v +
+                            (1- \theta) \mu
+                        \right)
+                        \\
+                        &+ \left(
+                        1 - \frac{N^{\infty}_v}{I_v}
+                        \right) \left(
+                           -\frac{\beta_v}{N_p} S_v I_p -
+                            (\gamma + \gamma_f) I_v + \theta \mu
+                            \right)
+                        \\
+                        &+
+                            \frac{1}{2}\frac{S_p ^2}{N_p ^ 2}
+                            \frac{N_p}{S_p ^ 2} (\sigma_L L_p + \sigma_I I_p) ^ 2
+                            + \frac{1}{2} \sigma_L ^2
+                            \frac{S_p ^2}{N_p ^2} L_p^2 \frac{N_p}{L_p ^2}
+                            + \frac{1}{2} \sigma_I ^2
+                            \frac{S_p ^2}{N_p ^2} I_p^2 \frac{N_p}{I_p ^2}
+                       \\
+                        &+
+                            \frac{1}{2} \sigma_v ^2 S_v ^2 \frac{N^{\infty}_v}{S_v ^2}
+                            + \frac{1}{2} \sigma_v ^2 I_v ^2 \frac{N^{\infty}_v}{I_v ^2}.
+            \end{align*}
+ 	    </p>
+        <p>
+            Bounding the above equality by positive terms, we have
+            \begin{equation}\label{eqn::boudn1positvesol}
+                \begin{aligned}
+                    &\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                        \frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
+                        + \frac{\beta_p}{N_v} S_p I_v
+                        + (b + r_1) L_p
+                        \\
+                        &+
+                            b L_p + r_2 N_p + (1 - \theta) \mu
+                            + \frac{\beta_v}{N_p} S_v I_p
+                            + (\gamma + \gamma_f) N^{\infty}_v
+                            + \frac{\beta_v}{N_p} S_v I_p + \theta \mu
+                       \\
+                        &+ (\gamma + \gamma_f) N^{\infty}_v
+                        + \frac{1}{2} \frac{1}{N_p} (\sigma_L L_p + \sigma_I I_p)^2
+                            + \frac{1}{2}\sigma_L ^2
+                            \frac{S_p ^2}{N_p} + \frac{1}{2}\sigma_I ^2
+                            \frac{S_p ^2}{N_p}
+                        \\
+                        &+ \frac{1}{2}\sigma_v ^2 N^{\infty}_v
+                            + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
+                \end{aligned}
+            \end{equation}
+        </p>
+ 	    <p>>
+            Using size population, we bound \eqref{eqn::boudn1positvesol} by
+     	    \begin{equation}\label{eqn::boudn2positvesol}
+     	        \begin{aligned}
+     	            &\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
+             	        \beta_p N_p + r_1 N_p + r_2 N_p + \beta_p N_p
+             	        + (b + r_1) N_p
+         	        \\
+             	        &+
+         	            b N_p + r_2 N_p + (\gamma + \gamma_f) N^{\infty}_v
+         	            + \beta_v N^{\infty}_v
+         	            + (\gamma + \gamma_f) N^{\infty}_v +\beta_v N^{\infty}_v +
+         	            (\gamma + \gamma_f) N^{\infty}_v
+         	       \\
+             	        &+ (\gamma + \gamma_f) N^{\infty}_v
+         	            + (\gamma + \gamma_f) N^{\infty}_v
+         	        	+ \frac{1}{2} (\sigma_L + \sigma_I)^2 N_p
+         	            + \frac{1}{2}\sigma_L ^2
+         	            N_p + \frac{1}{2} \sigma_I ^2 N_p
+                    \\
+             	        &+
+         	        	\frac{1}{2}\sigma_v ^2 N^{\infty}_v
+         	            + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
+         	    \end{aligned}
+     	    \end{equation}
+         	Factorizing by $N_p$ and $N^{\infty}_v$ relation \eqref{eqn::boudn2positvesol},
+     	    we get
+            \begin{equation*}\label{eqn::boudn3positvesol}
+             	\begin{aligned}
+                    \mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] &
+                    \\
+                      \leq &
+                        \left(
+                            2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
+                            \frac{1}{2} (\sigma_L + \sigma_I)^2
+                            + \frac{1}{2}\sigma_L ^2
+                            + \frac{1}{2} \sigma_I ^2
+                        \right) N_p
+                    \\
+                    + &
+                        [
+                            2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
+                        ]
+                        N^{\infty}_v.
+                \end{aligned}
+            \end{equation*}
+ 	    </p>
+ 	    <p>
+                Define
+            \begin{equation*}\label{eqn::boudn4positvesol}
+                \begin{aligned}
+                   C_1  := &
+                        \left(
+                            2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
+                            \frac{1}{2} (\sigma_L + \sigma_I)^2
+                            + \frac{1}{2}\sigma_L ^2
+                            + \frac{1}{2} \sigma_I ^2
+                        \right) N_p
+                        \\
+                        + &
+                            [
+                            2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
+                            ] N^{\infty}_v.
+                \end{aligned}
+            \end{equation*}
+ 	        Then by Ito's formula, we obtain
+            \begin{equation}\label{eqn::boudn5positvesol}
+                \begin{aligned}
+                    &d[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                        C_1 dt + \left(
+                            1- \frac{N_p}{S_p}
+                            \right)\left[\frac{S_p}{N_p}(
+                            \sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
+                   \\
+                    &+
+                        \left(1 - \frac{N_p}{L_p}\right)
+                        \left(
+                        - \sigma_L \frac{S_p}{N_p} L_p
+                        \right)dB_p(t)
+                       + \left(1 - \frac{N_p}{I_p}\right)
+                       \left(
+                       - \sigma_I \frac{S_p}{N_p} I_p
+                       \right)dB_p(t)
+                   \\
+                    &+
+                       \left(1 - \frac{N^{\infty}_v}{S_v}\right)
+                       \left(- \sigma_v S_v\right)dB_v(t) +
+                       \left(1 - \frac{N^{\infty}_v}{I_v}\right)
+                       \left(- \sigma_v I_v\right)dB_v(t).
+                \end{aligned}
+            \end{equation}
+        </p>
+        <p>
+                Bounding \eqref{eqn::boudn5positvesol} by positive terms
+            \begin{equation}\label{eqn::boudn6positvesol}
+                \begin{aligned}
+                    &d[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                        C_1 dt + \left[\frac{S_p}{N_p}
+                        (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
+                   \\
+                    &+
+                        (\sigma_L + \sigma_I) dB_p(t)
+                        + 2 \sigma_v N^{\infty}_v dB_p(t).
+                \end{aligned}
+            \end{equation}
+         	Integrating both sides of \eqref{eqn::boudn6positvesol} on
+         	$(0,\tau_k \wedge T)$, taking expectation, we have
+
+         	\begin{equation*}\label{eqn::boudn7positvesol}
+     	        \begin{aligned}
+                    &\E{[V(S_p,L_p,I_p,S_v,I_v)]} \leq
+                        V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+                   \\
+                    &+
+                        \E{\int_0^{\tau_k \wedge T} C_1 dt}
+                        + \E{\int_0^{\tau_k \wedge T}
+                        \left[\frac{S_p}{N_p}
+                        (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)}
+                    \\
+                    &+
+                        \E{\int_0^{\tau_k \wedge T}
+                        (\sigma_L + \sigma_I) dB_p(t)} +
+                        2 \E{ \int_0^{\tau_k \wedge T}
+                        \sigma_v N^{\infty}_v dB_p(t)}.
+                \end{aligned}
+            \end{equation*}
+         	Since $G \in L^2(0, T)$, then $\E{\int_0^T G dB(s)}=0$. Using the above argument, we obtain
+
+% 	\begin{equation*}\label{eqn::boudn8positvesol}
+%     	\begin{aligned}
+%     	    &\E{[V(S_p,L_p,I_p,S_v,I_v)]} \leq
+%     	        V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+%     	       + C_1 T.
+%     	\end{aligned}
+% 	\end{equation*}
+% 	%
+% 	For $k \geq 1$ such that $k \geq k_0$, let
+% 	$\Omega_k = \{ \tau_k \leq T\}$. Then,	$\probX{\Omega_k} > \epsilon$.
+% 	If $t \in \Omega_k$, thus at least one of the following	will hold true:
+% 	%
+%     \begin{align*}
+%         S_p(t) \not \in &\left( \frac{1}{k}, k\right), \qquad L_p(t) \not \in
+%         \left( \frac{1}{k}, k\right), \qquad  I_p(t) \not \in
+%         \left( \frac{1}{k}, k\right), \\
+%          &S_v(t) \not \in \left( \frac{1}{k}, k\right), \qquad  I_v(t) \not \in
+%          \left( \frac{1}{k}, k\right).
+%     \end{align*}
+%     %
+%     Note that, $f(x) = x - N_{\bullet} - N_{\bullet}\log{x/N_{\bullet}}$ is
+%     increasing on $(N_{\bullet},\infty)$ and decreasing on $(0,N_{\bullet})$
+%     it follows
+% 	%
+% 	\begin{align*}
+% 	    &V(S_p(\tau_k \wedge T),L_p(\tau_k \wedge T),I_p(\tau_k \wedge T),
+% 	        S_v(\tau_k \wedge T),I_v(\tau_k \wedge T)) \geq
+% 	        \\
+% 	           &
+% 	            \left(k - N_p - N_p \log{\frac{k}{N_p}}\right)^3
+% 	            \wedge \left(\frac{1}{k} - N_p - N_p
+% 	            \log{\frac{1}{N_p k}}\right)^3 \wedge
+% 	        \\
+% 	           &
+% 	            \left(k - N^{\infty}_v - N^{\infty}_v
+% 	            \log{\frac{k}{N^{\infty}_v}}\right)^2
+% 	            \wedge \left(\frac{1}{k} - N^{\infty}_v - N^{\infty}_v
+% 	            \log{\frac{1}{N^{\infty}_v k}}\right)^2.
+%  	\end{align*}
+%  	%
+%  	Now we have
+%  	%
+%  	\begin{align*}
+%  	      &V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0)) + C_1 T
+%  	      \geq \E{[V(S_p,L_p,I_p,S_v,I_v)]}
+%  	    \\
+%  	      &\geq
+%  	        \epsilon \left(k - N_p - N_p \log{\frac{k}{N_p}}\right)^3 \wedge \left(
+%  	        \frac{1}{k} - N_p - N_p \log{\frac{1}{N_p k}}\right)^3 \wedge
+% 	        \\
+% 	           &
+% 	            \left(k - N^{\infty}_v - N^{\infty}_v
+% 	            \log{\frac{k}{N^{\infty}_v}}\right)^2
+% 	            \wedge \left(\frac{1}{k} - N^{\infty}_v - N^{\infty}_v
+% 	            \log{\frac{1}{N^{\infty}_v k}}\right)^2.
+%  	\end{align*}
+%  	%
+%  	Finally, letting $ k \to \infty$ we obtain
+%     %
+%  	\begin{equation*}
+%  	    \infty > V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0)) + C_1 T \geq \infty,
+%  	\end{equation*}
+%  	%
+%  	which is a contradiction. Thus, we conclude that $\tau_\infty = \infty$.
+% \end{proof}
+
+    </div>>
+++++
+
+
 
 
 

@@ -82,7 +82,7 @@ end::tags[]
 // Data - Data elements for Asciidoctor extensions
 // -----------------------------------------------------------------------------
 tag::data[]
-:data-image-figure-1: "pages/preprints/sto_tycl/figures/figure_01.jpg, CB 95% of Calibration of parameters for model (1)"
+:data-image-figure-1: "pages/preprints/sto_tycl/figures/figure_01.jpg, CB 95% of Calibration of parameters for model (1) "
 
 :data-image-figure-2: "pages/preprints/sto_tycl/figures/figure_02.jpg, Calibration of parameters"
 

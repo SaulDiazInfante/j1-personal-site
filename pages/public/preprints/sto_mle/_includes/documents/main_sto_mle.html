@@ -39,20 +39,6 @@
         svg: {fontCache: 'global'}
     };
 </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
-//  	errorSettings: {message: undefined},
-    TeX: { extensions: [
-      "[siunitx]/siunitx.js",
-      "color.js"
-    ] }
-  });
-  MathJax.Ajax.config.path['siunitx']  = '..';
-</script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_HTMLorMML&delayStartupUntil=configured">
-</script>
     <head>
         <style>
             h1 {
@@ -314,6 +300,7 @@
             }
         </style>
     </head>
+    
     <div class="container-fluid main-container">
         <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
             <div class="container">
@@ -392,44 +379,44 @@
                 </div><!--/.nav-collapse -->
             </div><!--/.container -->
         </div><!--/.navbar -->
-        
     </div>
     <body>
-        <h1 class="title toc-ignore">
-                Maximum likelihood estimation for a stochastic SEIR
-                system for COVID-19
+        <header>
+            <h1 class="title toc-ignore">
+                    Maximum likelihood estimation for a stochastic SEIR
+                    system for COVID-19
             </h1>
-            <p class="author">
-                Fernando Baltazar-Larios
-            </p>
-            <p class="author">
-                Francisco Delgado-Vences
-            </p>
-            <p class="author">
-                Saul Diaz-Infante*
-            </p>
-            <div class="abstract">
-                <div class="abstract-title">
-                    Abstract
-            </div>
-                <p>
-                    The parameter estimation of epidemic data-driven models is a crucial
-                    task. In some cases, we can formulate a better model by describing
-                    uncertainty with appropriate noise terms. However, because of the
-                    limited extent and partial information, (in general) this kind of model
-                    leads to intractable likelihoods. Here, we illustrate how a stochastic
-                    extension of the SEIR model improves the uncertainty quantification of
-                    an overestimated MCMC scheme based on its deterministic model to count
-                    reported-confirmed COVID-19 cases in Mexico City. Using a particular
-                    mechanism to manage missing data, we developed MLE for some parameters
-                    of the stochastic model, which improves the description of variance of
-                    the actual data.
+                <p class="author">
+                    Fernando Baltazar-Larios
                 </p>
-            </div>
-    </header>
-    <div class="frontmatter">
-        UNAM, CONACYT-UNAM-IMATE-OAXACA, CONACYT-Unison
-    </div>
+                <p class="author">
+                    Francisco Delgado-Vences
+                </p>
+                <p class="author">
+                    Saul Diaz-Infante*
+                </p>
+                <div class="abstract">
+                    <div class="abstract-title">
+                        Abstract
+                </div>
+                    <p>
+                        The parameter estimation of epidemic data-driven models is a crucial
+                        task. In some cases, we can formulate a better model by describing
+                        uncertainty with appropriate noise terms. However, because of the
+                        limited extent and partial information, (in general) this kind of model
+                        leads to intractable likelihoods. Here, we illustrate how a stochastic
+                        extension of the SEIR model improves the uncertainty quantification of
+                        an overestimated MCMC scheme based on its deterministic model to count
+                        reported-confirmed COVID-19 cases in Mexico City. Using a particular
+                        mechanism to manage missing data, we developed MLE for some parameters
+                        of the stochastic model, which improves the description of variance of
+                        the actual data.
+                    </p>
+                </div>
+        </header>
+        <div class="frontmatter">
+            UNAM, CONACYT-UNAM-IMATE-OAXACA, CONACYT-Unison
+        </div>
     <h1 id="introduction">
         Introduction
     </h1>
@@ -1027,7 +1014,7 @@
                 </div>
                 <p>
                     To calibrate parameters of this deterministic base
-                    \eqref{eqn:base_dynamics},
+                    \(\eqref{eqn:base_dynamics}\),
                     we deploy a MCMC by counting the cumulative incidence of new infected and reported
                     symptomatic cases.
                     We denote by
@@ -1106,46 +1093,45 @@
                     </span>
                         </td>
                         <td>
-                            \si{70 * 365}{days}
+                            $70\times 365 \quad \mathrm{days}$
                         </td>
-                        <td style="text-align: center;">
+                        <td>
                     <span class="math inline">
                         \(\dag\)
                     </span>
                         </td>
                     </tr>
                     <tr class="even">
-                        <td style="text-align: right;">
-                    <span class="math inline">
+                        <td>
+                        <span class="math inline">
                         \(\beta_s\)
-                    </span></td>
-                        <td style="text-align: left;">
-                                \(\num{0.0582153226067555}\)
+                        </span></td>
+                        <td>
+                                $0.05821$
                         </td>
-                        <td style="text-align: center;">
+                        <td >
                             Estimated
                         </td>
                     </tr>
                     <tr class="odd">
-                        <td style="text-align: right;">
-                    <span class="math inline">\(\beta_a\)
-                    </span>
+                        <td>
+                            \(\beta_a\)
                         </td>
-                        <td style="text-align: left;">
-                            0.510968165093383
+                        <td>
+                            \(0.510968165093383\)
                         </td>
-                        <td style="text-align: center;">
+                        <td>
                             Estimated
                         </td>
                     </tr>
                     <tr class="even">
-                        <td style="text-align: right;">
+                        <td>
                     <span class="math inline">
                         \(\kappa\)
                     </span>
                         </td>
-                        <td style="text-align: left;">
-                            0.196078
+                        <td>
+                            \(0.196078\)
                         </td>
                         <td style="text-align: center;">
                     <span class="citation" data-cites="Tian2020">
@@ -1161,7 +1147,7 @@
                     </span>
                         </td>
                         <td style="text-align: left;">
-                            1 - 0.414495099891349
+                            $1 - 0.414495$
                         </td>
                         <td style="text-align: center;">
                             Estimated
@@ -1172,20 +1158,20 @@
                     <span class="math inline">\(\theta\)
                     </span>
                         </td>
-                        <td style="text-align: left;">
-                            0.11
+                        <td>
+                            $0.11$
                         </td>
                         <td style="text-align: center;">
                            $\ddag$
                         </td>
                     </tr>
                     <tr class="odd">
-                        <td style="text-align: right;">
+                        <td>
                     <span class="math inline">
                         \(\alpha_{s}\)
                     </span></td>
                         <td style="text-align: left;">
-                            0.0925069
+                            $0.0925069$
                         </td>
                         <td style="text-align: center;">
                     <span class="math inline">
@@ -1194,30 +1180,30 @@
                         </td>
                     </tr>
                     <tr class="even">
-                        <td style="text-align: right;">
-                    <span class="math inline">
-                        \(\alpha_{a}\)
-                    </span>
+                        <td>
+                            <span class="math inline">
+                                \(\alpha_{a}\)
+                            </span>
                         </td>
-                        <td style="text-align: left;">
-                            0.167504
+                        <td>
+                            $0.167504$
                         </td>
-                        <td style="text-align: center;">
-                    <span class="math inline">
-                        \(\dag\)
-                    </span>
+                        <td>
+                            <span class="math inline">
+                                \(\dag\)
+                            </span>
                         </td>
                     </tr>
                     <tr class="odd">
-                        <td style="text-align: right;">
-                    <span class="math inline">
-                        \(\gamma^{-1}\)
-                    </span>
+                        <td>
+                            <span class="math inline">
+                                \(\gamma^{-1}\)
+                            </span>
                         </td>
-                        <td style="text-align: left;">
+                        <td>
                             1/365
                         </td>
-                        <td style="text-align: center;">
+                        <td>
                     <span class="math inline">
                         \(\ddag\)
                     </span>
@@ -1254,7 +1240,7 @@
                     <span class="math inline">
                         \(\displaystyle
                         \frac{
-                            \num{198.504524717486}
+                            198.504524717486
                         }{N}\)
                     </span>
                         </td>
@@ -1268,30 +1254,33 @@
                         <td style="text-align: left;">
                     <span class="math inline">
                         \(\displaystyle
-                            \num{74} / N\)
+                            74 / N\)
                     </span>
                         </td>
-                        <td style="text-align: left;">
+                        <td>
                         </td>
                     </tr>
                     <tr class="odd">
-                        <td style="text-align: right;"><span
-                                class="math inline">\(I_a(0)\)</span></td>
-                        <td style="text-align: left;">
-                    <span class="math inline">
-                        \(\displaystyle
-                            \frac{1}{N}
-                            \cdot
-                            \mathrm{uniform}(47, 2100)\)
-                    </span>
+                        <td>
+                            <span class="math inline">
+                                \(I_a(0)\)
+                            </span>
                         </td>
-                        <td style="text-align: left;">
-                    <span class="math inline">
-                        \(\displaystyle
-                            \frac{
-                                \num{99.1740343019642}
-                            }{N}\)
-                    </span>
+                        <td>
+                            <span class="math inline">
+                            \(\displaystyle
+                                \frac{1}{N}
+                                \cdot
+                                \mathrm{uniform}(47, 2100)\)
+                            </span>
+                        </td>
+                        <td>
+                            <span class="math inline">
+                            \(\displaystyle
+                                \frac{
+                                    99.1740343019642
+                                }{N}\)
+                            </span>
                         </td>
                     </tr>
                     <tr class="even">
@@ -1320,7 +1309,7 @@
                     <span class="math inline">
                         \(\displaystyle
                             \frac{
-                                \num{26446062.9010246}
+                                26446062.9010246
                             }{N}\)
                     </span>
                         </td>
@@ -1733,11 +1722,12 @@
                 \end{equation}
             </span>
         </p>
-        <h1 id="sec:inference">
+       
+       <h1 id="sec:inference">
             Statistical inference of the transmission rates,
             symptomatic ratio and noise intensity
-        </h1>
-        <p>
+       </h1>
+       <p>
             We apply the version of the Girsanov formula presented in
             <span class="citation" data-cites="saso19">
                 <a href="#ref-saso19">
@@ -1863,8 +1853,8 @@
                     \end{split}
                 \end{equation*}
             </span>
-        </p>
-        <p>
+       </p>
+       <p>
             Note that the MLE for
             <span class="math inline">
                 \(\beta_a\)
@@ -1888,10 +1878,10 @@
                 \(p\)
             </span>
             separately.
-        </p>
-        <p>
+       </p>
+       <p>
             Thus,
-        </p>
+       </p>
         <p>
         <span class="math display">
             \begin{equation}
@@ -1971,39 +1961,39 @@
             We denote by
             <span class="math inline">
             \(\star=a\)
-        </span>
+            </span>
             or
             <span class="math inline">
             \(s\)
-        </span>,
+            </span>,
             thus
             <span class="math inline">
             \(\beta_\star\)
-        </span>
+            </span>
             will mean the variable
             <span class="math inline">
             \(\beta_s\)
-        </span> or
+            </span> or
             <span class="math inline">
             \(\beta_a\)
-        </span> and similarly
+            </span> and similarly
             <span class="math inline">
             \(I_\star\)
-        </span> means
+            </span> means
             <span class="math inline">
             \(I_a\)
-        </span> or
+            </span> or
             <span class="math inline">
             \(I_s\)
-        </span>.
+            </span>.
             In addition, when, for instance,
             <span class="math inline">
             \(\star=a\)
-        </span>
+            </span>
             then
             <span class="math inline">
             \(\star^c = s\)
-        </span>
+            </span>
             and vice versa.
         </p>
         <p>
@@ -2171,7 +2161,6 @@
                         \\
                         J_{sa}(T &amp; J_a(T)
                     \end{pmatrix}^{-1} \,
-                %
                     \begin{pmatrix}
                         \int_0^T
                             \Big[
@@ -2365,8 +2354,7 @@
                 <strong>Remark 1</strong>.
                 <em>
                     In other words,
-                    <a data-reference="set_hypotheses" data-reference-type="ref"
-                        href="#set_hypotheses">
+                    <a href="#set_hypotheses">
                         Hypothesis 1
                     </a>
                     assures conditions to estimate
@@ -2385,10 +2373,8 @@
             </p>
         </div>
         <p>
-            <a data-reference="set_hypotheses"
-               data-reference-type="ref"
-               href="#set_hypotheses"
-            >Hypotheses 1
+            <a href="#set_hypotheses">
+                Hypotheses 1
             </a>
             implies that
             <span  class="math display">
@@ -2401,9 +2387,8 @@
             </span>
             Now we prove the  consistency of our estimators.
         </p>
-        <div class="theorem">
-            <span id="Consitency-th" label="Consitency-th">
-                <p>
+        <div class="theorem" id="Consitency-th">
+            <p>
                 Assume that
                 <a data-reference="set_hypotheses"
                    data-reference-type="ref"
@@ -2416,7 +2401,6 @@
                     \((\hat{\beta}_{s,ML},\hat{\beta}_{a,ML},\hat{p}_{ML})\)
                 </span>
                 are strongly consistent, that is,
-                <span class="math display">
                     \begin{equation}
                         \label{consistency}
                         \lim_{T \to T_0}
@@ -2437,9 +2421,7 @@
                             \end{pmatrix},
                             \qquad \text{with probability one.}
                     \end{equation}
-                </span>
             </p>
-            </span>
         </div>
         
         <div class="proof">
@@ -2807,10 +2789,8 @@
                         I_a(t)}\Big]^2 dt.
                 $$
                 We will show that the first term in the right side of \eqref{MLE_p_rew}
-                goes to
-                zero with probability one and the second is bounded with probability
-                one. As
-                before, for the sequence $\{t_k\}_{k\ge 0}$ we define the random
+                goes to zero with probability one and the second is bounded with probability
+                one. As before, for the sequence $\{t_k\}_{k\ge 0}$ we define the random
                 variables
                 $$
                     \xi_k:=\int_{t_k}^{t_{k+1}} \Big[  -\frac{\kappa E(t)}{ I_a(t)} +
@@ -2961,32 +2941,31 @@
                 </span>
             </p>
         </div>
+    
     <h1 id="sec:sim">
         Simulation study
     </h1>
-        <div>
             <p>
-                <span id="sec:simulation" label="sec:simulation">
-                </span>
                 Here, we use the Milstein scheme
-                <a href="#ref-Kloeden1992">
-                    Kloeden (1992)
-                </a>
-                to generate paths of processes of system \eqref{eqn:sde_model}
-                in a time interval $[0,T]$. Then we apply \eqref{est_sigma}
-                to estimate $\sigma$ and expressions in
-                \eqref{beta_hat_f}, \eqref{beta_hat_a_f}, \eqref{p_hat} to compute the MLE of
-                $\beta_s,\beta_a$,  and $p$.
-            </p>
-            <p>
-                Using the Milstein scheme, we divide the interval $[0,T]$ into $n$ sub-intervals of length
-                $\Delta=\dfrac{T}{n}$ and we obtain observations of each process at the times
+                <span>
+                    <a href="#ref-Kloeden1992">
+                        Kloeden (1992)
+                    </a>
+                </span>
+                to generate paths of processes of system
+                \eqref{eqn:sde_model}
+                in a time interval $[0,T]$. Then we apply \eqref{est_sigma} to
+                estimate $\sigma$ and expressions in \eqref{beta_hat_f},
+                \eqref{beta_hat_a_f}, and \eqref{p_hat} to
+                compute the MLE of $\beta_s,\beta_a$,  and $p$.
+                Using the Milstein scheme, we divide the interval $[0,T]$ into $n$ sub-intervals
+                of length $\Delta = \dfrac{T}{n} $ and we obtain observations of each process at
+                the times
                 $ 0 =t_0 < t_1 < \ldots < t_n = T $
                 where $t_i - t_{i-1} = \Delta, i=1,\ldots, n$.
                 Based on these observations the diffusion parameter
                 $\sigma$ can be estimated using the expression in
                 \eqref{est_sigma} where
-                
                 \begin{equation*}
                     \begin{aligned}
                         \hat{\sigma}^2_1
@@ -3063,13 +3042,13 @@
                 Meanwhile, to obtain the MLE of $\beta_a$, $\beta_s$, and $p$,
                 we use the discrete time version
                 of expressions \eqref{beta_hat_f}, \eqref{beta_hat_a_f} and \eqref{p_hat}.
-                %
                 Now, we present two examples with different parameters to be estimated
                 and initial conditions. In both examples, we use the parameters of
-                Table \ref{table:parametermodel} for $\mu,\kappa,\alpha_a,\alpha_s$ and $\gamma$.
+                Table ref{table:parametermodel} for $\mu,\kappa,\alpha_a,\alpha_s$ and $\gamma$.
+                
                 <div class="example" text="1 With syntetic data">
                     <p>
-                        We simulate a \num{1000} datasets in the time interval $[0,1]$.
+                        We simulate a  1 000 paths in the time interval $[0,1]$.
                         To generate the datasets we use
                         $   \beta_a=0.251521
                         $,
@@ -3084,7 +3063,7 @@
                         $
                         and $\Delta=1/850$ for the approximation in
                         Milstein method and the initial conditions from
-                        Table \ref{table:initial1}.
+                        Table ref{table:initial1}.
                     </p>
                 </div>
     
@@ -3117,7 +3096,7 @@
                                     $E(0)$
                                 </td>
                                 <td>
-                                    \num{1E-008}
+                                    1E-008
                                 </td>
                             </tr>
                             <tr>
@@ -3125,7 +3104,7 @@
                                     $I_a(0)$
                                 </td>
                                 <td>
-                                    \num{1E-011}
+                                    1E-011
                                 </td>
                             </tr>
                             <tr>
@@ -3133,7 +3112,7 @@
                                     $I_s(0)$
                                 </td>
                                 <td>
-                                    \num{5E-007}
+                                    5E-007
                                 </td>
                             </tr>
                             <tr>
@@ -3141,7 +3120,7 @@
                                     $R(0)$
                                 </td>
                                 <td>
-                                    \num{0}
+                                    0
                                 </td>
                             </tr>
                         </tbody>
@@ -3151,7 +3130,7 @@
                     Using the observation at times
                     $t_0=0,t_1=\Delta,t_2=2\Delta,\ldots,t_{850}=1$,
                     the values of Table
-                    \ref{table:parametermodel}
+                    ref{table:parametermodel}
                     for $\mu,\kappa,\alpha_a,\alpha_s,\gamma$ and $\Delta=1/850$,
                     and the discrete version of expressions \eqref{est_sigma},
                     \eqref{beta_hat_f}, \ref{beta_hat_a_f} and \eqref{p_hat}
@@ -3159,7 +3138,7 @@
                 </p>
                 <p>
                     The average of the $1,000$ datasets and the corresponding standard deviations are presented
-                    in Table \ref{table:MLE}.
+                    in Table ref{table:MLE}.
                 </p>
             <div class="table*" id="table:MLE">
                 <table>
@@ -3178,135 +3157,134 @@
                     <tbody>
                     <tr>
                         <td>$\beta_s$</td>
-                        <td>\num{0.456391}</td>
-                        <td>\num{0.453155}</td>
-                        <td>\num{2.900549E-005}</td>
+                        <td>0.456391</td>
+                        <td>0.453155</td>
+                        <td>2.900549E-005</td>
                     </tr>
                     <tr>
                         <td>$\beta_a$</td>
-                        <td>\num{0.251521}</td>
-                        <td>\num{0.265229}</td>
-                        <td>\num{6.081389E-002 }</td>
+                        <td>0.251521</td>
+                        <td>0.265229</td>
+                        <td>6.081389E-002</td>
                     </tr>
                     <tr>
                         <td>$p$</td>
-                        <td>\num{0.1213}</td>
-                        <td>\num{0.120354}</td>
-                        <td>\num{2.554605E-006}</td>
+                        <td>0.1213</td>
+                        <td>0.120354</td>
+                        <td>2.554605E-006</td>
                     </tr>
                     <tr>
                         <td>$\sigma$</td>
                         <td>1/5000</td>
-                        <td>\num{1.361178E-004}</td>
-                        <td>\num{5.325816E-009}</td>
+                        <td>1.361178E-004</td>
+                        <td>5.325816E-009</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
-        <div class="example" text=" 2 With syntetic data">
-            <p>
-                We simulate  \num{1000} datasets in the time interval $[0,1]$.
-                To generate the datasets, we use the parameters
-                $\Delta=1/1000$,
-                $\gamma=1/365$,
-                $\kappa = \num{0.196078}$,
-                $p = \num{0.5855049}$,
-                $\alpha_a = \num{0.167504}$,
-                $\alpha_s = \num{0.092507}$
-                and $N=\num{26446435}$ for the approximation in
-                Milstein method and the initial conditions from Table \ref{table:initial}.
-                
-                <div class="table*" id="table:initial">
-                    <table>
-                        <caption style="caption-side:bottom">
-                            Initial conditions for experiment in Example 2.
-                        </caption>
-                        <thead>
-                            <tr>
-                                <td>Process</td>
-                                <td>Value</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>$E(0)$</td>
-                                <td>\num{198.504525}/N</td>
-                            </tr>
-                            <tr>
-                                <td>$I_a(0)$</td>
-                                <td>\num{99.174034}/N</td>
-                            </tr>
-                            <tr>
-                                <td>$I_s(0)$</td>
-                                <td>\num{74}/N</td>
-                            </tr>
-                            <tr>
-                                <td>$R(0)$</td>
-                                <td>\num{0}</td>
-                            </tr>
-                            <tr>
-                                <td>$S(0)$</td>
-                                <td>$1-(E(0)+I_a(0)+I_s(0)+R(0))$</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <p>
-                    The average of the $1,000$ paths and the corresponding
-                    95% quantiles are presented in Table \ref{table:MLE2}.
-                </p>
-                
-                <div class="table*" id="table:MLE2">
-                    <table>
-                        <caption>
-                            Average and  95\% confidence interval of estimator of $\sigma$ and MLEs for
-                            $\beta_a,\beta_s$, and $p$.
-                        </caption>
-                        <thead>
-                        <tr>
-                            <td></td>
-                            <td>Value </td>
-                            <td>Estimator</td>
-                            <td>CIL </td>
-                            <td>CIU</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>$\beta_s$</td>
-                                <td>\num{0.062552}</td>
-                                <td>\num{0.065287}</td>
-                                <td>\num{0.046805}</td>
-                                <td>\num{0.083769}</td>
-                            </tr>
-                            <tr>
-                                <td>$\beta_a$</td>
-                                <td>\num{0.505427}</td>
-                                <td>\num{0.506489}</td>
-                                <td>\num{0.487419 }</td>
-                                <td>\num{0.525560}</td>
-                            </tr>
-                            <tr>
-                                <td>$p$</td>
-                                <td>\num{0.585505}</td>
-                                <td>\num{0.585234}</td>
-                                <td>num{0.584544}</td>
-                                <td>\num{0.585910}</td>
-                            </tr>
-                            <tr>
-                                <td>$\sigma$</td>
-                                <td>1/100</td>
-                                <td>\num{1.361177E-002}</td>
-                                <td>\num{9.325165E-003}</td>
-                                <td>\num{2.924046E-002}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </p>
-        </div>
         
+            <div class="example" text=" 2 With syntetic data">
+                <p>
+                    We simulate  1 000 paths in the time interval $[0,1]$.
+                    To generate the datasets, we use the parameters
+                    $\Delta=1/1000$,
+                    $\gamma=1/365$,
+                    $\kappa = 0.196078$,
+                    $p = 0.5855049$,
+                    $\alpha_a = 0.167504$,
+                    $\alpha_s = 0.092507$,
+                    and $N=26 446 435$ for the approximation in
+                    Milstein method and the initial conditions from Table ref{table:initial}.
+                    
+                    <div class="table*" id="table:initial2">
+                        <table>
+                            <caption style="caption-side:bottom">
+                                Initial conditions for experiment in Example 2.
+                            </caption>
+                            <thead>
+                                <tr>
+                                    <td>Process</td>
+                                    <td>Value</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$E(0)$</td>
+                                    <td>198.504525/N</td>
+                                </tr>
+                                <tr>
+                                    <td>$I_a(0)$</td>
+                                    <td>99.174034/N</td>
+                                </tr>
+                                <tr>
+                                    <td>$I_s(0)$</td>
+                                    <td>74/N</td>
+                                </tr>
+                                <tr>
+                                    <td>$R(0)$</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>$S(0)$</td>
+                                    <td>$1-(E(0)+I_a(0)+I_s(0)+R(0))$</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>
+                        The average of the $1,000$ paths and the corresponding
+                        95 % quantiles are presented in Table \ref{table:MLE2}.
+                    </p>
+                    
+                    <div class="table*" id="table:MLE2">
+                        <table>
+                            <caption>
+                                Average and  95 % confidence interval of estimator of $\sigma$ and MLEs for
+                                $\beta_a,\beta_s$, and $p$.
+                            </caption>
+                            <thead>
+                            <tr>
+                                <td></td>
+                                <td>Value </td>
+                                <td>Estimator</td>
+                                <td>CIL </td>
+                                <td>CIU</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>$\beta_s$</td>
+                                    <td>0.062552</td>
+                                    <td>0.065287</td>
+                                    <td>0.046805</td>
+                                    <td>0.083769</td>
+                                </tr>
+                                <tr>
+                                    <td>$\beta_a$</td>
+                                    <td>0.505427</td>
+                                    <td>0.506489</td>
+                                    <td>0.487419</td>
+                                    <td>0.525560</td>
+                                </tr>
+                                <tr>
+                                    <td>$p$</td>
+                                    <td>0.585505</td>
+                                    <td>0.585234</td>
+                                    <td>0.584544</td>
+                                    <td>0.585910</td>
+                                </tr>
+                                <tr>
+                                    <td>$\sigma$</td>
+                                    <td>1/100</td>
+                                    <td>1.361177E-002</td>
+                                    <td>9.325165E-003</td>
+                                    <td>2.924046E-002</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p>
+            </div>
         
     <h1 id="sec:application_real_data">
         Application to real data
@@ -3319,7 +3297,7 @@
             COVID19 reported cases daily in Mexico City considering that its
             population is
             <span class="math inline">
-                \(N=\num{26446435}\)
+                \(N=26 446 435\)
             </span>.
                 The dataset contains 47 records in the period March 10 to April 25 of 2020.
             We use these records
@@ -3371,22 +3349,19 @@
                         [table:initial]
                     </a>
                     for
-                    <span class="math display">
-                \[
-                    E(0),
-                    I_a(0)
-                    \text{ and }
-                     (R(0).
-                \]
-            </span>
+                    $$
+                        E(0),
+                        I_a(0) \quad \text{ and }
+                         (R(0).
+                    $$
                 </p>
                 <p>
                     <em>
                         2 Compute
                     </em>
                     <span class="math inline">
-                \(S(0)=1-E(0)-I_a(0) -R(0)-I^{mx}_s\)
-            </span>,
+                        \(S(0)=1-E(0)-I_a(0) -R(0)-I^{mx}_s\)
+                    </span>,
                     and make
                     <span class="math inline">
                 \(n=0\)
@@ -3462,41 +3437,41 @@
         <p>
             With this procedure, we have 47 records in the same observation
             period for each of the five processes that should fit to the stochastic
-            model given by  \eqrefeqn:sde_model}.
+            model given by  \eqref{eqn:sde_model}.
             In other words, we have observations of the processes
             of system \eqref{eqn:sde_model} at the times
             <span class="math inline">
-        \(t_0 = 0\)
-    </span>,
+                \(t_0 = 0\)
+            </span>,
             <span class="math inline">
-        \(t_1= \num{0.001}\)
-    </span>,
+                \(t_1= 0.001 \)
+            </span>,
             <span class="math inline">
-        \(t_2 =\num{0.002}\)
-    </span>,
+                \(t_2 =0.002\)
+            </span>,
             <span class="math inline">
-        \(\ldots\)
-    </span>,
+                \(\ldots\)
+            </span>,
             <span class="math inline">
-        \(t_{46} = \num{0.046}\)
-    </span>.
+                \(t_{46} = 0.046\)
+            </span>.
         </p>
         <h2 id="es_real">Estimation of parameters</h2>
-        <p>We assume the following parameters as given: <span
-                class="math inline">\(\gamma =1 /\num{365}\)</span>, <span
-                class="math inline">\(\kappa = \num{0.196078}\)</span>, <span
-                class="math inline">\(p = \num{0.5855049}\)</span>, <span
-                class="math inline">\(\alpha_a = \num{0.167504}\)</span> <span
-                class="math inline">\(\alpha_s = \num{0.0925069}\)</span>. Thus, using
-            the described methodology in to generate data and applying <a
-                    data-reference="est_sigma" data-reference-type="eqref"
-                    href="#est_sigma">[est_sigma]</a>, we estimate <span
-                    class="math inline">\(\sigma\)</span> and expressions in . Then, with
-            these calculations, we deduce the MLE function of <span
-                    class="math inline">\(\beta_s,\beta_a\)</span>, and <span
-                    class="math inline">\(p\)</span>. Next, we generate 1000 datasets using
+        <p>
+            We assume the following parameters as given:
+            \(\gamma =1 / 365\),
+            \(\kappa = 0.196078\),
+            \(p = 0.5855049\),
+            \(\alpha_a = 0.167504\),
+            \(\alpha_s = 0.0925069\).
+            Thus, using the described methodology in to generate data and applying
+            \eqref{est_sigma}, we estimate
+            \(\sigma\) and expressions in . Then, with
+            these calculations, we deduce the MLE function of
+            \(\beta_s,\beta_a\), and \(p\). Next, we generate 1000 datasets using
             the data of Mexico City. gives the average of these estimators and the
-            corresponding 95% confidence interval.</p>
+            corresponding 95% confidence interval.
+        </p>
         <div class="table*">
             <table>
                 <thead>
@@ -3697,7 +3672,7 @@
             </a>, estimators
             of and
             <span class="math inline">
-                \(\Delta=\num{0.001}\)
+                \(\Delta=0.001 \)
             </span>
                 into
                 \eqref{Wt_increments} and we get the residual
@@ -3862,9 +3837,9 @@
         <p>
             It is possible to prove (see supplementary material) that
             <span class="math display">
-        \begin{equation*}
+        \begin{equation}
+            \label{beta_hat_f}
             \begin{aligned}
-                \label{beta_hat_f}
                 \hat{\beta}_{s,ML}
                     = &amp;
                     \dfrac{1 }{J_s J_a - J_{sa}^2}
@@ -3944,7 +3919,7 @@
                         \frac{S(t) I_a(t)}{ E(t)} dt
                     \Bigg]
             \end{aligned}
-        \end{equation*}
+        \end{equation}
     </span>
             and
         </p>

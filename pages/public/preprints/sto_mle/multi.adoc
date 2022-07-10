@@ -1,14 +1,8 @@
 ---
-title:                                  Preprints
-tagline:                                and Work in Progress
+title:                                  Maximum likelihood estimation for a stochastic SEIR system
+tagline:                                for COVID-19
 date:                                   2022-01-01 00:00:00
 description: >
-                                        Multi-chapter documents are used for more complex articles of a website. If
-                                        the number of chapters is or exceeds three for an article, it could make sense
-                                        to split a larger documents chapter-wise into separate files. This document
-                                        type is based on  *multiple* Asciidoc documents and make use of (local and
-                                        global) Asciidoc include files and attributes.
-
 categories:                             [ Knowledge ]
 tags:                                   [ Asciidoc, Skeleton, Document ]
 
@@ -18,7 +12,6 @@ robots:
 
 permalink:                              /pages/public/preprints/sto_mle/multi/
 regenerate:                             true
-
 resources:                              [ animate, clipboard, lightbox, rouge ]
 resource_options:
   - attic:
@@ -31,25 +24,14 @@ resource_options:
             author:                     Sigmund
             href:                       https://unsplash.com/@sigmund
 ---
-// Page Initializer
-// =============================================================================
-// Enable the Liquid Preprocessor
 :page-liquid:
 
-// Set (local) page attributes here
-// -----------------------------------------------------------------------------
-// :page--attr:                         <attr-value>
-
-//  Load Liquid procedures
-// -----------------------------------------------------------------------------
 {% capture load_attributes %}themes/{{site.template.name}}/procedures/global/attributes_loader.proc{%endcapture%}
-
-// Load page attributes
-// -----------------------------------------------------------------------------
 {% include {{load_attributes}} scope="all" %}
 
 // Page content
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+
 include::{documentdir}/sto_mle.asciidoc[]
-include::{documentdir}/main_vaccine_stock.asciidoc[]
+//include::{documentdir}/main_vaccine_stock.asciidoc[]

@@ -126,7 +126,7 @@ lorem:sentences[5]
 
 == teaching
 ++++
-include::./Cursos.html[]
+include::pages/public/resume/Cursos.html[]
 ++++
 
 == Administrative Experience

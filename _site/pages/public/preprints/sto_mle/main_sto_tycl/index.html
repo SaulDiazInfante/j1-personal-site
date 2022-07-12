@@ -7,7 +7,7 @@
   
             <!DOCTYPE html>
 <html lang="en">
-  <!-- [INFO   ] [j1.layout.default.html                ] [ page generated: 2022-07-10 03:33:56 +0200 ] -->
+  <!-- [INFO   ] [j1.layout.default.html                ] [ page generated: 2022-07-12 03:17:35 +0200 ] -->
   <!-- [INFO   ] [j1.layout.default.html                ] [ environment detected as: development ] -->
   <!-- [INFO   ] [j1.layout.default.html                ] [ version detected as: 2022.4.4 ] -->
   <head data-proofer-ignore>
@@ -671,11 +671,11 @@
           </div>
           <script>
             MathJax = {
-                loader: {load: ['[tex]/textmacros']},
+                loader: {load: ['[tex]/textmacros', '[tex]/newcommand', '[tex]/configmacros']},
                 tex: {
                     inlineMath: [['$', '$'], ['\\(', '\\)']],
                     tags: 'ams',
-                    packages: {'[+]': ['textmacros']},
+                    packages: {'[+]': ['textmacros', 'newcommand', 'configmacros']},
                     macros: {
                         oe: '\u0153',
                         OE: '\u0152',
@@ -693,7 +693,10 @@
                         ddag: '\u2021',
                         P: '\u00B6',
                         copyright: '\u00A9',
-                        pounds: '\u00A3'
+                        pounds: '\u00A3',
+                        EX:["{ \\mathbb{E}{ {#1}} \\left[ {#2} \\right] }", 2],
+                        E:["{ \\mathbb{E} \\left[ {#1} \\right] }", 1],
+                        probX:[ "{ \\mathbb{P}{ {#1} } \\left[ {#2} \\right] }", 2 ]
                     }
                 },
                 chtml: {
@@ -710,9 +713,13 @@
             .theorem {
                 display: block;
                 font-style: italic;
+                    margin-top: 2em ;
+                    margin-bottom: 2em ;
             }
             p{
                 text-indent: 30px;
+                margin-top: 2em ;
+                margin-bottom: 2em ;
             }
             .theorem:before {
                 content: "Theorem. ";
@@ -725,6 +732,8 @@
             .definition {
                 display: block;
                 font-style: italic;
+                margin-top: 2em ;
+                margin-bottom: 2em ;
             }
             .definition:before {
                 content: "Definition. ";
@@ -746,8 +755,26 @@
             .proof[text]:before {
                 content: "Proof (" attr(text) ") ";
             }
+            .remark {
+                display: block;
+                font-style: italic;
+                background-color: #3f92af;
+                border-radius: 15px;
+                margin-top: 6em ;
+                margin-bottom: 2em ;
+            }
+            .remark:before {
+                content: "Remark. ";
+                font-weight: bold;
+                font-style: normal;
+            }
+            .remark[text]:before {
+                content: "Remark (" attr(text) ") ";
+            }
             span.right{
-                float:right
+                float:right;
+                margin-top: 1em ;
+                margin-bottom: 1em ;
             }
           </style>
           <div class="sect1">
@@ -788,7 +815,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
             <h2 id="introduction">Introduction</h2>
             <div class="sectionbody">
               <div class="paragraph">
-                <p>Whitefly (Bemisia tabaci) is the responsible vector for
+                <p>White-fly (Bemisia tabaci) is the responsible vector for
                   critical insect-transmitted diseases in crops like
                   tomato, soybeans, and cotton
                   <a class="citation" href="#Yan2021">(Yan, Wolters, Navas-Castillo, &amp; Bai, 2021; Faiz &amp; Abhinav, 2021; Swathi, Gaur, &amp; Singh, 2021; Ali et al., 2021)</a>.
@@ -821,7 +848,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                   Recently, control strategies have been studied as optimal control
                   problems by Lenhart et al. in
                   <a class="citation" href="#Bokil2019">(Bokil, Allen, Jeger, &amp; Lenhart, 2019)</a>
-                  for a tomato diseaseand Luo et al. <a class="citation" href="#Luo2021">(Luo, Zhang, Liu, &amp; Gao, 2021)</a> for Huanglongbing.
+                  for a tomato disease and Luo et al. <a class="citation" href="#Luo2021">(Luo, Zhang, Liu, &amp; Gao, 2021)</a> for Huanglongbing.
                   However, the uncertainty quantification or stochastic counterparts
                   still are under development. In this direction, we mention the
                   recent works of Allen et al. <a class="citation" href="#Hebert2016">(Allen &amp; Hebert, 2016)</a>, Stella \&amp; Ghosh
@@ -1112,7 +1139,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <p>($\color{darkblue}{\blacksquare}$,$\color{orange}{\bullet}$) LA1582, and
                   Tyking tomato species data.
                   The blue and red line represents the median incidence curve.
-                  Parameter values fixed in <a href="tbl:parameter_value">Table 1</a>.
+                  Parameter values fixed in <a href="#tbl:parameter_value">Table 1</a>.
                   Data from Holt and Muniyappa <a class="citation" href="#Holt1999">(Holt, Colvin, &amp; Muniyappa, 1999)</a>.
                   See <a href="https://plotly.com/~AdrianSalcedo/339/" class="bare">https://plotly.com/~AdrianSalcedo/339/</a> for a interactive visualization.</p>
               </div>
@@ -1688,8 +1715,6 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                   \right)=
                   \left(\frac{1}{k_0},k_0\right)^5.
                   $$
-                </p>
-                <p>
                   For any $k&gt;0$ with $k&gt;k_0$, define
                   \begin{equation*}
                   \tau_k :=
@@ -1723,307 +1748,970 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                   \epsilon \in (0,1).
                   $$
                   Thus, there exists $k_1&gt;k_0$ such that
-                  $\mathbb{P} \Big\{ \tau_k<t>\epsilon$ for all $k \geq k_1$.
-                    &lt;\p&gt;
-                    <p>
-                      We consider the	following Lyapunov function $V:\mathbb{R}^5 \to \mathbb{R}$ by
-                      \begin{equation*}
-                      \begin{aligned}
-                      &amp; V (S_p, L_p, I_p, S_v, I_v) :=
-                      \left(S_p - N_p - N_p \log{\frac{S_p}{N_p}}\right) +
-                      \left(L_p - N_p - N_p \log{\frac{L_p}{N_p}}\right)
-                      \\
-                      &amp;+
-                      \left(I_p - N_p - N_p \log{\frac{I_p}{N_p}}\right) +
-                      \left(S_v - N^{\infty}_v - N^{\infty}_v
-                      \log{\frac{S_v}{N^{\infty}_v}}\right)
-                      \\
-                      &amp;+
-                      \left(I_v - N^{\infty}_v - N^{\infty}_v
-                      \log{\frac{I_v}{N^{\infty}_v}}\right).
-                      \end{aligned}
-                      \end{equation*}
-                      Applying the diffusion operator $\mathcal{L}$ see <a class="citation" href="#Mao2008">(Mao, 2008, p. 12)</a>, to
-                      $$
-                      f(x) = x - N - N\
-                      \log{
-                      \left( \frac{x}{N} \right)
-                      },
-                      $$
-                      we get
-                      \begin{align*}
-                      &amp;\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] =
-                      \left(
-                      1 - \frac{N_p}{S_p}
-                      \right) \left(
-                      -\frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
-                      \right)
-                      \\
-                      &amp;+
-                      \left(
-                      1 - \frac{N_p}{L_p}
-                      \right) \left(
-                      \frac{\beta_p}{N_v} S_p I_v -(b + r_1) L_p
-                      \right) + \left(
-                      1 - \frac{N_p}{I_p}
-                      \right) \left(
-                      b L_p - r_2 I_p
-                      \right)
-                      \\
-                      &amp;+
-                      \left(
-                      1 - \frac{N^{\infty}_v}{S_v}
-                      \right) \left(
-                      -\frac{\beta_v}{N_p} S_v I_p - (\gamma + \gamma_f) S_v +
-                      (1- \theta) \mu
-                      \right)
-                      \\
-                      &amp;+ \left(
-                      1 - \frac{N^{\infty}_v}{I_v}
-                      \right) \left(
-                      -\frac{\beta_v}{N_p} S_v I_p -
-                      (\gamma + \gamma_f) I_v + \theta \mu
-                      \right)
-                      \\
-                      &amp;+
-                      \frac{1}{2}\frac{S_p ^2}{N_p ^ 2}
-                      \frac{N_p}{S_p ^ 2} (\sigma_L L_p + \sigma_I I_p) ^ 2
-                      + \frac{1}{2} \sigma_L ^2
-                      \frac{S_p ^2}{N_p ^2} L_p^2 \frac{N_p}{L_p ^2}
-                      + \frac{1}{2} \sigma_I ^2
-                      \frac{S_p ^2}{N_p ^2} I_p^2 \frac{N_p}{I_p ^2}
-                      \\
-                      &amp;+
-                      \frac{1}{2} \sigma_v ^2 S_v ^2 \frac{N^{\infty}_v}{S_v ^2}
-                      + \frac{1}{2} \sigma_v ^2 I_v ^2 \frac{N^{\infty}_v}{I_v ^2}.
-                      \end{align*}
-                    </p>
-                    <p>
-                      Bounding the above equality by positive terms, we have
-                      \begin{equation}\label{eqn::boudn1positvesol}
-                      \begin{aligned}
-                      &amp;\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
-                      \frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
-                      + \frac{\beta_p}{N_v} S_p I_v
-                      + (b + r_1) L_p
-                      \\
-                      &amp;+
-                      b L_p + r_2 N_p + (1 - \theta) \mu
-                      + \frac{\beta_v}{N_p} S_v I_p
-                      + (\gamma + \gamma_f) N^{\infty}_v
-                      + \frac{\beta_v}{N_p} S_v I_p + \theta \mu
-                      \\
-                      &amp;+ (\gamma + \gamma_f) N^{\infty}_v
-                      + \frac{1}{2} \frac{1}{N_p} (\sigma_L L_p + \sigma_I I_p)^2
-                      + \frac{1}{2}\sigma_L ^2
-                      \frac{S_p ^2}{N_p} + \frac{1}{2}\sigma_I ^2
-                      \frac{S_p ^2}{N_p}
-                      \\
-                      &amp;+ \frac{1}{2}\sigma_v ^2 N^{\infty}_v
-                      + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
-                      \end{aligned}
-                      \end{equation}
-                    </p>
-                    <p>&gt;
-                      Using size population, we bound \eqref{eqn::boudn1positvesol} by
-                      \begin{equation}\label{eqn::boudn2positvesol}
-                      \begin{aligned}
-                      &amp;\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
-                      \beta_p N_p + r_1 N_p + r_2 N_p + \beta_p N_p
-                      + (b + r_1) N_p
-                      \\
-                      &amp;+
-                      b N_p + r_2 N_p + (\gamma + \gamma_f) N^{\infty}_v
-                      + \beta_v N^{\infty}_v
-                      + (\gamma + \gamma_f) N^{\infty}_v +\beta_v N^{\infty}_v +
-                      (\gamma + \gamma_f) N^{\infty}_v
-                      \\
-                      &amp;+ (\gamma + \gamma_f) N^{\infty}_v
-                      + (\gamma + \gamma_f) N^{\infty}_v
-                      + \frac{1}{2} (\sigma_L + \sigma_I)^2 N_p
-                      + \frac{1}{2}\sigma_L ^2
-                      N_p + \frac{1}{2} \sigma_I ^2 N_p
-                      \\
-                      &amp;+
-                      \frac{1}{2}\sigma_v ^2 N^{\infty}_v
-                      + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
-                      \end{aligned}
-                      \end{equation}
-                      Factorizing by $N_p$ and $N^{\infty}_v$ relation \eqref{eqn::boudn2positvesol},
-                      we get
-                      \begin{equation*}\label{eqn::boudn3positvesol}
-                      \begin{aligned}
-                      \mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] &amp;
-                      \\
-                      \leq &amp;
-                      \left(
-                      2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
-                      \frac{1}{2} (\sigma_L + \sigma_I)^2
-                      + \frac{1}{2}\sigma_L ^2
-                      + \frac{1}{2} \sigma_I ^2
-                      \right) N_p
-                      \\
-                      + &amp;
-                      [
-                      2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
-                      ]
-                      N^{\infty}_v.
-                      \end{aligned}
-                      \end{equation*}
-                    </p>
-                    <p>
-                      Define
-                      \begin{equation*}\label{eqn::boudn4positvesol}
-                      \begin{aligned}
-                      C_1  := &amp;
-                      \left(
-                      2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
-                      \frac{1}{2} (\sigma_L + \sigma_I)^2
-                      + \frac{1}{2}\sigma_L ^2
-                      + \frac{1}{2} \sigma_I ^2
-                      \right) N_p
-                      \\
-                      + &amp;
-                      [
-                      2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
-                      ] N^{\infty}_v.
-                      \end{aligned}
-                      \end{equation*}
-                      Then by Ito's formula, we obtain
-                      \begin{equation}\label{eqn::boudn5positvesol}
-                      \begin{aligned}
-                      &amp;d[V(S_p,L_p,I_p,S_v,I_v)] \leq
-                      C_1 dt + \left(
-                      1- \frac{N_p}{S_p}
-                      \right)\left[\frac{S_p}{N_p}(
-                      \sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
-                      \\
-                      &amp;+
-                      \left(1 - \frac{N_p}{L_p}\right)
-                      \left(
-                      - \sigma_L \frac{S_p}{N_p} L_p
-                      \right)dB_p(t)
-                      + \left(1 - \frac{N_p}{I_p}\right)
-                      \left(
-                      - \sigma_I \frac{S_p}{N_p} I_p
-                      \right)dB_p(t)
-                      \\
-                      &amp;+
-                      \left(1 - \frac{N^{\infty}_v}{S_v}\right)
-                      \left(- \sigma_v S_v\right)dB_v(t) +
-                      \left(1 - \frac{N^{\infty}_v}{I_v}\right)
-                      \left(- \sigma_v I_v\right)dB_v(t).
-                      \end{aligned}
-                      \end{equation}
-                    </p>
-                    <p>
-                      Bounding \eqref{eqn::boudn5positvesol} by positive terms
-                      \begin{equation}\label{eqn::boudn6positvesol}
-                      \begin{aligned}
-                      &amp;d[V(S_p,L_p,I_p,S_v,I_v)] \leq
-                      C_1 dt + \left[\frac{S_p}{N_p}
-                      (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
-                      \\
-                      &amp;+
-                      (\sigma_L + \sigma_I) dB_p(t)
-                      + 2 \sigma_v N^{\infty}_v dB_p(t).
-                      \end{aligned}
-                      \end{equation}
-                      Integrating both sides of \eqref{eqn::boudn6positvesol} on
-                      $(0,\tau_k \wedge T)$, taking expectation, we have
-                      \begin{equation*}\label{eqn::boudn7positvesol}
-                      \begin{aligned}
-                      &amp;\E{[V(S_p,L_p,I_p,S_v,I_v)]} \leq
-                      V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
-                      \\
-                      &amp;+
-                      \E{\int_0^{\tau_k \wedge T} C_1 dt}
-                      + \E{\int_0^{\tau_k \wedge T}
-                      \left[\frac{S_p}{N_p}
-                      (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)}
-                      \\
-                      &amp;+
-                      \E{\int_0^{\tau_k \wedge T}
-                      (\sigma_L + \sigma_I) dB_p(t)} +
-                      2 \E{ \int_0^{\tau_k \wedge T}
-                      \sigma_v N^{\infty}_v dB_p(t)}.
-                      \end{aligned}
-                      \end{equation*}
-                      Since $G \in L^2(0, T)$, then $\E{\int_0^T G dB(s)}=0$. Using the above argument, we obtain
-                      % 	\begin{equation*}\label{eqn::boudn8positvesol}
-                      %     	\begin{aligned}
-                      %     	    &amp;\E{[V(S_p,L_p,I_p,S_v,I_v)]} \leq
-                      %     	        V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
-                      %     	       + C_1 T.
-                      %     	\end{aligned}
-                      % 	\end{equation*}
-                      % 	%
-                      % 	For $k \geq 1$ such that $k \geq k_0$, let
-                      % 	$\Omega_k = \{ \tau_k \leq T\}$. Then,	$\probX{\Omega_k} &gt; \epsilon$.
-                      % 	If $t \in \Omega_k$, thus at least one of the following	will hold true:
-                      % 	%
-                      %     \begin{align*}
-                      %         S_p(t) \not \in &amp;\left( \frac{1}{k}, k\right), \qquad L_p(t) \not \in
-                      %         \left( \frac{1}{k}, k\right), \qquad  I_p(t) \not \in
-                      %         \left( \frac{1}{k}, k\right), \\
-                      %          &amp;S_v(t) \not \in \left( \frac{1}{k}, k\right), \qquad  I_v(t) \not \in
-                      %          \left( \frac{1}{k}, k\right).
-                      %     \end{align*}
-                      %     %
-                      %     Note that, $f(x) = x - N_{\bullet} - N_{\bullet}\log{x/N_{\bullet}}$ is
-                      %     increasing on $(N_{\bullet},\infty)$ and decreasing on $(0,N_{\bullet})$
-                      %     it follows
-                      % 	%
-                      % 	\begin{align*}
-                      % 	    &amp;V(S_p(\tau_k \wedge T),L_p(\tau_k \wedge T),I_p(\tau_k \wedge T),
-                      % 	        S_v(\tau_k \wedge T),I_v(\tau_k \wedge T)) \geq
-                      % 	        \\
-                      % 	           &amp;
-                      % 	            \left(k - N_p - N_p \log{\frac{k}{N_p}}\right)^3
-                      % 	            \wedge \left(\frac{1}{k} - N_p - N_p
-                      % 	            \log{\frac{1}{N_p k}}\right)^3 \wedge
-                      % 	        \\
-                      % 	           &amp;
-                      % 	            \left(k - N^{\infty}_v - N^{\infty}_v
-                      % 	            \log{\frac{k}{N^{\infty}_v}}\right)^2
-                      % 	            \wedge \left(\frac{1}{k} - N^{\infty}_v - N^{\infty}_v
-                      % 	            \log{\frac{1}{N^{\infty}_v k}}\right)^2.
-                      %  	\end{align*}
-                      %  	%
-                      %  	Now we have
-                      %  	%
-                      %  	\begin{align*}
-                      %  	      &amp;V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0)) + C_1 T
-                      %  	      \geq \E{[V(S_p,L_p,I_p,S_v,I_v)]}
-                      %  	    \\
-                      %  	      &amp;\geq
-                      %  	        \epsilon \left(k - N_p - N_p \log{\frac{k}{N_p}}\right)^3 \wedge \left(
-                      %  	        \frac{1}{k} - N_p - N_p \log{\frac{1}{N_p k}}\right)^3 \wedge
-                      % 	        \\
-                      % 	           &amp;
-                      % 	            \left(k - N^{\infty}_v - N^{\infty}_v
-                      % 	            \log{\frac{k}{N^{\infty}_v}}\right)^2
-                      % 	            \wedge \left(\frac{1}{k} - N^{\infty}_v - N^{\infty}_v
-                      % 	            \log{\frac{1}{N^{\infty}_v k}}\right)^2.
-                      %  	\end{align*}
-                      %  	%
-                      %  	Finally, letting $ k \to \infty$ we obtain
-                      %     %
-                      %  	\begin{equation*}
-                      %  	    \infty &gt; V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0)) + C_1 T \geq \infty,
-                      %  	\end{equation*}
-                      %  	%
-                      %  	which is a contradiction. Thus, we conclude that $\tau_\infty = \infty$.
-                      % \end{proof}
-                    </p>
-                  </t></p>
+                  $\mathbb{P} \Big\{ \tau_k &lt; T \Big\} &gt;\epsilon$ for all
+                  $k \geq k_1$.
+                </p>
+                <p>
+                  Consider the following Lyapunov function $V:\mathbb{R}^5 \to \mathbb{R}$
+                  defined by
+                  \begin{equation*}
+                  \begin{aligned}
+                  &amp; V (S_p, L_p, I_p, S_v, I_v) :=
+                  \left(S_p - N_p - N_p \log{\frac{S_p}{N_p}}\right) +
+                  \left(L_p - N_p - N_p \log{\frac{L_p}{N_p}}\right)
+                  \\
+                  &amp;+
+                  \left(I_p - N_p - N_p \log{\frac{I_p}{N_p}}\right) +
+                  \left(S_v - N^{\infty}_v - N^{\infty}_v
+                  \log{\frac{S_v}{N^{\infty}_v}}\right)
+                  \\
+                  &amp;+
+                  \left(I_v - N^{\infty}_v - N^{\infty}_v
+                  \log{\frac{I_v}{N^{\infty}_v}}\right).
+                  \end{aligned}
+                  \end{equation*}
+                  Applying the diffusion operator $\mathcal{L}$ see <a class="citation" href="#Mao2008">(Mao, 2008, p. 12)</a>, to
+                  $$
+                  f(x) = x - N - N\
+                  \log{
+                  \left( \frac{x}{N} \right)
+                  },
+                  $$
+                  we get
+                  \begin{align*}
+                  &amp;\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] =
+                  \left(
+                  1 - \frac{N_p}{S_p}
+                  \right) \left(
+                  -\frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
+                  \right)
+                  \\
+                  &amp;+
+                  \left(
+                  1 - \frac{N_p}{L_p}
+                  \right) \left(
+                  \frac{\beta_p}{N_v} S_p I_v -(b + r_1) L_p
+                  \right) + \left(
+                  1 - \frac{N_p}{I_p}
+                  \right) \left(
+                  b L_p - r_2 I_p
+                  \right)
+                  \\
+                  &amp;+
+                  \left(
+                  1 - \frac{N^{\infty}_v}{S_v}
+                  \right) \left(
+                  -\frac{\beta_v}{N_p} S_v I_p - (\gamma + \gamma_f) S_v +
+                  (1- \theta) \mu
+                  \right)
+                  \\
+                  &amp;+ \left(
+                  1 - \frac{N^{\infty}_v}{I_v}
+                  \right) \left(
+                  -\frac{\beta_v}{N_p} S_v I_p -
+                  (\gamma + \gamma_f) I_v + \theta \mu
+                  \right)
+                  \\
+                  &amp;+
+                  \frac{1}{2}\frac{S_p ^2}{N_p ^ 2}
+                  \frac{N_p}{S_p ^ 2} (\sigma_L L_p + \sigma_I I_p) ^ 2
+                  + \frac{1}{2} \sigma_L ^2
+                  \frac{S_p ^2}{N_p ^2} L_p^2 \frac{N_p}{L_p ^2}
+                  + \frac{1}{2} \sigma_I ^2
+                  \frac{S_p ^2}{N_p ^2} I_p^2 \frac{N_p}{I_p ^2}
+                  \\
+                  &amp;+
+                  \frac{1}{2} \sigma_v ^2 S_v ^2 \frac{N^{\infty}_v}{S_v ^2}
+                  + \frac{1}{2} \sigma_v ^2 I_v ^2 \frac{N^{\infty}_v}{I_v ^2}.
+                  \end{align*}
+                  Bounding the above equality by positive terms, we have
+                  \begin{equation}\label{eqn::boudn1positvesol}
+                  \begin{aligned}
+                  &amp;\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                  \frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
+                  + \frac{\beta_p}{N_v} S_p I_v
+                  + (b + r_1) L_p
+                  \\
+                  &amp;+
+                  b L_p + r_2 N_p + (1 - \theta) \mu
+                  + \frac{\beta_v}{N_p} S_v I_p
+                  + (\gamma + \gamma_f) N^{\infty}_v
+                  + \frac{\beta_v}{N_p} S_v I_p + \theta \mu
+                  \\
+                  &amp;+ (\gamma + \gamma_f) N^{\infty}_v
+                  + \frac{1}{2} \frac{1}{N_p} (\sigma_L L_p + \sigma_I I_p)^2
+                  + \frac{1}{2}\sigma_L ^2
+                  \frac{S_p ^2}{N_p} + \frac{1}{2}\sigma_I ^2
+                  \frac{S_p ^2}{N_p}
+                  \\
+                  &amp;+ \frac{1}{2}\sigma_v ^2 N^{\infty}_v
+                  + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
+                  \end{aligned}
+                  \end{equation}
+                  Using size population, we bound \eqref{eqn::boudn1positvesol} by
+                  \begin{equation}\label{eqn::boudn2positvesol}
+                  \begin{aligned}
+                  &amp;\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                  \beta_p N_p + r_1 N_p + r_2 N_p + \beta_p N_p
+                  + (b + r_1) N_p
+                  \\
+                  &amp;+
+                  b N_p + r_2 N_p + (\gamma + \gamma_f) N^{\infty}_v
+                  + \beta_v N^{\infty}_v
+                  + (\gamma + \gamma_f) N^{\infty}_v +\beta_v N^{\infty}_v +
+                  (\gamma + \gamma_f) N^{\infty}_v
+                  \\
+                  &amp;+ (\gamma + \gamma_f) N^{\infty}_v
+                  + (\gamma + \gamma_f) N^{\infty}_v
+                  + \frac{1}{2} (\sigma_L + \sigma_I)^2 N_p
+                  + \frac{1}{2}\sigma_L ^2
+                  N_p + \frac{1}{2} \sigma_I ^2 N_p
+                  \\
+                  &amp;+
+                  \frac{1}{2}\sigma_v ^2 N^{\infty}_v
+                  + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
+                  \end{aligned}
+                  \end{equation}
+                  Factorizing $N_p$ and $N^{\infty}_v$ in relation \eqref{eqn::boudn2positvesol},
+                  we get
+                  \begin{equation*}\label{eqn::boudn3positvesol}
+                  \begin{aligned}
+                  \mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] &amp;
+                  \\
+                  \leq &amp;
+                  \left(
+                  2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
+                  \frac{1}{2} (\sigma_L + \sigma_I)^2
+                  + \frac{1}{2}\sigma_L ^2
+                  + \frac{1}{2} \sigma_I ^2
+                  \right) N_p
+                  \\
+                  + &amp;
+                  [
+                  2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
+                  ]
+                  N^{\infty}_v.
+                  \end{aligned}
+                  \end{equation*}
+                  Define
+                  \begin{equation*}\label{eqn::boudn4positvesol}
+                  \begin{aligned}
+                  C_1  := &amp;
+                  \left(
+                  2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
+                  \frac{1}{2} (\sigma_L + \sigma_I)^2
+                  + \frac{1}{2}\sigma_L ^2
+                  + \frac{1}{2} \sigma_I ^2
+                  \right) N_p
+                  \\
+                  + &amp;
+                  [
+                  2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
+                  ] N^{\infty}_v.
+                  \end{aligned}
+                  \end{equation*}
+                  Then by Ito's formula, we obtain
+                  \begin{equation}\label{eqn::boudn5positvesol}
+                  \begin{aligned}
+                  &amp;d[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                  C_1 dt + \left(
+                  1- \frac{N_p}{S_p}
+                  \right)\left[\frac{S_p}{N_p}(
+                  \sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
+                  \\
+                  &amp;+
+                  \left(1 - \frac{N_p}{L_p}\right)
+                  \left(
+                  - \sigma_L \frac{S_p}{N_p} L_p
+                  \right)dB_p(t)
+                  + \left(1 - \frac{N_p}{I_p}\right)
+                  \left(
+                  - \sigma_I \frac{S_p}{N_p} I_p
+                  \right)dB_p(t)
+                  \\
+                  &amp;+
+                  \left(1 - \frac{N^{\infty}_v}{S_v}\right)
+                  \left(- \sigma_v S_v\right)dB_v(t) +
+                  \left(1 - \frac{N^{\infty}_v}{I_v}\right)
+                  \left(- \sigma_v I_v\right)dB_v(t).
+                  \end{aligned}
+                  \end{equation}
+                </p>
+                <p>
+                  Bounding \eqref{eqn::boudn5positvesol} by positive terms, we obtain
+                  \begin{equation}\label{eqn::boudn6positvesol}
+                  \begin{aligned}
+                  &amp;d[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                  C_1 dt + \left[\frac{S_p}{N_p}
+                  (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
+                  \\
+                  &amp;+
+                  (\sigma_L + \sigma_I) dB_p(t)
+                  + 2 \sigma_v N^{\infty}_v dB_p(t).
+                  \end{aligned}
+                  \end{equation}
+                  Integrating both sides of \eqref{eqn::boudn6positvesol} on
+                  $(0,\tau_k \wedge T)$, and taking expectation, we have
+                  \begin{equation*}\label{eqn::boudn7positvesol}
+                  \begin{aligned}
+                  &amp;\E{V(S_p,L_p,I_p,S_v,I_v)} \leq
+                  V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+                  \\
+                  &amp;+
+                  \E{\int_0^{\tau_k \wedge T} C_1 dt}
+                  + \E{\int_0^{\tau_k \wedge T}
+                  \left[\frac{S_p}{N_p}
+                  (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)}
+                  \\
+                  &amp;+
+                  \E{\int_0^{\tau_k \wedge T}
+                  (\sigma_L + \sigma_I) dB_p(t)} +
+                  2 \E{ \int_0^{\tau_k \wedge T}
+                  \sigma_v N^{\infty}_v dB_p(t)}.
+                  \end{aligned}
+                  \end{equation*}
+                  Since $G \in L^2(0, T)$, then $\E{\int_0^T G dB(s)}=0$. Using the above argument, we obtain
+                  \begin{equation*}\label{eqn::boudn8positvesol}
+                  \begin{aligned}
+                  &amp;\E{V(S_p,L_p,I_p,S_v,I_v)} \leq
+                  V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+                  + C_1 T.
+                  \end{aligned}
+                  \end{equation*}
+                  For $k \geq 1$ such that $k \geq k_0$, let
+                  $\Omega_k = \{ \tau_k \leq T\}$. Then,	$\probX{}{\Omega_k} &gt; \epsilon$.
+                  If $t \in \Omega_k$, thus at least one of the following	will hold true:
+                  \begin{align*}
+                  S_p(t) \not \in &amp;\left( \frac{1}{k}, k\right), \qquad L_p(t) \not \in
+                  \left( \frac{1}{k}, k\right), \qquad  I_p(t) \not \in
+                  \left( \frac{1}{k}, k\right), \\
+                  &amp;S_v(t) \not \in \left( \frac{1}{k}, k\right), \qquad  I_v(t) \not \in
+                  \left( \frac{1}{k}, k\right).
+                  \end{align*}
+                  Note that, $f(x) = x - N_{\bullet} - N_{\bullet}\log{x/N_{\bullet}}$ is
+                  increasing on $(N_{\bullet},\infty)$ and decreasing on $(0,N_{\bullet})$
+                  it follows
+                  \begin{align*}
+                  &amp;V(S_p(\tau_k \wedge T),L_p(\tau_k \wedge T),I_p(\tau_k \wedge T),
+                  S_v(\tau_k \wedge T),I_v(\tau_k \wedge T)) \geq
+                  \\
+                  &amp;
+                  \left(k - N_p - N_p \log{\frac{k}{N_p}}\right)^3
+                  \wedge \left(\frac{1}{k} - N_p - N_p
+                  \log{\frac{1}{N_p k}}\right)^3 \wedge
+                  \\
+                  &amp;
+                  \left(k - N^{\infty}_v - N^{\infty}_v
+                  \log{\frac{k}{N^{\infty}_v}}\right)^2
+                  \wedge \left(\frac{1}{k} - N^{\infty}_v - N^{\infty}_v
+                  \log{\frac{1}{N^{\infty}_v k}}\right)^2.
+                  \end{align*}
+                  Now we have
+                  \begin{align*}
+                  &amp; V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+                  + C_1 T
+                  \geq \E{V(S_p,L_p,I_p,S_v,I_v)}
+                  \\
+                  &amp; \geq
+                  \epsilon
+                  \left(
+                  k - N_p - N_p
+                  \log{\frac{k}{N_p}}
+                  \right)^3
+                  \wedge
+                  \left(
+                  \frac{1}{k} - N_p
+                  - N_p \log{\frac{1}{N_p k}}
+                  \right)^3 \wedge
+                  \\
+                  &amp;
+                  \left(
+                  k - N^{\infty}_v - N^{\infty}_v
+                  \log{\frac{k}{N^{\infty}_v}}
+                  \right)^2
+                  \wedge
+                  \left(
+                  \frac{1}{k} - N^{\infty}_v - N^{\infty}_v
+                  \log{\frac{1}{N^{\infty}_v k}}
+                  \right)^2.
+                  \end{align*}
+                  Finally, letting $ k \to \infty$ we obtain
+                  \begin{equation*}
+                  \infty &gt; V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0)) + C_1 T \geq \infty,
+                  \end{equation*}
+                  which is a contradiction. Thus, we conclude that $\tau_\infty = \infty$.
+                  <span class="right">
+                    $\square$
+                  </span>
+                </p>
               </div>
-              &gt;
             </div>
           </div>
           <div class="sect1">
             <h2 id="sec:extinction">Extinction</h2>
             <div class="sectionbody">
+              <div class="paragraph">
+                <p>In this section, we deduce conditions over the noise amplitude and
+                  a parameter threshold such that the disease will be extinguished with
+                  probability one. According to the deterministic threshold, if
+                  $\mathcal{R}^d_0&lt;1$, then  the solution tends to free-disease fixed
+                  point. In the other hand, the solution process of our SDE can reach
+                  this fixed point at least in two different ways. First, we obtain
+                  conditions for the noise amplitude.</p>
+              </div>
+              <div class="definition" id="def::ExponentialStability">
+                <p>
+                  The free-disease fixed point of system
+                  \eqref{sys::StochasticSystem}
+                  is almost surely exponentially stable if
+                  \begin{equation}
+                  \label{eqn::ExponentialStability}
+                  \begin{aligned}
+                  \limsup_{t \to \infty}
+                  \frac{1}{t}
+                  \ln(L_p + I_p) &lt; 0 \quad \mathrm{and} \quad
+                  &amp;
+                  \limsup_{t \to \infty}
+                  \frac{1}{t}\ln(I_v) &lt; 0 \qquad \mathrm{a.s.}
+                  \end{aligned}
+                  \end{equation}
+                </p>
+              </div>
+              <div class="paragraph">
+                <p>The following result gives conditions on the parameters to obtain
+                  disease extinction.</p>
+              </div>
+              <div class="theorem" id="thm::NoiseExtinction">
+                <p>
+                  For all initial condition
+                  $(S_p(0), L_p(0), I_p(0), S_v(0), I_v(0)) ^ \top \in \Gamma$. If
+                  \begin{equation}\label{eqn::NoiseCond}
+                  \begin{aligned}
+                  \sigma^2_I &gt; \frac{\sigma^2_L
+                  r^2_2}{2\sigma^2_L(r_1-2\beta_p)-\beta^2_p},
+                  \qquad
+                  \sigma^2_v &gt; \frac{\beta^2_v}
+                  {2[(\gamma + \gamma_f)-(\theta\mu+\beta_v)]},
+                  \end{aligned}
+                  \end{equation}
+                  then, the disease will exponentially extinguish with probability
+                  one. That is,
+                  \begin{equation}
+                  \begin{aligned}
+                  \limsup_{t \to \infty}
+                  \frac{1}{t}
+                  \ln(L_p + I_p) &lt; 0 \quad \mathrm{and} \quad
+                  &amp;
+                  \limsup_{t \to \infty}
+                  \frac{1}{t}\ln(I_v) &lt; 0 \qquad \mathrm{a.s.}
+                  \end{aligned}
+                  \end{equation}
+                </p>
+              </div>
+              <div class="proof">
+                <p>
+                  The main idea is to apply It\^{o}'s formula to a convenient function and
+                  deduce conditions. Let
+                  $
+                  V(S_p, L_p, I_p) = \ln(L_p + I_p)
+                  $, then the It\^{o}'s formula gives
+                  \begin{align*}
+                  d \ln(L_p+I_p)
+                  =&amp;
+                  \left(
+                  \frac{1}{L_p + I_p}
+                  \right)
+                  \left(
+                  \frac{\beta_p}{N_v}
+                  S_p I_v - (b + r_1) L_p
+                  -\frac{1}{2}
+                  \sigma_L^2 \frac{L_p^2}{(L_p+I_p)^2}
+                  \right)dt
+                  \\
+                  &amp;-
+                  \sigma_L \frac{L_p}{L_p+I_p}dB_p(t)
+                  \\
+                  &amp;\leq
+                  \left(
+                  \frac{1}{L_p+I_p}
+                  \right)
+                  \left(
+                  \beta_p S_p - (b + r_1) -
+                  \frac{1}{2}
+                  \sigma_L^2
+                  \frac{L_p^2}{(L_p+I_p)^2}
+                  \right)dt
+                  \\
+                  &amp;-
+                  \sigma_L \frac{L_p}{L_p + I_p} dB_p(t).
+                  \\
+                  \end{align*}
+                  Let $x:=\dfrac{L_p}{L_p + I_p}$, then
+                  \begin{align*}
+                  d \ln(L_p + I_p)
+                  &amp;\leq
+                  \left(
+                  \beta_p
+                  \frac{S_p}{L_p + I_p} -
+                  (b + r_1) -
+                  \frac{1}{2}
+                  \sigma_L ^ 2 x^2
+                  \right)
+                  dt - \sigma_L x dB_p(t)
+                  \\
+                  &amp;\leq
+                  \left(\beta_p
+                  \frac{N_p}{L_p + I_p} - (b+r_1) -
+                  \frac{1}{2}
+                  \sigma_L^2 x^2
+                  \right) dt -
+                  \sigma_L xdB_p(t)
+                  \\
+                  &amp;
+                  \leq
+                  \left(
+                  \beta_p x + 2\beta_p -
+                  (b + r_1) -
+                  \frac{1}{2}
+                  \sigma_L ^ 2 x^2
+                  \right) dt -
+                  \sigma_L xdB_p(t)
+                  \\
+                  &amp;=
+                  \left(
+                  -\frac{1}{2}
+                  \sigma_L ^ 2 x ^ 2 +
+                  \beta_p x + 2 \beta_p -
+                  (b + r_1)
+                  \right) dt -\sigma_L x
+                  dB_p(t).
+                  \end{align*}
+                  Hence,
+                  \begin{align*}
+                  \ln(L_p+I_p)
+                  &amp;\leq
+                  -\frac{\sigma_L ^ 2}{2}
+                  \int_{0} ^ {t}
+                  \left[
+                  \left(
+                  x -
+                  \frac{\beta_p}{\sigma_L ^ 2}
+                  \right) ^ 2 +
+                  \frac{\beta_p ^ 2}{2 \sigma_L ^ 2} +
+                  2 \beta_p - (b + r_1)
+                  \right] du
+                  \\
+                  &amp;-
+                  \int_{0} ^ {t}
+                  \sigma_L x dB_p(u) +
+                  \ln(L_p(0) + I_p(0)),
+                  \end{align*}
+                  which implies,
+                  \begin{equation}
+                  \label{eqn::ItoForBound}
+                  \begin{aligned}
+                  \frac{1}{t}\ln(L_p+I_p)
+                  &amp;\leq
+                  -\frac{\sigma_L^2}{2t}
+                  \int_{0}^{t}
+                  \left(
+                  x -
+                  \frac{\beta_p}{\sigma_L^2}
+                  \right) ^ 2 du +
+                  \frac{\beta_p^2}{2\sigma_L^2} -
+                  (b + r_1) + 2\beta_p
+                  \\
+                  &amp;-
+                  \frac{1}{t}
+                  \int_{0}^{t}
+                  \sigma_L x dB_p(u) +
+                  \frac{1}{t} \ln(S_p(0)+L_p(0)+I_p(0)),
+                  \end{aligned}
+                  \end{equation}
+                  let
+                  $$
+                  M_t :=
+                  \frac{1}{t}
+                  \int_{0}^{t}
+                  \sigma_L x dB_p(t) +
+                  \frac{1}{t} \ln(L_p(0)+I_p(0)) .
+                  $$
+                  Since the integral in the term $M_t$ is a martingale, the strong law of
+                  large numbers for martingales <a class="citation" href="#Mao2008">(Mao, 2008, pp. 12-14 Thm. 3.4)</a>
+                  implies that
+                  \begin{equation*}
+                  \lim
+                  \limits_{t \to \infty} M_t = 0\,\,
+                  \mbox{a.s.}
+                  \end{equation*}
+                  Thus, from relation \eqref{eqn::ItoForBound} we obtain
+                  \begin{align}
+                  \label{eqn::Bound1}
+                  \limsup_{t\infty \to \infty}
+                  \frac{1}{t}
+                  \ln(L_p + I_p) &lt;
+                  \frac{\beta_p^2}{2\sigma_L^2} +
+                  2\beta_p - (b + r_1).
+                  \end{align}
+                  A similar argument also shows that
+                  \begin{align}\label{eqn::Bound2}
+                  \limsup_{t\infty \to \infty}
+                  \frac{1}{t}
+                  \ln(L_p + I_p) &lt;
+                  \frac{r_2 ^ 2}{2 \sigma_I ^ 2} + b.
+                  \end{align}
+                  Through by \eqref{eqn::Bound1} and \eqref{eqn::Bound2}, we obtain
+                  \begin{align*}
+                  \limsup_{t\infty \to \infty}
+                  \frac{1}{t}
+                  \ln(L_p + I_p)
+                  &lt;
+                  \frac{\beta_p^2}{2\sigma_L^2} +
+                  \frac{r_2^2}{2 \sigma_I ^ 2} +
+                  2\beta_p - r_1,
+                  \end{align*}
+                  and for infected vector we obtain
+                  \begin{align*}
+                  \limsup_{t\infty \to \infty}
+                  \frac{1}{t}
+                  \ln(I_v)
+                  &lt;
+                  \frac{\beta_v^2}{2\sigma_v^2}
+                  +
+                  \beta_v - (\gamma + \gamma_f) + \theta \mu .
+                  \end{align*}
+                  Therefore by relation \eqref{eqn::NoiseCond}, implies that
+                  \begin{equation*}
+                  \limsup_{t \to \infty}
+                  \frac{1}{t}
+                  \ln(L_p + I_p) &lt; 0 \quad \mathrm{ and } \quad
+                  \limsup_{t \to \infty}
+                  \frac{1}{t}\ln(I_v)&lt; 0\qquad \mathrm{a.s.}
+                  \end{equation*}
+                </p>
+                <span class="right">
+                  $\square$
+                </span>
+              </div>
+              <div class="remark">
+                <p>
+                  The
+                  <a href="#thm::NoiseExtinction">
+                    above Theorem
+                  </a>
+                  shows that if the noise intensities are large enough.
+                  Then the infected population tends to die out.
+                </p>
+              </div>
+              <p>
+                Now, we define a stochastic version of basic reproductive number, we use ideas from
+                <a class="citation" href="#Agarwal2019">(Agarwal, Badshah, ur Rahman, &amp; Islam, 2019)</a>. We postulate the following parameter \eqref{sys::StochasticSystem}
+                as,
+                \begin{equation}\label{eqn::StochasticBRN}
+                \mathcal{R}^s_0 := \mathcal{R}^{d}_0
+                -\frac{1}{2}\left[
+                \left(
+                \sigma_L
+                +\sigma_I
+                \right)^2
+                - \frac{\sigma^2_v}
+                {\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}
+                \right].
+                \end{equation}
+              </p>
+              <p>
+                From \eqref{eqn::StochasticBRN}, we deduce two cases that depend on
+                noise intensities:
+                $\mathcal{R}^{s}_0 &lt; \mathcal{R}^{d}_0$ and
+                ${\mathcal{R}^{s}_0 &gt; \mathcal{R}^{d}_0}$.
+                We define these cases of our stochastic reproductive number according
+                to the deterministic threshold let
+                $\mathcal{R}^s_0$ as follows:
+              </p>
+              <ol>
+                <li>
+                  $\mathcal{R}^s_s$,
+                  when $\mathcal{R}_0^s &lt; \mathcal{R}_0^d$,
+                </li>
+                <li>
+                  and $\mathcal{R}^s_a$,
+                  when $\mathcal{R}_0^s &gt; \mathcal{R}_0^d$.
+                </li>
+              </ol>
+              From here $\bullet$ denotes the index $\{a, s\}$. For example,
+              in the following theorem, if ${\mathcal{R}^s_{\bullet} &lt; 1}$,
+              then infected populations tend to become extinct.
+              <div class="theorem" id="thm::Rs0Extinction">
+                Let $(S_p(t),L_p(t),I_p(t), S_v(t),I_v(t))^\top$
+                be the solution of SDE \eqref{sys::StochasticSystem}
+                with initial values
+                $
+                (S_p(0),L_p(0),I_p(0),S_v(0),\\ I_v(0)) ^ \top \in \Gamma
+                $,
+                \quad
+                $r_2 \geq r_1$,
+                and \quad
+                $\beta_p \beta_v &gt; 2 \mu r_2$.
+                If \quad ${0 \leq \mathcal{R}^s_{\bullet}&lt;1}$,
+                then the infection tends to zero exponentially, a.s.
+              </div>
+              <div class="proof">
+                Consider the following Lyapunov function:
+                \begin{equation*}
+                \begin{aligned}
+                V(S_p,L_p,I_p,S_v,I_v)
+                &amp;=
+                w_0 \left(
+                S_p-N_p-N_p\log{\frac{S_p}{N_p}}
+                \right)
+                +w_1 L_p + w_2 I_p
+                \\
+                &amp;+
+                w_3 \left(S_v-N^{\infty}_v-N^{\infty}_v
+                \log{\frac{S_v}{N^{\infty}_v}}\right)
+                + w_4 I_v,
+                \end{aligned}
+                \end{equation*}
+                where
+                \begin{align*}
+                &amp;
+                w_0 = w_1 = \frac{1}{N_p},
+                \\
+                &amp;
+                w_2 =
+                \frac{1}{b}
+                \left\{
+                \frac{ \mathcal{R}^{d}_0-1} {2 N_p}
+                -\frac{1}{N_p}
+                \left[
+                r_2+ b +\beta_p +
+                \left(
+                \sigma_L
+                + \sigma_I
+                \right) ^ 2
+                \right]
+                \right\},
+                \\
+                &amp;
+                w_3 =
+                w_4 =
+                \frac{\mathcal{R}^{d}_0 - 1}{2 N^{\infty}_v }
+                \frac{1}{\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}.
+                \end{align*}
+                Computing the diffusion operator $\mathcal{L} V$
+                \citep[][p.110]{Mao2008}, we obtain
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L}V
+                &amp;=
+                w_0 \left(
+                \frac{S_p-N_p}{S_p}
+                \right)
+                \left(
+                -\frac{\beta_p}{N_v} S_p I_v
+                + r_1 L_p + r_2 I_p
+                \right)
+                \\
+                &amp;+
+                w_1 \left[
+                \frac{\beta_p}{N_v}S_p I_v -(b+r_1)L_p
+                \right]
+                +
+                w_2 \left(
+                b L_p -r_2 I_p
+                \right)
+                \\
+                &amp;+
+                w_3 \left(
+                \frac{S_v-N^{\infty}_v}{S_v}
+                \right)
+                \left[
+                -\frac{\beta_v}{N_p}S_v I_p
+                -(\gamma + \gamma_f) S_v + (1 - \theta) \mu
+                \right]
+                \\
+                &amp;+
+                w_4 \left[
+                \frac{\beta_v}{N_p}S_v I_p -
+                (\gamma + \gamma_f) I_v +\theta \mu
+                \right]
+                +
+                \frac{w_0}{2}
+                \left[
+                \frac{S_p}{N_p}
+                (\sigma_L L_p+\sigma_I I_p)
+                \right]^2
+                \\
+                &amp;+
+                \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+                \end{aligned}
+                \end{equation*}
+                By conservation law \eqref{eqn:plant_size},
+                $L_p = N_p-S_p-I_p$, we have
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L}V
+                &amp;=
+                w_0 \left(
+                \frac{S_p-N_p}{S_p}
+                \right)
+                \left[
+                -\frac{\beta_p}{N_v}
+                S_p I_v + r_1 N_p - r_1 S_p
+                + (r_2 - r_1) I_p
+                \right]
+                \\
+                &amp;+
+                w_1 \left[
+                \frac{\beta_p}{N_v}S_p I_v
+                - (b+r_1) (N_p - S_p -I_p)
+                \right]
+                \\
+                &amp;+
+                w_2
+                \left[
+                b ( N_p - S_p -I_p) -r_2 I_p
+                \right]
+                \\
+                &amp;+
+                w_3
+                \left(
+                \frac{S_v-N_v}{S_v}
+                \right)
+                \left[
+                -\frac{\beta_v}{N_p} S_v I_p
+                -(\gamma + \gamma_f) S_v + (1-\theta) \mu
+                \right]
+                \\
+                &amp;+
+                w_4
+                \left[
+                \frac{\beta_v}{N_p} S_v I_p
+                -(\gamma + \gamma_f) I_v +\theta \mu
+                \right]
+                \\
+                &amp;+
+                \frac{w_0}{2}
+                \left\{
+                \frac{S_p}{N_p}[\sigma_L ( N_p - S_p -I_p)
+                +\sigma_I I_p]\right\}^2
+                + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+                \end{aligned}
+                \end{equation*}
+                Expanding the above equality, we get
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L} V
+                &amp;\leq
+                - w_0 \left(
+                S_p-N_p
+                \right)\frac{\beta_p}{N_v} I_v  -r_1 w_0
+                \frac{\left(S_p-N_p\right)^2}{S_p}
+                + w_0 (r_2-r_1) \left(
+                \frac{S_p-N_p}{S_p}
+                \right) I_p
+                \\
+                &amp;+
+                w_1
+                \frac{\beta_p}{N_v}S_p I_v
+                - w_1(b+r_1) (N_p - S_p -I_p)
+                +
+                w_2 b ( N_p - S_p -I_p) - w_2 r_2 I_p
+                \\
+                &amp;-
+                w_2 r_2 I_p -
+                w_3 \left(
+                S_v - N^{\infty}_v
+                \right)\frac{\beta_v}{N_p} I_p -(\gamma + \gamma_f) w_3
+                \frac{\left(S_v- N^{\infty}_v\right)^2}{S_v}
+                + w_4 \frac{\beta_v}{N_p}S_v I_p
+                \\
+                &amp;-
+                w_4(\gamma + \gamma_f) I_v
+                + w_4\theta \mu
+                + \frac{w_0}{2}
+                \left(
+                \sigma_L + \sigma_I
+                \right)^2 N_p + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+                \end{aligned}
+                \end{equation*}
+                Factorizing similar terms, we obtain
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L}V
+                &amp;\leq
+                -r_1 w_0
+                \frac{\left(S_p-N_p\right)^2}{S_p}
+                -(\gamma + \gamma_f) w_3
+                \frac{\left(S_v-N^{\infty}_v\right)^2}{S_v} +
+                (w_1- w_0) \frac{\beta_p}{N_v} S_p I_v
+                \\
+                &amp;+
+                (w_1- w_0) \frac{\beta_p}{N_v} S_p I_v+
+                (w_4- w_3) \frac{\beta_v}{N_p} S_v I_p
+                \\
+                &amp;+
+                \left[w_0(r_2-r_1) + w_1(b+r_1)- w_2(b+r_2)
+                + w_3 \frac{\beta_v N^{\infty}_v}{N_p}\right]I_p
+                \\
+                &amp;+
+                \left[w_0\frac{\beta_p}{N_v}N_p
+                -( \gamma + \gamma_f) w_4
+                \right] I_v + [w_2 b - w_1 (b+ r_1)](N_p-S_p)
+                \\
+                &amp;-
+                w_0 (r_2- r_1)\frac{N_p}{S_p} I_p
+                + w_4 \theta \mu +
+                \frac{w_0}{2}
+                \left(
+                \sigma_L
+                +\sigma_I \right)^2 N_p
+                + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+                \end{aligned}
+                \end{equation*}
+                Since $w_0 = w_1$, $w_3 = w_4$, above inequality reduce to
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L}V
+                &amp;\leq
+                -r_1 w_0
+                \frac{\left(S_p-N_p\right)^2}{S_p}
+                -(\gamma + \gamma_f) w_3
+                \frac{\left(S_v-N^{\infty}_v\right)^2}{S_v}
+                \\
+                &amp;+
+                \left[w_1(r_2+ b )- w_2(b+r_2)
+                + w_3 \frac{\beta_v N^{\infty}_v}{N_p}\right]I_p
+                \\
+                &amp;+
+                \left[w_1\frac{\beta_p}{N_v} N_p
+                - (\gamma + \gamma_f) w_3\right]I_v
+                +
+                \left[
+                w_2 b - w_1 (b+ r_1)
+                \right] (N_p - S_p)
+                \\
+                &amp; -
+                w_1 (r_2 - r_1)
+                \frac{N_p}{S_p} I_p+
+                w_3 \theta \mu +
+                \frac{w_1}{2}
+                \left(
+                \sigma_L
+                +\sigma_I \right)^2 N_p
+                + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+                \end{aligned}
+                \end{equation*}
+                Now, we bound by positive terms, and sizes populations we obtain
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L}V
+                &amp;\leq
+                \left\{w_1\left[r_2+ b +\beta_p+
+                \left(
+                \sigma_L
+                +\sigma_I \right)^2 \right]
+                + w_2 b\right\}N_p
+                \\
+                &amp;+
+                \left[ \beta_v + \theta (\gamma + \gamma_f)
+                + \sigma_v^2\right] w_3 N^{\infty}_v
+                - \frac{1}{2} w_1 \left(
+                \sigma_L
+                +\sigma_I \right)^2 N_p
+                -\frac{1}{2} w_3 \sigma_v^2 N^{\infty}_v.
+                \end{aligned}
+                \end{equation*}
+                Substituting $w_2$ and $w_3$, the above inequality becomes
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L}V
+                &amp;\leq
+                \mathcal{R}^{d}_0
+                -\frac{1}{2}
+                \left[
+                w_1
+                \left(
+                \sigma_L + \sigma_I
+                \right)^2 N_p
+                +
+                \frac{\mathcal{R}^{d}_0-1}{2}
+                \frac{\sigma_v^2}
+                {
+                \beta_v + \theta (\gamma + \gamma_f)
+                + \sigma_v^2
+                }
+                \right] - 1.
+                \end{aligned}
+                \end{equation*}
+                We bound $ \mathcal{L} V$ as
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L} V
+                &amp;\leq
+                \left(
+                1 - \frac{1}{2} \frac{\sigma^2_v}
+                {\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}
+                \right)\mathcal{R}^{d}_0
+                \\
+                &amp;-
+                \frac{1}{2}
+                \left[
+                \left(
+                \sigma_L + \sigma_I
+                \right)^2
+                - \frac{\sigma^2_v}
+                {\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}
+                \right]-1
+                \\
+                &amp;\leq
+                \mathcal{R}^{d}_0
+                -\frac{1}{2}\left[
+                \left(
+                \sigma_L + \sigma_I
+                \right)^2
+                - \frac{\sigma^2_v}
+                {\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}
+                \right] - 1.
+                \end{aligned}
+                \end{equation*}
+                Using definition of $\mathcal{R}^s_{\bullet}$, we get
+                \begin{equation*}
+                \begin{aligned}
+                \mathcal{L}V
+                &amp;\leq
+                \mathcal{R}^{s}_{\bullet} - 1.
+                \qquad \mbox{a.s.}
+                \end{aligned}
+                \end{equation*}
+                Integrating diffusion operator $\mathcal{L} V$ from 0 to $t$,
+                dividing for $t$, and taking expectation, we have
+                \begin{equation*}
+                \lim_{t \to \infty} \E{\frac{V(t)}{t}}
+                \leq \mathcal{R}^{s}_{\bullet} - 1.
+                \end{equation*}
+                Letting $t \to \infty$ we obtain
+                \begin{align*}
+                \lim\limits_{t \to\infty}
+                (S_p, L_p, I_p, S_v, I_v )^{\top}_{t}
+                =
+                (N_p, 0, 0, N^{\infty}_v, 0)
+                \end{align*}
+                exponentially a.s.
+                <span class="right">
+                  $\square$
+                </span>
+              </div>
+              <div class="remark">
+                <p>
+                  If the stochastic reproductive number
+                  is below one, then
+                  <a href="#thm::Rs0Extinction">
+                    this theorem
+                  </a>
+                  shows that infection will extinguish.
+                </p>
+              </div>
             </div>
           </div>
           <div class="sect1">
@@ -2043,7 +2731,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Agr">Agr, V. (n.d.). <i>ENFERMEDADES VIROSAS DEL TOMATE EN MÉXICO ( Solanum nigrum ). Eduardo Crescencio Arredondo 1</i>.</span>
                   <div id="Agr-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Agr-bibtex')">
                           [BibTeX]
@@ -2065,7 +2753,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Cohen2007">Shlomo Cohen, H. C. (eds.), Moshe Lapidot (auth.). (100AD). <i>Tomato Yellow Leaf Curl Virus Disease Management, Molecular Biology, Breeding for Resistance</i> (Vol. 1). Springer.</span>
                   <div id="Cohen2007-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Cohen2007-bibtex')">
                           [BibTeX]
@@ -2099,7 +2787,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Hardy-Littlewood-Polya1952">Hardy, G. H., Littlewood, J. E., &amp; Pólya, G. (1952). <i>Inequalities</i> (p. xii+324). Cambridge, at the University Press.</span>
                   <div id="Hardy-Littlewood-Polya1952-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Hardy-Littlewood-Polya1952-bibtex')">
                           [BibTeX]
@@ -2126,7 +2814,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Rudin1976">Rudin, W. (1976). <i>Principles of mathematical analysis</i> (Third, p. x+342). McGraw-Hill Book Co., New York-Auckland-Düsseldorf.</span>
                   <div id="Rudin1976-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Rudin1976-bibtex')">
                           [BibTeX]
@@ -2154,7 +2842,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Butter1978">Butter, N. S., &amp; Rataul, H. S. (1977). The virus-vector relationship of the tomato leafcurl virus (TLCV) and its vector,Bemisia tabaci gennadius (Hemiptera: aleyrodidae). <i>Phytoparasitica</i>, <i>5</i>(3), 173–186. https://doi.org/10.1007/BF02980351</span>
                   <div id="Butter1978-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Butter1978-bibtex')">
                           [BibTeX]
@@ -2191,7 +2879,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="WheedenZygmund1977">Wheeden, R. L., &amp; Zygmund, A. (1977). <i>Measure and integral</i> (p. x+274). Marcel Dekker, Inc., New York-Basel.</span>
                   <div id="WheedenZygmund1977-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('WheedenZygmund1977-bibtex')">
                           [BibTeX]
@@ -2221,7 +2909,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Butter1978a">Butter, N. S. (1978). <i>Culturing o [ insect and virus source : Healthy colonies of whiteflies were reared on 60-day-old brinjal plants cv . Pusa Purple Long . The whiteflies were</i>. <i>5</i>(1977), 173–186.</span>
                   <div id="Butter1978a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Butter1978a-bibtex')">
                           [BibTeX]
@@ -2247,7 +2935,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="reddy1981">Reddy, K. S., Yaraguntaiah, R. C., &amp; Sastry, K. S. (1981). Strains of leaf curl virus of tomato in India/Stämme des Blattkräuselvirus an Tomaten in Indien. <i>Zeitschrift Für Pflanzenkrankheiten Und Pflanzenschutz/Journal of Plant Diseases and Protection</i>, 400–404.</span>
                   <div id="reddy1981-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('reddy1981-bibtex')">
                           [BibTeX]
@@ -2272,9 +2960,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Chan1994">Chan, M.-S., &amp; Jeger, M. J. (1994). An Analytical Model of Plant Virus Disease Dynamics with Roguing and Replanting. <i>The Journal of Applied Ecology</i>, <i>31</i>(3), 413. https://doi.org/10.2307/2404439</span>
                   <div id="Chan1994-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Chan1994-abstract">
+                        <a data-toggle="collapse" href="bibliography/Chan1994-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2312,7 +3000,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="ramappa1994">Ramappa, H. K. (1994). <i>Detection, host resistance and integrated management of tomato leaf curl geminivirus disease</i> (PhD thesis, UNIVERSITY OF AGRICULTURAL SCIENCES, BANGALORE). UNIVERSITY OF AGRICULTURAL SCIENCES, BANGALORE. Retrieved from https://krishikosh.egranth.ac.in/handle/1/5810126386</span>
                   <div id="ramappa1994-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('ramappa1994-bibtex')">
                           [BibTeX]
@@ -2336,9 +3024,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Fishpool1995">Fishpool, L. D. C., Fauquet, C., Fargette, D., Thouvenel, J.-C., Burban, C., &amp; Colvin, J. (1995). The phenology of Bemisia tabaci (Homoptera: Aleyrodidae) populations on cassava in southern Côte d’Ivoire. <i>Bulletin of Entomological Research</i>, <i>85</i>(2), 197–207. https://doi.org/10.1017/S0007485300034271</span>
                   <div id="Fishpool1995-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Fishpool1995-abstract">
+                        <a data-toggle="collapse" href="bibliography/Fishpool1995-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2378,9 +3066,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Fishpool1995a">Fishpool, L. D. C., Fauquet, C., Fargette, D., Thouvenel, J. C., Burban, C., &amp; Colvin, J. (1995). The phenology of Bemisia tabaci (Homoptera: Aleyrodidae) populations on cassava in southern Côte d’Ivoire. <i>Bulletin of Entomological Research</i>, <i>85</i>(2), 197–207. https://doi.org/10.1017/S0007485300034271</span>
                   <div id="Fishpool1995a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Fishpool1995a-abstract">
+                        <a data-toggle="collapse" href="bibliography/Fishpool1995a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2418,7 +3106,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Trumper1996a">Trumper, E. V., Gorla, D. E., &amp; Grilli, M. P. (1996). The spatial pattern of ’Mal de Rio Cuarto del maiz’ (Rio Cuarto corn disease) in corn fields. <i>Ecologia Austral</i>, <i>6</i>(2), 131–136.</span>
                   <div id="Trumper1996a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Trumper1996a-bibtex')">
                           [BibTeX]
@@ -2446,7 +3134,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Trumper1996">Trumper, E. V., Gorla, D. E., &amp; Grilli, M. P. (1996). The spatial pattern of ’Mal de Rio Cuarto del maiz’ (Rio Cuarto corn disease) in corn fields. <i>Ecologia Austral</i>, <i>6</i>(2), 131–136.</span>
                   <div id="Trumper1996-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Trumper1996-bibtex')">
                           [BibTeX]
@@ -2474,9 +3162,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Nateshan1996">Nateshan, H. M., Muniyappa, S. H., Jalikop, S. H., &amp; Ramappa, H. K. (1996). <i>Resistance of lycopersicon species and hybrids to tomato  leaf curl geminivirus. Bemisia: 1995 taxonomy, biology, damage, control and management</i> (pp. p.369–377). Andover: Intercept Limited. Retrieved from http://worldveg.tind.io/record/23543</span>
                   <div id="Nateshan1996-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Nateshan1996-abstract">
+                        <a data-toggle="collapse" href="bibliography/Nateshan1996-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2506,9 +3194,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Ramappa1998">Ramappa, H. K., Muniyappa, V., &amp; Colvin, J. (1998). The contribution of tomato and alternative host plants to tomato leaf curl virus inoculum pressure in different areas of South India. <i>Annals of Applied Biology</i>, <i>133</i>(2), 187–198. https://doi.org/10.1111/j.1744-7348.1998.tb05819.x</span>
                   <div id="Ramappa1998-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Ramappa1998-abstract">
+                        <a data-toggle="collapse" href="bibliography/Ramappa1998-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2548,9 +3236,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="RAMAPPA1998aa">RAMAPPA, H. K., MUNIYAPPA, V., &amp; COLVIN, J. (1998). The contribution of tomato and alternative host plants to tomato leaf curl virus inoculum pressure in different areas of South India. <i>Annals of Applied Biology</i>, <i>133</i>(2), 187–198. https://doi.org/10.1111/j.1744-7348.1998.tb05819.x</span>
                   <div id="RAMAPPA1998aa-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#RAMAPPA1998aa-abstract">
+                        <a data-toggle="collapse" href="bibliography/RAMAPPA1998aa-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2591,7 +3279,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="ramappa1998a">Ramappa, H. K., Muniyappa, V., &amp; Colvin, J. (1998). The contribution of tomato and alternative host plants to tomato leaf curl virus inoculum pressure in different areas of South India. <i>Annals of Applied Biology</i>, <i>133</i>(2), 187–198.</span>
                   <div id="ramappa1998a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('ramappa1998a-bibtex')">
                           [BibTeX]
@@ -2618,9 +3306,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Holt1999">Holt, J., Colvin, J., &amp; Muniyappa, V. (1999). Identifying control strategies for tomato leaf curl virus disease using an epidemiological model. <i>Journal of Applied Ecology</i>, <i>36</i>(5), 625–633. https://doi.org/10.1046/j.1365-2664.1999.00432.x</span>
                   <div id="Holt1999-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Holt1999-abstract">
+                        <a data-toggle="collapse" href="bibliography/Holt1999-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2661,9 +3349,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Higham2001a">Higham, D. J. (2001). An Algorithmic Introduction to Numerical Simulation of Equations. <i>Siam Review</i>, <i>43</i>(3), 525–546.</span>
                   <div id="Higham2001a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Higham2001a-abstract">
+                        <a data-toggle="collapse" href="bibliography/Higham2001a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2694,9 +3382,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Shun-xiang2001">Shun-xiang, R. E. N., Zhen-zhong, W. A. N. G., Bao-li, Q. I. U., &amp; Yuan, X. I. A. O. (2001). THE PEST STATUS OF BEMISIA TABACI IN CHINA AND NON-CHEMICAL CONTROL STRATEGIES. <i>Insect Science</i>, <i>8</i>(3), 279–288. https://doi.org/10.1111/j.1744-7917.2001.tb00453.x</span>
                   <div id="Shun-xiang2001-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Shun-xiang2001-abstract">
+                        <a data-toggle="collapse" href="bibliography/Shun-xiang2001-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2737,9 +3425,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Shun-xiang2001a">Shun-xiang, R. E. N., Zhen-zhong, W. A. N. G., Bao-li, Q. I. U., &amp; Yuan, X. I. A. O. (2001). THE PEST STATUS OF BEMISIA TABACI IN CHINA AND NON-CHEMICAL CONTROL STRATEGIES. <i>Insect Science</i>, <i>8</i>(3), 279–288. https://doi.org/10.1111/j.1744-7917.2001.tb00453.x</span>
                   <div id="Shun-xiang2001a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Shun-xiang2001a-abstract">
+                        <a data-toggle="collapse" href="bibliography/Shun-xiang2001a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2780,9 +3468,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Jeger2004a">Jeger, M. J., Holt, J., Van Den Bosch, F., &amp; Madden, L. V. (2004). Epidemiology of insect-transmitted plant viruses: Modelling disease dynamics and control interventions. <i>Physiological Entomology</i>, <i>29</i>(3 SPEC. ISS.), 291–304. https://doi.org/10.1111/j.0307-6962.2004.00394.x</span>
                   <div id="Jeger2004a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Jeger2004a-abstract">
+                        <a data-toggle="collapse" href="bibliography/Jeger2004a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2821,9 +3509,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Jeger2004">Jeger, M. J., Holt, J., Van Den Bosch, F., &amp; Madden, L. V. (2004). Epidemiology of insect-transmitted plant viruses: Modelling disease dynamics and control interventions. <i>Physiological Entomology</i>, <i>29</i>(3 SPEC. ISS.), 291–304. https://doi.org/10.1111/j.0307-6962.2004.00394.x</span>
                   <div id="Jeger2004-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Jeger2004-abstract">
+                        <a data-toggle="collapse" href="bibliography/Jeger2004-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2862,9 +3550,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Series2007">Series, C. B. (2007). Optimal Control Applied to Biological Models. In <i>Optimal Control Applied to Biological Models</i>. Chapman and Hall/CRC. https://doi.org/10.1201/9781420011418</span>
                   <div id="Series2007-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Series2007-abstract">
+                        <a data-toggle="collapse" href="bibliography/Series2007-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -2902,7 +3590,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Mao2008">Mao, X. (2008). <i>Stochastic differential equations and applications</i> (Second, p. xviii+422). Horwood Publishing Limited, Chichester. https://doi.org/10.1533/9780857099402</span>
                   <div id="Mao2008-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Mao2008-bibtex')">
                           [BibTeX]
@@ -2938,7 +3626,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Abdulle2008">Abdulle, A., &amp; Li, T. (2008). S-ROCK methods for stiff Ito SDEs. <i>Communications in Mathematical Sciences</i>, <i>6</i>(4), 845–868. https://doi.org/10.4310/CMS.2008.v6.n4.a3</span>
                   <div id="Abdulle2008-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Abdulle2008-bibtex')">
                           [BibTeX]
@@ -2974,9 +3662,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Jeger2009a">Jeger, M. J., Jeffries, P., Elad, Y., &amp; Xu, X. M. (2009). A generic theoretical model for biological control of foliar plant diseases. <i>Journal of Theoretical Biology</i>, <i>256</i>(2), 201–214. https://doi.org/10.1016/j.jtbi.2008.09.036</span>
                   <div id="Jeger2009a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Jeger2009a-abstract">
+                        <a data-toggle="collapse" href="bibliography/Jeger2009a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3015,9 +3703,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Jeger2009">Jeger, M. J., Jeffries, P., Elad, Y., &amp; Xu, X. M. (2009). A generic theoretical model for biological control of foliar plant diseases. <i>Journal of Theoretical Biology</i>, <i>256</i>(2), 201–214. https://doi.org/10.1016/j.jtbi.2008.09.036</span>
                   <div id="Jeger2009-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Jeger2009-abstract">
+                        <a data-toggle="collapse" href="bibliography/Jeger2009-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3056,7 +3744,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="I2011">I, U. J. (2011). <i>Curso avanzado de B eamer Programa Control avanzado de overlays Handouts y modos Botones y enlaces Efectos y animaciones Temas y personalizaci{ó}n Taller de fin de curso</i>.</span>
                   <div id="I2011-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('I2011-bibtex')">
                           [BibTeX]
@@ -3079,7 +3767,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Gray2011">Gray, A., Greenhalgh, D., Hu, L., Mao, X., &amp; Pan, J. (2011). A Stochastic Differential Equation SIS Epidemic Model. <i>SIAM Journal on Applied Mathematics</i>, <i>71</i>(3), 876–902. https://doi.org/10.1137/10081856X</span>
                   <div id="Gray2011-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Gray2011-bibtex')">
                           [BibTeX]
@@ -3117,7 +3805,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Khasminskii2010">Khasminskii, R. (2012). <i>Stochastic stability of differential equations</i> (second, p. xviii+339). Springer, Heidelberg. https://doi.org/10.1007/978-3-642-23280-0</span>
                   <div id="Khasminskii2010-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Khasminskii2010-bibtex')">
                           [BibTeX]
@@ -3157,9 +3845,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Fallis2013c">Fallis, A. G. (2013). Summary for Policymakers. In Intergovernmental Panel on Climate Change (Ed.), <i>Climate Change 2013 - The Physical Science Basis</i> (Vol. 53, pp. 1–30). Cambridge: Cambridge University Press. https://doi.org/10.1017/CBO9781107415324.004</span>
                   <div id="Fallis2013c-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Fallis2013c-abstract">
+                        <a data-toggle="collapse" href="bibliography/Fallis2013c-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3207,9 +3895,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Smith2014">Smith, H. A., &amp; Giurcanu, M. C. (2014). New Insecticides for Management of Tomato Yellow Leaf Curl, a Virus Vectored by the Silverleaf Whitefly, Bemisia tabaci. <i>Journal of Insect Science</i>, <i>14</i>(1), 4–7. https://doi.org/10.1093/jisesa/ieu045</span>
                   <div id="Smith2014-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Smith2014-abstract">
+                        <a data-toggle="collapse" href="bibliography/Smith2014-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3250,9 +3938,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Ji2014">Ji, C., &amp; Jiang, D. (2014). Threshold behaviour of a stochastic SIR model. <i>Applied Mathematical Modelling</i>, <i>38</i>(21-22), 5067–5079. https://doi.org/10.1016/j.apm.2014.03.037</span>
                   <div id="Ji2014-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Ji2014-abstract">
+                        <a data-toggle="collapse" href="bibliography/Ji2014-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3294,9 +3982,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Zhao2015a">Zhao, Y., Zhang, Q., &amp; Jiang, D. (2015). The asymptotic behavior of a stochastic SIS epidemic model with vaccination. <i>Advances in Difference Equations</i>, <i>2015</i>(1), 328. https://doi.org/10.1186/s13662-015-0592-6</span>
                   <div id="Zhao2015a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Zhao2015a-abstract">
+                        <a data-toggle="collapse" href="bibliography/Zhao2015a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3338,9 +4026,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Tang2015">Tang, T., Teng, Z., &amp; Li, Z. (2015). Threshold Behavior in a Class of Stochastic SIRS Epidemic Models With Nonlinear Incidence. <i>Stochastic Analysis and Applications</i>, <i>33</i>(6), 994–1019. https://doi.org/10.1080/07362994.2015.1065750</span>
                   <div id="Tang2015-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Tang2015-abstract">
+                        <a data-toggle="collapse" href="bibliography/Tang2015-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3381,7 +4069,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="ZhaoJiang2015">Zhao, Y., Jiang, D., Mao, X., &amp; Gray, A. (2015). The threshold of a stochastic SIRS epidemic model in a population with varying size. <i>Discrete and Continuous Dynamical Systems-Series B</i>, <i>20</i>(4), 1277–1295. https://doi.org/10.3934/dcdsb.2015.20.1277</span>
                   <div id="ZhaoJiang2015-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('ZhaoJiang2015-bibtex')">
                           [BibTeX]
@@ -3415,9 +4103,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Schurz2015">Schurz, H., &amp; Tosun, K. (2015). Stochastic Asymptotic Stability of SIR Model with Variable Diffusion Rates. <i>J. Dyn. Differ. Equations</i>, <i>27</i>(1), 69–82. https://doi.org/10.1007/s10884-014-9415-9</span>
                   <div id="Schurz2015-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Schurz2015-abstract">
+                        <a data-toggle="collapse" href="bibliography/Schurz2015-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3458,9 +4146,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Cao2016a">Cao, Y., &amp; Denu, D. (2016). Analysis of stochastic vector-host epidemic model with direct transmission. <i>Discrete and Continuous Dynamical Systems - Series B</i>, <i>21</i>(7), 2109–2127. https://doi.org/10.3934/dcdsb.2016039</span>
                   <div id="Cao2016a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Cao2016a-abstract">
+                        <a data-toggle="collapse" href="bibliography/Cao2016a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3502,9 +4190,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Hebert2016">Allen, L., &amp; Hebert, M. P. (2016). Disease outbreaks in plant-vector-virus models with vector aggregation and dispersal. <i>Discrete and Continuous Dynamical Systems - Series B</i>, <i>21</i>(7), 2169–2191. https://doi.org/10.3934/dcdsb.2016042</span>
                   <div id="Hebert2016-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Hebert2016-abstract">
+                        <a data-toggle="collapse" href="bibliography/Hebert2016-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3545,9 +4233,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="VandenDriessche2017a">van den Driessche, P. (2017). Reproduction numbers of infectious disease models. <i>Infectious Disease Modelling</i>, <i>2</i>(3), 288–303. https://doi.org/10.1016/j.idm.2017.06.002</span>
                   <div id="VandenDriessche2017a-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#VandenDriessche2017a-abstract">
+                        <a data-toggle="collapse" href="bibliography/VandenDriessche2017a-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3589,9 +4277,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Hilker2017">Hilker, F. M., Allen, L. J. S., Bokil, V. A., Briggs, C. J., Feng, Z., Garrett, K. A., … Cunniffe, N. J. (2017). Modeling Virus Coinfection to Inform Management of Maize Lethal Necrosis in Kenya. <i>Phytopathology</i>, <i>107</i>(10), PHYTO–03–17–008. https://doi.org/10.1094/PHYTO-03-17-0080-FI</span>
                   <div id="Hilker2017-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Hilker2017-abstract">
+                        <a data-toggle="collapse" href="bibliography/Hilker2017-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3631,9 +4319,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Jackson2017">Jackson, M., &amp; Chen-Charpentier, B. M. (2017). Modeling plant virus propagation with delays. <i>Journal of Computational and Applied Mathematics</i>, <i>309</i>, 611–621. https://doi.org/10.1016/j.cam.2016.04.024</span>
                   <div id="Jackson2017-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Jackson2017-abstract">
+                        <a data-toggle="collapse" href="bibliography/Jackson2017-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3674,7 +4362,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                   <span id="Meiss2007">Meiss, J. D. (2017). <i>Differential dynamical systems</i> (Revised, p. xvii+392). Society for Industrial and Applied Mathematics (SIAM),
                     Philadelphia, PA. https://doi.org/10.1137/1.9781611974645</span>
                   <div id="Meiss2007-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Meiss2007-bibtex')">
                           [BibTeX]
@@ -3713,7 +4401,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="rackauckas2017differentialequations">Rackauckas, C., &amp; Nie, Q. (2017). Differentialequations.jl–a performant and feature-rich ecosystem for solving differential equations in julia. <i>Journal of Open Research Software</i>, <i>5</i>(1).</span>
                   <div id="rackauckas2017differentialequations-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('rackauckas2017differentialequations-bibtex')">
                           [BibTeX]
@@ -3739,9 +4427,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Acuna-Zegarra2018">Acuña-Zegarra, M. A., &amp; Díaz-Infante, S. (2018). Stochastic asymptotic analysis of a multi-host model with vector transmission. <i>Physica A: Statistical Mechanics and Its Applications</i>, <i>510</i>, 243–260. https://doi.org/10.1016/j.physa.2018.06.105</span>
                   <div id="Acuna-Zegarra2018-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Acuna-Zegarra2018-abstract">
+                        <a data-toggle="collapse" href="bibliography/Acuna-Zegarra2018-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3782,9 +4470,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Agarwal2019">Agarwal, R. P., Badshah, Q., ur Rahman, G., &amp; Islam, S. (2019). Optimal control &amp; dynamical aspects of a stochastic pine wilt disease model. <i>Journal of the Franklin Institute</i>, <i>356</i>(7), 3991–4025. https://doi.org/10.1016/j.jfranklin.2019.03.007</span>
                   <div id="Agarwal2019-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Agarwal2019-abstract">
+                        <a data-toggle="collapse" href="bibliography/Agarwal2019-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3825,9 +4513,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Grandits2019">Grandits, P., Kovacevic, R. M., &amp; Veliov, V. M. (2019). Optimal control and the value of information for a stochastic epidemiological SIS-model. <i>Journal of Mathematical Analysis and Applications</i>, <i>476</i>(2), 665–695. https://doi.org/10.1016/j.jmaa.2019.04.005</span>
                   <div id="Grandits2019-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Grandits2019-abstract">
+                        <a data-toggle="collapse" href="bibliography/Grandits2019-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3869,9 +4557,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Bokil2019">Bokil, V. A., Allen, L. J. S., Jeger, M. J., &amp; Lenhart, S. (2019). Optimal control of a vectored plant disease model for a crop with continuous replanting. <i>Journal of Biological Dynamics</i>, <i>13</i>(sup1), 325–353. https://doi.org/10.1080/17513758.2019.1622808</span>
                   <div id="Bokil2019-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Bokil2019-abstract">
+                        <a data-toggle="collapse" href="bibliography/Bokil2019-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3912,9 +4600,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Feng2019">Feng, T., Qiu, Z., &amp; Song, Y. (2019). Global analysis of a vector-host epidemic model in stochastic environments. <i>Journal of the Franklin Institute</i>, <i>356</i>(5), 2885–2900. https://doi.org/10.1016/j.jfranklin.2019.01.033</span>
                   <div id="Feng2019-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Feng2019-abstract">
+                        <a data-toggle="collapse" href="bibliography/Feng2019-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3955,9 +4643,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Stella2019">Stella, I. R., &amp; Ghosh, M. (2019). Modeling plant disease with biological control of insect pests. <i>Stochastic Analysis and Applications</i>, <i>37</i>(6), 1133–1154. https://doi.org/10.1080/07362994.2019.1646139</span>
                   <div id="Stella2019-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Stella2019-abstract">
+                        <a data-toggle="collapse" href="bibliography/Stella2019-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -3999,7 +4687,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Britton2019">Britton, T., Pardoux, E., Ball, F., Laredo, C., Sirl, D., &amp; Tran Viet Chı́. (2019). <i>Stochastic epidemic models with inference</i> (p. 472). Springer. https://doi.org/10.1007/978-3-030-30900-8</span>
                   <div id="Britton2019-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Britton2019-bibtex')">
                           [BibTeX]
@@ -4037,9 +4725,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Lee2021">Lee, J. H., Chung, D. J., Lee, J. M., &amp; Yeam, I. (2020). Development and Application of Gene-Specific Markers for Tomato Yellow Leaf Curl Virus Resistance in Both Field and Artificial Infections. <i>Plants</i>, <i>10</i>(1), 9. https://doi.org/10.3390/plants10010009</span>
                   <div id="Lee2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Lee2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Lee2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4080,9 +4768,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Luo2021">Luo, Y., Zhang, F., Liu, Y., &amp; Gao, S. (2021). Analysis and optimal control of a Huanglongbing mathematical model with resistant vector. <i>Infectious Disease Modelling</i>, <i>6</i>, 782–804. https://doi.org/10.1016/j.idm.2021.05.004</span>
                   <div id="Luo2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Luo2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Luo2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4121,9 +4809,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Chen-Charpentier2021">Chen-Charpentier, B. (2021). Stochastic Modeling of Plant Virus Propagation with Biological Control. <i>Mathematics</i>, <i>9</i>(5), 456. https://doi.org/10.3390/math9050456</span>
                   <div id="Chen-Charpentier2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Chen-Charpentier2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Chen-Charpentier2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4161,9 +4849,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Li2021">Li, J., Wang, J. C., Ding, T. B., &amp; Chu, D. (2021). Synergistic Effects of a Tomato chlorosis virus and Tomato yellow leaf curl virus Mixed Infection on Host Tomato Plants and the Whitefly Vector. <i>Frontiers in Plant Science</i>, <i>12</i>(May), 1–11. https://doi.org/10.3389/fpls.2021.672400</span>
                   <div id="Li2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Li2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Li2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4203,9 +4891,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Rifhat2021">Rifhat, R., Teng, Z., &amp; Wang, C. (2021). Extinction and persistence of a stochastic SIRV epidemic model with nonlinear incidence rate. <i>Advances in Difference Equations</i>, <i>2021</i>(1), 200. https://doi.org/10.1186/s13662-021-03347-3</span>
                   <div id="Rifhat2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Rifhat2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Rifhat2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4247,9 +4935,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Yan2021">Yan, Z., Wolters, A.-M. A., Navas-Castillo, J., &amp; Bai, Y. (2021). The Global Dimension of Tomato Yellow Leaf Curl Disease: Current Status and Breeding Perspectives. <i>Microorganisms</i>, <i>9</i>(4), 740. https://doi.org/10.3390/microorganisms9040740</span>
                   <div id="Yan2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Yan2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Yan2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4290,9 +4978,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Swathi2021">Swathi, M., Gaur, N., &amp; Singh, K. (2021). Virus Vector Relationship of Yellow Mosaic Virus and Whitefly, Bemisia tabaci (Gennadius) in Soybean. <i>Legume Research - an International Journal</i>, <i>I</i>(Of), 1–5. https://doi.org/10.18805/lr-4479</span>
                   <div id="Swathi2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Swathi2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Swathi2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4331,7 +5019,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="faiz2021">Faiz, H., &amp; Abhinav, K. (2021). Development of immunity against cotton leaf curl virus using antisense AC4 gene. <i>Research Journal of Biotechnology Vol</i>, <i>16</i>, 9.</span>
                   <div id="faiz2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('faiz2021-bibtex')">
                           [BibTeX]
@@ -4356,9 +5044,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Ali2021">Ali, M. A., Khan, M. A. U., Rao, A. Q., Iqbal, A., ud Din, S., &amp; Shahid, A. A. (2021). Biochemical evidence of epicuticular wax compounds involved in cotton-whitefly interaction. <i>PLoS ONE</i>, <i>16</i>(5 May), 1–14. https://doi.org/10.1371/journal.pone.0250902</span>
                   <div id="Ali2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Ali2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Ali2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4399,9 +5087,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Shah2021">Shah, M. A., Naga, K. C., Subhash, S., Sharma, S., &amp; Kumar, R. (2021). Use of Petroleum-Derived Spray Oils for the Management of Vector-Virus Complex in Potato. <i>Potato Research</i>. https://doi.org/10.1007/s11540-021-09505-0</span>
                   <div id="Shah2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Shah2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Shah2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4440,9 +5128,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Shrestha2021">Shrestha, S., Michael, V. N., Fu, Y., &amp; Meru, G. (2021). Genetic Loci Associated with Resistance to Zucchini Yellow Mosaic Virus in Squash. <i>Plants</i>, <i>10</i>(9), 1935. https://doi.org/10.3390/plants10091935</span>
                   <div id="Shrestha2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Shrestha2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Shrestha2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4483,9 +5171,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Eni2021">Eni, A. O., Efekemo, O. P., Onile‐ere, O. A., &amp; Pita, J. S. (2021). South West and North Central Nigeria: Assessment of cassava mosaic disease and field status of African cassava mosaic virus and East African cassava mosaic virus. <i>Annals of Applied Biology</i>, <i>178</i>(3), 466–479. https://doi.org/10.1111/aab.12647</span>
                   <div id="Eni2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Eni2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Eni2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4526,9 +5214,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Ashwathappa2021">Ashwathappa, K. V., Krishna Reddy, M., Venkataravanappa, V., Madhavi Reddy, K., Hemachandra Reddy, P., &amp; Lakshminarayana Reddy, C. N. (2021). Genome characterization and host range studies of Cucumber mosaic virus belonging to the Subgroup IB infecting chilli in India and screening of chilli genotypes for identification of resistance. <i>VirusDisease</i>, <i>32</i>(3), 535–547. https://doi.org/10.1007/s13337-021-00713-3</span>
                   <div id="Ashwathappa2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Ashwathappa2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Ashwathappa2021-abstract">
                           [Abstract]
                         </a>
                       </li>
@@ -4570,7 +5258,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="GitHubJuliaSourcesForTYCLD">Salcedo-Varela, Gabriel and Diaz-Infante, Saul . (2021). <i>Julia_code_for_tomate_SDE_paper-main</i>. https://doi.org/10.5281/zenodo.5605065</span>
                   <div id="GitHubJuliaSourcesForTYCLD-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('GitHubJuliaSourcesForTYCLD-bibtex')">
                           [BibTeX]
@@ -4601,7 +5289,7 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Salcedo-varela2021">Salcedo-varela, G. (2021). <i>Supplementary and extended material of Threshold be-havior of a stochastic vector plant model for Tomato Yel-low Curl Leaves disease : a study based on mathematicalanalysis and simu ... Supplementary and extended material of Threshold be- havior of a stoc</i> (No. November; p. 9). https://doi.org/10.13140/RG.2.2.16644.45448</span>
                   <div id="Salcedo-varela2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
                         <a data-toggle="collapse" href="javascript:toggleDiv('Salcedo-varela2021-bibtex')">
                           [BibTeX]
@@ -4635,9 +5323,9 @@ vector-plant-host, persistence, extinction, Brownian motion</pre>
                 <li>
                   <span id="Grinsztajn2021">Grinsztajn, L., Semenova, E., Margossian, C. C., &amp; Riou, J. (2021). Bayesian workflow for disease transmission modeling in Stan. <i>Stat. Med.</i>, <i>40</i>(27), 6209–6234. https://doi.org/10.1002/sim.9164</span>
                   <div id="Grinsztajn2021-materials">
-                    <ul class="nav nav-pills">
+                    <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a data-toggle="collapse" href="#Grinsztajn2021-abstract">
+                        <a data-toggle="collapse" href="bibliography/Grinsztajn2021-abstract">
                           [Abstract]
                         </a>
                       </li>

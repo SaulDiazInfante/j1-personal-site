@@ -1,41 +1,80 @@
 ---
 ---
-{{reference}}
-
-<div id="{{key}}-materials">
-  <ul class="nav nav-tabs">
-    {% if entry.abstract %}
-        <li class="nav-item">
-            <a data-toggle="collapse" href="bibliography/{{key}}-abstract">
-            [Abstract]
-            </a>
-        </li>
-    {% endif %}
-        <li class="nav-item">
-            <a data-toggle="collapse"
-            href="javascript:toggleDiv('{{key}}-bibtex')">
-               [BibTeX]
-            </a>
-        </li>
-        <div id="{{key}}-bibtex" style="display:none;">
-        <pre class="collapse">
-            {{entry.bibtex}}
-        </pre>
-    </div>
-    {% if link %}
-        <li class="nav-item">
-            <a href="{{link}}">
-                Download
-            </a>
-        </li>
-    {% endif %}
-    {% if entry.doi %}
-    <li class="nav-item">
-        DOI:
-        <a href="http://dx.doi.org/{{entry.doi}}">
-            {{entry.doi}}
-        </a>
-    </li>
-    {% endif %}
-  </ul>
+<style>
+    p.abstract{
+        background-color: #EFEFEF;
+        text-align: justify;
+        border-bottom: 2px #2E2E2E solid;
+        color: #2E2E2E;
+        width: 50em;
+        margin: auto auto;
+    }
+</style>
+<div class="text-justify">{{reference}}
 </div>
+<button
+        type="button"
+        class="btn btn-primary btn-raised btn-sm"
+        onclick="toggleBibtex{{entry.key}}()">
+    Bibtex
+</button>
+{% if entry.doi%}
+    <a href="https://doi.org/{{ entry.doi }}">
+        <input class="btn btn-outline-info btn-sm" type="button" value="DOI:{{ entry.doi }}"/>
+    </a>
+{% endif %}
+
+{% if entry.abstract %}
+    <button
+            type="button"
+            class="btn btn-secondary btn-sm"
+            onclick="toggleAbstract{{entry.key}}()"
+    >
+        Abstract
+    </button>
+{% endif %}
+
+{% if entry.preprint %}
+    <a href="{{ entry.preprint }}">
+        <input class="btn btn-success btn-raised btn-sm" type="button" value="preprint" />
+    </a>
+{% endif %}
+
+{% if entry.url %}
+    <a href="{{ entry.url }}">
+        <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:" />
+        <input class="btn btn-outline-success btn-sm" type="button" value="{{ entry.url }}"/>
+    </a>
+{% endif %}
+
+{% if entry.code %}
+    <a href="{{ entry.code }}">
+        <input class="button3" type="button" value="code" />
+    </a>
+{% endif %}
+<div id="a{{entry.key}}" style="display: none;">
+    <pre>{{entry.bibtex}}</pre>
+</div>
+<div id="abs{{entry.key}}" style="display: none;">
+    <p class="abstract">
+        {{entry.abstract}}
+    </p>
+</div>
+<script>
+    function toggleBibtex{{entry.key}}(parameter){
+        var x= document.getElementById('a{{entry.key}}');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+    function toggleAbstract{{entry.key}}(parameter){
+        var x= document.getElementById('abs{{entry.key}}');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+</script>

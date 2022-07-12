@@ -7,7 +7,7 @@
   
             <!DOCTYPE html>
 <html lang="en">
-  <!-- [INFO   ] [j1.layout.default.html                ] [ page generated: 2022-07-12 03:17:35 +0200 ] -->
+  <!-- [INFO   ] [j1.layout.default.html                ] [ page generated: 2022-07-13 00:33:04 +0200 ] -->
   <!-- [INFO   ] [j1.layout.default.html                ] [ environment detected as: development ] -->
   <!-- [INFO   ] [j1.layout.default.html                ] [ version detected as: 2022.4.4 ] -->
   <head data-proofer-ignore>
@@ -616,22 +616,30 @@
                 <h3 id="accepted-peer-reviewed-articles">Accepted peer-reviewed articles</h3>
                 <ol class="bibliography">
                   <li>
-                    <span id="DiazInfante2016">Díaz-Infante, S., &amp; Jerez, S. (2016). Convergence and asymptotic stability of the explicit Steklov method for stochastic differential equations. <i>Journal of Computational and Applied Mathematics</i>, <i>291</i>, 36–47. https://doi.org/10.1016/j.cam.2015.01.016</span>
-                    <div id="DiazInfante2016-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="bibliography/DiazInfante2016-abstract">
-                            [Abstract]
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfante2016-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfante2016-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @article{DiazInfante2016,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfante2016">Díaz-Infante, S., &amp; Jerez, S. (2016). Convergence and asymptotic stability of the explicit Steklov method for stochastic differential equations. <i>Journal of Computational and Applied Mathematics</i>, <i>291</i>, 36–47. https://doi.org/10.1016/j.cam.2015.01.016</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfante2016()">
+                      Bibtex
+                    </button>
+                    <a href="https://doi.org/10.1016/j.cam.2015.01.016">
+                      <input class="btn btn-outline-info btn-sm" type="button" value="DOI:10.1016/j.cam.2015.01.016">
+                    </a>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="toggleAbstractDiazInfante2016()">
+                      Abstract
+                    </button>
+                    <div id="aDiazInfante2016" style="display: none;">
+                      <pre>@article{DiazInfante2016,
   author = {Díaz-Infante, Saúl and Jerez, Silvia},
   journal = {Journal of Computational and Applied Mathematics},
   title = {{Convergence and asymptotic stability of the explicit Steklov method for stochastic differential equations}},
@@ -641,35 +649,57 @@
   volume = {291},
   doi = {10.1016/j.cam.2015.01.016}
 }
-        </pre>
-                        </div>
-                        <li class="nav-item">
-                          DOI:
-                          <a href="http://dx.doi.org/10.1016/j.cam.2015.01.016">
-                            10.1016/j.cam.2015.01.016
-                          </a>
-                        </li>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfante2016/">Details</a>
+                    <div id="absDiazInfante2016" style="display: none;">
+                      <p class="abstract">
+                        In this paper, we develop a new numerical method with asymptotic stability properties for solving stochastic differential equations (SDEs). The foundations for the new solver are the Steklov mean and an exact discretization for the deterministic version of the SDEs. Strong consistency and convergence properties are demonstrated for the proposed method. Moreover, a rigorous linear and nonlinear asymptotic stability analysis is carried out for the multiplicative case in a mean-square sense and for the additive case in a path-wise sense using the pullback limit. In order to emphasize the characteristics of the Steklov discretization we use as benchmarks the stochastic logistic equation and the Langevin equation with a nonlinear potential of the Brownian dynamics. We show that the Steklov method has mild stability requirements and allows long-time simulations in several applications.
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfante2016(parameter){
+                          var x= document.getElementById('aDiazInfante2016');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfante2016(parameter){
+                          var x= document.getElementById('absDiazInfante2016');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfante2017">Díaz-Infante, S., &amp; Jerez, S. (2017). The linear Steklov method for SDEs with non-globally Lipschitz coefficients: Strong convergence and simulation. <i>Journal of Computational and Applied Mathematics</i>, <i>309</i>, 408–423. https://doi.org/10.1016/j.cam.2016.04.011</span>
-                    <div id="DiazInfante2017-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="bibliography/DiazInfante2017-abstract">
-                            [Abstract]
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfante2017-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfante2017-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @article{DiazInfante2017,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfante2017">Díaz-Infante, S., &amp; Jerez, S. (2017). The linear Steklov method for SDEs with non-globally Lipschitz coefficients: Strong convergence and simulation. <i>Journal of Computational and Applied Mathematics</i>, <i>309</i>, 408–423. https://doi.org/10.1016/j.cam.2016.04.011</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfante2017()">
+                      Bibtex
+                    </button>
+                    <a href="https://doi.org/10.1016/j.cam.2016.04.011">
+                      <input class="btn btn-outline-info btn-sm" type="button" value="DOI:10.1016/j.cam.2016.04.011">
+                    </a>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="toggleAbstractDiazInfante2017()">
+                      Abstract
+                    </button>
+                    <div id="aDiazInfante2017" style="display: none;">
+                      <pre>@article{DiazInfante2017,
   author = {Díaz-Infante, S. and Jerez, S.},
   journal = {Journal of Computational and Applied Mathematics},
   title = {{The linear Steklov method for SDEs with non-globally Lipschitz coefficients: Strong convergence and simulation}},
@@ -679,35 +709,57 @@
   volume = {309},
   doi = {10.1016/j.cam.2016.04.011}
 }
-        </pre>
-                        </div>
-                        <li class="nav-item">
-                          DOI:
-                          <a href="http://dx.doi.org/10.1016/j.cam.2016.04.011">
-                            10.1016/j.cam.2016.04.011
-                          </a>
-                        </li>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfante2017/">Details</a>
+                    <div id="absDiazInfante2017" style="display: none;">
+                      <p class="abstract">
+                        We present an explicit numerical method for solving stochastic differential equations with non-globally Lipschitz coefficients. A linear version of the Steklov average under a split-step formulation supports our new solver. The linear Steklov method converges strongly with a standard one-half order. Also, we present numerical evidence that the explicit linear Steklov reproduces almost surely stability solutions with high-accuracy for diverse application models even for stochastic differential systems with super-linear diffusion coefficients.
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfante2017(parameter){
+                          var x= document.getElementById('aDiazInfante2017');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfante2017(parameter){
+                          var x= document.getElementById('absDiazInfante2017');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="Jerez2018">Jerez, S., Díaz-Infante, S., &amp; Chen, B. (2018). Fluctuating periodic solutions and moment boundedness of a stochastic model for the bone remodeling process. <i>Mathematical Biosciences</i>, <i>299</i>, 153–164. https://doi.org/10.1016/j.mbs.2018.03.006</span>
-                    <div id="Jerez2018-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="bibliography/Jerez2018-abstract">
-                            [Abstract]
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('Jerez2018-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="Jerez2018-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @article{Jerez2018,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="Jerez2018">Jerez, S., Díaz-Infante, S., &amp; Chen, B. (2018). Fluctuating periodic solutions and moment boundedness of a stochastic model for the bone remodeling process. <i>Mathematical Biosciences</i>, <i>299</i>, 153–164. https://doi.org/10.1016/j.mbs.2018.03.006</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexJerez2018()">
+                      Bibtex
+                    </button>
+                    <a href="https://doi.org/10.1016/j.mbs.2018.03.006">
+                      <input class="btn btn-outline-info btn-sm" type="button" value="DOI:10.1016/j.mbs.2018.03.006">
+                    </a>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="toggleAbstractJerez2018()">
+                      Abstract
+                    </button>
+                    <div id="aJerez2018" style="display: none;">
+                      <pre>@article{Jerez2018,
   author = {Jerez, S. and Díaz-Infante, S. and Chen, B.},
   journal = {Mathematical Biosciences},
   title = {{Fluctuating periodic solutions and moment boundedness of a stochastic model for the bone remodeling process}},
@@ -718,35 +770,57 @@
   doi = {10.1016/j.mbs.2018.03.006},
   pmid = {29526549}
 }
-        </pre>
-                        </div>
-                        <li class="nav-item">
-                          DOI:
-                          <a href="http://dx.doi.org/10.1016/j.mbs.2018.03.006">
-                            10.1016/j.mbs.2018.03.006
-                          </a>
-                        </li>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/Jerez2018/">Details</a>
+                    <div id="absJerez2018" style="display: none;">
+                      <p class="abstract">
+                        In this work, we model osteoclast-osteoblast population dynamics with random environmental fluctuations in order to understand the random variations of the bone remodeling process in real life. For this purpose, we construct a stochastic differential model for the interactions between the osteoclast and osteoblast cell populations using the parameter perturbation technique. We prove the existence of a globally attractive positive unique solution for the stochastically perturbed system. Also, the stochastic boundedness of the solution is demonstrated using its p-th order moments for p \ensuremath≥ 1. Finally, we show that the introduction of noise in the deterministic model provides a fluctuating periodic solution. Numerical evidence supports our theoretical results and a discussion of the results is carried out.
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexJerez2018(parameter){
+                          var x= document.getElementById('aJerez2018');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractJerez2018(parameter){
+                          var x= document.getElementById('absJerez2018');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="AcunaZegarra2018">Acuña-Zegarra, M. A., &amp; Díaz-Infante, S. (2018). Stochastic asymptotic analysis of a multi-host model with vector transmission. <i>Physica A: Statistical Mechanics and Its Applications</i>, <i>510</i>, 243–260. https://doi.org/10.1016/j.physa.2018.06.105</span>
-                    <div id="AcunaZegarra2018-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="bibliography/AcunaZegarra2018-abstract">
-                            [Abstract]
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('AcunaZegarra2018-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="AcunaZegarra2018-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @article{AcunaZegarra2018,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="AcunaZegarra2018">Acuña-Zegarra, M. A., &amp; Díaz-Infante, S. (2018). Stochastic asymptotic analysis of a multi-host model with vector transmission. <i>Physica A: Statistical Mechanics and Its Applications</i>, <i>510</i>, 243–260. https://doi.org/10.1016/j.physa.2018.06.105</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexAcunaZegarra2018()">
+                      Bibtex
+                    </button>
+                    <a href="https://doi.org/10.1016/j.physa.2018.06.105">
+                      <input class="btn btn-outline-info btn-sm" type="button" value="DOI:10.1016/j.physa.2018.06.105">
+                    </a>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="toggleAbstractAcunaZegarra2018()">
+                      Abstract
+                    </button>
+                    <div id="aAcunaZegarra2018" style="display: none;">
+                      <pre>@article{AcunaZegarra2018,
   author = {Acuña-Zegarra, Manuel Adrian and Díaz-Infante, Saúl},
   journal = {Physica A: Statistical Mechanics and its Applications},
   title = {{Stochastic asymptotic analysis of a multi-host model with vector transmission}},
@@ -756,30 +830,54 @@
   volume = {510},
   doi = {10.1016/j.physa.2018.06.105}
 }
-        </pre>
-                        </div>
-                        <li class="nav-item">
-                          DOI:
-                          <a href="http://dx.doi.org/10.1016/j.physa.2018.06.105">
-                            10.1016/j.physa.2018.06.105
-                          </a>
-                        </li>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/AcunaZegarra2018/">Details</a>
+                    <div id="absAcunaZegarra2018" style="display: none;">
+                      <p class="abstract">
+                        We present a stochastic epidemic model with vectorial transmission and multi-host structure. To include environmental noise, we stochastically perturb biting rates with general state functional intensities. So, we derive a stochastic differential equation (SDE) which describes a vector disease with two types of hosts – humans and animals – and give conditions to assure disease extinction and persistence. Finally, via numerical experiments, we extend and illustrate our results using literature parameters for Chagas.
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexAcunaZegarra2018(parameter){
+                          var x= document.getElementById('aAcunaZegarra2018');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractAcunaZegarra2018(parameter){
+                          var x= document.getElementById('absAcunaZegarra2018');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="Garcia2021">García, Y. H., Diaz-Infante, S., &amp; Minjárez-Sosa, J. A. (2021). Partially observable queueing systems with controlled service rates under a discounted optimality criterion. <i>Kybernetika</i>, 493–512. https://doi.org/10.14736/kyb-2021-3-0493</span>
-                    <div id="Garcia2021-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('Garcia2021-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="Garcia2021-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @article{Garcia2021,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="Garcia2021">García, Y. H., Diaz-Infante, S., &amp; Minjárez-Sosa, J. A. (2021). Partially observable queueing systems with controlled service rates under a discounted optimality criterion. <i>Kybernetika</i>, 493–512. https://doi.org/10.14736/kyb-2021-3-0493</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexGarcia2021()">
+                      Bibtex
+                    </button>
+                    <a href="https://doi.org/10.14736/kyb-2021-3-0493">
+                      <input class="btn btn-outline-info btn-sm" type="button" value="DOI:10.14736/kyb-2021-3-0493">
+                    </a>
+                    <div id="aGarcia2021" style="display: none;">
+                      <pre>@article{Garcia2021,
   author = {García, Yofre H and Diaz-Infante, Saul and Minjárez-Sosa, J Adolfo},
   journal = {Kybernetika},
   title = {{Partially observable queueing systems with controlled service rates under a discounted optimality criterion}},
@@ -788,35 +886,56 @@
   pages = {493–512},
   doi = {10.14736/kyb-2021-3-0493}
 }
-        </pre>
-                        </div>
-                        <li class="nav-item">
-                          DOI:
-                          <a href="http://dx.doi.org/10.14736/kyb-2021-3-0493">
-                            10.14736/kyb-2021-3-0493
-                          </a>
-                        </li>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/Garcia2021/">Details</a>
+                    <div id="absGarcia2021" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexGarcia2021(parameter){
+                          var x= document.getElementById('aGarcia2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractGarcia2021(parameter){
+                          var x= document.getElementById('absGarcia2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="CantunAvila2021">Cantún-Avila, K. B., González-Sánchez, D., Díaz-Infante, S., &amp; Peñuñuri, F. (2021). Optimizing functionals using Differential Evolution. <i>Engineering Applications of Artificial Intelligence</i>, <i>97</i>, 104086. https://doi.org/10.1016/j.engappai.2020.104086</span>
-                    <div id="CantunAvila2021-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="bibliography/CantunAvila2021-abstract">
-                            [Abstract]
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('CantunAvila2021-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="CantunAvila2021-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @article{CantunAvila2021,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="CantunAvila2021">Cantún-Avila, K. B., González-Sánchez, D., Díaz-Infante, S., &amp; Peñuñuri, F. (2021). Optimizing functionals using Differential Evolution. <i>Engineering Applications of Artificial Intelligence</i>, <i>97</i>, 104086. https://doi.org/10.1016/j.engappai.2020.104086</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexCantunAvila2021()">
+                      Bibtex
+                    </button>
+                    <a href="https://doi.org/10.1016/j.engappai.2020.104086">
+                      <input class="btn btn-outline-info btn-sm" type="button" value="DOI:10.1016/j.engappai.2020.104086">
+                    </a>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="toggleAbstractCantunAvila2021()">
+                      Abstract
+                    </button>
+                    <div id="aCantunAvila2021" style="display: none;">
+                      <pre>@article{CantunAvila2021,
   author = {Cantún-Avila, K.B. and González-Sánchez, D. and Díaz-Infante, S. and Peñuñuri, F.},
   journal = {Engineering Applications of Artificial Intelligence},
   title = {{Optimizing functionals using Differential Evolution}},
@@ -826,35 +945,57 @@
   volume = {97},
   doi = {10.1016/j.engappai.2020.104086}
 }
-        </pre>
-                        </div>
-                        <li class="nav-item">
-                          DOI:
-                          <a href="http://dx.doi.org/10.1016/j.engappai.2020.104086">
-                            10.1016/j.engappai.2020.104086
-                          </a>
-                        </li>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/CantunAvila2021/">Details</a>
+                    <div id="absCantunAvila2021" style="display: none;">
+                      <p class="abstract">
+                        Metaheuristic algorithms are typically used for optimizing a function f : A \ensuremath→ R , where A is a subset of R N . Nevertheless, many real-life problems require A to be a set of functions which makes f a functional. In this paper, we present a methodology to address the optimization of functionals by using the evolutionary algorithm known as Differential Evolution. Unlike traditional techniques where continuity and differentiability assumptions are required to solve some associated differential equations—like calculus of variations, Pontryagin’s principle or dynamic programming, the optimization is carried out directly on the functional without the need of any of the assumptions mentioned before. Lagrangians involving derivatives are considered, these derivatives are computed implementing Automatic Differentiation with dual numbers. To the best of our knowledge, this is the first time that a metaheuristic optimization approach has been applied to directly optimize a broad variety of functionals. The effectiveness of our methodology is validated by solving two problems. The first problem is related to the implementation of quarantine and isolation in SARS epidemics and the second validation problem deals with the well-known brachistochrone curve problem. The results of both validation problems are in outstanding agreement with those obtained with the application of traditional techniques, specifically with the Forward–Backward-Sweep method in the first problem, and with the calculus of variations for the latter problem. We also found that interpolation may be employed to solve the large scale global optimization problems arisen in the optimization of functionals.
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexCantunAvila2021(parameter){
+                          var x= document.getElementById('aCantunAvila2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractCantunAvila2021(parameter){
+                          var x= document.getElementById('absCantunAvila2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="AcunaZegarra2021">Acuña-Zegarra, M. A., Díaz-Infante, S., Baca-Carrasco, D., &amp; Olmos-Liceaga, D. (2021). COVID-19 optimal vaccination policies: A modeling study on efficacy, natural and vaccine-induced immunity responses. <i>Mathematical Biosciences</i>, <i>337</i>, 108614. https://doi.org/10.1016/j.mbs.2021.108614</span>
-                    <div id="AcunaZegarra2021-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="bibliography/AcunaZegarra2021-abstract">
-                            [Abstract]
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('AcunaZegarra2021-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="AcunaZegarra2021-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @article{AcunaZegarra2021,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="AcunaZegarra2021">Acuña-Zegarra, M. A., Díaz-Infante, S., Baca-Carrasco, D., &amp; Olmos-Liceaga, D. (2021). COVID-19 optimal vaccination policies: A modeling study on efficacy, natural and vaccine-induced immunity responses. <i>Mathematical Biosciences</i>, <i>337</i>, 108614. https://doi.org/10.1016/j.mbs.2021.108614</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexAcunaZegarra2021()">
+                      Bibtex
+                    </button>
+                    <a href="https://doi.org/10.1016/j.mbs.2021.108614">
+                      <input class="btn btn-outline-info btn-sm" type="button" value="DOI:10.1016/j.mbs.2021.108614">
+                    </a>
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="toggleAbstractAcunaZegarra2021()">
+                      Abstract
+                    </button>
+                    <div id="aAcunaZegarra2021" style="display: none;">
+                      <pre>@article{AcunaZegarra2021,
   author = {Acuña-Zegarra, Manuel Adrian and Díaz-Infante, Saúl and Baca-Carrasco, David and Olmos-Liceaga, Daniel},
   journal = {Mathematical Biosciences},
   title = {{COVID-19 optimal vaccination policies: A modeling study on efficacy, natural and vaccine-induced immunity responses}},
@@ -865,17 +1006,31 @@
   doi = {10.1016/j.mbs.2021.108614},
   pmid = {33961878}
 }
-        </pre>
-                        </div>
-                        <li class="nav-item">
-                          DOI:
-                          <a href="http://dx.doi.org/10.1016/j.mbs.2021.108614">
-                            10.1016/j.mbs.2021.108614
-                          </a>
-                        </li>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/AcunaZegarra2021/">Details</a>
+                    <div id="absAcunaZegarra2021" style="display: none;">
+                      <p class="abstract">
+                        About a year into the pandemic, COVID-19 accumulates more than two million deaths worldwide. Despite non-pharmaceutical interventions such as social distance, mask-wearing, and restrictive lockdown, the daily confirmed cases remain growing. Vaccine developments from Pfizer, Moderna, and Gamaleya Institute reach more than 90% efficacy and sustain the vaccination campaigns in multiple countries. However, natural and vaccine-induced immunity responses remain poorly understood. There are great expectations, but the new SARS-CoV-2 variants demand to inquire if the vaccines will be highly protective or induce permanent immunity. Further, in the first quarter of 2021, vaccine supply is scarce. Consequently, some countries that are applying the Pfizer vaccine will delay its second required dose. Likewise, logistic supply, economic and political implications impose a set of grand challenges to develop vaccination policies. Therefore, health decision-makers require tools to evaluate hypothetical scenarios and evaluate admissible responses. Following some of the WHO-SAGE recommendations, we formulate an optimal control problem with mixed constraints to describe vaccination schedules. Our solution identifies vaccination policies that minimize the burden of COVID-19 quantified by the number of disability-adjusted years of life lost. These optimal policies ensure the vaccination coverage of a prescribed population fraction in a given time horizon and preserve hospitalization occupancy below a risk level. We explore “via simulation” plausible scenarios regarding efficacy, coverage, vaccine-induced, and natural immunity. Our simulations suggest that response regarding vaccine-induced immunity and reinfection periods would play a dominant role in mitigating COVID-19.
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexAcunaZegarra2021(parameter){
+                          var x= document.getElementById('aAcunaZegarra2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractAcunaZegarra2021(parameter){
+                          var x= document.getElementById('absAcunaZegarra2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                 </ol>
               </div>
@@ -886,17 +1041,24 @@
                 <h3 id="book-chapters">Book chapters</h3>
                 <ol class="bibliography">
                   <li>
-                    <span id="DiazInfanteVelasco2021b">Diaz-Infante Velasco, S., Peñuñuri, F., &amp; González-Sánchez, D. (2021). <i>Games and Evolutionary Dynamics Selected Theoretical and Applied Developments</i> (S. Mendoza-Palacios &amp; A. Mercado, Eds.). El Colegio de México, Centro de Estudios Económicos, Programa de Análisis Económico de México.</span>
-                    <div id="DiazInfanteVelasco2021b-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2021b-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2021b-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @inbook{DiazInfanteVelasco2021b,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2021b">Diaz-Infante Velasco, S., Peñuñuri, F., &amp; González-Sánchez, D. (2021). <i>Games and Evolutionary Dynamics Selected Theoretical and Applied Developments</i> (S. Mendoza-Palacios &amp; A. Mercado, Eds.). El Colegio de México, Centro de Estudios Económicos, Programa de Análisis Económico de México.</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2021b()">
+                      Bibtex
+                    </button>
+                    <div id="aDiazInfanteVelasco2021b" style="display: none;">
+                      <pre>@inbook{DiazInfanteVelasco2021b,
   author = {{Diaz-Infante Velasco}, S. and Peñuñuri, F. and González-Sánchez, D.},
   chapter = {Existence, characterization and simulation of optimal policies in a family of epidemic models},
   editor = {Mendoza-Palacios, S. and Mercado, A.},
@@ -909,24 +1071,43 @@
   number = {1},
   volume = {1}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2021b/">Details</a>
+                    <div id="absDiazInfanteVelasco2021b" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2021b(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2021b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2021b(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2021b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                 </ol>
               </div>
               <div class="sect2">
                 <h3 id="forthcoming-publications">Forthcoming Publications</h3>
                 <div class="paragraph">
-                  <p>In sed unde rem a aliquam voluptatem omnis. Eum explicabo a dolore tenetur nisi est ad libero quod aperiam magnam eligendi. Perspiciatis minima laboriosam et iusto porro et eum. Placeat nesciunt fuga velit illum et nemo reiciendis id aliquam earum doloremque atque nostrum esse. Quia totam quibusdam voluptate error iure tempore repudiandae.</p>
+                  <p>Itaque rerum ea eum natus commodi minima enim voluptatem dolore. Qui voluptatum ea non tempore occaecati aperiam natus modi quis at. Accusamus et velit aut similique omnis eum harum delectus exercitationem et voluptatem vel necessitatibus voluptate. Ut delectus aspernatur eos sit tempora voluptate recusandae et aperiam et deleniti provident sint. Maiores ad et qui porro culpa quo fuga accusamus in velit.</p>
                 </div>
               </div>
               <div class="sect2">
                 <h3 id="thesis">Thesis</h3>
                 <div class="paragraph">
-                  <p>Voluptatum quia dolorem quaerat illum quia harum aut saepe quo est facilis hic nemo occaecati. Quia necessitatibus odit beatae illo sit corporis enim magni cum incidunt repudiandae. Fugit facere ut nisi aliquam aut doloremque aut eveniet in praesentium sed. Quos maxime molestias repellat facere accusamus dolor et unde reiciendis distinctio voluptates adipisci. Vel doloribus numquam quia eveniet vel saepe illo dolorem ducimus explicabo non animi.</p>
+                  <p>Ut et odio voluptas rerum ea enim minus suscipit et voluptate tempore. Aut beatae cumque blanditiis suscipit. Rerum est omnis quae eligendi. Natus esse fugit quia omnis provident qui molestiae. Cumque qui autem iusto dolore debitis quisquam quo placeat.</p>
                 </div>
               </div>
             </div>
@@ -935,7 +1116,7 @@
             <h2 id="research">Research</h2>
             <div class="sectionbody">
               <div class="paragraph">
-                <p>Consequuntur facilis dolorem accusantium dicta incidunt repellat cum repellendus doloribus rem dignissimos aut quod. Reiciendis enim nobis rerum magni nostrum quam perspiciatis dolore laboriosam amet sunt at maxime. Ex distinctio et autem rem dolorem omnis. Placeat quo ut sed ullam enim. Reprehenderit totam nam magni ut cum temporibus et est veritatis voluptatum neque qui tempora.</p>
+                <p>Aut dolor quas dolorum reprehenderit in. Totam accusantium libero necessitatibus voluptatem a consequatur quis qui. Molestias et fugiat aut consequatur. Harum et vero quo laudantium ut. Ad quia dolores eius sed explicabo.</p>
               </div>
             </div>
           </div>
@@ -943,7 +1124,7 @@
             <h2 id="honors-and-awards">Honors and awards</h2>
             <div class="sectionbody">
               <div class="paragraph">
-                <p>Corporis et omnis dolor perspiciatis. Atque mollitia sint totam tempore est nihil tempora id reprehenderit. Nesciunt dolorem sunt illo molestiae ab aut est alias. Quisquam sit commodi consequatur animi qui quia rem quo maxime. Error porro commodi consequatur unde repellat qui vitae ullam.</p>
+                <p>Nulla natus dolores quo in quia vel sint sed quae. Omnis sapiente aut laudantium non. Sunt incidunt et temporibus doloribus non voluptate qui deserunt rerum. Modi consequatur hic aut est ad recusandae et dolores exercitationem minus fuga quidem minus. Iure sint at ratione officiis et.</p>
               </div>
             </div>
           </div>
@@ -951,7 +1132,7 @@
             <h2 id="funding">Funding</h2>
             <div class="sectionbody">
               <div class="paragraph">
-                <p>Quas corrupti tenetur rem vitae eveniet porro non. Rerum et dolor provident optio est sunt dolorem quia optio corrupti assumenda. Nulla cupiditate sed pariatur deserunt dolor quod qui quibusdam animi dolorem. Dolores id possimus temporibus quidem provident. Expedita perspiciatis consequatur quia in dignissimos dolores.</p>
+                <p>Dignissimos qui qui corporis sunt dignissimos doloremque. Non fugit officia id incidunt atque sed. Enim suscipit aliquam reiciendis error qui velit earum molestiae. Ex voluptatem ad qui asperiores tempora magnam eaque officiis. Mollitia ut consectetur ullam tempore beatae quam exercitationem enim illum.</p>
               </div>
             </div>
           </div>
@@ -1102,7 +1283,7 @@
             <h2 id="administrative-experience">Administrative Experience</h2>
             <div class="sectionbody">
               <div class="paragraph">
-                <p>Sed expedita perferendis est. Eveniet eveniet aliquid labore tenetur expedita dolorem laudantium debitis et. Maxime dolore corporis et aut neque in ut. Autem enim consequatur quia sint consequatur. Odit consequuntur et sit.</p>
+                <p>Sint voluptate velit vitae autem ea iste. Nihil qui amet expedita asperiores quo et hic culpa voluptatem molestiae voluptatem. Quae rerum et sit fuga ut. Vero inventore dolorum et molestiae facere sit repudiandae. Aut ducimus voluptatem perferendis quis non.</p>
               </div>
             </div>
           </div>
@@ -1110,7 +1291,7 @@
             <h2 id="professional-experience">Professional  Experience</h2>
             <div class="sectionbody">
               <div class="paragraph">
-                <p>Quia voluptatem atque est officia. Iste suscipit rerum rerum. Ut omnis provident sapiente et. Eligendi excepturi labore consequatur consequatur atque aut fugit. Aspernatur optio quis rem omnis cupiditate corporis harum quia veritatis.</p>
+                <p>Deserunt consequatur animi consequatur ea minus culpa quia explicabo ex. Qui pariatur qui sequi consequuntur sit et error. Commodi deserunt velit aut nihil alias pariatur quo ea. Aut suscipit veniam totam iusto ullam enim blanditiis qui perspiciatis quam nostrum dolor deserunt quos. Tenetur ut et accusantium sapiente non quasi eum praesentium ullam nesciunt molestiae nihil debitis pariatur.</p>
               </div>
             </div>
           </div>
@@ -1118,7 +1299,7 @@
             <h2 id="other-skills-and-qualifications">Other skills and qualifications</h2>
             <div class="sectionbody">
               <div class="paragraph">
-                <p>Neque odio aut perspiciatis dolores et soluta doloremque autem ad sit doloribus dicta. Praesentium illum cum fugiat numquam esse recusandae possimus consequatur assumenda. Quod rerum iste eaque quae sit modi nulla enim aspernatur libero voluptatum. Esse earum repudiandae distinctio commodi nisi at perferendis architecto animi est maiores repellat voluptatibus. Quo consectetur placeat voluptas.</p>
+                <p>Voluptatem delectus fugiat officia. Officia facere non enim ex accusamus quam consequatur assumenda dolores mollitia. Omnis ut dolore soluta consequatur quis. Impedit non fugiat beatae ipsam laudantium voluptatem velit. Corrupti architecto distinctio quis maxime et id odio ratione minima.</p>
               </div>
             </div>
           </div>
@@ -1177,17 +1358,28 @@
                 <h3 id="2019">2019</h3>
                 <ol class="bibliography">
                   <li>
-                    <span id="DiazInfanteVelasco2019">Diaz-Infante Velasco, S. (2019). <i>Existence, characterization, and simulation of optimal policies in a family of epidemic models</i>. Presented in: Décimo Taller de Sistemas Dinámicos y Control en el marco de la XXIX Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxIx-semana-unison-2019-10th-DynamicalSystemsAndControlWorkshop.git</span>
-                    <div id="DiazInfanteVelasco2019-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2019-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2019-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2019,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2019">Diaz-Infante Velasco, S. (2019). <i>Existence, characterization, and simulation of optimal policies in a family of epidemic models</i>. Presented in: Décimo Taller de Sistemas Dinámicos y Control en el marco de la XXIX Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxIx-semana-unison-2019-10th-DynamicalSystemsAndControlWorkshop.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2019()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Beamer-xxIx-semana-unison-2019-10th-DynamicalSystemsAndControlWorkshop.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Beamer-xxIx-semana-unison-2019-10th-DynamicalSystemsAndControlWorkshop.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2019" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2019,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Existence, characterization, and simulation of optimal policies in a family of epidemic models},
   month = mar,
@@ -1196,24 +1388,54 @@
   publisher = {Presented in: Décimo Taller de Sistemas Dinámicos y Control en el marco de la XXIX Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, Hermosillo, Sonora, Mexico},
   url = {https://github.com/SaulDiazInfante/Beamer-xxIx-semana-unison-2019-10th-DynamicalSystemsAndControlWorkshop.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2019/">Details</a>
+                    <div id="absDiazInfanteVelasco2019" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2019(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2019');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2019(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2019');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2019a">Diaz-Infante Velasco, S. (2019). <i>Modelado con Ecuaciones Diferenciales Estocásticas: Formulación, Simulación y Análisis</i>. Presented as minicourse in the Modeling and Control School for biological processes, del 13 al 15 de Noviembre, 2019, Centro de Investigación en Matemáticas A.C. (CIMAT), Guanajuato, Guanajuato, Mexico. Retrieved from https://github.com/SaulDiazInfante/Modelling-Simulation-with-SDE.git</span>
-                    <div id="DiazInfanteVelasco2019a-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2019a-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2019a-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2019a,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2019a">Diaz-Infante Velasco, S. (2019). <i>Modelado con Ecuaciones Diferenciales Estocásticas: Formulación, Simulación y Análisis</i>. Presented as minicourse in the Modeling and Control School for biological processes, del 13 al 15 de Noviembre, 2019, Centro de Investigación en Matemáticas A.C. (CIMAT), Guanajuato, Guanajuato, Mexico. Retrieved from https://github.com/SaulDiazInfante/Modelling-Simulation-with-SDE.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2019a()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Modelling-Simulation-with-SDE.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Modelling-Simulation-with-SDE.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2019a" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2019a,
   author = {{Diaz-Infante Velasco}, Saul},
   note = {Curso rapido en la Escuela de Modelación y Control Aplicado a procesos biológicos CIMAT},
   title = {Modelado con Ecuaciones Diferenciales Estocásticas: Formulación, Simulación y Análisis},
@@ -1224,24 +1446,54 @@
   publisher = {Presented as minicourse in the Modeling and Control School for biological processes, del 13 al 15 de Noviembre, 2019, Centro de Investigación en Matemáticas A.C. (CIMAT), Guanajuato, Guanajuato, Mexico},
   url = {https://github.com/SaulDiazInfante/Modelling-Simulation-with-SDE.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2019a/">Details</a>
+                    <div id="absDiazInfanteVelasco2019a" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2019a(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2019a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2019a(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2019a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2019c">Diaz-Infante Velasco, S. (2019). <i>Modelado con Ecuaciones Diferenciales Estocásticas via Perturbación de Parámetros y una Invitación a la solución numérica de EDEs</i>. Retrieved from https://github.com/SaulDiazInfante/UNACH_beamer_Aug_21_2019.git</span>
-                    <div id="DiazInfanteVelasco2019c-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2019c-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2019c-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2019c,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2019c">Diaz-Infante Velasco, S. (2019). <i>Modelado con Ecuaciones Diferenciales Estocásticas via Perturbación de Parámetros y una Invitación a la solución numérica de EDEs</i>. Retrieved from https://github.com/SaulDiazInfante/UNACH_beamer_Aug_21_2019.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2019c()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/UNACH_beamer_Aug_21_2019.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/UNACH_beamer_Aug_21_2019.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2019c" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2019c,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Modelado con Ecuaciones Diferenciales Estocásticas via Perturbación de Parámetros y una Invitación a la solución numérica de EDEs},
   month = aug,
@@ -1250,24 +1502,54 @@
   publisehr = {Presented in: Seminario de Estudiantes de la Licenciatura en Matemáticas de la Universridad Autonoma de Chiapas (UNACH), Agosto 21, 2019, Tuxtla Guitiérrez, Chiapas, México},
   url = {https://github.com/SaulDiazInfante/UNACH_beamer_Aug_21_2019.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2019c/">Details</a>
+                    <div id="absDiazInfanteVelasco2019c" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2019c(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2019c');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2019c(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2019c');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2019b">Diaz-Infante Velasco, S. (2019). <i>Modeling optimal control strategies in stochastic epidemic models</i>. Presented in the 1st Annual Meeting of MexSIAM, the Mexico Section of the Society for Industrial and Applied Mathematics. Mathematical Biology-Epidemiology, December 9-11, CICESE, Ensenada Baja California, Mexico. Retrieved from https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico.git</span>
-                    <div id="DiazInfanteVelasco2019b-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2019b-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2019b-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2019b,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2019b">Diaz-Infante Velasco, S. (2019). <i>Modeling optimal control strategies in stochastic epidemic models</i>. Presented in the 1st Annual Meeting of MexSIAM, the Mexico Section of the Society for Industrial and Applied Mathematics. Mathematical Biology-Epidemiology, December 9-11, CICESE, Ensenada Baja California, Mexico. Retrieved from https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2019b()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2019b" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2019b,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Modeling optimal control strategies in stochastic epidemic models},
   month = dec,
@@ -1276,11 +1558,30 @@
   publisher = {Presented in the 1st Annual Meeting of MexSIAM, the Mexico Section of the Society for Industrial and Applied Mathematics. Mathematical Biology-Epidemiology, December 9-11, CICESE, Ensenada Baja California, Mexico},
   url = {https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2019b/">Details</a>
+                    <div id="absDiazInfanteVelasco2019b" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2019b(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2019b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2019b(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2019b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                 </ol>
               </div>
@@ -1288,17 +1589,28 @@
                 <h3 id="2020">2020</h3>
                 <ol class="bibliography">
                   <li>
-                    <span id="DiazInfanteVelasco2020">Diaz-Infante Velasco, S. (2020). <i>Modelado de Políticas Fitosanitárias óptimas para cultivos de importancia económica</i>. Presented in: Coloquio Oaxaqueño de Matemáticas del Instituto de Matemáticas de la UNAM, 12 de Marzo 2020, Oaxaca de Juarez, Oaxaca, México. Retrieved from https://github.com/SaulDiazInfante/ColoquioOaxaca2020.git</span>
-                    <div id="DiazInfanteVelasco2020-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2020-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2020-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2020,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2020">Diaz-Infante Velasco, S. (2020). <i>Modelado de Políticas Fitosanitárias óptimas para cultivos de importancia económica</i>. Presented in: Coloquio Oaxaqueño de Matemáticas del Instituto de Matemáticas de la UNAM, 12 de Marzo 2020, Oaxaca de Juarez, Oaxaca, México. Retrieved from https://github.com/SaulDiazInfante/ColoquioOaxaca2020.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2020()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/ColoquioOaxaca2020.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/ColoquioOaxaca2020.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2020" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2020,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Modelado de Políticas Fitosanitárias óptimas para cultivos de importancia económica},
   month = mar,
@@ -1307,24 +1619,54 @@
   publisher = {Presented in: Coloquio Oaxaqueño de Matemáticas del Instituto de Matemáticas de la UNAM, 12 de Marzo 2020, Oaxaca de Juarez, Oaxaca, México},
   url = {https://github.com/SaulDiazInfante/ColoquioOaxaca2020.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2020/">Details</a>
+                    <div id="absDiazInfanteVelasco2020" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2020(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2020');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2020(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2020');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2020b">Diaz-Infante Velasco, S. (2020). <i>Un Modelo estocástico para la enfermedad de rizo amarillo en cultivos de jitomate</i>. Presented in VI Seminario de Matemáticas Aplicadas del Depto. de el Departamentode Matemáticas y Física, Universidad Autonoma de Aguascalientes (UAA), 5 de Junio 2020, Aguascalientes, Aguascalientes, México. Retrieved from https://github.com/SaulDiazInfante/Seminario-UAA-Jun-025.git</span>
-                    <div id="DiazInfanteVelasco2020b-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2020b-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2020b-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2020b,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2020b">Diaz-Infante Velasco, S. (2020). <i>Un Modelo estocástico para la enfermedad de rizo amarillo en cultivos de jitomate</i>. Presented in VI Seminario de Matemáticas Aplicadas del Depto. de el Departamentode Matemáticas y Física, Universidad Autonoma de Aguascalientes (UAA), 5 de Junio 2020, Aguascalientes, Aguascalientes, México. Retrieved from https://github.com/SaulDiazInfante/Seminario-UAA-Jun-025.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2020b()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Seminario-UAA-Jun-025.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Seminario-UAA-Jun-025.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2020b" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2020b,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Un Modelo estocástico para la enfermedad de rizo amarillo en cultivos de jitomate},
   month = jun,
@@ -1333,24 +1675,54 @@
   publisher = {Presented in VI Seminario de Matemáticas Aplicadas del Depto. de el Departamentode Matemáticas y Física, Universidad Autonoma de Aguascalientes (UAA), 5 de Junio 2020, Aguascalientes, Aguascalientes, México},
   url = {https://github.com/SaulDiazInfante/Seminario-UAA-Jun-025.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2020b/">Details</a>
+                    <div id="absDiazInfanteVelasco2020b" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2020b(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2020b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2020b(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2020b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2020a">Diaz-Infante Velasco, S. (2020). <i>Un Modelo Estocástico para la Recontrucción de Masa Osea</i>. Presented in: Taller de Matemáticas Aplicadas dentro del marco de la XXX Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 2 al 6 de Marzo, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxx-semana-unison-2020-AppliedMathematicsWorkshop-.git</span>
-                    <div id="DiazInfanteVelasco2020a-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2020a-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2020a-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2020a,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2020a">Diaz-Infante Velasco, S. (2020). <i>Un Modelo Estocástico para la Recontrucción de Masa Osea</i>. Presented in: Taller de Matemáticas Aplicadas dentro del marco de la XXX Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 2 al 6 de Marzo, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxx-semana-unison-2020-AppliedMathematicsWorkshop-.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2020a()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Beamer-xxx-semana-unison-2020-AppliedMathematicsWorkshop-.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Beamer-xxx-semana-unison-2020-AppliedMathematicsWorkshop-.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2020a" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2020a,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Un Modelo Estocástico para la Recontrucción de Masa Osea},
   month = mar,
@@ -1359,11 +1731,30 @@
   publisher = {Presented in: Taller de Matemáticas Aplicadas dentro del marco de la XXX Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 2 al 6 de Marzo, Hermosillo, Sonora, Mexico},
   url = {https://github.com/SaulDiazInfante/Beamer-xxx-semana-unison-2020-AppliedMathematicsWorkshop-.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2020a/">Details</a>
+                    <div id="absDiazInfanteVelasco2020a" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2020a(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2020a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2020a(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2020a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                 </ol>
               </div>
@@ -1371,17 +1762,28 @@
                 <h3 id="2021">2021</h3>
                 <ol class="bibliography">
                   <li>
-                    <span id="DiazInfanteVelasco2021">Diaz-Infante Velasco, S. (2021). <i>COVID-19 optimal vaccination policies: a modeling study on efficacy, natural and vaccine-induced immunity responses</i>. Presented in the 2nd Annual Meeting of MexSIAM, the Mexico Section of the Society for Industrial and Applied Mathematics. Parallel session: Modeling COVID-19 for descision making in Public Health, June 21-23, CIMAT, Guanajuato, Guanajuato, Mexico. Retrieved from https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-second-annual-Metting.git</span>
-                    <div id="DiazInfanteVelasco2021-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2021-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2021-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2021,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2021">Diaz-Infante Velasco, S. (2021). <i>COVID-19 optimal vaccination policies: a modeling study on efficacy, natural and vaccine-induced immunity responses</i>. Presented in the 2nd Annual Meeting of MexSIAM, the Mexico Section of the Society for Industrial and Applied Mathematics. Parallel session: Modeling COVID-19 for descision making in Public Health, June 21-23, CIMAT, Guanajuato, Guanajuato, Mexico. Retrieved from https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-second-annual-Metting.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2021()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-second-annual-Metting.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-second-annual-Metting.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2021" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2021,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {COVID-19 optimal vaccination policies: a modeling study on efficacy, natural and vaccine-induced immunity responses},
   month = dec,
@@ -1390,24 +1792,54 @@
   publisher = {Presented in the 2nd Annual Meeting of MexSIAM, the Mexico Section of the Society for Industrial and Applied Mathematics. Parallel session: Modeling COVID-19 for descision making in Public Health, June 21-23, CIMAT, Guanajuato, Guanajuato, Mexico},
   url = {https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-second-annual-Metting.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2021/">Details</a>
+                    <div id="absDiazInfanteVelasco2021" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2021(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2021(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2021');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2021a">Diaz-Infante Velasco, S. (2021). <i>Optimal piecewise constant vaccination and lockdown policies for COVID-19</i>. Presented in: II Taller de Matemáticas Aplicadas en el marco de la XXXI Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 24 al 28 de Mayo, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxxi-semana-unison-2021-AppliedMathematicsWorkshop.git</span>
-                    <div id="DiazInfanteVelasco2021a-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2021a-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2021a-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2021a,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2021a">Diaz-Infante Velasco, S. (2021). <i>Optimal piecewise constant vaccination and lockdown policies for COVID-19</i>. Presented in: II Taller de Matemáticas Aplicadas en el marco de la XXXI Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 24 al 28 de Mayo, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxxi-semana-unison-2021-AppliedMathematicsWorkshop.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2021a()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Beamer-xxxi-semana-unison-2021-AppliedMathematicsWorkshop.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Beamer-xxxi-semana-unison-2021-AppliedMathematicsWorkshop.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2021a" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2021a,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Optimal piecewise constant vaccination and lockdown policies for COVID-19},
   month = may,
@@ -1416,24 +1848,54 @@
   publisher = {Presented in: II Taller de Matemáticas Aplicadas en el marco de la XXXI Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 24 al 28 de Mayo, Hermosillo, Sonora, Mexico},
   url = {https://github.com/SaulDiazInfante/Beamer-xxxi-semana-unison-2021-AppliedMathematicsWorkshop.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2021a/">Details</a>
+                    <div id="absDiazInfanteVelasco2021a" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2021a(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2021a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2021a(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2021a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2021c">Diaz-Infante Velasco, S. (2021). <i>Políticas de vacunación para COVID-19: un enfoque de control óptimo</i>. Presented in Cycles of Seminars Covid-19 Sponsored by MexSAIM, JOINT COLLOQUIUM Organized by the Mexican Mathematical Society (SMM), the Mexican Society for Scientific Computing and its Applications (SMCCA) and the Mexico Section of SIAM, 16 de Marzo 2021, modalidad virtual, Ciudad de Mexico. Retrieved from https://youtu.be/7lxN-E3moLo</span>
-                    <div id="DiazInfanteVelasco2021c-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2021c-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2021c-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2021c,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2021c">Diaz-Infante Velasco, S. (2021). <i>Políticas de vacunación para COVID-19: un enfoque de control óptimo</i>. Presented in Cycles of Seminars Covid-19 Sponsored by MexSAIM, JOINT COLLOQUIUM Organized by the Mexican Mathematical Society (SMM), the Mexican Society for Scientific Computing and its Applications (SMCCA) and the Mexico Section of SIAM, 16 de Marzo 2021, modalidad virtual, Ciudad de Mexico. Retrieved from https://youtu.be/7lxN-E3moLo</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2021c()">
+                      Bibtex
+                    </button>
+                    <a href="https://youtu.be/7lxN-E3moLo">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://youtu.be/7lxN-E3moLo">
+                    </a>
+                    <div id="aDiazInfanteVelasco2021c" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2021c,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Políticas de vacunación para COVID-19: un enfoque de control óptimo},
   month = mar,
@@ -1444,11 +1906,30 @@
   publisher = {Presented in Cycles of Seminars Covid-19 Sponsored by MexSAIM, JOINT COLLOQUIUM Organized by the Mexican Mathematical Society (SMM), the Mexican Society for Scientific Computing and its Applications (SMCCA) and the Mexico Section of SIAM, 16 de Marzo 2021, modalidad virtual, Ciudad de Mexico},
   url = {https://youtu.be/7lxN-E3moLo}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2021c/">Details</a>
+                    <div id="absDiazInfanteVelasco2021c" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2021c(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2021c');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2021c(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2021c');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                 </ol>
               </div>
@@ -1456,17 +1937,28 @@
                 <h3 id="2022">2022</h3>
                 <ol class="bibliography">
                   <li>
-                    <span id="DiazInfanteVelasco2022">Diaz-Infante Velasco, S. (2022). <i>Cuantificación de incertidumbre en políticas de vacunación: un modelo para el manejo de inventarios</i>. Presented in: Seminario de juegos, control óptimo y aplicaciones, Cento de Investigación y Docencia Económicas (CIDE), 27 de Abril 2022, Ciudad de México, México. Retrieved from https://www.youtube.com/watch?v=bpKLc6-t1q8</span>
-                    <div id="DiazInfanteVelasco2022-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2022-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2022-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2022,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2022">Diaz-Infante Velasco, S. (2022). <i>Cuantificación de incertidumbre en políticas de vacunación: un modelo para el manejo de inventarios</i>. Presented in: Seminario de juegos, control óptimo y aplicaciones, Cento de Investigación y Docencia Económicas (CIDE), 27 de Abril 2022, Ciudad de México, México. Retrieved from https://www.youtube.com/watch?v=bpKLc6-t1q8</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2022()">
+                      Bibtex
+                    </button>
+                    <a href="https://www.youtube.com/watch?v=bpKLc6-t1q8">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://www.youtube.com/watch?v=bpKLc6-t1q8">
+                    </a>
+                    <div id="aDiazInfanteVelasco2022" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2022,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Cuantificación de incertidumbre en políticas de vacunación: un modelo para el manejo de inventarios},
   month = apr,
@@ -1477,24 +1969,54 @@
   relevance = {high},
   url = {https://www.youtube.com/watch?v=bpKLc6-t1q8}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2022/">Details</a>
+                    <div id="absDiazInfanteVelasco2022" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2022(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2022');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2022(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2022');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2022c">Diaz-Infante Velasco, S. (2022). <i>Modelación de politicas óptimas de vacunación para COVID-19</i>. Presented in: Seminario de CICESE-UT³, Centro de Investigación Científica y de Educación Superior de Ensenada, Unidad de Transferencia Tecnológica Tepic, 13 de Mayo, Tepic Nayarit, Mexico. Retrieved from https://www.youtube.com/watch?v=oP_tylZA0cY&amp;list=PLA7OeH6NGjjV5bSdKJ47j_8fO-WuP8pbt&amp;index=7</span>
-                    <div id="DiazInfanteVelasco2022c-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2022c-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2022c-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2022c,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2022c">Diaz-Infante Velasco, S. (2022). <i>Modelación de politicas óptimas de vacunación para COVID-19</i>. Presented in: Seminario de CICESE-UT³, Centro de Investigación Científica y de Educación Superior de Ensenada, Unidad de Transferencia Tecnológica Tepic, 13 de Mayo, Tepic Nayarit, Mexico. Retrieved from https://www.youtube.com/watch?v=oP_tylZA0cY&amp;list=PLA7OeH6NGjjV5bSdKJ47j_8fO-WuP8pbt&amp;index=7</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2022c()">
+                      Bibtex
+                    </button>
+                    <a href="https://www.youtube.com/watch?v=oP_tylZA0cY&amp;list=PLA7OeH6NGjjV5bSdKJ47j_8fO-WuP8pbt&amp;index=7">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://www.youtube.com/watch?v=oP_tylZA0cY&amp;list=PLA7OeH6NGjjV5bSdKJ47j_8fO-WuP8pbt&amp;index=7">
+                    </a>
+                    <div id="aDiazInfanteVelasco2022c" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2022c,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Modelación de politicas óptimas de vacunación para COVID-19},
   month = may,
@@ -1505,24 +2027,54 @@
   publisher = {Presented in: Seminario de CICESE-UT³, Centro de Investigación Científica y de Educación Superior de Ensenada, Unidad de Transferencia Tecnológica Tepic, 13 de Mayo, Tepic Nayarit, Mexico},
   url = {https://www.youtube.com/watch?v=oP_tylZA0cY&amp;list=PLA7OeH6NGjjV5bSdKJ47j_8fO-WuP8pbt&amp;index=7}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2022c/">Details</a>
+                    <div id="absDiazInfanteVelasco2022c" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2022c(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2022c');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2022c(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2022c');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2022b">Diaz-Infante Velasco, S. (2022). <i>Maximum likekihood estimation for a stochastic SEIR system</i>. Presented in: Taller de Probabilidad y sus Aplicaciones en el marco de la XXXII Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 28 de Marzo al 1 de Abril de 2022, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-AppliedMathWorkshop.git</span>
-                    <div id="DiazInfanteVelasco2022b-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2022b-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2022b-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2022b,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2022b">Diaz-Infante Velasco, S. (2022). <i>Maximum likekihood estimation for a stochastic SEIR system</i>. Presented in: Taller de Probabilidad y sus Aplicaciones en el marco de la XXXII Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 28 de Marzo al 1 de Abril de 2022, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-AppliedMathWorkshop.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2022b()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-AppliedMathWorkshop.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-AppliedMathWorkshop.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2022b" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2022b,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Maximum likekihood estimation for a stochastic SEIR system},
   month = mar,
@@ -1531,24 +2083,54 @@
   publisher = {Presented in: Taller de Probabilidad y sus Aplicaciones en el marco de la XXXII Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 28 de Marzo al 1 de Abril de 2022, Hermosillo, Sonora, Mexico},
   url = {https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-AppliedMathWorkshop.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2022b/">Details</a>
+                    <div id="absDiazInfanteVelasco2022b" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2022b(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2022b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2022b(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2022b');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2022d">Diaz-Infante Velasco, S. (2022). <i>Cuantificación de incertidumbre en políticas de vacunación: un modelo para el manejo de inventarios</i>. Presented in: Taller de Probabilidad y sus Aplicaciones, en el marco de la XXXII Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 28 de Marzo al 1 de Abril de 2022, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-ProbabilityWorkshop.git</span>
-                    <div id="DiazInfanteVelasco2022d-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2022d-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2022d-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2022d,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2022d">Diaz-Infante Velasco, S. (2022). <i>Cuantificación de incertidumbre en políticas de vacunación: un modelo para el manejo de inventarios</i>. Presented in: Taller de Probabilidad y sus Aplicaciones, en el marco de la XXXII Semana Nacional de Investigación y Docencia en Matemáticas de la Universidad de Sonora, del 28 de Marzo al 1 de Abril de 2022, Hermosillo, Sonora, Mexico. Retrieved from https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-ProbabilityWorkshop.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2022d()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-ProbabilityWorkshop.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-ProbabilityWorkshop.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2022d" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2022d,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Cuantificación de incertidumbre en políticas de vacunación: un modelo para el manejo de inventarios},
   month = apr,
@@ -1559,24 +2141,54 @@
   relevance = {high},
   url = {https://github.com/SaulDiazInfante/Beamer-xxxii-semana-unison-2022-ProbabilityWorkshop.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2022d/">Details</a>
+                    <div id="absDiazInfanteVelasco2022d" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2022d(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2022d');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2022d(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2022d');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2022e">Diaz-Infante Velasco, S. (2022). <i>Uncertainty quantification of vaccination policies: a model for stock management with random fluctuations.</i> Retrieved from https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-third-annual-Metting.git</span>
-                    <div id="DiazInfanteVelasco2022e-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2022e-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2022e-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2022e,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2022e">Diaz-Infante Velasco, S. (2022). <i>Uncertainty quantification of vaccination policies: a model for stock management with random fluctuations.</i> Retrieved from https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-third-annual-Metting.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2022e()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-third-annual-Metting.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-third-annual-Metting.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2022e" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2022e,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {Uncertainty quantification of vaccination policies: a model for stock management with random fluctuations.},
   month = jun,
@@ -1586,24 +2198,54 @@
   relevance = {HIGH},
   url = {https://github.com/SaulDiazInfante/Baemer-SIAM-Section-Mexico-third-annual-Metting.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2022e/">Details</a>
+                    <div id="absDiazInfanteVelasco2022e" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2022e(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2022e');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2022e(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2022e');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                   <li>
-                    <span id="DiazInfanteVelasco2022a">Diaz-Infante Velasco, S. (2022). <i>COVID-19 Vaccination modeling: Optimal control, noise, and estimation of parameters</i>. Presented in: UNISON/ASU Stochastic Modeling Seminar, Hemosillo, Sonora México en conjunto con Arizon State University, virtual. Retrieved from https://github.com/SaulDiazInfante/Beamer-ASU-Unison-Seiminar-on-StochasticModels.git</span>
-                    <div id="DiazInfanteVelasco2022a-materials">
-                      <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                          <a data-toggle="collapse" href="javascript:toggleDiv('DiazInfanteVelasco2022a-bibtex')">
-                            [BibTeX]
-                          </a>
-                        </li>
-                        <div id="DiazInfanteVelasco2022a-bibtex" style="display:none;">
-                          <pre class="collapse">
-            @unpublished{DiazInfanteVelasco2022a,
+                    <style>
+                      p.abstract{
+                          background-color: #EFEFEF;
+                          text-align: justify;
+                          border-bottom: 2px #2E2E2E solid;
+                          color: #2E2E2E;
+                          width: 50em;
+                          margin: auto auto;
+                      }
+                    </style>
+                    <div class="text-justify">
+                      <span id="DiazInfanteVelasco2022a">Diaz-Infante Velasco, S. (2022). <i>COVID-19 Vaccination modeling: Optimal control, noise, and estimation of parameters</i>. Presented in: UNISON/ASU Stochastic Modeling Seminar, Hemosillo, Sonora México en conjunto con Arizon State University, virtual. Retrieved from https://github.com/SaulDiazInfante/Beamer-ASU-Unison-Seiminar-on-StochasticModels.git</span>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-raised btn-sm" onclick="toggleBibtexDiazInfanteVelasco2022a()">
+                      Bibtex
+                    </button>
+                    <a href="https://github.com/SaulDiazInfante/Beamer-ASU-Unison-Seiminar-on-StochasticModels.git">
+                      <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:">
+                      <input class="btn btn-outline-success btn-sm" type="button" value="https://github.com/SaulDiazInfante/Beamer-ASU-Unison-Seiminar-on-StochasticModels.git">
+                    </a>
+                    <div id="aDiazInfanteVelasco2022a" style="display: none;">
+                      <pre>@unpublished{DiazInfanteVelasco2022a,
   author = {{Diaz-Infante Velasco}, Saul},
   title = {COVID-19 Vaccination modeling: Optimal control, noise, and estimation of parameters},
   month = apr,
@@ -1613,11 +2255,30 @@
   publisher = {Presented in: UNISON/ASU Stochastic Modeling Seminar, Hemosillo, Sonora México en conjunto con Arizon State University, virtual},
   url = {https://github.com/SaulDiazInfante/Beamer-ASU-Unison-Seiminar-on-StochasticModels.git}
 }
-        </pre>
-                        </div>
-                      </ul>
+</pre>
                     </div>
-                    <a class="details" href="/bibliography/DiazInfanteVelasco2022a/">Details</a>
+                    <div id="absDiazInfanteVelasco2022a" style="display: none;">
+                      <p class="abstract">
+                      </p>
+                    </div>
+                    <script>
+                      function toggleBibtexDiazInfanteVelasco2022a(parameter){
+                          var x= document.getElementById('aDiazInfanteVelasco2022a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                      function toggleAbstractDiazInfanteVelasco2022a(parameter){
+                          var x= document.getElementById('absDiazInfanteVelasco2022a');
+                          if (x.style.display === 'none') {
+                              x.style.display = 'block';
+                          } else {
+                              x.style.display = 'none';
+                          }
+                      }
+                    </script>
                   </li>
                 </ol>
                 <script>

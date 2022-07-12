@@ -811,9 +811,9 @@ scholar:
   # bibliography_template: {{reference}}
   replace_strings: true
   join_strings:    true
-  details_dir:    bibliography
-  details_layout: bibliography
-  details_link:   Details
+  # details_dir:    bibliography
+  # details_layout: bibliography
+  # details_link:   Details
   query: "@*"
 # ------------------------------------------------------------------------------
 # END config

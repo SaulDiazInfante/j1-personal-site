@@ -2066,6 +2066,6 @@ disease extinction.
 == References
 
 ++++
-{% bibliography --file References.bib %}
+{% bibliography --file References.bib --cited %}
 ++++
 

@@ -13,7 +13,7 @@
  # J1 Template is licensed under the MIT License.
  # See: https://github.com/jekyll-one-org/J1 Template/blob/master/LICENSE
  # -----------------------------------------------------------------------------
- #  Adapter generated: 2022-07-13 00:34:13 +0200
+ #  Adapter generated: 2022-07-13 19:23:35 +0200
  # -----------------------------------------------------------------------------
 */
 // -----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ j1.adapter.carousel = (function (j1, window) {
       // -----------------------------------------------------------------------
       var settings = $.extend({
         module_name: 'j1.adapter.carousel',
-        generated:   '2022-07-13 00:34:13 +0200'
+        generated:   '2022-07-13 19:23:35 +0200'
       }, options);
       // -----------------------------------------------------------------------
       // Global variable settings

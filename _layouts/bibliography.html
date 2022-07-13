@@ -49,7 +49,11 @@
 
 {% if entry.code %}
     <a href="{{ entry.code }}">
-        <input class="button3" type="button" value="code" />
+        <input
+                class="btn btn-success btn-raised btn-sm"
+                type="button"
+                value="code"
+        />
     </a>
 {% endif %}
 <div id="a{{entry.key}}" style="display: none;">

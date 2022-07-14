@@ -10,7 +10,8 @@
         margin: auto auto;
     }
 </style>
-<div class="text-justify">{{reference}}
+<div>
+    {{reference}}
 </div>
 <button
         type="button"
@@ -20,7 +21,11 @@
 </button>
 {% if entry.doi%}
     <a href="https://doi.org/{{ entry.doi }}">
-        <input class="btn btn-outline-info btn-sm" type="button" value="DOI:{{ entry.doi }}"/>
+        <input
+                class="btn btn-outline-info btn-sm"
+                type="button"
+                value="DOI:{{ entry.doi }}"
+        />
     </a>
 {% endif %}
 
@@ -36,17 +41,27 @@
 
 {% if entry.preprint %}
     <a href="{{ entry.preprint }}">
-        <input class="btn btn-success btn-raised btn-sm" type="button" value="preprint" />
+        <input
+                class="btn btn-success btn-raised btn-sm"
+                type="button"
+                value="preprint"
+        />
     </a>
 {% endif %}
 
 {% if entry.url %}
     <a href="{{ entry.url }}">
-        <input class="btn btn-success btn-raised btn-sm" type="button" value="URL:" />
-        <input class="btn btn-outline-success btn-sm" type="button" value="{{ entry.url }}"/>
+        <input
+                class="btn btn-success btn-raised btn-sm"
+                type="button" value="URL:"
+        />
+        <input
+                class="btn btn-outline-success btn-sm"
+                type="button"
+                value="{{ entry.url }}"
+        />
     </a>
 {% endif %}
-
 {% if entry.code %}
     <a href="{{ entry.code }}">
         <input

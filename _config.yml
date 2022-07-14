@@ -799,18 +799,20 @@ compress_html:
   envs:                                 []
 
 scholar:
-  style: _bibliography/csl_styles/apa-6th-edition.csl
+  #style: _bibliography/csl_styles/apa-6th-edition.csl
+  style: _bibliography/csl_styles/ieee-with-url.csl
   locale: en
   bibliography-hyperlinks: true
-  sort_by: year
-  order: ascending
+  #sort_by: year
+  # order: ascending
+  bibliography_list_tag: ul
   source: ./_bibliography
   bibliography: References.bib
   bibliography_template: bibliography
-  repository: assets/pdf
+  # repository: assets/pdf
   # bibliography_template: {{reference}}
-  replace_strings: true
-  join_strings:    true
+  #replace_strings: true
+  #join_strings:    true
   # details_dir:    bibliography
   # details_layout: bibliography
   # details_link:   Details

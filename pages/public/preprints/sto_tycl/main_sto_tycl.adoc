@@ -630,19 +630,19 @@ definition +++{% cite Meiss2007 --locator 106 %}+++.
         </span>
     </p>
 </div>
-++++
+
 
 System link:#eq:DeterministicSystem[(1)] has the following fixed points:
-++++
+
 Free disase Equilibrium
 $$
     FDE:= \left(
         N_p,0,0,N^{\infty}_v,0
         \right)^{\top}.
 $$
-++++
+
 and the Endemic Equilibrium
-++++
+
 $$
     EE:=(S_p^{**},
     L_p^{**},
@@ -650,9 +650,6 @@ $$
     S_v^{**},
     I_v^{**}).
 $$
-++++
-
-
 Here we compute this deterministic fixed points of ODE
 link:#eq:DeterministicSystem[(1)]---more details +++{% cite Salcedo-varela2021 %}+++ ---and show that its uniqueness.
 To determine this fixed points, we solve,
@@ -672,37 +669,35 @@ Note that link:#eqn:fixed_points[Eq. (4)] has at least
 two solutions---the free disease $(FDE)$
 and the endemic $(EE)$ fixed point. To characterize
 the free disease solution
-+++$ FDE:= (S_{p} ^ *, L_{p}^*, I_{p}^*, S_{v}^*, I_{v}^*)$+++,
+$ FDE:= (S_{p} ^ *, L_{p}^*, I_{p}^*, S_{v}^*, I_{v}^*)$,
 we assume that
-+++${L^*_p = I_p^* = I_v^* = 0}$+++.
-Consequently, from relation link:eqn:plant_size[(2)],
+${L^*_p = I_p^* = I_v^* = 0}$.
+Consequently, from relation link:#eqn:plant_size[(2)],
 the first component of link:#eqn:fixed_points[Eq. (4)]
-implies +++${S_p ^ * = N_p}$+++. Moreover,
+implies ${S_p ^ * = N_p}$. Moreover,
 from \eqref{eqn:vector_size} we see that
-+++$S_v ^ * + I_v ^ * \to N^{\infty}_v $+++ as
+$S_v ^ * + I_v ^ * \to N^{\infty}_v $ as
 $t \to \infty$, then
-+++$ S_v^* \to N^{\infty}_v$+++.
+$ S_v^* \to N^{\infty}_v$.
 Therefore, FDE results
-+++
 $$
      FDE:= \left(
          N_p,0,0,N^{\infty}_v,0
          \right)^{\top}.
 $$
-+++
 For the endemic fixed point
-+++$
+$
      EE:=(S_p^{**},
      L_p^{**},
      I_p^{**},
      S_v^{**},
      I_v^{**})
-$+++,
-we assume that components +++$L_p^{**}$+++, +++$I_p^{**}$+++, +++$I_v^{**}$+++
+$,
+we assume that components $L_p^{**}$, $I_p^{**}$, $I_v^{**}$
 are positive and solve the right-hand side of
-\eqref{sys::DeterministicSystem} in terms of +++$I_v^{**}$+++.
+link:#eq:DeterministicSystem[(1)] in terms of $I_v^{**}$.
+
 From link:#eqn:fixed_points[Eq. (4)] we obtain
-++++
 \begin{equation*}
 	\begin{aligned}
 		S^{**}_p &=
@@ -734,9 +729,7 @@ From link:#eqn:fixed_points[Eq. (4)] we obtain
  			}.
  	\end{aligned}
  \end{equation*}
-++++
 Expressing the above relations in terms of +++$L_p^{**}, I^{**}_p$+++ results
-++++
 \begin{equation}
      \label{eqn:endemic_point_components}
  	\begin{aligned}
@@ -783,11 +776,9 @@ Expressing the above relations in terms of +++$L_p^{**}, I^{**}_p$+++ results
  		}.
  	\end{aligned}
  \end{equation}
-++++
 //
 Substituting the above relations into the $I_v$ component of
 link:#eq:DeterministicSystem[ODE (1)] yields
-++++
 \begin{align*}
  		&[
  		    b ( \gamma + \gamma_f) \beta_p I ^ {**}_v +
@@ -810,11 +801,7 @@ link:#eq:DeterministicSystem[ODE (1)] yields
   		    b \beta_p \beta_v I^{**}_v
   		).
  	\end{align*}
-++++
-
 Let
-//
-++++
  \begin{align*}
  	a_1 &:=
  		(\gamma + \gamma_f) \beta_p (b + r_2) +
@@ -828,18 +815,13 @@ Let
  	a_3 &:=
  	    (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1).
  \end{align*}
-++++
-//
 So, after some algebraic manipulations, we establish
 the following quadratic equation
-++++
  \begin{equation}\label{eqn::QuadraticInfectedFP}
      	    a_1 I_v^{**2} + a_2 I^{**}_v - a_3 = 0.
  \end{equation}
-++++
 According to the discriminant $\Delta = a_2  ^ 2 -  4a_1 a_3$,
 we get
-++++
  \begin{equation*}
      \begin{aligned}
          \Delta
@@ -860,9 +842,7 @@ we get
                  ].
      \end{aligned}
  \end{equation*}
-++++
 Note that $\Delta$ is positive, this implies two real solutions
-++++
  \begin{equation}
      \label{eqn:I_v_positiity}
  	I^{**}_{v} =
@@ -871,14 +851,12 @@ Note that $\Delta$ is positive, this implies two real solutions
  			\sqrt{a_2^2 - 4a_1 a_3}}%
  		{2a_1}.
  \end{equation}
-++++
 From relations \eqref{eqn:endemic_point_components} and \eqref{eqn:I_v_positiity}
 we obtain endemic fixed point $EE$.
 And using van den Driessche's +++{% cite VandenDriessche2017a %}+++ definition of basic reproductive
 number to compute basic reproductivenumber
 $\mathcal{R}^d_0$ as the spectral radius of the next-generation matrix.
 For the system link:#eq:DeterministicSystem[(1)] next-generation matrix results
-++++
 \begin{equation*}\label{Mtx::NextGenerationMatrix}
      K:=
          \begin{bmatrix}
@@ -891,33 +869,26 @@ For the system link:#eq:DeterministicSystem[(1)] next-generation matrix results
          \\
          \end{bmatrix}.
  \end{equation*}
-++++
 Matrix $K$  has $(i, j)$ entry equal to the expected number of secondary
 infections in the compartment $i$ produced by an infected individual introduced
 in the compartment $j$. Calculating the basic reproductive number for the system
 link:#eq:DeterministicSystem[(1)] we have
-++++
 \begin{equation*}%\label{eqn::DeterministicBRN}
     \mathcal{R}^d_0:=\frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
 \end{equation*}
-++++
 
 The following result give a criteria for the stability of fixed points using basic
 reproductive number $\mathcal{R}^d_0$ +++{% cite VandenDriessche2017a %}+++.
-
-++++
 <div class="theorem" text="Thm.1, p.292 VandenDriessche(2017)">
 
     If $\mathcal{R}^d_0 < 1$, then the fixed point FDE of system
     (1) is locally asymptotically stable.
 </div>
-++++
 Besides,  when $\mathcal{R}^d_0>1$ we have the instability
 of free disease fixed point, but we obtain the stability
 of the endemic fixed point, and we establish the following result.
 
 [#Thm::StabilityEndemicPointBasicReproNumberDeter]
-++++
 <div class="theorem">
     <p>
         If $\mathcal{R}^d_0>1$, then the fixed point EE of
@@ -928,9 +899,6 @@ of the endemic fixed point, and we establish the following result.
     </p>
 </div>
 ++++
-
-
-
 [#sec:stochastic_extension]
 == Stochastic Extension
 
@@ -2305,7 +2273,8 @@ disease extinction.
     <div class="proof" id="prf:persistence_upper">
         <p>
             Using the following Lyapunov function,
-            \begin{equation}\label{eqn::Lyapunov1}
+            \begin{equation}
+            \label{eqn::Lyapunov1}
             \begin{aligned}
                 V(S_p,L_p,S_v,I_v)
                     &=
@@ -2341,9 +2310,9 @@ disease extinction.
             fixed point is bounded.
         </p>
         <p>
-                Since system \eqref{sys::DeterministicSystem} has constant plant population,
+                Since system link:#eq:DeterministicSystem[(1)] has constant plant population,
             let $I_p = N_p-S_p-L_p$, then we rewrite system
-            \eqref{sys::DeterministicSystem} as
+            link:#eq:DeterministicSystem[(1)] as
             \begin{equation}\label{sys::Stc4dSystem}
                 \begin{aligned}
                     dS_p
@@ -2379,7 +2348,7 @@ disease extinction.
             \end{equation}
         </p>
         <p>
-            For the endemic fixed point of system \eqref{sys::DeterministicSystem},
+            For the endemic fixed point of system link:#eq:DeterministicSystem[(1)],
             $
                 (S_p^{**}, L_p^{**}, I_p^{**}, S_v^{**}, I_v^{**}) ^ \top
             $,
@@ -2494,7 +2463,8 @@ disease extinction.
             \end{equation}
         </p>
         <p>
-            Now, we work with $V_2$, According to relation \eqref{eqn::Lyapunov1}, we have
+            Now, we work with $V_2$,
+            According to relation \eqref{eqn::Lyapunov1}, we have
             \begin{equation*}
                 V_{2_{x}} = [(S_p - S_p ^{**} ) +
                             (L_p - L_p ^{**})
@@ -3007,6 +2977,147 @@ disease extinction.
         <span class="right">
             $\square$
         </span>
+    </div>
+    <div class="remark" id="rmk:upper_bound">
+        <p>
+                <a href="#thm::UpperBound">
+                    Theorem *.*
+                </a>
+                shows that if the stochastic reprodctive number
+                is above one and condition \eqref{eqn::NoiseBreak} holds,
+                then the distance between the solution and endemic fixed point is
+                at most $C$.
+        </p>
+    </div>
+
+
+
+
+    <p>
+            The following result shows that, if Assumption 1 holds, and
+        $\mathcal{R}^d_{\bullet}>1$,
+        then the time average of SDE \eqref{sys::StochasticSystem} is positive.
+
+        <div class="theorem">
+            Let Assumption 1 holds. If	$\mathcal{R}^s_{\bullet}>1$,
+            then a.s.
+            \begin{equation} \label{eqn::LC}
+                \begin{aligned}
+                    &\liminf_{t \to \infty}
+                    \frac{1}{t}
+                    \int_0 ^ t S_p dr
+                    \geq
+                    \frac{S_p ^{**} }{2}
+                    -\frac{C}{2 \alpha_1 S_p^{**}}>0,
+                    \\
+                    &\liminf_{t\to \infty}
+                        \frac{1}{t}
+                        \int_0^t
+                            L_p dr
+                        \geq
+                        \frac{L_p ^{**}}{2}
+                        -\frac{C}{2\alpha_2 L^{**}_p}>0,
+                    \\
+                    &	\liminf\limits_{t \to \infty}
+                        \frac{1}{t}
+                        \int_{0} ^ {t} S_v dr
+                        \geq
+                        \frac{S_v ^{**}}{2}
+                        -\frac{C}{2\alpha_3 S_v^{**}}>0,
+                    \\
+                    &	\liminf
+                        \limits_{t \to \infty}
+                        \frac{1}{t}
+                        \int_{0} ^ {t}
+                            I_v dr
+                        \geq
+                        \frac{I_v ^{**}}{2}
+                        - \frac{C}{2 \alpha_4 I_v^{**}}>0.
+                \end{aligned}
+            \end{equation}
+        </div>
+        <a
+            class="btn btn-primary"
+            data-bs-toggle="collapse"
+            href="#prf_persistence_lower"
+            role="button"
+            aria-expanded="false"
+            aria-controls="prf_persistence_lower"
+        >
+            Proof
+        </a>
+    </p>
+    <div class="collapse" id="prf_persistence_lower">
+        <div class="card card-body">
+            <p>
+                    We prove the relations in \eqref{eqn::LC} using
+                <a href="thm::UpperBound">
+                        Theorem *.*
+                </a>.
+                Let $t\geq 0$ be arbitrary and fixed. After algebraic manipulations,
+                we see that
+                \begin{equation}
+                    \label{eqn::LC1}
+                     (S^{**}_p)^2+(S_p-S^{**}_p)^2 \geq 2S^{**}_p(S^{**}_p-S_p).
+                \end{equation}
+                From relation \eqref{eqn::LC1}, we obtain
+                \begin{equation}\label{eqn::LC2}
+                     S_p\geq \frac{S^{**}_p}{2}-\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}.
+                \end{equation}
+                Note that \eqref{eqn::LC2} holds for all $t\geq 0$. Hence,
+                \begin{align*}
+                   \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                     &\geq
+                         \liminf_{t \to \infty}\frac{1}{t}\int^t_0\frac{S^{**}_p}{2}dr
+                         -\liminf_{t \to \infty}\frac{1}{t}\int^t_0\frac{(S_p-S^{**}_p)^2}
+                         {2S^{**}_p}dr.
+                     \\
+                     &=
+                         \frac{S^{**}_p}{2}
+                         -\liminf_{t \to \infty}
+                         \frac{1}{t}\int^t_0\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}dr.
+                \end{align*}
+                Using {% cite Rudin1976% --locator 1.13}
+                and other relations we deduce
+                $$
+                    \limsup_{n \to \infty} (-x_n) = -\liminf_{n \to \infty} x_n,
+                $$ we get
+                \begin{equation}\label{eqn::LC3}
+                    \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                        \geq
+                            \frac{S^{**}_p}{2}
+                            +\limsup_{t \to\infty}
+                            \frac{1}{t}\int^t_0-\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}dr.
+                \end{equation}
+                By Assumption 1, thm::UpperBound implies relation \eqref{eqn:UpperBound}.
+                From this relation, we deduce
+                \begin{equation}\label{eqn::LC4}
+                       \limsup_{t \to \infty}\frac{1}{t}\int^t_0
+         	 		    \alpha_1 (S_p-S^{**}_p)^2dr
+                        \leq C \qquad a.s.
+                \end{equation}
+                Combining \eqref{eqn::LC3} and \eqref{eqn::LC4}, we have
+                \begin{equation*}
+                    \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                        \geq
+                            \frac{S^{**}_p}{2}
+                            -\frac{C}{2\alpha_1 S^{**}_p}.
+                 \end{equation*}
+                Observe relation \eqref{eqn::mimi} yields
+                \begin{equation*}
+                 \frac{\alpha_1(S^{**}_p)^2-C}{2\alpha_1 S^{**}_p }>0,
+                \end{equation*}
+                then
+                \begin{equation*}
+                   \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                     \geq
+                     \frac{S^{**}_p}{2}
+                     -\frac{C}{2\alpha_1 S^{**}_p}>0 \qquad a.s.
+                 \end{equation*}
+                 Therefore, we proved the desired inequality, the other relations in
+                 \eqref{eqn::LC} can be proved similarly.
+            </p>
+        </div>
     </div>
 ++++
 

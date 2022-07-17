@@ -1,2 +1,40 @@
 \input{Table4}
 \input{Table5}
+
+[tbl:deterministic_tbl]
+
+[caption="Table 1. "]
+.Parameters description of deterministic ODE \eqref{eq:DeterministicSystem}.
+
+[cols="1,1,1"]
+|===
+| Par.| Description| Reference sources
+
+| $\beta_p$
+|infection rate of susceptible plants by infected vectors
+|+++{% cite Butter1978%}+++, +++{% cite ramappa1994%}+++
+
+|$\beta_v$
+|infection rate of susceptible vectors by an infected plant
+| +++{%cite Butter1978 ramappa1994 %}+++
+
+|$r_1$, $r_2$
+|replanting rate of latent and infected plants
+| +++{% cite Nateshan1996 %}+++
+
+|$b$
+| latency rate
+| +++{% cite Nateshan1996 %}+++
+
+| $\gamma$, $\gamma_f$
+| natural and fumigation vector death rate
+| +++{% cite Holt1999 Cohen2007 %}+++
+
+|$\mu$
+| vector migration rate from alternative plants to crop
+| +++{% cite Ramappa1998 %}+++
+
+| $\theta$
+| proportion of infected vector from migration
+| +++{% cite ramappa1994 %}+++ +++{% cite Ramappa1998%}+++}
+|===

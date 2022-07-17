@@ -438,7 +438,7 @@ we verify and illustrate our theory with numerical experiments.
     <p>
             We conduct a calibration of the model
         <span>
-            \eqref{eq:DeterministicSystem}
+            $\eqref{eq:DeterministicSystem}$
         </span> based on the parameters and data reported in
         {% cite Holt1999 %} and  via Multi Chain Montecarlo Method (MCMC).
         Here we used the <em> R-Stan</em> implementation and followed the workflow from
@@ -458,47 +458,12 @@ we verify and illustrate our theory with numerical experiments.
             \eqref{eq:DeterministicSystem}
         </span>
         to each tomato data set reported by {% cite Holt1999 %}.
-        autoref{tbl:parameter_value} displays the estimates of the parameters
+        <a href="tbl:parameter_value">
+            Table 2
+        <a> displays the estimates of the parameters
         for each tomato species.
     </p>
 ++++
-
-[tbl:deterministic_tbl]
-[caption="Table 1. "]
-.Parameters description of deterministic ODE \eqref{eq:DeterministicSystem}
-[cols="1,1,1"]
-|===
-| Par.| Description| Reference sources
-
-| $\beta_p$
-|infection rate of susceptible plants by infected vectors
-|+++{% cite Butter1978%}+++, +++{% cite ramappa1994%}+++
-
-|$\beta_v$
-|infection rate of susceptible vectors by an infected plant
-| +++{%cite Butter1978 ramappa1994 %}+++
-
-|$r_1$, $r_2$
-|replanting rate of latent and infected plants
-| +++{% cite Nateshan1996 %}+++
-
-|$b$
-| latency rate
-| +++{% cite Nateshan1996 %}+++
-
-| $\gamma$, $\gamma_f$
-| natural and fumigation vector death rate
-| +++{% cite Holt1999 Cohen2007 %}+++
-
-|$\mu$
-| vector migration rate from alternative plants to crop
-| +++{% cite Ramappa1998 %}+++
-
-| $\theta$
-| proportion of infected vector from migration
-| +++{% cite ramappa1994 Ramappa1998 %}+++
-|===
-
 
 ++++
     <span id="fig:fitnonresistance">
@@ -514,12 +479,12 @@ lightbox::example-standalone[ 800, {data-image-figure-1}, role="mb-4" ]
     </span>
 ++++
 
-.Figure 2. Confidence bands of cumulative disease incidence to resistan tdata set. ($\color{darkblue}{\blacksquare}$,$\color{orange}{\bullet}$) LA1582, and Tyking tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in <a href="#tbl:parameter_value"> Table 1 </a>. Data from Holt and Muniyappa {% cite Holt1999 %}. See <a href="https://plotly.com/~AdrianSalcedo/339/"> https://plotly.com/~AdrianSalcedo/339/</a> for a interactive visualization.
+.Figure 2. Confidence bands of cumulative disease incidence to resistan tdata set. ($\color{darkblue}{\blacksquare}$,$\color{orange}{\bullet}$) LA1582, and Tyking tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in <a href="#tbl:parameter_value"> Table 2 </a>. Data from Holt and Muniyappa {% cite Holt1999 %}. See <a href="https://plotly.com/~AdrianSalcedo/339/"> https://plotly.com/~AdrianSalcedo/339/</a> for a interactive visualization.
 
 lightbox::example-standalone[ 800, {data-image-figure-2}, role="mb-4" ]
 
 TODO: Reproduce Table 2.
-[tbl:parameter_value]
+//[tbl:parameter_value]
 ++++
     <table class="table-dark" id="tbl:parameter_value">
         <thead>
@@ -623,9 +588,6 @@ TODO: Reproduce Table 2.
     </table>
 ++++
 
-
-
-
 [subsec:deterministic_fixed_points]
 === Deterministic Fixed Points
 ++++
@@ -671,7 +633,7 @@ TODO: Reproduce Table 2.
         is positive invariant in the sense of the following
         definition {% cite Meiss2007 --locator 106 %}.
     </p>
-    <div class="definition", text='Invariant set '>
+    <div class="definition", text='Invariant set'>
         <p>
                 Let $f:[0,T]\times \Gamma \subset \mathbb{R}^n\to \mathbb{R}^n$.
             We say that $\Gamma $ is an invariant set under $f$,
@@ -3154,7 +3116,7 @@ disease extinction.
             \end{equation}
         </div>
         <a
-            class="btn btn-primary"
+            class="btn btn-primary btn-sm"
             data-bs-toggle="collapse"
             href="#prf_persistence_lower"
             role="button"
@@ -3164,7 +3126,8 @@ disease extinction.
             Proof
         </a>
     </p>
-    <div class="collapse" id="prf_persistence_lower">
+    <div class="collapse w-auto p-3" id="prf_persistence_lower">
+    </div>
         <div class="card card-body">
             <p>
                     We prove the relations in \eqref{eqn::LC} using
@@ -3358,7 +3321,7 @@ the tomato data.
 
 [fig:LA1582fit]
 
-.Confidence band likening of deterministic and stochastic model to cumulative incidence data. ($\color{darkblue}{\blacksquare}$) LA 1582 specie data.The orange shaded region shows 95\% confidence band in the deterministic case, and the blue shaded region the 95\% confidence band in the stochastic case. Red, and blue lines represent deterministic, and stochastic median incidence curve, respectively. For parameters values, see \autoref{tbl:parameter_value}. Figure accessible in\href{https://plotly.com/~AdrianSalcedo/367/}
+.Confidence band likening of deterministic and stochastic model to cumulative incidence data. ($\color{darkblue}{\blacksquare}$) LA 1582 specie data.The orange shaded region shows 95\% confidence band in the deterministic case, and the blue shaded region the 95\% confidence band in the stochastic case. Red, and blue lines represent deterministic, and stochastic median incidence curve, respectively. For parameters values, see <a href="tbl:parameter_value">Table 2<a>. Figure accessible in\href{https://plotly.com/~AdrianSalcedo/367/}
 
 lightbox::example-standalone[800, {data-image-figure-6}, role="mb-4" ]
 

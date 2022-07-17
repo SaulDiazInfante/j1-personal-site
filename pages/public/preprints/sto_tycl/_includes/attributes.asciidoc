@@ -86,9 +86,9 @@ tag::data[]
 
 :data-image-figure-2: "pages/preprints/sto_tycl/figures/figure_02.jpg, Calibration of parameters"
 
-:data-image-figure-3: "pages/preprints/sto_tycl/figures/figure_03.jpg, Calibration of parameters"
+:data-image-figure-3: "pages/preprints/sto_tycl/figures/figure_03.jpg, Extinction by noise"
 
-:data-image-figure-4: "pages/preprints/sto_tycl/figures/figure_04.jpg, Calibration of parameters"
+:data-image-figure-4: "pages/preprints/sto_tycl/figures/figure_04.jpg, Sample paths for stochastic reproductive number extinction"
 
 :data-image-figure-5: "pages/preprints/sto_tycl/figures/figure_05.jpg, Calibration of parameters"
 

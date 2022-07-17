@@ -216,9 +216,16 @@ resource_options:
         content: '(ASS-'counter(step-counter)')';
         margin-right: 5px;
     }
+    th {
+        text-align: center;
+        border-style: hidden;
+    }
+    table, td, tr{
+        border-style: hidden;
+        border-collapse: collapse;
+    }
 </style>
 ++++
-
 
 == Abstract
 Diseases transmitted by vectors in crops represent a severe risk to
@@ -291,12 +298,12 @@ migration produced in fumigation. Our study attempts to capture
 the impact of ambient noise and try to explain it by formal
 analysis and simulation.
 
-According to Britton et al. +++{% cite Britton2019 %}+++, stochastic effects
-of an epidemic model are essential when the underlying
-population size is relatively small (at most hundreds).
-However, recently have been reported studies that attempt
-the same methodology of deterministic models in
-mathematical epidemiology—being positivity,
+According to Britton et al. +++{% cite Britton2019 %}+++,
+stochastic effects of an epidemic model are essential when
+the underlying population size is relatively small
+(at most hundreds). However, recently have been reported
+studies that attempt the same methodology of deterministic
+models in mathematical epidemiology—being positivity,
 invariance, extinction, and persistence the primary
 objects of study. In respect of this regard, we refer
 the reader to
@@ -307,7 +314,8 @@ Roughly speaking, the methodology bases
 the analysis on study versions of a SIR structure
 and characterizes conditions to extinction-persistence
 for a convenient definition of a stochastic
-reproductive number, see +++{% cite Cao2016a  ZhaoJiang2015 Rifhat2021 Ji2014 %}+++.
+reproductive number, see
++++{% cite Cao2016a  ZhaoJiang2015 Rifhat2021 Ji2014 %}+++.
 
 Regarding plant-vector-host structures, we see relevant
 the contributions of Allen et al. +++{% cite Gray2011 %}+++
@@ -334,14 +342,12 @@ illustrate our results by numerical simulation.
 
 We aim to quantify the effects of uncertainty
 of the mentioned controls over the extinction and persistence
-of the disease.
-We conclude that noise would play a crucial role
+of the disease. We conclude that noise would play a crucial role
 in the trade-off between extinction and persistence.
 In other words, the combination of errors due by plant
 identification and random fluctuations of vector migration
 would lead to the death of healthy and infected plants and or
-its prevalence.
-Consequently, the local behaviour of vectors follows similar
+its prevalence. Consequently, the local behaviour of vectors follows similar
 codependency.
 
 Using the package **DifferentialEquation.jl** from *Julia*
@@ -370,85 +376,96 @@ persistence in link:#sec:persistence[Section 6]. Finally in link:#sec:numerics[S
 we verify and illustrate our theory with numerical experiments.
 
 [#sec:model_formulation]
+
 == Deterministic base dynamics
-Here, we adapt the deterministic dynamics presented by
-Holt et al. +++{% cite Holt1999 %}+++. Following the authors,
-we split the plant population according to,
-susceptible $ (S_p) $, latent $ (L_p) $, and infected
-$ (I_p) $. And divide vector population into susceptible
-$S_v$ and $I_v$ infected classes.
-We consider the following assumptions: Susceptible plants become latent
-plants when an infected vector feeds on them at constant rate, $\beta_p$.
-Latent plants become infected plants at a rate of $b$. We replant latent and
-infected plants that are detected at rate $r_1$ and $r_2$, respectively.
-Removed plants are replanting as susceptible plants in the crop.
-For vector dynamics, we consider that susceptible vectors become acquirer
-disease, at rate $\beta_v$, when they eat an infected plant. We assume natural
-vector die at rate $\gamma$, and by fumigation at rate $\gamma_f$. A proportion
-of the susceptible and infected vectors migrates from alternatives host plants
-to the crop.
-
-
-With these hypotheses, the model has the following equations
-
-[#eq:DeterministicSystem]
 ++++
-	\begin{equation}
-		\label{eq:DeterministicSystem}
-		\begin{aligned}
-			\dot{S_p} &=
-				-\beta_p S_p
-				\frac{I_v}{N_v} + r_1 L_p + r_2 I_p
-			\\
-			\dot{L_p} &=
-				\beta_p S_p
-				\frac{I_v}{N_v} - (b + r_1) L_p
-			\\
-			\dot{I_p} &=
-				b L_p - r_2 I_p  \\
-			\dot{S_v} &=
-				-\beta_v S_v
-				\frac{I_p}{N_p} - (\gamma + \gamma_f) S_v
-				+(1-\theta) \mu
-			\\
-			\dot{I_v} &=
-				\beta_v S_v \frac{I_p}{N_p}
-				- (\gamma + \gamma_f) I_v
-				+ \theta \mu
-				 \\
-				S_p(0) &=S_{p0}, \qquad
-				L_p(0) = L_{p0}, \qquad
-				I_p(0) = I_{p0},
-				\\
-				 S_v(0) &= S_{v0}, \qquad
-				  I_v(0) = I_{v0},
-				 \\
-				 N_p(t) &= S_p(t) + L_p(t) + I_p(t),
-				 \\
-				 N_v(t) &= S_v(t) + I_v(t).
-		\end{aligned}
-	\end{equation}
+    <p>
+            Here, we adapt the deterministic dynamics presented by
+        Holt et al. {% cite Holt1999 %}. Following the authors,
+        we split the plant population according to,
+        susceptible $ (S_p) $, latent $ (L_p) $, and infected
+        $ (I_p) $. And divide vector population into susceptible
+        $S_v$ and $I_v$ infected classes.
+        We consider the following assumptions: Susceptible plants become latent
+        plants when an infected vector feeds on them at constant rate, $\beta_p$.
+        Latent plants become infected plants at a rate of $b$. We replant latent and
+        infected plants that are detected at rate $r_1$ and $r_2$, respectively.
+        Removed plants are replanting as susceptible plants in the crop.
+        For vector dynamics, we consider that susceptible vectors become acquirer
+        disease, at rate $\beta_v$, when they eat an infected plant. We assume natural
+        vector die at rate $\gamma$, and by fumigation at rate $\gamma_f$. A proportion
+        of the susceptible and infected vectors migrates from alternatives host plants
+        to the crop.
+    </p>
+    <p>
+            With these hypotheses, the model has the following equations
+        \begin{equation}
+            \label{eq:DeterministicSystem}
+            \begin{aligned}
+                \dot{S_p} &=
+                    -\beta_p S_p
+                    \frac{I_v}{N_v} + r_1 L_p + r_2 I_p
+                \\
+                \dot{L_p} &=
+                    \beta_p S_p
+                    \frac{I_v}{N_v} - (b + r_1) L_p
+                \\
+                \dot{I_p} &=
+                    b L_p - r_2 I_p  \\
+                \dot{S_v} &=
+                    -\beta_v S_v
+                    \frac{I_p}{N_p} - (\gamma + \gamma_f) S_v
+                    +(1-\theta) \mu
+                \\
+                \dot{I_v} &=
+                    \beta_v S_v \frac{I_p}{N_p}
+                    - (\gamma + \gamma_f) I_v
+                    + \theta \mu
+                     \\
+                    S_p(0) &=S_{p0}, \qquad
+                    L_p(0) = L_{p0}, \qquad
+                    I_p(0) = I_{p0},
+                    \\
+                     S_v(0) &= S_{v0}, \qquad
+                      I_v(0) = I_{v0},
+                     \\
+                     N_p(t) &= S_p(t) + L_p(t) + I_p(t),
+                     \\
+                     N_v(t) &= S_v(t) + I_v(t).
+            \end{aligned}
+        \end{equation}
+    </p>
+    <p>
+            We conduct a calibration of the model
+        <span>
+            \eqref{eq:DeterministicSystem}
+        </span> based on the parameters and data reported in
+        {% cite Holt1999 %} and  via Multi Chain Montecarlo Method (MCMC).
+        Here we used the <em> R-Stan</em> implementation and followed the workflow from
+        {% cite Grinsztajn2021 %}.
+        We refer the reader to the supplementary material
+        {% cite Salcedo-varela2021 %} for more details.
+    </p>
+    <p>
+        <a href="#fig:fitnonresistance">
+            Figure 1
+        </a>
+            and
+        <a href="#fig:fitresistance">
+            2
+        </a> show the confidence band, and the median for
+        <span>
+            \eqref{eq:DeterministicSystem}
+        </span>
+        to each tomato data set reported by {% cite Holt1999 %}.
+        autoref{tbl:parameter_value} displays the estimates of the parameters
+        for each tomato species.
+    </p>
 ++++
 
-We conduct a calibration of the model
-link:#eq:DeterministicSystem[(1)]
-based on the parameters and data reported in
-+++{% cite Holt1999 %}+++ and  via Multi Chain Montecarlo Method (MCMC).
-Here we used the *R-Stan* implementation and followed the workflow from
-+++{% cite Grinsztajn2021 %}+++.
-We refer the reader to the supplementary material
-+++{% cite Salcedo-varela2021 %}+++
-for more details.
-
-Figure link:#fig:fitnonresistance[ 1] and link:#fig:fitresistance[2]
-show the confidence band, and the median for link:#eq:DeterministicSystem[model (1)]
-to each tomato data set reported by +++{% cite Holt1999 %}+++.
-autoref{tbl:parameter_value} displays the estimates of the parameters
-for each tomato species.
-
-[#tbl:deterministic_tbl]
+[tbl:deterministic_tbl]
 [caption="Table 1. "]
-.Parameters description of deterministic dynamics in ODE link:#eq:DeterministicSystem[(1)]
+.Parameters description of deterministic ODE \eqref{eq:DeterministicSystem}
 [cols="1,1,1"]
 |===
 | Par.| Description| Reference sources
@@ -482,423 +499,523 @@ for each tomato species.
 | +++{% cite ramappa1994 Ramappa1998 %}+++
 |===
 
-[#fig:fitnonresistance]
 
-.Figure {counter:figure-number} Callibration Confidence bands for cumulative disease incidence of link:#eq:DeterministicSystem[model (1)]
-for non-resistant tomato data. Squares denote Rashmi, and points PSCL-4 tomato species data. The blue and red line
-represents the median incidence curve. Parameter values fixed in Table 2.
-Data from Holt and Muniyappa. Digital edition figures feasible in https://plotly.com/AdrianSalcedo/347/[].
+++++
+    <span id="fig:fitnonresistance">
+    </span>
+++++
+
+.Figure 1. Callibration Confidence bands for cumulative disease incidence of \eqref{eq:DeterministicSystem} for non-resistant tomato data. Squares denote Rashmi, and points PSCL-4 tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in Table 2. Data from Holt and Muniyappa. Digital edition figures feasible in https://plotly.com/AdrianSalcedo/347/[].
 
 lightbox::example-standalone[ 800, {data-image-figure-1}, role="mb-4" ]
 
-[#fig:fitresistance]
+++++
+    <span id="fig:fitresistance">
+    </span>
+++++
 
-.Figure {counter:figure-number} Confidence bands of cumulative disease incidence to resistan tdata set.
-($\color{darkblue}{\blacksquare}$,$\color{orange}{\bullet}$) LA1582, and
-Tyking tomato species data.
-The blue and red line represents the median incidence curve.
-Parameter values fixed in link:#tbl:parameter_value[Table 1].
-Data from Holt and Muniyappa +++{% cite Holt1999 %}+++.
-See https://plotly.com/~AdrianSalcedo/339/[] for a interactive visualization.
+.Figure 2. Confidence bands of cumulative disease incidence to resistan tdata set. ($\color{darkblue}{\blacksquare}$,$\color{orange}{\bullet}$) LA1582, and Tyking tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in <a href="#tbl:parameter_value"> Table 1 </a>. Data from Holt and Muniyappa {% cite Holt1999 %}. See <a href="https://plotly.com/~AdrianSalcedo/339/"> https://plotly.com/~AdrianSalcedo/339/</a> for a interactive visualization.
 
 lightbox::example-standalone[ 800, {data-image-figure-2}, role="mb-4" ]
 
 TODO: Reproduce Table 2.
-[#tbl:parameter_value]
+[tbl:parameter_value]
+++++
+    <table class="table-dark" id="tbl:parameter_value">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <td colspan="3" class="table-borderless">
+                    Quantile
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">
+                    Par.
+                </th>
+                <th scope="col">
+                    Defaul value
+                </th>
+                <th scope="col">
+                    2.5%
+                </th>
+                <th scope="col">
+                    50%
+                </th>
+                <th scope="col">
+                    97.5%
+                </th>
+                <th scope="col">
+                    Unit
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3" class="table-default">
+                    Rashmi
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    $\beta_p$
+                </td>
+                <td>
+                    $0.1 ^ \dag$
+                </td>
+                <td> 0.023 860 126 </td>
+                <td> 0.033 080 739 </td>
+                <td> 0.044 936 614 </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>
+                    $r_1$
+                </td>
+                <td>
+                    $0.01 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>
+                    $r_2$
+                </td>
+                <td>
+                    $0.01 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+            </tr>
+            <tr>
+                <td>
+                    $b$
+                </td>
+                <td>
+                    $0.075 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>
+                    $\beta_v$
+                </td>
+                <td>
+                    $ 0.003 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+++++
 
-[#subsec:deterministic_fixed_points]
+
+
+
+[subsec:deterministic_fixed_points]
 === Deterministic Fixed Points
-
-According to  ODE link:#eq:DeterministicSystem[(1)], let
-$N_v^{\infty}:= {\mu}/{( \gamma + \gamma_f)}$.
-Let $\mathbf{R} ^ 5$ and consider the set
 ++++
-    \begin{equation*}
-        %\label{eqn:invariant_set}
-	    \Gamma:=
-		    \left \{
-			(S_p, L_p, I_p, S_v, I_v)^{\top} \in \mathbf{R} ^ 5: \
-			0\leq S_p + L_p + I_p \leq N_p, \quad
-			0 \leq S_v + I_v \leq N_v^{\infty}
-		\right \}.
-    \end{equation*}
-++++
-Note that
-[#eqn:plant_size]
-++++
-\begin{equation}\label{eqn:plant_size}
-    \begin{aligned}
-        \frac{d N_p}{dt} &=
-			\frac{d}{dt}(S_p + L_p + I_p) = 0,
-			\\
-        \frac{d N_v}{dt} &=
-            \mu - ( \gamma + \gamma_f) N_v.
-    \end{aligned}
-\end{equation}
-++++
-Thus the whole plant population $N_p(t)$ remains
-constant for all $t\geq 0$. In addition,
-\begin{equation}
-    \label{eqn:vector_size}
-    N_v(t)= N^{\infty}_v +
-        (N_v(0) - N^{\infty}_v) \exp(-( \gamma + \gamma_f) t) .
-\end{equation}
-From this relation, we conclude that
-$
-    \lim_{t\to\infty}
-    N_v(t) = N_v^{\infty},
-$
-and that population sizes $N_p(t)$, $N_v(t)$ satisfies a
-conservative law. To summarize, we prove that set $\Gamma$
-is positive invariant in the sense of the following
-definition +++{% cite Meiss2007 --locator 106 %}+++.
-++++
-<div class="definition", text='Invariant set '>
     <p>
-            Let $f:[0,T]\times \Gamma \subset \mathbb{R}^n\to \mathbb{R}^n$.
-        We say that $\Gamma $ is an invariant set under $f$,
-        if $f(t,\Gamma)\subset \Gamma$ for all $t\in [0, T]$.
+            According to  ODE \eqref{eq:DeterministicSystem}, let
+        $N_v^{\infty}:= {\mu}/{( \gamma + \gamma_f)}$.
+        Let $\mathbf{R} ^ 5$ and consider the set
+        \begin{equation*}
+            \Gamma:=
+		        \left \{
+			    (S_p, L_p, I_p, S_v, I_v)^{\top} \in \mathbf{R} ^ 5: \
+			    0\leq S_p + L_p + I_p \leq N_p, \quad
+			    0 \leq S_v + I_v \leq N_v^{\infty}
+		    \right \}.
+        \end{equation*}
+        Note that
+        \begin{equation}
+            \label{eqn:plant_size}
+            \begin{aligned}
+            \frac{d N_p}{dt} &=
+			    \frac{d}{dt}(S_p + L_p + I_p) = 0,
+			    \\
+            \frac{d N_v}{dt} &=
+                \mu - ( \gamma + \gamma_f) N_v.
+            \end{aligned}
+        \end{equation}
     </p>
-</div>
-++++
+    <p>
+            Thus the whole plant population $N_p(t)$ remains
+        constant for all $t\geq 0$. In addition,
+        \begin{equation}
+            \label{eqn:vector_size}
+            N_v(t)= N^{\infty}_v +
+                (N_v(0) - N^{\infty}_v) \exp(-( \gamma + \gamma_f) t) .
+        \end{equation}
 
-
-[#thm:positive_invariance]
-++++
-    <div class="theorem", text='Positive-invariance'>
+        From this relation, we conclude that
+        $
+            \lim_{t\to\infty}
+            N_v(t) = N_v^{\infty},
+        $ and that population sizes $N_p(t)$, $N_v(t)$ satisfies a
+        conservative law. To summarize, we prove that set $\Gamma$
+        is positive invariant in the sense of the following
+        definition {% cite Meiss2007 --locator 106 %}.
+    </p>
+    <div class="definition", text='Invariant set '>
+        <p>
+                Let $f:[0,T]\times \Gamma \subset \mathbb{R}^n\to \mathbb{R}^n$.
+            We say that $\Gamma $ is an invariant set under $f$,
+            if $f(t,\Gamma)\subset \Gamma$ for all $t\in [0, T]$.
+        </p>
+    </div>
+    <div class="theorem", text='Positive-invariance' id="thm:positive_invariance">
         <p>
             The set $\Gamma$ is positive invariant.
         </p>
     </div>
-++++
-
-++++
-<div class="proof">
+    <div class="proof">
+        <p>
+            Let $(S_p,L_p,I_p,S_v,I_v)^\top \in \Gamma$ and apply the
+            right-hand side of dynamic \eqref{eq:DeterministicSystem}.
+            We have
+            \begin{align*}
+                    \frac{dS_p}{dt}
+                        &=
+                        -\beta_p S_p
+                    \frac{I_v}{N_v} + r_1 L_p + r_2 I_p ,
+                \\
+                    \frac{dL_p}{dt}
+                        &=
+                            \beta_p S_p\frac{I_v}{N_v} - (b + r_1) L_p ,
+                \\
+                    \frac{dI_p}{dt}
+                        &=
+                            b L_p - r_2 I_p,
+                \\
+                    \frac{dS_v}{dt}
+                        &=
+                            -\beta_v S_v\frac{I_p}{N_p} -
+                            ( \gamma + \gamma_f) S_v+(1-\theta) \mu ,
+                \\
+                    \frac{dI_v}{dt}
+                        &=
+                            \beta_v S_v \frac{I_p}{N_p} - ( \gamma + \gamma_f) I_v
+                            + \theta \mu.
+             \end{align*}
+             Now, verifying $\Gamma$ conditions, we get
+            $dS_p / dt + dL_p / dt + dI_p / dt \leq dN_p / dt$.
+            By law conservation
+            <a href="#eqn:plant_size">
+                (2)
+            </a>,
+            $S_p+L_p+I_p\leq N_p$.
+            Similarly,
+            $
+                dS_v / dt +  dI_v / dt \leq \mu  -(\gamma + \gamma_f) (S_v + I_v) \leq
+                \mu - ( \gamma + \gamma_f) N_v
+            $.
+            Further, from relation \eqref{eqn:vector_size}, we obtain
+            $
+                S_v+I_v\leq N^{\infty}_v+(N_v(0)-N^{\infty}_v)\exp{(-
+            ( \gamma + \gamma_f) t)}
+            $.
+            Since this is for all $t$, we have $S_v+I_v\leq N^{\infty}_v$, hence
+            $f(S_p,L_p,I_p,S_v,I_v) \in \Gamma$. Therefore, $\Gamma$ is
+            invariant under system \eqref{eq:DeterministicSystem}
+            <span class="right">
+                $\square$.
+            </span>
+        </p>
+    </div>
     <p>
-        Let $(S_p,L_p,I_p,S_v,I_v)^\top \in \Gamma$ and apply the
-        right-hand side of dynamic <a href="#eq:DeterministicSystem">(1)</a>.
-        We have
+        System \eqref{eq:DeterministicSystem} has the following fixed points:
+        Free disase Equilibrium
+        $$
+            FDE:= \left(
+                N_p,0,0,N^{\infty}_v,0
+                \right)^{\top}.
+        $$
+        and the Endemic Equilibrium
+        $$
+            EE:=(S_p^{**},
+            L_p^{**},
+            I_p^{**},
+            S_v^{**},
+            I_v^{**}).
+        $$
+            Here we compute this deterministic fixed points of ODE
+        \eqref{eq:DeterministicSystem}---more details
+        {% cite Salcedo-varela2021 %} ---and show that its uniqueness.
+        To determine this fixed points, we solve,
+        \begin{equation}
+            \label{eqn:fixed_points}
+            \begin{aligned}
+                -\beta_p S_p \frac{I_v}{N_v} + r_1L_p+r_2I_p &= 0\\
+                \beta_p S_p \frac{I_v}{N_v} - (b + r_1) L_p &= 0\\
+                b L_p - r_2 I_p &= 0\\
+                -\beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) S_v +(1-\theta) \mu &= 0\\
+                \beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) I_v + \theta \mu &= 0.
+            \end{aligned}
+        \end{equation}
+    </p>
+    <p>
+        Note that link:#eqn:fixed_points[Eq. (4)] has at least
+        two solutions---the free disease $(FDE)$
+        and the endemic $(EE)$ fixed point. To characterize
+        the free disease solution
+        $ FDE:= (S_{p} ^ *, L_{p}^*, I_{p}^*, S_{v}^*, I_{v}^*)$,
+        we assume that
+        ${L^*_p = I_p^* = I_v^* = 0}$.
+        Consequently, from relation link:#eqn:plant_size[(2)],
+        the first component of link:#eqn:fixed_points[Eq. (4)]
+        implies ${S_p ^ * = N_p}$. Moreover,
+        from \eqref{eqn:vector_size} we see that
+        $S_v ^ * + I_v ^ * \to N^{\infty}_v $ as
+        $t \to \infty$, then
+        $ S_v^* \to N^{\infty}_v$.
+        Therefore, FDE results
+        $$
+            FDE:= \left(
+                 N_p,0,0,N^{\infty}_v,0
+                 \right)^{\top}.
+        $$
+        For the endemic fixed point
+        $
+             EE:=(S_p^{**},
+             L_p^{**},
+             I_p^{**},
+             S_v^{**},
+             I_v^{**})
+        $,
+        we assume that components $L_p^{**}$, $I_p^{**}$, $I_v^{**}$
+        are positive and solve the right-hand side of
+        \eqref{eq:DeterministicSystem} in terms of $I_v^{**}$.
+    </p>
+    <p>
+        From link:#eqn:fixed_points[Eq. (4)] we obtain
+        \begin{equation*}
+            \begin{aligned}
+                S^{**}_p &=
+                    \frac{
+                        (r_1 L^{**}_p + r_2 I ^ {**} _ p) N_v
+                    }{
+                        I^{**}_v \beta_{p}
+                    }
+                 \\
+                L^{**}_p &=
+                    \frac{
+                        \beta_{p} S_p^{**} I_v^{**}
+                    }{
+                        N_v \left( b+r_1 \right)
+                    },
+                \\
+                I ^ {**} _ p &=
+                    \frac{b L^{**}_p}{r_2},
+                \\
+                S^{**}_v &=
+                    \frac{
+                        \left(
+                            1-\theta
+                        \right)
+                        \mu\, N_{p}
+                    }{
+                        ( \gamma + \gamma_f)\, N_{p} + I^{**}_p
+                        \beta_{v}
+                    }.
+            \end{aligned}
+        \end{equation*}
+    </p>
+        Expressing the above relations in terms of $L_p^{**}, I^{**}_p$ results
+        \begin{equation}
+             \label{eqn:endemic_point_components}
+            \begin{aligned}
+                S^{**}_p &=
+                    \frac{
+                        (r_1 L^{**}_p + r_2 I^{**}_p) N_v
+                    }{
+                        I^{**}_v \beta_{p}
+                    },
+            \\
+            L^{**}_p &=
+                \frac{
+                    r_1L_p^{**} + r_2 I^{**}_p
+                }{
+                b + r_1
+                },
+            \\
+            I^{**}_p &=
+                \frac{
+                    b (r_1 L_p^{**} + r_2 I_p^{**})
+                }{
+                     \left(
+                         b + r_1
+                     \right)
+                      r_2
+                },
+            \\
+            S^{**}_v &=
+                \frac{
+                     \left(
+                        1 - \theta
+                     \right)
+                     \mu(b + r_1)
+                     r_2N_p
+                }{
+                    ( \gamma + \gamma_f) N_p(b + r_1)
+                    r_2 +
+                    b
+                    (
+                        r_1 L_p ^ {**} + r_2
+                        I_p ^ {**}
+                    )
+                    \beta_v
+                }.
+            \end{aligned}
+         \end{equation}
+    </p>
+    <p>
+        Substituting the above relations into the $I_v$ component of
+        \eqref{eq:DeterministicSystem} yields
         \begin{align*}
-                \frac{dS_p}{dt}
-                    &=
-                    -\beta_p S_p
-                \frac{I_v}{N_v} + r_1 L_p + r_2 I_p ,
-            \\
-                \frac{dL_p}{dt}
-                    &=
-                        \beta_p S_p\frac{I_v}{N_v} - (b + r_1) L_p ,
-            \\
-                \frac{dI_p}{dt}
-                    &=
-                        b L_p - r_2 I_p,
-            \\
-                \frac{dS_v}{dt}
-                    &=
-                        -\beta_v S_v\frac{I_p}{N_p} -
-                        ( \gamma + \gamma_f) S_v+(1-\theta) \mu ,
-            \\
-                \frac{dI_v}{dt}
-                    &=
-                        \beta_v S_v \frac{I_p}{N_p} - ( \gamma + \gamma_f) I_v
-                        + \theta \mu.
-         \end{align*}
-         Now, verifying $\Gamma$ conditions, we get
-        $dS_p / dt + dL_p / dt + dI_p / dt \leq dN_p / dt$.
-        By law conservation
-        <a href="#eqn:plant_size">
-            (2)
-        </a>,
-        $S_p+L_p+I_p\leq N_p$.
-        Similarly,
-        $
-            dS_v / dt +  dI_v / dt \leq \mu  -(\gamma + \gamma_f) (S_v + I_v) \leq
-            \mu - ( \gamma + \gamma_f) N_v
-        $.
-        Further, from relation \eqref{eqn:vector_size}, we obtain
-        $
-            S_v+I_v\leq N^{\infty}_v+(N_v(0)-N^{\infty}_v)\exp{(-
-     	( \gamma + \gamma_f) t)}
-        $.
-        Since this is for all $t$, we have $S_v+I_v\leq N^{\infty}_v$, hence
-        $f(S_p,L_p,I_p,S_v,I_v) \in \Gamma$. Therefore, $\Gamma$ is
-        invariant under
-        <a href="#eq:DeterministicSystem">
-            System (1)
-        </a>
-        <span class="right">
-            $\square$.
-        </span>
-    </p>
-</div>
-
-
-System link:#eq:DeterministicSystem[(1)] has the following fixed points:
-
-Free disase Equilibrium
-$$
-    FDE:= \left(
-        N_p,0,0,N^{\infty}_v,0
-        \right)^{\top}.
-$$
-
-and the Endemic Equilibrium
-
-$$
-    EE:=(S_p^{**},
-    L_p^{**},
-    I_p^{**},
-    S_v^{**},
-    I_v^{**}).
-$$
-Here we compute this deterministic fixed points of ODE
-link:#eq:DeterministicSystem[(1)]---more details +++{% cite Salcedo-varela2021 %}+++ ---and show that its uniqueness.
-To determine this fixed points, we solve,
-
-[#eqn:fixed_points]
-\begin{equation}
-     \label{eqn:fixed_points}
- 	\begin{aligned}
- 		-\beta_p S_p \frac{I_v}{N_v} + r_1L_p+r_2I_p &= 0\\
- 		\beta_p S_p \frac{I_v}{N_v} - (b + r_1) L_p &= 0\\
- 		b L_p - r_2 I_p &= 0\\
- 		-\beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) S_v +(1-\theta) \mu &= 0\\
- 		\beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) I_v + \theta \mu &= 0.
- 	\end{aligned}
- \end{equation}
-Note that link:#eqn:fixed_points[Eq. (4)] has at least
-two solutions---the free disease $(FDE)$
-and the endemic $(EE)$ fixed point. To characterize
-the free disease solution
-$ FDE:= (S_{p} ^ *, L_{p}^*, I_{p}^*, S_{v}^*, I_{v}^*)$,
-we assume that
-${L^*_p = I_p^* = I_v^* = 0}$.
-Consequently, from relation link:#eqn:plant_size[(2)],
-the first component of link:#eqn:fixed_points[Eq. (4)]
-implies ${S_p ^ * = N_p}$. Moreover,
-from \eqref{eqn:vector_size} we see that
-$S_v ^ * + I_v ^ * \to N^{\infty}_v $ as
-$t \to \infty$, then
-$ S_v^* \to N^{\infty}_v$.
-Therefore, FDE results
-$$
-     FDE:= \left(
-         N_p,0,0,N^{\infty}_v,0
-         \right)^{\top}.
-$$
-For the endemic fixed point
-$
-     EE:=(S_p^{**},
-     L_p^{**},
-     I_p^{**},
-     S_v^{**},
-     I_v^{**})
-$,
-we assume that components $L_p^{**}$, $I_p^{**}$, $I_v^{**}$
-are positive and solve the right-hand side of
-link:#eq:DeterministicSystem[(1)] in terms of $I_v^{**}$.
-
-From link:#eqn:fixed_points[Eq. (4)] we obtain
-\begin{equation*}
-	\begin{aligned}
-		S^{**}_p &=
- 		    \frac{
-                (r_1 L^{**}_p + r_2 I ^ {**} _ p) N_v
-            }{
-                I^{**}_v \beta_{p}
-            }
-         \\
- 		L^{**}_p &=
-		    \frac{
- 		        \beta_{p} S_p^{**} I_v^{**}
- 		    }{
- 		        N_v \left( b+r_1 \right)
- 		    },
- 		\\
- 		I ^ {**} _ p &=
-            \frac{b L^{**}_p}{r_2},
- 		\\
- 		S^{**}_v &=
- 			\frac{
- 				\left(
- 					1-\theta
- 				\right)
- 				\mu\, N_{p}
- 			}{
- 				( \gamma + \gamma_f)\, N_{p} + I^{**}_p
- 				\beta_{v}
- 			}.
- 	\end{aligned}
- \end{equation*}
-Expressing the above relations in terms of +++$L_p^{**}, I^{**}_p$+++ results
-\begin{equation}
-     \label{eqn:endemic_point_components}
- 	\begin{aligned}
- 	    S^{**}_p &=
- 		    \frac{
-                (r_1 L^{**}_p + r_2 I^{**}_p) N_v
-            }{
-                I^{**}_v \beta_{p}
-            },
- 	\\
- 	L^{**}_p &=
- 		\frac{
- 			r_1L_p^{**} + r_2 I^{**}_p
- 		}{
- 		b + r_1
- 		},
- 	\\
- 	I^{**}_p &=
- 		\frac{
- 			b (r_1 L_p^{**} + r_2 I_p^{**})
- 		}{
- 			 \left(
- 			 	 b + r_1
- 			 \right)
- 			  r_2
- 		},
- 	\\
- 	S^{**}_v &=
- 		\frac{
- 			 \left(
- 			 	1 - \theta
- 			 \right)
- 			 \mu(b + r_1)
- 			 r_2N_p
- 		}{
- 			( \gamma + \gamma_f) N_p(b + r_1)
- 			r_2 +
-            b
+            &[
+                b ( \gamma + \gamma_f) \beta_p I ^ {**}_v +
+                b ( \gamma + \gamma_f) N_v r_2 +
+                b \beta_p \beta_v I^{**}_v +
+                ( \gamma + \gamma_f) \beta_p r_2 I^{**}_v
+                \\
+                &+
+                ( \gamma + \gamma_f) N_v r_1 r_2
+            ] I^{**}_v
+            =
+            N_v
             (
-                r_1 L_p ^ {**} + r_2
-                I_p ^ {**}
-            )
-            \beta_v
- 		}.
- 	\end{aligned}
- \end{equation}
-//
-Substituting the above relations into the $I_v$ component of
-link:#eq:DeterministicSystem[ODE (1)] yields
-\begin{align*}
- 		&[
- 		    b ( \gamma + \gamma_f) \beta_p I ^ {**}_v +
- 		    b ( \gamma + \gamma_f) N_v r_2 +
- 		    b \beta_p \beta_v I^{**}_v +
- 		    ( \gamma + \gamma_f) \beta_p r_2 I^{**}_v
- 		    \\
- 		    &+
- 		    ( \gamma + \gamma_f) N_v r_1 r_2
- 		] I^{**}_v
-  		=
-  		N_v
-  		(
-  		    b ( \gamma + \gamma_f) \theta \beta_p I^{**}_v +
-  		    b ( \gamma + \gamma_f) \theta N_v r_2
-  		 \\
-  		 &+
-  		    ( \gamma + \gamma_f) \theta \beta_p r_2 I^{**}_v +
-  		    ( \gamma + \gamma_f) \theta N_v r_1 r_2 +
-  		    b \beta_p \beta_v I^{**}_v
-  		).
- 	\end{align*}
-Let
- \begin{align*}
- 	a_1 &:=
- 		(\gamma + \gamma_f) \beta_p (b + r_2) +
- 		b \beta_p \beta_v
- 		,\\
- 	a_2 &:=
- 	    (\gamma + \gamma_f) N_v [r_2 (b + r_1) - \beta_p \theta (b + r_2)]
- 	    - N_v b \beta_p \beta_v
- 	    ,
- 	\\
- 	a_3 &:=
- 	    (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1).
- \end{align*}
-So, after some algebraic manipulations, we establish
-the following quadratic equation
- \begin{equation}\label{eqn::QuadraticInfectedFP}
-     	    a_1 I_v^{**2} + a_2 I^{**}_v - a_3 = 0.
- \end{equation}
-According to the discriminant $\Delta = a_2  ^ 2 -  4a_1 a_3$,
-we get
- \begin{equation*}
-     \begin{aligned}
-         \Delta
-             &=
-                 \{
-                 (\gamma + \gamma_f) N_v [r_2 (b + r_1)
-                 - \beta_p \theta (b + r_2)]
- 	            - N_v b \beta_p \beta_v
-                 \} ^ 2
+                b ( \gamma + \gamma_f) \theta \beta_p I^{**}_v +
+                b ( \gamma + \gamma_f) \theta N_v r_2
              \\
-             & +
-                 4[
-                 ( \gamma + \gamma_f) \beta_p (b + r_2) +
- 	            b \beta_p \beta_v
-                 )
-                 (
-                 (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1)
-                 ].
-     \end{aligned}
- \end{equation*}
-Note that $\Delta$ is positive, this implies two real solutions
- \begin{equation}
-     \label{eqn:I_v_positiity}
- 	I^{**}_{v} =
- 		\frac{
- 			-a_2 +
- 			\sqrt{a_2^2 - 4a_1 a_3}}%
- 		{2a_1}.
- \end{equation}
-From relations \eqref{eqn:endemic_point_components} and \eqref{eqn:I_v_positiity}
-we obtain endemic fixed point $EE$.
-And using van den Driessche's +++{% cite VandenDriessche2017a %}+++ definition of basic reproductive
-number to compute basic reproductivenumber
-$\mathcal{R}^d_0$ as the spectral radius of the next-generation matrix.
-For the system link:#eq:DeterministicSystem[(1)] next-generation matrix results
-\begin{equation*}\label{Mtx::NextGenerationMatrix}
-     K:=
-         \begin{bmatrix}
-         0 & 0 &\frac{\beta_p S^*_p}{N^{\infty}_v ( \gamma + \gamma_f)}
-         \\
-         0 & 0 & 0
-         \\
-         \frac{\beta_v S^*_v b}{N_p (b+r_1) r_2} &
-         \frac{\beta_v S^*_v}{N_p r_2} & 0
-         \\
-         \end{bmatrix}.
- \end{equation*}
-Matrix $K$  has $(i, j)$ entry equal to the expected number of secondary
-infections in the compartment $i$ produced by an infected individual introduced
-in the compartment $j$. Calculating the basic reproductive number for the system
-link:#eq:DeterministicSystem[(1)] we have
-\begin{equation*}%\label{eqn::DeterministicBRN}
-    \mathcal{R}^d_0:=\frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
-\end{equation*}
-
-The following result give a criteria for the stability of fixed points using basic
-reproductive number $\mathcal{R}^d_0$ +++{% cite VandenDriessche2017a %}+++.
-<div class="theorem" text="Thm.1, p.292 VandenDriessche(2017)">
-
-    If $\mathcal{R}^d_0 < 1$, then the fixed point FDE of system
-    (1) is locally asymptotically stable.
-</div>
-Besides,  when $\mathcal{R}^d_0>1$ we have the instability
-of free disease fixed point, but we obtain the stability
-of the endemic fixed point, and we establish the following result.
-
-[#Thm::StabilityEndemicPointBasicReproNumberDeter]
-<div class="theorem">
-    <p>
-        If $\mathcal{R}^d_0>1$, then the fixed point EE of
-        <a href="#eq:DeterministicSystem">
-            System (1)
-        </a>
-        is locally asymptotically stable.
+             &+
+                ( \gamma + \gamma_f) \theta \beta_p r_2 I^{**}_v +
+                ( \gamma + \gamma_f) \theta N_v r_1 r_2 +
+                b \beta_p \beta_v I^{**}_v
+            ).
+        \end{align*}
     </p>
-</div>
+    <p>
+        Let
+         \begin{align*}
+            a_1 &:=
+                (\gamma + \gamma_f) \beta_p (b + r_2) +
+                b \beta_p \beta_v
+                ,\\
+            a_2 &:=
+                (\gamma + \gamma_f) N_v [r_2 (b + r_1) - \beta_p \theta (b + r_2)]
+                - N_v b \beta_p \beta_v
+                ,
+            \\
+            a_3 &:=
+                (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1).
+         \end{align*}
+    </p>
+    <p>
+            So, after some algebraic manipulations, we establish
+        the following quadratic equation
+         \begin{equation}\label{eqn::QuadraticInfectedFP}
+                    a_1 I_v^{**2} + a_2 I^{**}_v - a_3 = 0.
+         \end{equation}
+        According to the discriminant $\Delta = a_2  ^ 2 -  4a_1 a_3$,
+        we get
+         \begin{equation*}
+             \begin{aligned}
+                 \Delta
+                     &=
+                         \{
+                         (\gamma + \gamma_f) N_v [r_2 (b + r_1)
+                         - \beta_p \theta (b + r_2)]
+                        - N_v b \beta_p \beta_v
+                         \} ^ 2
+                     \\
+                     & +
+                         4[
+                         ( \gamma + \gamma_f) \beta_p (b + r_2) +
+                        b \beta_p \beta_v
+                         )
+                         (
+                         (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1)
+                         ].
+             \end{aligned}
+         \end{equation*}
+    </p>
+    <p>
+            Note that $\Delta$ is positive, this implies two real solutions
+        \begin{equation}
+             \label{eqn:I_v_positiity}
+            I^{**}_{v} =
+                \frac{
+                    -a_2 +
+                    \sqrt{a_2^2 - 4a_1 a_3}}%
+                {2a_1}.
+        \end{equation}
+        From relations \eqref{eqn:endemic_point_components} and \eqref{eqn:I_v_positiity}
+        we obtain endemic fixed point $EE$.
+        And using van den Driessche's {% cite VandenDriessche2017a %}
+        definition of basic reproductive
+        number to compute basic reproductivenumber
+        $\mathcal{R}^d_0$ as the spectral radius of the next-generation matrix.
+        For the system \eqerf{eq:DeterministicSystem} next-generation matrix results
+        \begin{equation*}
+             K:=
+                 \begin{bmatrix}
+                 0 & 0 &\frac{\beta_p S^*_p}{N^{\infty}_v ( \gamma + \gamma_f)}
+                 \\
+                 0 & 0 & 0
+                 \\
+                 \frac{\beta_v S^*_v b}{N_p (b+r_1) r_2} &
+                 \frac{\beta_v S^*_v}{N_p r_2} & 0
+                 \\
+                 \end{bmatrix}.
+         \end{equation*}
+    </p>
+    <p>
+            Matrix $K$  has $(i, j)$ entry equal to the expected number of secondary
+        infections in the compartment $i$ produced by an infected individual introduced
+        in the compartment $j$. Calculating the basic reproductive number for the system
+        \eqref{eq:DeterministicSystem} we have
+        \begin{equation*}%\label{eqn::DeterministicBRN}
+            \mathcal{R}^d_0:=\frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
+        \end{equation*}
+    </p>
+    <p>
+        The following result give a criteria for the stability of fixed points using basic
+        reproductive number $\mathcal{R}^d_0$ {% cite VandenDriessche2017a %}.
+        <div class="theorem" text="Thm.1, p.292 VandenDriessche(2017)">
+
+            If $\mathcal{R}^d_0 < 1$, then the fixed point FDE of system
+            (1) is locally asymptotically stable.
+        </div>
+        Besides,  when $\mathcal{R}^d_0>1$ we have the instability
+        of free disease fixed point, but we obtain the stability
+        of the endemic fixed point, and we establish the following result.
+        <div class="theorem" id="Thm::StabilityEndemicPointBasicReproNumberDeter">
+            <p>
+                If $\mathcal{R}^d_0>1$, then the fixed point EE of
+                <a href="#eq:DeterministicSystem">
+                    System (1)
+                </a>
+                is locally asymptotically stable.
+            </p>
+        </div>
+    </p>
 ++++
+
 [#sec:stochastic_extension]
 == Stochastic Extension
 
@@ -3077,7 +3194,7 @@ disease extinction.
                          -\liminf_{t \to \infty}
                          \frac{1}{t}\int^t_0\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}dr.
                 \end{align*}
-                Using {% cite Rudin1976% --locator 1.13}
+                Using {% cite Rudin1976 --locator 1.13 %}
                 and other relations we deduce
                 $$
                     \limsup_{n \to \infty} (-x_n) = -\liminf_{n \to \infty} x_n,
@@ -3113,17 +3230,292 @@ disease extinction.
                      \geq
                      \frac{S^{**}_p}{2}
                      -\frac{C}{2\alpha_1 S^{**}_p}>0 \qquad a.s.
-                 \end{equation*}
-                 Therefore, we proved the desired inequality, the other relations in
-                 \eqref{eqn::LC} can be proved similarly.
+                \end{equation*}
+                Therefore, we proved the desired inequality, the other relations in
+                \eqref{eqn::LC} can be proved similarly.
+                <span class="right">
+                    $\square$
+                </span>
             </p>
         </div>
+    </div>
+    <div class="remark">
+         This last result shows that if Assumptions 1 holds and the stochastic
+        reproductive number is above one. Then system \eqref{sys::StochasticSystem} has a
+        positive lower limit of the average time.
+    </div>
+    <p>
+        The following theorem is the main result of this section \textemdash it shows that
+        system \eqref{sys::StochasticSystem}
+        is persistent in mean, when we use $\mathcal{R}^s_s$.
+    </p>
+    <div class="theorem" id="thm::persistence">
+        <p>
+            Let assumptions (ASS-1), (ASS-2), (ASS-4) holds. If $\mathcal{R}^s_s>1$,
+	        then the solution process of model in SDE \eqref{sys::StochasticSystem}
+	        is persistent in mean.
+        </p>
+    </div>
+    <div class="proof">
+        	By condition  \eqref{eqn::NoiseBreak} and
+        <a href="thm::UpperBound">
+            Theorem *.*
+        </a>,
+        we obtain inequality	\eqref{eqn:UpperBound}.
+	    Since condition \eqref{eqn::mimi} holds,
+        <a href="thm::LowerBound">
+            Theorem *.*
+        </a>,
+	    guarantees relations \eqref{eqn::LC}. Therefore, definition
+	    \eqref{def::persistence} implies that system \eqref{sys::StochasticSystem}
+	    is persistence in mean.
+    </div>
+    <p>
+        <a href="#thm::persistence">
+            The above result
+        </a>
+        gives conditions to satisfy definition
+        \ref{def::persistence}.
+        To conclude this section, we enunciate an analog result that uses $\mathcal{R}^s_a$.
+        Its proof is similar to the above result.
+    </p>
+    <div class="theorem", id="thm::persistence2">
+
+            Let conditions (ASS-1), (ASS-3), (ASS-4) holds, and $\mathcal{R}^d_0>1$.
+            If $\mathcal{R}^s_a > 1$, then the solution process of model in SDE
+            \eqref{sys::StochasticSystem} is persistent in mean.
     </div>
 ++++
 
 [#sec:numerics]
 == Numerical Experiments
+++++
+    <p>
+            In this section, we illustrate the results obtained in the previous sections
+        by numerical simulations.
+    </p>
+    <p>
+            We find noise intensities and parameter value of
+        \autoref{tbl:deterministic_tbl}
+        that satisfies each result: extinction by noise, extinction by stochastic
+        reproductive number, and persistence.
+    </p>
 
+    \input{Table3}
+    \autoref{tbl:table_noise_ext} shows parameter value that satisfies
+    \autoref{thm::NoiseExtinction}. This theorem need satisfies relations
+    of equation \eqref{eqn::NoiseCond} provided of $\mathcal{R}^d_0 > 1$.
+    We find values for $\beta_p$, $\beta_v$, $\gamma_f$ to illustrate
+    \autoref{thm::NoiseExtinction}.
+++++
+
+[fig:ExtinctionByNoise]
+
+.Figure 3. Extinction by noise. Blue line represents deterministic persistence, while red line extinction in stochastic environment. \autoref{tbl:table_noise_ext} display parameter values of this figure. Electronic figure available in https://plotly.com/~AdrianSalcedo/187/[]
+
+lightbox::example-standalone[ 800, {data-image-figure-3}, role="mb-4" ]
+
+link:#fig:ExtinctionByNoise[Fig. 3] exhibit noise extinction simulations.
+We consider that the disease persists in the deterministic dynamics,
+$\mathcal{R}^d_0 = \numprint{1.10526}$, while due to large noise intensities
+we cause the disease to die out. See \autoref{tbl:table_sub_noise} and \autoref{tbl:table_add_noise} for values
+of the parameters to obtain extinction and persistence by stochastic reproductive
+number.
+
+[fig:Rs0_Extinction]
+
+.Figure 4. Sample paths for stochastic reproductive number extinction. Blue, red, green line produces deterministic persistence, stochastic $\mathcal{R}^s_s$, and $\mathcal{R}^s_a$ simulations. Set of parameter values in \autoref{tbl:table_sub_noise}, and \autoref{tbl:table_add_noise}. Image available in https://plotly.com/~AdrianSalcedo/228/[].
+
+lightbox::example-standalone[ 800, {data-image-figure-4}, role="mb-4" ]
+
+fig:Rs0_Extinction illustrates the extinction by stochastic
+reproductive number established by the thm::Rs0Extinction.
+We consider the cases using $ \mathcal{R}^s_s$ and $\mathcal{R}^s_a$.
+The red line shows the simulation when $ \mathcal{R}^s_s = \numprint{0.395216}$ and
+$\mathcal{R}^d_0 = \numprint{1.2605}$. While the green line, we consider
+$\mathcal{R}^s_a = \numprint{0.381448}$ and $\mathcal{R}^d_0 = \numprint{0.378151}$.
+Notice that, in both cases, due to the noise intensities the stochastic dynamics
+tends to die out, even when the deterministic dynamics persists.
+
+[fig:Rs0_Persistence]
+
+.Figure 5. Simulation likened of deterministic and stochastic paths under stochastic reproductive number persistence. Blue, red, and green line means deterministic, stochastic $\mathcal{R}^s_s$, $\mathcal{R}^s_a$ simulations. Observe \autoref{tbl:table_sub_noise}, and \autoref{tbl:table_add_noise} for parameters values. The digital figure goes to https://plotly.com/~AdrianSalcedo/229/[].
+
+lightbox::example-standalone[800, {data-image-figure-5}, role="mb-4" ]
+
+\autoref{fig:Rs0_Persistence} display the persistence via stochastic reproductive
+number established by the \autoref{thm::UpperBound}. Similar to extinction, we
+simulated using $ \mathcal{R}^s_s$ and $\mathcal{R}^s_a$. The red line shows the
+simulation when $ \mathcal{R}^s_s = \numprint{1.10436}$ and
+$\mathcal{R}^d_0 = \numprint{1.2605}$, we see that the stochastic dynamics has a
+behaviour similar to the deterministic, oscillating around the deterministic
+simulation. The amplitude of oscillation for this case is $ C = \numprint{1.27424}$.
+Green line we consider $\mathcal{R}^s_a = \numprint{1.30711}$ and
+$\mathcal{R}^d_0=\numprint{1.2605}$. Also, the stochastic dynamics oscillates around
+the deterministic dynamics with oscillation amplitude $ C = \numprint{1.30663}$.
+We observe that stochastic dynamics are better suited than deterministic dynamic to
+the tomato data.
+
+[fig:LA1582fit]
+
+.Confidence band likening of deterministic and stochastic model to cumulative incidence data. ($\color{darkblue}{\blacksquare}$) LA 1582 specie data.The orange shaded region shows 95\% confidence band in the deterministic case, and the blue shaded region the 95\% confidence band in the stochastic case. Red, and blue lines represent deterministic, and stochastic median incidence curve, respectively. For parameters values, see \autoref{tbl:parameter_value}. Figure accessible in\href{https://plotly.com/~AdrianSalcedo/367/}
+
+lightbox::example-standalone[800, {data-image-figure-6}, role="mb-4" ]
+
+\autoref{fig:LA1582fit} show the likening of deterministic and stochastic
+confidence band cumulative incidence LA 1582 specie data for model \eqref{sys::DeterministicSystem} and \eqref{sys::StochasticSystem}.
+The results show that the stochastic model capture better the tomato data than
+the deterministic model.
+
+[fig:Tykingfit]
+
+.Figure 7. Comparison of deterministic and stochastic confidence band of cumulative incidence to Tyking data. Blue and orange shaded region band perform 95\% of confidence. $\color{orange}{\bullet}$) means Tyking specie data. The blue and red line exhibit eterministic and stochastic median incidence solution, respectively}. Parameters value in \autoref{tbl:parameter_value}. Electronic figure usable in https://plotly.com/~AdrianSalcedo/368/[]
+
+lightbox::example-standalone[800, {data-image-figure-7}, role="mb-4" ]
+
+\autoref{fig:Tykingfit} present the cumulative disease incidence of Tyking specie
+data, and the $95\%$ deterministic and stochastic credibility band.
+Similar to \autoref{fig:LA1582fit}, the data are inside the $95\%$ stochastic
+confidence band, and capture almost all Tyking specie data. Whiles, the
+deterministic model fail to capture the data appropriately.
+
+== Conclusion
+++++
+    <p>
+            We obtained a stochastic extension of the plant-vector structure
+        presented by Holt and Muniyappa in {% cite Holt1999 %}. Our formulation
+        relies on a stochastic perturbation by Brownian motion on the
+        replanting and vector-fumigation-death rates. This perturbation captures
+        the uncertain nature of the underlying replanting and fumigation
+        control strategies. In addition, we characterized conditions
+        over the noise intensities to assure the extinction and persistence
+        of the TYCLV disease.
+    </p>
+    <p>
+            Our analysis also considers a stochastic version of the so-called
+        van Den Driesshe reproductive number. Here, we deduce a stochastic
+        version that preserves the threshold nature of this deterministic
+        object. We studied two cases that generalize additive structures like
+        the proposed by Cao in {% cite Cao2016a %}. Our results assure
+        extinction of TYLCV according to :
+        <ol>
+            <li value="(a)">
+                $ \displaystyle
+                    \mathcal{R}_s^s:=
+                        \mathcal{R}^{d}_0
+                        -\frac{1}{2}
+                    \left[
+                        \left(
+                            \sigma_L
+                            +\sigma_I
+                            \right)^2
+                            -
+                            \frac{\sigma^2_v}{
+                                (\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2)
+                            }
+                    \right ]
+                $,
+            </li>
+            <li value="(b)">
+                $
+                    \displaystyle
+                    \mathcal{R}_a^s:= \mathcal{R}^{d}_0
+                        + \frac{1}{2}
+                            \left[
+                                \left(
+                                    \sigma_L
+                                    +\sigma_I
+                                \right)^2
+                                -
+                                \frac{\sigma^2_v}{
+                                (\beta_v +
+                                    \theta
+                                    (\gamma + \gamma_f) +
+                                    \sigma_v^2)
+                                }
+                        \right]
+                $.
+            </li>
+        </ol>
+        In both cases, these parameters preserve the threshold nature of the
+        deterministic reproductive number. That is, under appropriate
+        conditions  $\mathcal{R}_{\bullet}^s <1$
+        implies extinction while, $\mathcal{R}_{\bullet}^s > 1$
+        implicates persistence, $\bullet = a, s$.
+        Further, we have been verified our results by simulation.
+    </p>
+    <p>
+            We illustrated how the noise intensities could drive the TYLCV
+        dynamics from an endemic state to extinction. Furthermore,
+        notice that soil deficiency in iron or phosphate leads to similar
+        TYLCV symptoms, and tomato replanting usually lacks previous
+        lab confirmation. Then we can say that these control strategies are
+        uncertain \textemdash a farmer could be replanting a healthy
+        plant instead of an infected one. Consequently, it is relevant
+        to describe the implications of these noisy effects. Furthermore,
+        these effects could apply to other similar diseases transmitted
+        by white-fly as African cassava mosaic virus (ACMV)
+        {% cite Eni2021 %},
+        zucchini yellow mosaic virus (ZYMV) {% cite Shrestha2021 %},
+        cucumber mosaic virus (CMV) {%cite Ashwathappa2021 %}, and potato
+        virus Y (PVY) {% cite Shah2021 %}.
+
+    </p>
+    <p>
+            This work is related to {% cite Jackson2017 Hebert2016 Stella2019 %}.
+        Jackson et al. report a numeric study for a model based on SDEs
+        with delay {% cite Jackson2017 %}. Hebert et al. {% cite Hebert2016 %}
+        study the vector aggregation and dispersal with stochastic
+        models based on continuous-time Markov chains (CTMC).
+        Recently, with this same CTMC framework, Stella et al. study
+        tomato diseases in {% cite Stella2019 %}.
+    </p>
+    <p>
+            Our simulations showed similar behaviour, additionally, we developed
+        threshold theory to assure extinction and persistence with probability
+        one \textemdash instead of extinction-persistence results with positive
+        probability. In other words, our contribution complements the results from
+        We conclude that uncertainty due to environmental
+        noise would change the stability of a given solution. This change occurs
+        as a trade-off  between persistence and extinction\textemdash
+        with oscillations around  the regarding deterministic fixed point.
+        Further, we proposed a stochastic reproductive number that generalizes and
+        complements the ideas from Cao and Denu {% cite Cao2016a %},
+        and Agarwal et al. {% cite Agarwal2019 %}. For example, in {% cite Agarwal2019 %}
+        the authors use noise intensities as the oscillation amplitude.
+        At the same time, our proposal involves these intensities as part of the
+        stochastic threshold.
+    </p>
+    <p>
+            Following the approach of {% cite Agarwal2019 %}, we see plausible
+        extends of our work as a stochastic control problem. Our main objective
+        would be the formulation of the control strategies as Markov decision
+        processes. We are preparing a manuscript in this line for optimal
+        replanting-fumigation policies in discrete time.
+    </p>
+++++
+
+== Software and supplementary data availability
+++++
+    <p>
+            We refer the reader to {% cite GitHubJuliaSourcesForTYCLD %}
+        for Julia source code of all figures and simulation data. Also, for  complementary
+        calculates of fixed points, and proofs of
+        <a href="thm:positive_invariance">
+            Theorem
+        </a>,
+        <a href="thm::existence-unique">
+            Theorem
+        </a>,
+        <a href="thm::NoiseExtinction">
+            Theorem
+        </a>,
+        <a href="thm::LowerBound">
+            Theorem
+        </a>,
+        see {% cite Salcedo-varela2021 %}.
+    </p>
+++++
 
 == References
 

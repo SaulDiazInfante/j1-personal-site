@@ -16,133 +16,6 @@
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
-# Menu LEARN
-#
-- item:                                 Teaching
-  sublevel:
-
-    - title:                            Source Code Repository
-      href:                             https://github.com/SaulDiazInfante?tab=repositories
-      icon:                             paw
-
-    # --------------------------------------------------------------------------
-    # Roundtrip
-    #
-    - title:                            Roundtrip
-      icon:                             briefcase-search-outline
-      dropdown:
-
-        - title:                        Present images
-          href:                         /pages/public/learn/roundtrip/present_images/
-          icon:                         image
-        - title:                        Present videos
-          href:                         /pages/public/learn/roundtrip/present_videos/
-          icon:                         video
-        - title:                        Typography
-          href:                         /pages/public/learn/roundtrip/typography/
-          icon:                         format-text
-        - title:                        Icon fonts
-          href:                         /pages/public/learn/roundtrip/mdi_icon_font/
-          icon:                         fan
-        - title:                        Asciidoc extensions
-          href:                         /pages/public/learn/roundtrip/asciidoc_extensions/
-          icon:                         format-annotation-plus
-        - title:                        BS modal extensions
-          href:                         /pages/public/learn/roundtrip/modals/
-          icon:                         image
-        - title:                        BS table extensions
-          href:                         /pages/public/learn/roundtrip/responsive_tables/
-          icon:                         table
-        - title:                        BS themes
-          href:                         /pages/public/learn/roundtrip/themes/
-          icon:                         theme-light-dark
-        - title:                        QuickSearch
-          href:                         /pages/public/learn/roundtrip/quicksearch/
-          icon:                         magnify
-
-    # --------------------------------------------------------------------------
-    # Jupyter Notebooks
-    #
-    - title:                            Jupyter Notebooks
-      icon:                             notebook-outline
-      dropdown:
-
-        - title:                        Where to go
-          href:                         /pages/public/jupyter/where-to-go/
-          icon:                         paw
-
-        # ----------------------------------------------------------------------
-        # Interactive Notebooks
-        #
-        - title:                        Distributed Notebooks
-          icon:                         notebook-outline
-          dropdown:
-
-            - title:                    Time Tables Visualization
-              href:                     /pages/public/jupyter/examples/distributed/j1-circular-times-table/
-              icon:                     notebook-outline
-            - title:                    ODEs in Python
-              href:                     /pages/public/jupyter/examples/distributed/odes-in-python/
-              icon:                     notebook-outline
-            - title:                    Common Used Widgets
-              href:                     /pages/public/jupyter/examples/distributed/common-used-widgets/
-              icon:                     notebook-outline
-
-        # ----------------------------------------------------------------------
-        # Static Notebooks
-        #
-        - title:                        Localized Notebooks
-          icon:                         notebook-outline
-          dropdown:
-
-            - title:                    Climate Change Forecast
-              href:                     /pages/public/jupyter/examples/localized/climate-change-forecast/
-              icon:                     notebook-outline
-            - title:                    Visualizations using Altair
-              href:                     https://jekyll.one/pages/public/jupyter/examples/localized/j1-altair-visualizations/
-              target:                   _blank
-              icon:                     notebook-outline
-            - title:                    Visualizations using Bokeh
-              href:                     https://jekyll.one/pages/public/jupyter/examples/localized/j1-bokeh-visualizations/
-              target:                   _blank
-              icon:                     notebook-outline
-
-        # ----------------------------------------------------------------------
-        # Documentation
-        #
-        - title:                        NBI Documentation
-          icon:                         head-lightbulb
-          dropdown:
-
-            - title:                    J1 NBI Integration
-              href:                     https://jekyll.one/pages/public/jupyter/docs/j1-nbinteract-docs/
-              target:                   _blank
-              icon:                     alpha-j-box
-            - title:                    BinderHub API
-              href:                     https://jekyll.one/pages/public/jupyter/docs/binderhub/
-              target:                   _blank
-              icon:                     book
-            - title:                    JupyterHub API
-              href:                     https://jekyll.one/pages/public/jupyter/docs/jupyterhub/
-              target:                   _blank
-              icon:                     book
-
-    # --------------------------------------------------------------------------
-    # Asciidoc Skeletons
-    #
-    - title:                            Asciidoc Skeletons
-      icon:                             application-settings
-      dropdown:
-        - title:                        Simple-Document
-          href:                         /pages/public/skeleton/simple/
-          icon:                         file-document-outline
-        - title:                        Multi-Document
-          href:                         /pages/public/skeleton/multi/
-          icon:                         file-document-multiple-outline
-        - title:                        Documentation
-          href:                         /pages/public/skeleton/documentation/
-          icon:                         book-open-blank-variant
-
 # ------------------------------------------------------------------------------
 # Menu BLOG
 #
@@ -162,143 +35,6 @@
       icon:                             archive
 
 # ------------------------------------------------------------------------------
-# Menu ONLINE
-#
-- item:                                 Online
-  megamenu:
-    - title:                            Sites
-      icon:                             web
-      column:
-        - title:                        Jekyll Home
-          href:                         https://jekyllrb.com/
-          target:                       _blank
-          icon:                         flask
-        - title:                        Ruby
-          href:                         https://www.ruby-lang.org/en/
-          target:                       _blank
-          icon:                         language-ruby
-        - title:                        RubyGems
-          href:                         https://rubygems.org/gems/j1-template/
-          target:                       _blank
-          icon:                         language-ruby
-        - title:                        NpmJS
-          href:                         https://www.npmjs.com/
-          target:                       _blank
-          icon:                         language-javascript
-        - title:                        Bootstrap Home
-          href:                         http://getbootstrap.com/
-          target:                       _blank
-          icon:                         bootstrap
-        - title:                        Bootstrap CDN
-          href:                         https://www.bootstrapcdn.com/
-          target:                       _blank
-          icon:                         bootstrap
-        - title:                        FA Icons
-          href:                         http://fontawesome.io/icons/
-          target:                       _blank
-          icon:                         font-awesome
-        - title:                        MD Icons
-          href:                         https://materialdesignicons.com/
-          target:                       _blank
-          icon:                         google
-        - title:                        Fonts
-          href:                         https://fonts.google.com/
-          target:                       _blank
-          icon:                         google
-        - title:                        cdnJS
-          href:                         https://cdnjs.com/
-          target:                       _blank
-          icon:                         arrow-down-bold-hexagon-outline
-
-    - title:                            Knowledge
-      icon:                             lightbulb-on
-      column:
-        - title:                        Learn Jekyll at CloudCannon
-          href:                         http://jekyll.tips/
-          target:                       _blank
-          icon:                         flask
-        - title:                        Jekyll Cheat Sheet
-          href:                         https://learn.cloudcannon.com/jekyll-cheat-sheet/
-          target:                       _blank
-          icon:                         flask
-        - title:                        Jekyll Stackoverflow
-          href:                         https://stackoverflow.com/questions/tagged/jekyll
-          target:                       _blank
-          icon:                         flask
-        - title:                        BS 4 Stackoverflow
-          href:                         https://stackoverflow.com/questions/tagged/bootstrap-4
-          target:                       _blank
-          icon:                         bootstrap
-        - title:                        W3 Schools
-          href:                         http://www.w3schools.com/
-          target:                       _blank
-          icon:                         xml
-        - title:                        SelfHTML
-          href:                         https://wiki.selfhtml.org/
-          target:                       _blank
-          icon:                         language-html5
-        - title:                        LearnCSS
-          href:                         https://developer.mozilla.org/en-US/docs/Learn/CSS
-          target:                       _blank
-          icon:                         language-css3
-        - title:                        Asciidoc Language
-          href:                         https://docs.asciidoctor.org/asciidoc/latest/
-          target:                       _blank
-          icon:                         format-color-text
-        - title:                        Asciidoc FAQ
-          href:                         http://www.methods.co.nz/asciidoc/faq.html
-          target:                       _blank
-          icon:                         format-color-text
-        - title:                        Asciidoctor
-          href:                         http://asciidoctor.org/
-          target:                       _blank
-          icon:                         hospital
-
-    - title:                            Tools
-      icon:                             wrench
-      column:
-        - title:                        FreeFormatter
-          href:                         http://www.freeformatter.com/
-          target:                       _blank
-          icon:                         cached
-        - title:                        Convert CSS to Sass
-          href:                         http://sebastianpontow.de/css2compass/
-          target:                       _blank
-          icon:                         language-css3
-        - title:                        CSS Matic Tools
-          href:                         https://www.cssmatic.com
-          target:                       _blank
-          icon:                         language-css3
-        - title:                        JSON Editor
-          href:                         https://jsoneditoronline.org/
-          target:                       _blank
-          icon:                         code-json
-        - title:                        YAML Parser
-          href:                         http://yaml-online-parser.appspot.com/
-          target:                       _blank
-          icon:                         code-braces
-        - title:                        XML-YAML Converter
-          href:                         http://codebeautify.org/xml-to-yaml
-          target:                       _blank
-          icon:                         xml
-        - title:                        Character Codes
-          href:                         http://character-code.com/
-          target:                       _blank
-          icon:                         alpha-a-box-outline
-        - title:                        Wordcloud Generator
-          href:                         https://www.jasondavies.com/wordcloud/
-          target:                       _blank
-          icon:                         cloud
-        - title:                        RegEx 101
-          href:                         https://regex101.com/
-          target:                       _blank
-          icon:                         regex
-        - title:                        RegEx Library
-          href:                         http://www.regexlib.com/
-          target:                       _blank
-          icon:                         regex
-
-# ------------------------------------------------------------------------------
 # Menu Themes
 #
 - item:                                 Themes
@@ -313,7 +49,180 @@
       title:                            Previewer
       href:                             /pages/public/previewer/theme/
       icon:                             eye
+# ------------------------------------------------------------------------------
+# Menu MANUALS
+#
+- item:                                 Manuals
+  sublevel:
 
+    - title:                            Pandoc
+      href:                             "https://jekyll.one/pages/public/manuals/pandoc/"
+      icon:                             cog-transfer
+      target:                           _blank
+
+    # --------------------------------------------------------------------------
+    # Modules
+    #
+    - title:                            Modules
+      icon:                             view-module
+      dropdown:
+
+        - title:                        Master Slider
+          href:                         "https://jekyll.one/pages/public/manuals/modules/masterslider/"
+          icon:                         gesture-swipe
+          target:                       _blank
+        - title:                        Range Sliders
+          href:                         "https://jekyll.one/pages/public/manuals/modules/range-slider/"
+          icon:                         view-module-outline
+          target:                       _blank
+        - title:                        Rouge
+          href:                         "https://jekyll.one/pages/public/manuals/rouge/user_guide/"
+          icon:                         format-color-fill
+          target:                       _blank
+        - title:                        msDropdown
+          href:                         "https://jekyll.one/pages/public/manuals/msdropdown/"
+          icon:                         form-dropdown
+          target:                       _blank
+        - title:                        Mobile Menu
+          href:                         "https://jekyll.one/pages/public/manuals/mmenu/"
+          icon:                         menu
+          target:                       _blank
+        - title:                        Platform
+          href:                         "https://jekyll.one/pages/public/manuals/platform/"
+          icon:                         folder-information
+          target:                       _blank
+
+        # ----------------------------------------------------------------------
+        # Documentation
+        #
+        - title:                        NBI Documentation
+          icon:                         head-lightbulb
+          dropdown:
+
+            - title:                    NBI Integration
+              href:                     "https://jekyll.one/pages/public/jupyter/docs/j1-nbinteract-docs/"
+              icon:                     alpha-j-box
+              target:                   _blank
+            - title:                    NBI Wigets
+              href:                     "https://jekyll.one/pages/public/jupyter/docs/nbi-widgets/"
+              icon:                     alpha-j-box
+              target:                   _blank
+            - title:                    BinderHub API
+              href:                     "https://jekyll.one/pages/public/jupyter/docs/binderhub/"
+              icon:                     book
+              target:                   _blank
+            - title:                    JupyterHub API
+              href:                     "https://jekyll.one/pages/public/jupyter/docs/jupyterhub/"
+              icon:                     book
+              target:                   _blank
+
+    # --------------------------------------------------------------------------
+    # Resources
+    #
+    - title:                            Resources
+      icon:                             video-input-component
+      dropdown:
+
+        - title:                        MD Color Palette
+          href:                         "https://jekyll.one/pages/public/manuals/resources/color_palette/"
+          icon:                         format-color-fill
+          target:                       _blank
+
+    # --------------------------------------------------------------------------
+    # Jekyll
+    #
+    - title:                            Jekyll
+      icon:                             flask
+      dropdown:
+
+        - title:                        Liquid User Guide
+          href:                         "https://jekyll.one/pages/public/manuals/liquid/user_guide/"
+          icon:                         trello
+          target:                       _blank
+
+        - title:                        Jekyll User Guide
+          icon:                         book-open-page-variant
+          dropdown:
+
+            - title:                    Commandline
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/commandline/"
+              icon:                     console-line
+              target:                   _blank
+            - title:                    Configuration
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/configuration/"
+              icon:                     code-braces
+              target:                   _blank
+            - title:                    Managing Pages
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_pages/"
+              icon:                     book-open-page-variant
+              target:                   _blank
+            - title:                    Managing Posts
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_posts/"
+              icon:                     blogger
+              target:                   _blank
+            - title:                    Managing Collections
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_collections/"
+              icon:                     collage
+              target:                   _blank
+            - title:                    Jekyll Date formats
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/date_formats/"
+              icon:                     calendar-blank
+              target:                   _blank
+
+        - title:                        Jekyll Plugins
+          icon:                         power-plug
+          dropdown:
+
+            - title:                    Asciidoctor
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/plugin/asciidoctor/"
+              icon:                     hospital
+              target:                   _blank
+            - title:                    Paginator V2
+              href:                     "https://jekyll.one/pages/public/manuals/jekyll/plugins/paginator_v2/"
+              icon:                     page-last
+              target:                   _blank
+
+    # --------------------------------------------------------------------------
+    # AsciiDoc
+    #
+    - title:                            AsciiDoc
+      icon:                             format-color-text
+      dropdown:
+
+        - title:                        AsciiDoc Language
+          href:                         "https://docs.asciidoctor.org/asciidoc/latest/"
+          icon:                         alert-outline
+          target:                       _blank
+
+        - title:                        Asciidoctor User Guide
+          href:                         "https://docs.asciidoctor.org/asciidoctor/latest/"
+          icon:                         book-open-page-variant
+          target:                       _blank
+
+        - title:                        Asciidoctor CLI
+          href:                         "https://docs.asciidoctor.org/asciidoctor/latest/cli/"
+          icon:                         keyboard-variant
+          target:                       _blank
+
+    # --------------------------------------------------------------------------
+    # YAML
+    #
+    - title:                            YAML
+      icon:                             format-align-right
+      dropdown:
+
+        - title:                        User Guide
+          href:                         "https://jekyll.one/pages/public/manuals/yaml/user_guide/"
+          icon:                         book-open-page-variant
+          target:                       _blank
+        - title:                        YAML Reference Guide
+          href:                         "https://jekyll.one/pages/public/manuals/yaml/quick_reference/"
+          icon:                         book-open
+          target:                       _blank
+
+# ------------------------------------------------------------------------------
+# Menu ABOUT
+#
 # ------------------------------------------------------------------------------
 # Menu ABOUT
 #
@@ -330,8 +239,9 @@
       href:                             /pages/public/legal/en/impress/
     - title:                            Resume
       icon:                             badge-account-horizontal-outline
-      href:                             /pages/public/resume/site/ #/pages/public/resume/site/
+      href:                             /pages/public/resume/site/
 
+#
 # ------------------------------------------------------------------------------
 # Menu Work in Progress
 - item:                                 Work in Progress
@@ -346,5 +256,4 @@
                                         model for Tomato Yellow Curl Leaves disease
       icon:                             image-edit-outline
       href:                             /pages/public/preprints/sto_mle/main_sto_tycl/
-
 # END config

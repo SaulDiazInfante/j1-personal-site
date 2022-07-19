@@ -53,8 +53,7 @@ gem 'jekyll', '~> 4.2'
 
 # Theme Rubies, default: J1 Template (NOT used for the development system)
 #
-gem 'j1-template', '~> 2022.4.4'
-
+gem 'j1-template', '~> 2022.4', '>= 2022.4.8'
 # ------------------------------------------------------------------------------
 # PRODUCTION: Gem needed for the Jekyll and J1 prod environment
 #
@@ -219,6 +218,6 @@ gem 'date', '~> 2.0'
 gem 'scss_lint', '~> 0.56.0'
 gem 'sass', '~> 3.5.0'
 gem 'bump', '~> 0.8'
-gem 'jekyll-scholar'
+# gem 'jekyll-scholar'
 # ------------------------------------------------------------------------------
 # END

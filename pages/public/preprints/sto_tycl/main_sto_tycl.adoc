@@ -37,27 +37,21 @@ resource_options:
 // =============================================================================
 // Enable the Liquid Preprocessor
 :page-liquid:
-:badges-enabled: true
+:badges-enabled: false
 
 // Set (local) page attributes here
 // -----------------------------------------------------------------------------
 // :page--attr:                         <attr-value>
 
 //  Load Liquid procedures
-// -----------------------------------------------------------------------------
 {% capture load_attributes %}themes/{{site.template.name}}/procedures/global/attributes_loader.proc{%endcapture%}
 
 // Load page attributes
 // -----------------------------------------------------------------------------
-{% include {{load_attributes}} scope="all" %}
-
-:images-dir: {imagesdir}/pages/preprints/sto_tycl/figrues
+{% include {{load_attributes}} scope="local" %}
 
 // Page content
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-:stem: latexmath
-:eqnums: AMS
-:xrefstyle: short
 :section-refsig: Section
 :toc:
 :prose: text-indent-inner: 18
@@ -376,7 +370,6 @@ persistence in link:#sec:persistence[Section 6]. Finally in link:#sec:numerics[S
 we verify and illustrate our theory with numerical experiments.
 
 [#sec:model_formulation]
-
 == Deterministic base dynamics
 ++++
     <p>
@@ -951,8 +944,9 @@ TODO: Reproduce Table 2.
         infections in the compartment $i$ produced by an infected individual introduced
         in the compartment $j$. Calculating the basic reproductive number for the system
         \eqref{eq:DeterministicSystem} we have
-        \begin{equation*}%\label{eqn::DeterministicBRN}
-            \mathcal{R}^d_0:=\frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
+        \begin{equation*}
+            \mathcal{R} ^ d_0 :=
+                \frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
         \end{equation*}
     </p>
     <p>
@@ -982,7 +976,7 @@ TODO: Reproduce Table 2.
 == Stochastic Extension
 
 In this section, we derive our stochastic differential equation from
-system link:#eq:DeterministicSystem[(1)]. Following ideas from
+system \eqref{eq:DeterministicSystem}. Following ideas from
 +++{% cite Schurz2015 %}+++,
 we quantify uncertainty in plant-replanting $r_1$, $r_2$, and vector-die
 by fumigation $\gamma_f$
@@ -1012,7 +1006,7 @@ $B(t) = (B_p(t), B_v(t))^{\top}$ be a 2-dimensional standard Brownian process
 defined on a filtered complete probability space
 $(\Omega,\mathcal{F},\{\mathcal{F}_t\}_{t\geq 0},\P)$.
 %, and $dB(t)=B(t+dt)-B(t)$ denotes the increment of a standard Brownian process.
-Thus, we perturb the deterministic model link:#eq:DeterministicSystem[(1)]
+Thus, we perturb the deterministic model \eqref{eq:DeterministicSystem}
 replacing the rates $r_1$, $r_2$, and $\gamma_f$ by
 
 [#eqn:NoisePerturbation]
@@ -1029,11 +1023,11 @@ replacing the rates $r_1$, $r_2$, and $\gamma_f$ by
 	\end{aligned}
 \end{equation}
 
-Note that the right-hand side of link:#eqn:NoisePerturbation[(4)] denotes a
+Note that the right-hand side of \eqref{eqn:NoisePerturbation} denotes a
 stochastic perturbation of $r_1$, $r_2$, $\gamma_f$.
 
 So, we deduce a stochastic extension from deterministic system
-link:#eq:DeterministicSystem[(1)] given the following Itô SDE:
+\eqref{eq:DeterministicSystem} given the following Itô SDE:
 
 \begin{equation}
 	\label{sys::StochasticSystem}
@@ -3126,8 +3120,7 @@ disease extinction.
             Proof
         </a>
     </p>
-    <div class="collapse w-auto p-3" id="prf_persistence_lower">
-    </div>
+    <div class="collapse" id="prf_persistence_lower">
         <div class="card card-body">
             <p>
                     We prove the relations in \eqref{eqn::LC} using
@@ -3485,4 +3478,3 @@ deterministic model fail to capture the data appropriately.
 ++++
 {% bibliography --file References.bib --cited %}
 ++++
-

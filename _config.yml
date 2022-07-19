@@ -38,7 +38,7 @@
 #   values:                             development|production
 #   default:                            production
 #
-environment:                            development
+environment:                            production
 
 # version
 # ------------------------------------------------------------------------------
@@ -486,7 +486,7 @@ asciidoc_attributes:                    &asciidoc_attributes
   icons:                                font
   imagesdir:                            /assets/images
   iconsdir:                             '{imagesdir}/icons/asciidoc'
-# experimental:                         true                                    # enable the UI macros, e.g kbd:[], for Asciidoctor globally
+  experimental:                         true                                    # enable the UI macros, e.g kbd:[], for Asciidoctor globally
 
 asciidoc:
   processor:                            asciidoctor
@@ -803,7 +803,7 @@ scholar:
   style: _bibliography/csl_styles/ieee-with-url.csl
   locale: en
   bibliography-hyperlinks: true
-  #sort_by: year
+  # sort_by: year
   # order: ascending
   bibliography_list_tag: ul
   source: ./_bibliography
@@ -811,8 +811,8 @@ scholar:
   bibliography_template: bibliography
   # repository: assets/pdf
   # bibliography_template: {{reference}}
-  #replace_strings: true
-  #join_strings:    true
+  # replace_strings: true
+  # join_strings:    true
   # details_dir:    bibliography
   # details_layout: bibliography
   # details_link:   Details

@@ -38,3 +38,3115 @@
 | proportion of infected vector from migration
 | +++{% cite ramappa1994 %}+++ +++{% cite Ramappa1998%}+++}
 |===
+
+== Deterministic base dynamics
+++++
+    <p>
+            Here, we adapt the deterministic dynamics presented by
+        Holt et al. {% cite Holt1999 %}. Following the authors,
+        we split the plant population according to,
+        susceptible $ (S_p) $, latent $ (L_p) $, and infected
+        $ (I_p) $. And divide vector population into susceptible
+        $S_v$ and $I_v$ infected classes.
+        We consider the following assumptions: Susceptible plants become latent
+        plants when an infected vector feeds on them at constant rate, $\beta_p$.
+        Latent plants become infected plants at a rate of $b$. We replant latent and
+        infected plants that are detected at rate $r_1$ and $r_2$, respectively.
+        Removed plants are replanting as susceptible plants in the crop.
+        For vector dynamics, we consider that susceptible vectors become acquirer
+        disease, at rate $\beta_v$, when they eat an infected plant. We assume natural
+        vector die at rate $\gamma$, and by fumigation at rate $\gamma_f$. A proportion
+        of the susceptible and infected vectors migrates from alternatives host plants
+        to the crop.
+    </p>
+    <p>
+            With these hypotheses, the model has the following equations
+        \begin{equation}
+            \label{eq:DeterministicSystem}
+            \begin{aligned}
+                \dot{S_p} &=
+                    -\beta_p S_p
+                    \frac{I_v}{N_v} + r_1 L_p + r_2 I_p
+                \\
+                \dot{L_p} &=
+                    \beta_p S_p
+                    \frac{I_v}{N_v} - (b + r_1) L_p
+                \\
+                \dot{I_p} &=
+                    b L_p - r_2 I_p  \\
+                \dot{S_v} &=
+                    -\beta_v S_v
+                    \frac{I_p}{N_p} - (\gamma + \gamma_f) S_v
+                    +(1-\theta) \mu
+                \\
+                \dot{I_v} &=
+                    \beta_v S_v \frac{I_p}{N_p}
+                    - (\gamma + \gamma_f) I_v
+                    + \theta \mu
+                     \\
+                    S_p(0) &=S_{p0}, \qquad
+                    L_p(0) = L_{p0}, \qquad
+                    I_p(0) = I_{p0},
+                    \\
+                     S_v(0) &= S_{v0}, \qquad
+                      I_v(0) = I_{v0},
+                     \\
+                     N_p(t) &= S_p(t) + L_p(t) + I_p(t),
+                     \\
+                     N_v(t) &= S_v(t) + I_v(t).
+            \end{aligned}
+        \end{equation}
+    </p>
+    <p>
+            We conduct a calibration of the model
+        <span>
+            $\eqref{eq:DeterministicSystem}$
+        </span> based on the parameters and data reported in
+        {% cite Holt1999 %} and  via Multi Chain Montecarlo Method (MCMC).
+        Here we used the <em> R-Stan</em> implementation and followed the workflow from
+        {% cite Grinsztajn2021 %}.
+        We refer the reader to the supplementary material
+        {% cite Salcedo-varela2021 %} for more details.
+    </p>
+    <p>
+        <a href="#fig:fitnonresistance">
+            Figure 1
+        </a>
+            and
+        <a href="#fig:fitresistance">
+            2
+        </a> show the confidence band, and the median for
+        <span>
+            \eqref{eq:DeterministicSystem}
+        </span>
+        to each tomato data set reported by {% cite Holt1999 %}.
+        <a href="tbl:parameter_value">
+            Table 2
+        <a> displays the estimates of the parameters
+        for each tomato species.
+    </p>
+++++
+
+++++
+    <span id="fig:fitnonresistance">
+    </span>
+++++
+
+.Figure 1. Callibration Confidence bands for cumulative disease incidence of \eqref{eq:DeterministicSystem} for non-resistant tomato data. Squares denote Rashmi, and points PSCL-4 tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in Table 2. Data from Holt and Muniyappa. Digital edition figures feasible in https://plotly.com/AdrianSalcedo/347/[].
+
+lightbox::example-standalone[ 800, {data-image-figure-1}, role="mb-4" ]
+
+++++
+    <span id="fig:fitresistance">
+    </span>
+++++
+
+.Figure 2. Confidence bands of cumulative disease incidence to resistan tdata set. ($\color{darkblue}{\blacksquare}$,$\color{orange}{\bullet}$) LA1582, and Tyking tomato species data. The blue and red line represents the median incidence curve. Parameter values fixed in <a href="#tbl:parameter_value"> Table 2 </a>. Data from Holt and Muniyappa {% cite Holt1999 %}. See <a href="https://plotly.com/~AdrianSalcedo/339/"> https://plotly.com/~AdrianSalcedo/339/</a> for a interactive visualization.
+
+lightbox::example-standalone[ 800, {data-image-figure-2}, role="mb-4" ]
+
+TODO: Reproduce Table 2.
+//[tbl:parameter_value]
+++++
+    <table class="table-dark" id="tbl:parameter_value">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <td colspan="3" class="table-borderless">
+                    Quantile
+                </td>
+            </tr>
+            <tr>
+                <th scope="col">
+                    Par.
+                </th>
+                <th scope="col">
+                    Defaul value
+                </th>
+                <th scope="col">
+                    2.5%
+                </th>
+                <th scope="col">
+                    50%
+                </th>
+                <th scope="col">
+                    97.5%
+                </th>
+                <th scope="col">
+                    Unit
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3" class="table-default">
+                    Rashmi
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    $\beta_p$
+                </td>
+                <td>
+                    $0.1 ^ \dag$
+                </td>
+                <td> 0.023 860 126 </td>
+                <td> 0.033 080 739 </td>
+                <td> 0.044 936 614 </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>
+                    $r_1$
+                </td>
+                <td>
+                    $0.01 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>
+                    $r_2$
+                </td>
+                <td>
+                    $0.01 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+                <td>  </td>
+            </tr>
+            <tr>
+                <td>
+                    $b$
+                </td>
+                <td>
+                    $0.075 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td>
+                    $\beta_v$
+                </td>
+                <td>
+                    $ 0.003 ^ \dag$
+                </td>
+                <td>  </td>
+                <td>  </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        </tbody>
+    </table>
+++++
+
+[subsec:deterministic_fixed_points]
+=== Deterministic Fixed Points
+++++
+    <p>
+            According to  ODE \eqref{eq:DeterministicSystem}, let
+        $N_v^{\infty}:= {\mu}/{( \gamma + \gamma_f)}$.
+        Let $\mathbf{R} ^ 5$ and consider the set
+        \begin{equation*}
+            \Gamma:=
+		        \left \{
+			    (S_p, L_p, I_p, S_v, I_v)^{\top} \in \mathbf{R} ^ 5: \
+			    0\leq S_p + L_p + I_p \leq N_p, \quad
+			    0 \leq S_v + I_v \leq N_v^{\infty}
+		    \right \}.
+        \end{equation*}
+        Note that
+        \begin{equation}
+            \label{eqn:plant_size}
+            \begin{aligned}
+            \frac{d N_p}{dt} &=
+			    \frac{d}{dt}(S_p + L_p + I_p) = 0,
+			    \\
+            \frac{d N_v}{dt} &=
+                \mu - ( \gamma + \gamma_f) N_v.
+            \end{aligned}
+        \end{equation}
+    </p>
+    <p>
+            Thus the whole plant population $N_p(t)$ remains
+        constant for all $t\geq 0$. In addition,
+        \begin{equation}
+            \label{eqn:vector_size}
+            N_v(t)= N^{\infty}_v +
+                (N_v(0) - N^{\infty}_v) \exp(-( \gamma + \gamma_f) t) .
+        \end{equation}
+
+        From this relation, we conclude that
+        $
+            \lim_{t\to\infty}
+            N_v(t) = N_v^{\infty},
+        $ and that population sizes $N_p(t)$, $N_v(t)$ satisfies a
+        conservative law. To summarize, we prove that set $\Gamma$
+        is positive invariant in the sense of the following
+        definition {% cite Meiss2007 --locator 106 %}.
+    </p>
+    <div class="definition", text='Invariant set'>
+        <p>
+                Let $f:[0,T]\times \Gamma \subset \mathbb{R}^n\to \mathbb{R}^n$.
+            We say that $\Gamma $ is an invariant set under $f$,
+            if $f(t,\Gamma)\subset \Gamma$ for all $t\in [0, T]$.
+        </p>
+    </div>
+    <div class="theorem", text='Positive-invariance' id="thm:positive_invariance">
+        <p>
+            The set $\Gamma$ is positive invariant.
+        </p>
+    </div>
+    <div class="proof">
+        <p>
+            Let $(S_p,L_p,I_p,S_v,I_v)^\top \in \Gamma$ and apply the
+            right-hand side of dynamic \eqref{eq:DeterministicSystem}.
+            We have
+            \begin{align*}
+                    \frac{dS_p}{dt}
+                        &=
+                        -\beta_p S_p
+                    \frac{I_v}{N_v} + r_1 L_p + r_2 I_p ,
+                \\
+                    \frac{dL_p}{dt}
+                        &=
+                            \beta_p S_p\frac{I_v}{N_v} - (b + r_1) L_p ,
+                \\
+                    \frac{dI_p}{dt}
+                        &=
+                            b L_p - r_2 I_p,
+                \\
+                    \frac{dS_v}{dt}
+                        &=
+                            -\beta_v S_v\frac{I_p}{N_p} -
+                            ( \gamma + \gamma_f) S_v+(1-\theta) \mu ,
+                \\
+                    \frac{dI_v}{dt}
+                        &=
+                            \beta_v S_v \frac{I_p}{N_p} - ( \gamma + \gamma_f) I_v
+                            + \theta \mu.
+             \end{align*}
+             Now, verifying $\Gamma$ conditions, we get
+            $dS_p / dt + dL_p / dt + dI_p / dt \leq dN_p / dt$.
+            By law conservation
+            <a href="#eqn:plant_size">
+                (2)
+            </a>,
+            $S_p+L_p+I_p\leq N_p$.
+            Similarly,
+            $
+                dS_v / dt +  dI_v / dt \leq \mu  -(\gamma + \gamma_f) (S_v + I_v) \leq
+                \mu - ( \gamma + \gamma_f) N_v
+            $.
+            Further, from relation \eqref{eqn:vector_size}, we obtain
+            $
+                S_v+I_v\leq N^{\infty}_v+(N_v(0)-N^{\infty}_v)\exp{(-
+            ( \gamma + \gamma_f) t)}
+            $.
+            Since this is for all $t$, we have $S_v+I_v\leq N^{\infty}_v$, hence
+            $f(S_p,L_p,I_p,S_v,I_v) \in \Gamma$. Therefore, $\Gamma$ is
+            invariant under system \eqref{eq:DeterministicSystem}
+            <span class="right">
+                $\square$.
+            </span>
+        </p>
+    </div>
+    <p>
+        System \eqref{eq:DeterministicSystem} has the following fixed points:
+        Free disase Equilibrium
+        $$
+            FDE:= \left(
+                N_p,0,0,N^{\infty}_v,0
+                \right)^{\top}.
+        $$
+        and the Endemic Equilibrium
+        $$
+            EE:=(S_p^{**},
+            L_p^{**},
+            I_p^{**},
+            S_v^{**},
+            I_v^{**}).
+        $$
+            Here we compute this deterministic fixed points of ODE
+        \eqref{eq:DeterministicSystem}---more details
+        {% cite Salcedo-varela2021 %} ---and show that its uniqueness.
+        To determine this fixed points, we solve,
+        \begin{equation}
+            \label{eqn:fixed_points}
+            \begin{aligned}
+                -\beta_p S_p \frac{I_v}{N_v} + r_1L_p+r_2I_p &= 0\\
+                \beta_p S_p \frac{I_v}{N_v} - (b + r_1) L_p &= 0\\
+                b L_p - r_2 I_p &= 0\\
+                -\beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) S_v +(1-\theta) \mu &= 0\\
+                \beta_v S_v \frac{I_p}{N_p} -( \gamma + \gamma_f) I_v + \theta \mu &= 0.
+            \end{aligned}
+        \end{equation}
+    </p>
+    <p>
+        Note that link:#eqn:fixed_points[Eq. (4)] has at least
+        two solutions---the free disease $(FDE)$
+        and the endemic $(EE)$ fixed point. To characterize
+        the free disease solution
+        $ FDE:= (S_{p} ^ *, L_{p}^*, I_{p}^*, S_{v}^*, I_{v}^*)$,
+        we assume that
+        ${L^*_p = I_p^* = I_v^* = 0}$.
+        Consequently, from relation link:#eqn:plant_size[(2)],
+        the first component of link:#eqn:fixed_points[Eq. (4)]
+        implies ${S_p ^ * = N_p}$. Moreover,
+        from \eqref{eqn:vector_size} we see that
+        $S_v ^ * + I_v ^ * \to N^{\infty}_v $ as
+        $t \to \infty$, then
+        $ S_v^* \to N^{\infty}_v$.
+        Therefore, FDE results
+        $$
+            FDE:= \left(
+                 N_p,0,0,N^{\infty}_v,0
+                 \right)^{\top}.
+        $$
+        For the endemic fixed point
+        $
+             EE:=(S_p^{**},
+             L_p^{**},
+             I_p^{**},
+             S_v^{**},
+             I_v^{**})
+        $,
+        we assume that components $L_p^{**}$, $I_p^{**}$, $I_v^{**}$
+        are positive and solve the right-hand side of
+        \eqref{eq:DeterministicSystem} in terms of $I_v^{**}$.
+    </p>
+    <p>
+        From link:#eqn:fixed_points[Eq. (4)] we obtain
+        \begin{equation*}
+            \begin{aligned}
+                S^{**}_p &=
+                    \frac{
+                        (r_1 L^{**}_p + r_2 I ^ {**} _ p) N_v
+                    }{
+                        I^{**}_v \beta_{p}
+                    }
+                 \\
+                L^{**}_p &=
+                    \frac{
+                        \beta_{p} S_p^{**} I_v^{**}
+                    }{
+                        N_v \left( b+r_1 \right)
+                    },
+                \\
+                I ^ {**} _ p &=
+                    \frac{b L^{**}_p}{r_2},
+                \\
+                S^{**}_v &=
+                    \frac{
+                        \left(
+                            1-\theta
+                        \right)
+                        \mu\, N_{p}
+                    }{
+                        ( \gamma + \gamma_f)\, N_{p} + I^{**}_p
+                        \beta_{v}
+                    }.
+            \end{aligned}
+        \end{equation*}
+    </p>
+        Expressing the above relations in terms of $L_p^{**}, I^{**}_p$ results
+        \begin{equation}
+             \label{eqn:endemic_point_components}
+            \begin{aligned}
+                S^{**}_p &=
+                    \frac{
+                        (r_1 L^{**}_p + r_2 I^{**}_p) N_v
+                    }{
+                        I^{**}_v \beta_{p}
+                    },
+            \\
+            L^{**}_p &=
+                \frac{
+                    r_1L_p^{**} + r_2 I^{**}_p
+                }{
+                b + r_1
+                },
+            \\
+            I^{**}_p &=
+                \frac{
+                    b (r_1 L_p^{**} + r_2 I_p^{**})
+                }{
+                     \left(
+                         b + r_1
+                     \right)
+                      r_2
+                },
+            \\
+            S^{**}_v &=
+                \frac{
+                     \left(
+                        1 - \theta
+                     \right)
+                     \mu(b + r_1)
+                     r_2N_p
+                }{
+                    ( \gamma + \gamma_f) N_p(b + r_1)
+                    r_2 +
+                    b
+                    (
+                        r_1 L_p ^ {**} + r_2
+                        I_p ^ {**}
+                    )
+                    \beta_v
+                }.
+            \end{aligned}
+         \end{equation}
+    </p>
+    <p>
+        Substituting the above relations into the $I_v$ component of
+        \eqref{eq:DeterministicSystem} yields
+        \begin{align*}
+            &[
+                b ( \gamma + \gamma_f) \beta_p I ^ {**}_v +
+                b ( \gamma + \gamma_f) N_v r_2 +
+                b \beta_p \beta_v I^{**}_v +
+                ( \gamma + \gamma_f) \beta_p r_2 I^{**}_v
+                \\
+                &+
+                ( \gamma + \gamma_f) N_v r_1 r_2
+            ] I^{**}_v
+            =
+            N_v
+            (
+                b ( \gamma + \gamma_f) \theta \beta_p I^{**}_v +
+                b ( \gamma + \gamma_f) \theta N_v r_2
+             \\
+             &+
+                ( \gamma + \gamma_f) \theta \beta_p r_2 I^{**}_v +
+                ( \gamma + \gamma_f) \theta N_v r_1 r_2 +
+                b \beta_p \beta_v I^{**}_v
+            ).
+        \end{align*}
+    </p>
+    <p>
+        Let
+         \begin{align*}
+            a_1 &:=
+                (\gamma + \gamma_f) \beta_p (b + r_2) +
+                b \beta_p \beta_v
+                ,\\
+            a_2 &:=
+                (\gamma + \gamma_f) N_v [r_2 (b + r_1) - \beta_p \theta (b + r_2)]
+                - N_v b \beta_p \beta_v
+                ,
+            \\
+            a_3 &:=
+                (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1).
+         \end{align*}
+    </p>
+    <p>
+            So, after some algebraic manipulations, we establish
+        the following quadratic equation
+         \begin{equation}\label{eqn::QuadraticInfectedFP}
+                    a_1 I_v^{**2} + a_2 I^{**}_v - a_3 = 0.
+         \end{equation}
+        According to the discriminant $\Delta = a_2  ^ 2 -  4a_1 a_3$,
+        we get
+         \begin{equation*}
+             \begin{aligned}
+                 \Delta
+                     &=
+                         \{
+                         (\gamma + \gamma_f) N_v [r_2 (b + r_1)
+                         - \beta_p \theta (b + r_2)]
+                        - N_v b \beta_p \beta_v
+                         \} ^ 2
+                     \\
+                     & +
+                         4[
+                         ( \gamma + \gamma_f) \beta_p (b + r_2) +
+                        b \beta_p \beta_v
+                         )
+                         (
+                         (\gamma + \gamma_f) {N_v}^2 r_2 \theta (b + r_1)
+                         ].
+             \end{aligned}
+         \end{equation*}
+    </p>
+    <p>
+            Note that $\Delta$ is positive, this implies two real solutions
+        \begin{equation}
+             \label{eqn:I_v_positiity}
+            I^{**}_{v} =
+                \frac{
+                    -a_2 +
+                    \sqrt{a_2^2 - 4a_1 a_3}}%
+                {2a_1}.
+        \end{equation}
+        From relations \eqref{eqn:endemic_point_components} and \eqref{eqn:I_v_positiity}
+        we obtain endemic fixed point $EE$.
+        And using van den Driessche's {% cite VandenDriessche2017a %}
+        definition of basic reproductive
+        number to compute basic reproductivenumber
+        $\mathcal{R}^d_0$ as the spectral radius of the next-generation matrix.
+        For the system \eqerf{eq:DeterministicSystem} next-generation matrix results
+        \begin{equation*}
+             K:=
+                 \begin{bmatrix}
+                 0 & 0 &\frac{\beta_p S^*_p}{N^{\infty}_v ( \gamma + \gamma_f)}
+                 \\
+                 0 & 0 & 0
+                 \\
+                 \frac{\beta_v S^*_v b}{N_p (b+r_1) r_2} &
+                 \frac{\beta_v S^*_v}{N_p r_2} & 0
+                 \\
+                 \end{bmatrix}.
+         \end{equation*}
+    </p>
+    <p>
+            Matrix $K$  has $(i, j)$ entry equal to the expected number of secondary
+        infections in the compartment $i$ produced by an infected individual introduced
+        in the compartment $j$. Calculating the basic reproductive number for the system
+        \eqref{eq:DeterministicSystem} we have
+        \begin{equation*}%\label{eqn::DeterministicBRN}
+            \mathcal{R}^d_0:=\frac{\beta_p \beta_v b}{(b + r_1 ) ( \gamma + \gamma_f) r_2}.
+        \end{equation*}
+    </p>
+    <p>
+        The following result give a criteria for the stability of fixed points using basic
+        reproductive number $\mathcal{R}^d_0$ {% cite VandenDriessche2017a %}.
+        <div class="theorem" text="Thm.1, p.292 VandenDriessche(2017)">
+
+            If $\mathcal{R}^d_0 < 1$, then the fixed point FDE of system
+            (1) is locally asymptotically stable.
+        </div>
+        Besides,  when $\mathcal{R}^d_0>1$ we have the instability
+        of free disease fixed point, but we obtain the stability
+        of the endemic fixed point, and we establish the following result.
+        <div class="theorem" id="Thm::StabilityEndemicPointBasicReproNumberDeter">
+            <p>
+                If $\mathcal{R}^d_0>1$, then the fixed point EE of
+                <a href="#eq:DeterministicSystem">
+                    System (1)
+                </a>
+                is locally asymptotically stable.
+            </p>
+        </div>
+    </p>
+++++
+
+[#sec:stochastic_extension]
+== Stochastic Extension
+
+In this section, we derive our stochastic differential equation from
+system \eqref{eq:DeterministicSystem}. Following ideas from
++++{% cite Schurz2015 %}+++,
+we quantify uncertainty in plant-replanting $r_1$, $r_2$, and vector-die
+by fumigation $\gamma_f$
+using a standard Brownian process and the suitable smooth functions.
+Let $x:=(S_p, I_p, L_p, S_v,I_v)^{\top}$, then we consider the functions
+$F_i: \mathbb{R} \to \mathbb{R}$, $i \in\{ r_1, r_2, \gamma_f \}$
+defined by
+
+\begin{equation}
+        F_{r_1}(x)
+            :=
+            \sigma_L
+            \frac{S_p}{N_p},
+        \qquad
+        F_{r_2}(x)
+            :=
+            \sigma_I
+            \frac{S_p}{N_p},
+        \qquad
+        F_{\gamma_f}(x)
+            :=
+            \sigma_v.
+\end{equation}
+
+Where $F_i$ are locally Lipschitz-continuous on $\Gamma$. Let
+$B(t) = (B_p(t), B_v(t))^{\top}$ be a 2-dimensional standard Brownian process
+defined on a filtered complete probability space
+$(\Omega,\mathcal{F},\{\mathcal{F}_t\}_{t\geq 0},\P)$.
+%, and $dB(t)=B(t+dt)-B(t)$ denotes the increment of a standard Brownian process.
+Thus, we perturb the deterministic model \eqref{eq:DeterministicSystem}
+replacing the rates $r_1$, $r_2$, and $\gamma_f$ by
+
+[#eqn:NoisePerturbation]
+\begin{equation}
+	\label{eqn:NoisePerturbation}
+	\begin{aligned}
+		r_1 dt \rightsquigarrow r_1 dt
+		+ \sigma_L \frac{S_p}{N_p} dB_p(t),
+    		\\
+		r_2 dt \rightsquigarrow r_2 dt
+		+ \sigma_I \frac{S_p}{N_p} dB_p(t),
+		\\
+		\gamma_f dt \rightsquigarrow \gamma_f dt + \sigma_v dB_v(t).
+	\end{aligned}
+\end{equation}
+
+Note that the right-hand side of \eqref{eqn:NoisePerturbation} denotes a
+stochastic perturbation of $r_1$, $r_2$, $\gamma_f$.
+
+So, we deduce a stochastic extension from deterministic system
+\eqref{eq:DeterministicSystem} given the following Itô SDE:
+
+\begin{equation}
+	\label{sys::StochasticSystem}
+	\begin{aligned}
+		d S_p &=
+			\left(
+				-\beta_p S_p \frac{I_v}{N_v} + r_1 L_p + r_2 I_p
+			\right)dt
+			+ \frac{S_p(\sigma_L L_p
+			+
+			\sigma_I I_p)}{N_p}dB_p(t),
+		\\
+		dL_p &=
+			\left(
+				\beta_p S_p \frac{I_v}{N_v} - (b + r_1) L_p
+			\right) dt
+			- \sigma_L \frac{S_pL_p}{N_p} dB_p(t),
+		\\
+		d I_p &=
+			\left(
+				b L_p - r_2 I_p
+			\right) dt
+			- \sigma_I \frac{S_pI_p}{N_p} dB_p(t),
+		\\
+		dS_v &=
+			\left(
+				-\beta_v S_v \frac{I_p}{N_p} - (\gamma + \gamma_f) S_v  +
+				 (1-\theta) \mu	\right)dt - \sigma_v S_v dB_v(t),
+		\\
+		d I_v &=
+			\left(
+				\beta_v S_v \frac{I_p}{N_p} - (\gamma + \gamma_f) I_v + \theta \mu
+			\right) dt
+			- \sigma_v I_v dB_v(t),
+			 \\
+			& S_p(0) = S_{p}^{0}, \quad
+            L_p(0) = L_{p}^{0}, \quad
+            I_p(0) = I_{p}^{0}, \quad
+            \\
+            & S_v(0) = S_{v}^{0},
+              I_v(0) = I_{v}^{0}.
+	\end{aligned}
+\end{equation}
+
+[#sec:solution_existence]
+== Existence and uniqueness of positive Solution
+++++
+<p>
+        Here, we prove the existence of a unique positive solution.
+    Since we study the asymptotic behavior of a biological model,
+    we have to assure the existence of unique-globally-positive
+    invariant solution of SDE
+    \eqref{sys::StochasticSystem}. The following result prove that
+    this set is positive invariant-- see supplementary material.
+</p>
+
+<div class="theorem" id="thm::existence-unique">
+
+        For any initial values
+        $
+            (S_p(0), L_p(0), I_p(0), S_v(0), I_v(0))^{\top}
+            \in \Gamma
+        $,
+        exists a unique a.s. invariant global positive solution to SDE
+        \eqref{sys::StochasticSystem} in $\Gamma$, that is, the solution
+        $x(t) = (S_p(t), L_p(t), I_p(t), S_v(t), I_v(t)) ^\top$, satisfies
+        \begin{equation*}
+            \mathbb{P}
+                \Big\{
+                    x(t)
+                    \in
+                    \Gamma, \
+                    \forall t \geq 0
+                \Big\} = 1.
+        \end{equation*}
+    </div>
+++++
+
+
+
+++++
+    <div class="proof">
+        <p>
+                To prove existence of global solution, note that the right-hand side of
+            \eqref{sys::StochasticSystem} are second-order polynomials, are locally
+            Lipschitz continuous. By Theorem 3.4 {% cite Mao2008 --locator 56 %},
+            there exists a unique local solution
+            $(S_p(t),L_p(t),I_p(t),S_v(t),I_v(t))^\top$
+            defined on $[0,\tau_e)$, where $\tau_e$ is the explosion time.
+            We will show $\tau_e = \infty$ a.s.
+        </p>
+        <p>
+                Let $k_0>0$ such that
+            $$
+                (S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))^\top \in
+             	\left(
+                    \frac{1}{k_0},k_0\right)
+                    \times
+                    \dots
+                    \times
+                    \left(\frac{1}{k_0},k_0
+                \right)=
+            	\left(\frac{1}{k_0},k_0\right)^5.
+            $$
+            For any $k>0$ with $k>k_0$, define
+            \begin{equation*}
+         	    \tau_k :=
+                    \inf
+                        \left \{
+                            t\in [0,\tau_e)
+             	                :(S_p(t),L_p(t),I_p(t),S_v(t),I_v(t))^\top
+             	                    \not \in
+                                        \left(
+                                            \frac{1}{k},k
+                                        \right)^5
+                        \right\}.
+         	\end{equation*}
+         	Note that $\tau_k$ is an increasing sequence, because
+         	$\left(1/k,k\right)$ is an increasing sequence. Moreover,
+         	$\tau_k \leq \tau_e$. Then $\tau_k$ has a limit, denote by
+         	$\tau_{\infty}$. We will show that $\tau_{\infty}=\infty$;
+         	this implies $\tau_e = \infty$ and we conclude hat system
+         	\eqref{sys::StochasticSystem} has a unique solution and will
+         	remain in $\Gamma$ with probability one.
+        </p>
+        <p>
+ 	            We proceed by a contradiction. Suppose $\tau_{\infty}<\infty$.
+            Thus, there exists $T>0$ such that
+
+            $$
+         	    \mathbb{P}
+                    \Big\{
+                        \tau_{\infty} < T
+                    \Big\}
+                    >\epsilon, \quad \forall
+         	        \epsilon \in (0,1).
+         	$$
+            Thus, there exists $k_1>k_0$ such that
+         	$\mathbb{P} \Big\{ \tau_k < T \Big\} >\epsilon$ for all
+            $k \geq k_1$.
+        </p>
+        <p>
+            Consider the following Lyapunov function $V:\mathbb{R}^5 \to \mathbb{R}$
+            defined by
+         	\begin{equation*}
+ 	            \begin{aligned}
+                    & V (S_p, L_p, I_p, S_v, I_v) :=
+                        \left(S_p - N_p - N_p \log{\frac{S_p}{N_p}}\right) +
+                        \left(L_p - N_p - N_p \log{\frac{L_p}{N_p}}\right)
+                    \\
+                    &+
+                        \left(I_p - N_p - N_p \log{\frac{I_p}{N_p}}\right) +
+                        \left(S_v - N^{\infty}_v - N^{\infty}_v
+                        \log{\frac{S_v}{N^{\infty}_v}}\right)
+                    \\
+                    &+
+                        \left(I_v - N^{\infty}_v - N^{\infty}_v
+                        \log{\frac{I_v}{N^{\infty}_v}}\right).
+ 	            \end{aligned}
+     	    \end{equation*}
+ 	        Applying the diffusion operator $\mathcal{L}$ see {% cite Mao2008 --locator 12 %}, to
+            $$
+                f(x) = x - N - N\
+                \log{
+                    \left( \frac{x}{N} \right)
+                },
+            $$
+            we get
+            \begin{align*}
+                &\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] =
+                    \left(
+                            1 - \frac{N_p}{S_p}
+                        \right) \left(
+                           -\frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
+                        \right)
+                        \\
+                        &+
+                            \left(
+                                1 - \frac{N_p}{L_p}
+                            \right) \left(
+                               \frac{\beta_p}{N_v} S_p I_v -(b + r_1) L_p
+                            \right) + \left(
+                                1 - \frac{N_p}{I_p}
+                            \right) \left(
+                               b L_p - r_2 I_p
+                            \right)
+                        \\
+                        &+
+                            \left(
+                                1 - \frac{N^{\infty}_v}{S_v}
+                            \right) \left(
+                           -\frac{\beta_v}{N_p} S_v I_p - (\gamma + \gamma_f) S_v +
+                            (1- \theta) \mu
+                        \right)
+                        \\
+                        &+ \left(
+                        1 - \frac{N^{\infty}_v}{I_v}
+                        \right) \left(
+                           -\frac{\beta_v}{N_p} S_v I_p -
+                            (\gamma + \gamma_f) I_v + \theta \mu
+                            \right)
+                        \\
+                        &+
+                            \frac{1}{2}\frac{S_p ^2}{N_p ^ 2}
+                            \frac{N_p}{S_p ^ 2} (\sigma_L L_p + \sigma_I I_p) ^ 2
+                            + \frac{1}{2} \sigma_L ^2
+                            \frac{S_p ^2}{N_p ^2} L_p^2 \frac{N_p}{L_p ^2}
+                            + \frac{1}{2} \sigma_I ^2
+                            \frac{S_p ^2}{N_p ^2} I_p^2 \frac{N_p}{I_p ^2}
+                       \\
+                        &+
+                            \frac{1}{2} \sigma_v ^2 S_v ^2 \frac{N^{\infty}_v}{S_v ^2}
+                            + \frac{1}{2} \sigma_v ^2 I_v ^2 \frac{N^{\infty}_v}{I_v ^2}.
+            \end{align*}
+            Bounding the above equality by positive terms, we have
+            \begin{equation}\label{eqn::boudn1positvesol}
+                \begin{aligned}
+                    &\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                        \frac{\beta_p}{N_v} S_p I_v + r_1 L_p + r_2 I_p
+                        + \frac{\beta_p}{N_v} S_p I_v
+                        + (b + r_1) L_p
+                        \\
+                        &+
+                            b L_p + r_2 N_p + (1 - \theta) \mu
+                            + \frac{\beta_v}{N_p} S_v I_p
+                            + (\gamma + \gamma_f) N^{\infty}_v
+                            + \frac{\beta_v}{N_p} S_v I_p + \theta \mu
+                       \\
+                        &+ (\gamma + \gamma_f) N^{\infty}_v
+                        + \frac{1}{2} \frac{1}{N_p} (\sigma_L L_p + \sigma_I I_p)^2
+                            + \frac{1}{2}\sigma_L ^2
+                            \frac{S_p ^2}{N_p} + \frac{1}{2}\sigma_I ^2
+                            \frac{S_p ^2}{N_p}
+                        \\
+                        &+ \frac{1}{2}\sigma_v ^2 N^{\infty}_v
+                            + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
+                \end{aligned}
+            \end{equation}
+            Using size population, we bound \eqref{eqn::boudn1positvesol} by
+     	    \begin{equation}\label{eqn::boudn2positvesol}
+     	        \begin{aligned}
+     	            &\mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] \leq
+             	        \beta_p N_p + r_1 N_p + r_2 N_p + \beta_p N_p
+             	        + (b + r_1) N_p
+         	        \\
+             	        &+
+         	            b N_p + r_2 N_p + (\gamma + \gamma_f) N^{\infty}_v
+         	            + \beta_v N^{\infty}_v
+         	            + (\gamma + \gamma_f) N^{\infty}_v +\beta_v N^{\infty}_v +
+         	            (\gamma + \gamma_f) N^{\infty}_v
+         	       \\
+             	        &+ (\gamma + \gamma_f) N^{\infty}_v
+         	            + (\gamma + \gamma_f) N^{\infty}_v
+         	        	+ \frac{1}{2} (\sigma_L + \sigma_I)^2 N_p
+         	            + \frac{1}{2}\sigma_L ^2
+         	            N_p + \frac{1}{2} \sigma_I ^2 N_p
+                    \\
+             	        &+
+         	        	\frac{1}{2}\sigma_v ^2 N^{\infty}_v
+         	            + \frac{1}{2} \sigma_v ^2 N^{\infty}_v.
+         	    \end{aligned}
+     	    \end{equation}
+         	Factorizing $N_p$ and $N^{\infty}_v$ in relation \eqref{eqn::boudn2positvesol},
+     	    we get
+            \begin{equation*}\label{eqn::boudn3positvesol}
+             	\begin{aligned}
+                    \mathcal{L}[V(S_p,L_p,I_p,S_v,I_v)] &
+                    \\
+                      \leq &
+                        \left(
+                            2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
+                            \frac{1}{2} (\sigma_L + \sigma_I)^2
+                            + \frac{1}{2}\sigma_L ^2
+                            + \frac{1}{2} \sigma_I ^2
+                        \right) N_p
+                    \\
+                    + &
+                        [
+                            2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
+                        ]
+                        N^{\infty}_v.
+                \end{aligned}
+            \end{equation*}
+            Define
+            \begin{equation*}\label{eqn::boudn4positvesol}
+                \begin{aligned}
+                   C_1  := &
+                        \left(
+                            2 \beta_p + 2 r_1 + 2 r_2 + 2 b +
+                            \frac{1}{2} (\sigma_L + \sigma_I)^2
+                            + \frac{1}{2}\sigma_L ^2
+                            + \frac{1}{2} \sigma_I ^2
+                        \right) N_p
+                        \\
+                        + &
+                            [
+                            2 \beta_v  + 4 (\gamma + \gamma_f) + \sigma_v ^2
+                            ] N^{\infty}_v.
+                \end{aligned}
+            \end{equation*}
+ 	        Then by Ito's formula, we obtain
+            \begin{equation}\label{eqn::boudn5positvesol}
+                \begin{aligned}
+                    &d[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                        C_1 dt + \left(
+                            1- \frac{N_p}{S_p}
+                            \right)\left[\frac{S_p}{N_p}(
+                            \sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
+                   \\
+                    &+
+                        \left(1 - \frac{N_p}{L_p}\right)
+                        \left(
+                        - \sigma_L \frac{S_p}{N_p} L_p
+                        \right)dB_p(t)
+                       + \left(1 - \frac{N_p}{I_p}\right)
+                       \left(
+                       - \sigma_I \frac{S_p}{N_p} I_p
+                       \right)dB_p(t)
+                   \\
+                    &+
+                       \left(1 - \frac{N^{\infty}_v}{S_v}\right)
+                       \left(- \sigma_v S_v\right)dB_v(t) +
+                       \left(1 - \frac{N^{\infty}_v}{I_v}\right)
+                       \left(- \sigma_v I_v\right)dB_v(t).
+                \end{aligned}
+            \end{equation}
+        </p>
+        <p>
+            Bounding \eqref{eqn::boudn5positvesol} by positive terms, we obtain
+            \begin{equation}\label{eqn::boudn6positvesol}
+                \begin{aligned}
+                    &d[V(S_p,L_p,I_p,S_v,I_v)] \leq
+                        C_1 dt + \left[\frac{S_p}{N_p}
+                        (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)
+                   \\
+                    &+
+                        (\sigma_L + \sigma_I) dB_p(t)
+                        + 2 \sigma_v N^{\infty}_v dB_p(t).
+                \end{aligned}
+            \end{equation}
+         	Integrating both sides of \eqref{eqn::boudn6positvesol} on
+         	$(0,\tau_k \wedge T)$, and taking expectation, we have
+            \begin{equation*}\label{eqn::boudn7positvesol}
+                    \begin{aligned}
+                    &\E{V(S_p,L_p,I_p,S_v,I_v)} \leq
+                        V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+                   \\
+                    &+
+                        \E{\int_0^{\tau_k \wedge T} C_1 dt}
+                        + \E{\int_0^{\tau_k \wedge T}
+                        \left[\frac{S_p}{N_p}
+                        (\sigma_L L_p + \sigma_I I_p)\right]dB_p(t)}
+                    \\
+                    &+
+                        \E{\int_0^{\tau_k \wedge T}
+                        (\sigma_L + \sigma_I) dB_p(t)} +
+                        2 \E{ \int_0^{\tau_k \wedge T}
+                        \sigma_v N^{\infty}_v dB_p(t)}.
+                \end{aligned}
+            \end{equation*}
+         	Since $G \in L^2(0, T)$, then $\E{\int_0^T G dB(s)}=0$. Using the above argument, we obtain
+            \begin{equation*}\label{eqn::boudn8positvesol}
+                \begin{aligned}
+                    &\E{V(S_p,L_p,I_p,S_v,I_v)} \leq
+                        V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+                       + C_1 T.
+                \end{aligned}
+            \end{equation*}
+ 	        For $k \geq 1$ such that $k \geq k_0$, let
+ 	        $\Omega_k = \{ \tau_k \leq T\}$. Then,	$\probX{}{\Omega_k} > \epsilon$.
+ 	        If $t \in \Omega_k$, thus at least one of the following	will hold true:
+            \begin{align*}
+                S_p(t) \not \in &\left( \frac{1}{k}, k\right), \qquad L_p(t) \not \in
+                \left( \frac{1}{k}, k\right), \qquad  I_p(t) \not \in
+                \left( \frac{1}{k}, k\right), \\
+                 &S_v(t) \not \in \left( \frac{1}{k}, k\right), \qquad  I_v(t) \not \in
+                 \left( \frac{1}{k}, k\right).
+            \end{align*}
+            Note that, $f(x) = x - N_{\bullet} - N_{\bullet}\log{x/N_{\bullet}}$ is
+            increasing on $(N_{\bullet},\infty)$ and decreasing on $(0,N_{\bullet})$
+            it follows
+            \begin{align*}
+                &V(S_p(\tau_k \wedge T),L_p(\tau_k \wedge T),I_p(\tau_k \wedge T),
+                    S_v(\tau_k \wedge T),I_v(\tau_k \wedge T)) \geq
+                    \\
+                       &
+                        \left(k - N_p - N_p \log{\frac{k}{N_p}}\right)^3
+                        \wedge \left(\frac{1}{k} - N_p - N_p
+                        \log{\frac{1}{N_p k}}\right)^3 \wedge
+                    \\
+                       &
+                        \left(k - N^{\infty}_v - N^{\infty}_v
+                        \log{\frac{k}{N^{\infty}_v}}\right)^2
+                        \wedge \left(\frac{1}{k} - N^{\infty}_v - N^{\infty}_v
+                        \log{\frac{1}{N^{\infty}_v k}}\right)^2.
+            \end{align*}
+          	Now we have
+            \begin{align*}
+                    & V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0))
+                        + C_1 T
+                        \geq \E{V(S_p,L_p,I_p,S_v,I_v)}
+                \\
+                    & \geq
+                        \epsilon
+                        \left(
+                            k - N_p - N_p
+                                \log{\frac{k}{N_p}}
+                        \right)^3
+                        \wedge
+                        \left(
+                            \frac{1}{k} - N_p
+                            - N_p \log{\frac{1}{N_p k}}
+                        \right)^3 \wedge
+                \\
+                    &
+                        \left(
+                            k - N^{\infty}_v - N^{\infty}_v
+                            \log{\frac{k}{N^{\infty}_v}}
+                        \right)^2
+                        \wedge
+                        \left(
+                            \frac{1}{k} - N^{\infty}_v - N^{\infty}_v
+                            \log{\frac{1}{N^{\infty}_v k}}
+                        \right)^2.
+            \end{align*}
+ 	      	Finally, letting $ k \to \infty$ we obtain
+          	\begin{equation*}
+                \infty > V(S_p(0),L_p(0),I_p(0),S_v(0),I_v(0)) + C_1 T \geq \infty,
+          	\end{equation*}
+            which is a contradiction. Thus, we conclude that $\tau_\infty = \infty$.
+        <span class="right">
+            $\square$
+        </span>
+    </div>
+++++
+[#sec:extinction]
+== Extinction
+In this section, we deduce conditions over the noise amplitude and
+a parameter threshold such that the disease will be extinguished with
+probability one. According to the deterministic threshold, if
+$\mathcal{R}^d_0<1$, then  the solution tends to free-disease fixed
+point. In the other hand, the solution process of our SDE can reach
+this fixed point at least in two different ways. First, we obtain
+conditions for the noise amplitude.
+++++
+    <div class="definition" id="def::ExponentialStability">
+        <p>
+                The free-disease fixed point of system
+            \eqref{sys::StochasticSystem}
+            is almost surely exponentially stable if
+            \begin{equation}
+                \label{eqn::ExponentialStability}
+                \begin{aligned}
+                    \limsup_{t \to \infty}
+                        \frac{1}{t}
+                        \ln(L_p + I_p) < 0 \quad \mathrm{and} \quad
+                        &
+                    \limsup_{t \to \infty}
+                        \frac{1}{t}\ln(I_v) < 0 \qquad \mathrm{a.s.}
+                \end{aligned}
+            \end{equation}
+        </p>
+    </div>
+++++
+The following result gives conditions on the parameters to obtain
+disease extinction.
+++++
+    <div class="theorem" id="thm::NoiseExtinction">
+        <p>
+                For all initial condition
+	        $(S_p(0), L_p(0), I_p(0), S_v(0), I_v(0)) ^ \top \in \Gamma$. If
+	        \begin{equation}\label{eqn::NoiseCond}
+	            \begin{aligned}
+                    \sigma^2_I > \frac{\sigma^2_L
+                         r^2_2}{2\sigma^2_L(r_1-2\beta_p)-\beta^2_p},
+                    \qquad
+                    \sigma^2_v > \frac{\beta^2_v}
+                    {2[(\gamma + \gamma_f)-(\theta\mu+\beta_v)]},
+                \end{aligned}
+            \end{equation}
+    	    then, the disease will exponentially extinguish with probability
+	        one. That is,
+            \begin{equation}
+                \begin{aligned}
+                    \limsup_{t \to \infty}
+                        \frac{1}{t}
+                        \ln(L_p + I_p) < 0 \quad \mathrm{and} \quad
+                        &
+                    \limsup_{t \to \infty}
+                        \frac{1}{t}\ln(I_v) < 0 \qquad \mathrm{a.s.}
+                \end{aligned}
+            \end{equation}
+        </p>
+    </div>
+++++
+++++
+    <div class="proof">
+        <p>
+            The main idea is to apply It\^{o}'s formula to a convenient function and
+            deduce conditions. Let
+         	$
+         		V(S_p, L_p, I_p) = \ln(L_p + I_p)
+            $, then the It\^{o}'s formula gives
+         	\begin{align*}
+         		d \ln(L_p+I_p)
+         			=&
+                        \left(
+                            \frac{1}{L_p + I_p}
+                        \right)
+                        \left(
+                            \frac{\beta_p}{N_v}
+                            S_p I_v - (b + r_1) L_p
+                            -\frac{1}{2}
+                            \sigma_L^2 \frac{L_p^2}{(L_p+I_p)^2}
+                        \right)dt
+                    \\
+ 			        &-
+ 				    \sigma_L \frac{L_p}{L_p+I_p}dB_p(t)
+                    \\
+                    &\leq
+                        \left(
+                            \frac{1}{L_p+I_p}
+                        \right)
+                        \left(
+                            \beta_p S_p - (b + r_1) -
+                            \frac{1}{2}
+                            \sigma_L^2
+                            \frac{L_p^2}{(L_p+I_p)^2}
+                        \right)dt
+                    \\
+ 			        &-
+ 				    \sigma_L \frac{L_p}{L_p + I_p} dB_p(t).
+ 			        \\
+ 	            \end{align*}
+ 	        Let $x:=\dfrac{L_p}{L_p + I_p}$, then
+     		\begin{align*}
+         		d \ln(L_p + I_p)
+         			&\leq
+        			\left(
+         					\beta_p
+         					\frac{S_p}{L_p + I_p} -
+         					(b + r_1) -
+         					\frac{1}{2}
+         					\sigma_L ^ 2 x^2
+     				\right)
+                    dt - \sigma_L x dB_p(t)
+                    \\
+                    &\leq
+                        \left(\beta_p
+                            \frac{N_p}{L_p + I_p} - (b+r_1) -
+                            \frac{1}{2}
+                            \sigma_L^2 x^2
+                        \right) dt -
+                        \sigma_L xdB_p(t)
+                    \\
+ 			        &
+                        \leq
+                    \left(
+                        \beta_p x + 2\beta_p -
+                        (b + r_1) -
+                        \frac{1}{2}
+                        \sigma_L ^ 2 x^2
+                    \right) dt -
+				    \sigma_L xdB_p(t)
+         			\\
+                    &=
+                        \left(
+                            -\frac{1}{2}
+                            \sigma_L ^ 2 x ^ 2 +
+                            \beta_p x + 2 \beta_p -
+                            (b + r_1)
+                        \right) dt -\sigma_L x
+                        dB_p(t).
+             	\end{align*}
+                Hence,
+                \begin{align*}
+             		\ln(L_p+I_p)
+             			&\leq
+         				-\frac{\sigma_L ^ 2}{2}
+         				\int_{0} ^ {t}
+         					\left[
+         						\left(
+         							x -
+         							\frac{\beta_p}{\sigma_L ^ 2}
+         						\right) ^ 2 +
+         						\frac{\beta_p ^ 2}{2 \sigma_L ^ 2} +
+         						2 \beta_p - (b + r_1)
+         					\right] du
+         				\\
+         			&-
+         				\int_{0} ^ {t}
+         					\sigma_L x dB_p(u) +
+         					\ln(L_p(0) + I_p(0)),
+         	\end{align*}
+ 	        which implies,
+         	\begin{equation}
+                \label{eqn::ItoForBound}
+                \begin{aligned}
+                    \frac{1}{t}\ln(L_p+I_p)
+                        &\leq
+                            -\frac{\sigma_L^2}{2t}
+                            \int_{0}^{t}
+                            \left(
+                                x -
+                                \frac{\beta_p}{\sigma_L^2}
+                            \right) ^ 2 du +
+                            \frac{\beta_p^2}{2\sigma_L^2} -
+                            (b + r_1) + 2\beta_p
+                        \\
+                        &-
+                            \frac{1}{t}
+                            \int_{0}^{t}
+                            \sigma_L x dB_p(u) +
+                            \frac{1}{t} \ln(S_p(0)+L_p(0)+I_p(0)),
+                \end{aligned}
+            \end{equation}
+         	let
+ 	        $$
+ 	            M_t :=
+         		\frac{1}{t}
+                    \int_{0}^{t}
+         			\sigma_L x dB_p(t) +
+         			\frac{1}{t} \ln(L_p(0)+I_p(0)) .
+         	$$
+            Since the integral in the term $M_t$ is a martingale, the strong law of
+            large numbers for martingales {% cite Mao2008 --locator 12-14 Thm. 3.4 %}
+              implies that
+            \begin{equation*}
+                \lim
+                \limits_{t \to \infty} M_t = 0\,\,
+                \mbox{a.s.}
+            \end{equation*}
+ 	        Thus, from relation \eqref{eqn::ItoForBound} we obtain
+            \begin{align}
+                \label{eqn::Bound1}
+                \limsup_{t\infty \to \infty}
+                \frac{1}{t}
+                \ln(L_p + I_p) <
+                    \frac{\beta_p^2}{2\sigma_L^2} +
+                    2\beta_p - (b + r_1).
+            \end{align}
+ 	        A similar argument also shows that
+            \begin{align}\label{eqn::Bound2}
+             		\limsup_{t\infty \to \infty}
+             		\frac{1}{t}
+             		\ln(L_p + I_p) <
+             		\frac{r_2 ^ 2}{2 \sigma_I ^ 2} + b.
+             	\end{align}
+     	    Through by \eqref{eqn::Bound1} and \eqref{eqn::Bound2}, we obtain
+            \begin{align*}
+                \limsup_{t\infty \to \infty}
+                \frac{1}{t}
+                \ln(L_p + I_p)
+                    <
+                    \frac{\beta_p^2}{2\sigma_L^2} +
+                    \frac{r_2^2}{2 \sigma_I ^ 2} +
+                    2\beta_p - r_1,
+            \end{align*}
+            and for infected vector we obtain
+            \begin{align*}
+                \limsup_{t\infty \to \infty}
+                \frac{1}{t}
+                \ln(I_v)
+                    <
+                    \frac{\beta_v^2}{2\sigma_v^2}
+                    +
+                    \beta_v - (\gamma + \gamma_f) + \theta \mu .
+            \end{align*}
+ 	        Therefore by relation \eqref{eqn::NoiseCond}, implies that
+ 	        \begin{equation*}
+                \limsup_{t \to \infty}
+                    \frac{1}{t}
+                        \ln(L_p + I_p) < 0 \quad \mathrm{ and } \quad
+                        \limsup_{t \to \infty}
+                        \frac{1}{t}\ln(I_v)< 0\qquad \mathrm{a.s.}
+            \end{equation*}
+        </p>
+        <span class = "right">
+            $\square$
+        </span>
+    </div>
+++++
+
+++++
+    <div class="remark">
+        <p>
+               The
+            <a href="#thm::NoiseExtinction">
+                above Theorem
+            </a>
+            shows that if the noise intensities are large enough.
+            Then the infected population tends to die out.
+        </p>
+    </div>
+++++
+
+++++
+    <p>
+            Now, we define a stochastic version of basic reproductive number, we use ideas from
+        {% cite Agarwal2019 %}. We postulate the following parameter \eqref{sys::StochasticSystem}
+        as,
+        \begin{equation}
+            \label{eqn::StochasticBRN}
+            \mathcal{R}^s_0 :=
+                \mathcal{R}^{d}_0
+                -\frac{1}{2}
+                \left[
+                    \left(
+                        \sigma_L
+                        +\sigma_I
+                    \right)^2
+                    - \frac{\sigma^2_v} {
+                        \beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2
+                    }
+                \right].
+        \end{equation}
+    </p>
+    <p>
+        From \eqref{eqn::StochasticBRN}, we deduce two cases that depend on
+        noise intensities:
+	    $\mathcal{R}^{s}_0 < \mathcal{R}^{d}_0$ and
+	    ${\mathcal{R}^{s}_0 > \mathcal{R}^{d}_0}$.
+	    We define these cases of our stochastic reproductive number according
+	    to the deterministic threshold let
+        $\mathcal{R}^s_0$ as follows:
+        <ol>
+            <li>
+                $\mathcal{R}^s_s$,
+                when $\mathcal{R}_0^s < \mathcal{R}_0^d$,
+            </li>
+            <li>
+                and $\mathcal{R}^s_a$,
+                when $\mathcal{R}_0^s > \mathcal{R}_0^d$.
+            </li>
+        </ol>
+    </p>
+	From here $\bullet$ denotes the index $\{a, s\}$. For example,
+	in the following theorem, if ${\mathcal{R}^s_{\bullet} < 1}$,
+	then infected populations tend to become extinct.
+    <div class="theorem" id ="thm::Rs0Extinction">
+        Let $(S_p(t),L_p(t),I_p(t), S_v(t),I_v(t))^\top$
+        be the solution of SDE \eqref{sys::StochasticSystem}
+        with initial values
+        $
+            (S_p(0),L_p(0),I_p(0),S_v(0),\\ I_v(0)) ^ \top \in \Gamma
+        $,
+        \quad
+        $r_2 \geq r_1$,
+        and \quad
+        $\beta_p \beta_v > 2 \mu r_2$.
+        If \quad ${0 \leq \mathcal{R}^s_{\bullet}<1}$,
+        then the infection tends to zero exponentially, a.s.
+    </div>
+
+    <div class="proof">
+        Consider the following Lyapunov function:
+        \begin{equation*}
+            \begin{aligned}
+                V(S_p,L_p,I_p,S_v,I_v)
+                    &=
+                        w_0 \left(
+                        S_p-N_p-N_p\log{\frac{S_p}{N_p}}
+                        \right)
+                        +w_1 L_p + w_2 I_p
+                    \\
+                    &+
+                        w_3 \left(S_v-N^{\infty}_v-N^{\infty}_v
+                        \log{\frac{S_v}{N^{\infty}_v}}\right)
+                    + w_4 I_v,
+            \end{aligned}
+        \end{equation*}
+        where
+        \begin{align*}
+		    &
+			w_0 = w_1 = \frac{1}{N_p},
+    	    \\
+        	&
+    		w_2 =
+	            \frac{1}{b}
+	            \left\{
+	                \frac{ \mathcal{R}^{d}_0-1} {2 N_p}
+	                    -\frac{1}{N_p}
+	                    \left[
+	                        r_2+ b +\beta_p +
+	                        \left(
+	                            \sigma_L
+	                            + \sigma_I
+	                        \right) ^ 2
+	                    \right]
+	            \right\},
+	        \\
+	        &
+	            w_3 =
+      		    w_4 =
+                \frac{\mathcal{R}^{d}_0 - 1}{2 N^{\infty}_v }
+                \frac{1}{\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}.
+        \end{align*}
+        Computing the diffusion operator $\mathcal{L} V$
+        {% cite Mao2008 --locator 110 %}, we obtain
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L}V
+                &=
+                    w_0 \left(
+                    \frac{S_p-N_p}{S_p}
+                    \right)
+                    \left(
+                    -\frac{\beta_p}{N_v} S_p I_v
+                        + r_1 L_p + r_2 I_p
+                    \right)
+                \\
+                &+
+                    w_1 \left[
+                    \frac{\beta_p}{N_v}S_p I_v -(b+r_1)L_p
+                    \right]
+                    +
+                    w_2 \left(
+                    b L_p -r_2 I_p
+                    \right)
+                \\
+                &+
+                    w_3 \left(
+                    \frac{S_v-N^{\infty}_v}{S_v}
+                    \right)
+                    \left[
+                    -\frac{\beta_v}{N_p}S_v I_p
+                    -(\gamma + \gamma_f) S_v + (1 - \theta) \mu
+                    \right]
+                \\
+                &+
+                    w_4 \left[
+                    \frac{\beta_v}{N_p}S_v I_p -
+                    (\gamma + \gamma_f) I_v +\theta \mu
+                    \right]
+                    +
+                    \frac{w_0}{2}
+                    \left[
+                    \frac{S_p}{N_p}
+                    (\sigma_L L_p+\sigma_I I_p)
+                    \right]^2
+                \\
+                &+
+                    \frac{w_3}{2} \sigma_v^2 N ^ {\infty}_{v}.
+            \end{aligned}
+        \end{equation*}
+
+        By conservation law \eqref{eqn:plant_size},
+        $L_p = N_p-S_p-I_p$, we have
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L}V
+                    &=
+                        w_0 \left(
+                        \frac{S_p-N_p}{S_p}
+                        \right)
+                        \left[
+                            -\frac{\beta_p}{N_v}
+                            S_p I_v + r_1 N_p - r_1 S_p
+                            + (r_2 - r_1) I_p
+                        \right]
+                        \\
+                     &+
+                        w_1 \left[
+                            \frac{\beta_p}{N_v}S_p I_v
+                            - (b+r_1) (N_p - S_p -I_p)
+                        \right]
+                    \\
+                    &+
+                        w_2
+                        \left[
+                            b ( N_p - S_p -I_p) -r_2 I_p
+                        \right]
+                        \\
+                    &+
+                         w_3
+                        \left(
+                            \frac{S_v-N_v}{S_v}
+                        \right)
+                        \left[
+                            -\frac{\beta_v}{N_p} S_v I_p
+                            -(\gamma + \gamma_f) S_v + (1-\theta) \mu
+                        \right]
+                        \\
+                    &+
+                        w_4
+                        \left[
+                            \frac{\beta_v}{N_p} S_v I_p
+                            -(\gamma + \gamma_f) I_v +\theta \mu
+                        \right]
+                        \\
+                    &+
+                        \frac{w_0}{2}
+                        \left\{
+                        \frac{S_p}{N_p}[\sigma_L ( N_p - S_p -I_p)
+                        +\sigma_I I_p]\right\}^2
+                        + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+            \end{aligned}
+        \end{equation*}
+        Expanding the above equality, we get
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L} V
+                    &\leq
+                            - w_0 \left(
+                        S_p-N_p
+                        \right)\frac{\beta_p}{N_v} I_v  -r_1 w_0
+                        \frac{\left(S_p-N_p\right)^2}{S_p}
+                            + w_0 (r_2-r_1) \left(
+                        \frac{S_p-N_p}{S_p}
+                        \right) I_p
+                        \\
+                     &+
+                        w_1
+                            \frac{\beta_p}{N_v}S_p I_v
+                            - w_1(b+r_1) (N_p - S_p -I_p)
+                        +
+                        w_2 b ( N_p - S_p -I_p) - w_2 r_2 I_p
+                        \\
+                    &-
+                        w_2 r_2 I_p -
+                        w_3 \left(
+                        S_v - N^{\infty}_v
+                        \right)\frac{\beta_v}{N_p} I_p -(\gamma + \gamma_f) w_3
+                        \frac{\left(S_v- N^{\infty}_v\right)^2}{S_v}
+                        + w_4 \frac{\beta_v}{N_p}S_v I_p
+                        \\
+                    &-
+                        w_4(\gamma + \gamma_f) I_v
+                        + w_4\theta \mu
+                        + \frac{w_0}{2}
+                            \left(
+                            \sigma_L + \sigma_I
+                            \right)^2 N_p + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+            \end{aligned}
+        \end{equation*}
+        Factorizing similar terms, we obtain
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L}V
+                    &\leq
+                        -r_1 w_0
+                        \frac{\left(S_p-N_p\right)^2}{S_p}
+                        -(\gamma + \gamma_f) w_3
+                        \frac{\left(S_v-N^{\infty}_v\right)^2}{S_v} +
+                        (w_1- w_0) \frac{\beta_p}{N_v} S_p I_v
+                    \\
+                    &+
+                        (w_1- w_0) \frac{\beta_p}{N_v} S_p I_v+
+                        (w_4- w_3) \frac{\beta_v}{N_p} S_v I_p
+                    \\
+                    &+
+                        \left[w_0(r_2-r_1) + w_1(b+r_1)- w_2(b+r_2)
+                        + w_3 \frac{\beta_v N^{\infty}_v}{N_p}\right]I_p
+                    \\
+                    &+
+                        \left[w_0\frac{\beta_p}{N_v}N_p
+                        -( \gamma + \gamma_f) w_4
+                        \right] I_v + [w_2 b - w_1 (b+ r_1)](N_p-S_p)
+                    \\
+                    &-
+                        w_0 (r_2- r_1)\frac{N_p}{S_p} I_p
+                        + w_4 \theta \mu +
+                        \frac{w_0}{2}
+                        \left(
+                        \sigma_L
+                        +\sigma_I \right)^2 N_p
+                        + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+            \end{aligned}
+        \end{equation*}
+        Since $w_0 = w_1$, $w_3 = w_4$, above inequality reduce to
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L}V
+                    &\leq
+                        -r_1 w_0
+                        \frac{\left(S_p-N_p\right)^2}{S_p}
+                        -(\gamma + \gamma_f) w_3
+                        \frac{\left(S_v-N^{\infty}_v\right)^2}{S_v}
+                    \\
+                    &+
+                        \left[w_1(r_2+ b )- w_2(b+r_2)
+                        + w_3 \frac{\beta_v N^{\infty}_v}{N_p}\right]I_p
+                    \\
+                    &+
+                        \left[w_1\frac{\beta_p}{N_v} N_p
+                        - (\gamma + \gamma_f) w_3\right]I_v
+                        +
+                        \left[
+                            w_2 b - w_1 (b+ r_1)
+                        \right] (N_p - S_p)
+                    \\
+                    & -
+                        w_1 (r_2 - r_1)
+                        \frac{N_p}{S_p} I_p+
+                        w_3 \theta \mu +
+                        \frac{w_1}{2}
+                        \left(
+                        \sigma_L
+                        +\sigma_I \right)^2 N_p
+                        + \frac{w_3}{2} \sigma_v^2 N^{\infty}_v.
+            \end{aligned}
+        \end{equation*}
+        Now, we bound by positive terms, and sizes populations we obtain
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L}V
+                    &\leq
+                        \left\{w_1\left[r_2+ b +\beta_p+
+                        \left(
+                        \sigma_L
+                        +\sigma_I \right)^2 \right]
+                        + w_2 b\right\}N_p
+                    \\
+                    &+
+                        \left[ \beta_v + \theta (\gamma + \gamma_f)
+                        + \sigma_v^2\right] w_3 N^{\infty}_v
+                        - \frac{1}{2} w_1 \left(
+                        \sigma_L
+                        +\sigma_I \right)^2 N_p
+                        -\frac{1}{2} w_3 \sigma_v^2 N^{\infty}_v.
+            \end{aligned}
+        \end{equation*}
+        Substituting $w_2$ and $w_3$, the above inequality becomes
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L}V
+                    &\leq
+                        \mathcal{R}^{d}_0
+                        -\frac{1}{2}
+                        \left[
+                            w_1
+                            \left(
+                                \sigma_L + \sigma_I
+                            \right)^2 N_p
+                                +
+                            \frac{\mathcal{R}^{d}_0-1}{2}
+                            \frac{\sigma_v^2}
+                            {
+                                \beta_v + \theta (\gamma + \gamma_f)
+                                + \sigma_v^2
+                            }
+                        \right] - 1.
+            \end{aligned}
+        \end{equation*}
+        We bound $ \mathcal{L} V$ as
+        \begin{equation*}
+            \begin{aligned}
+                    \mathcal{L} V
+                    &\leq
+                        \left(
+                            1 - \frac{1}{2} \frac{\sigma^2_v}
+                        {\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}
+                        \right)\mathcal{R}^{d}_0
+                    \\
+                    &-
+                        \frac{1}{2}
+                        \left[
+                            \left(
+                                \sigma_L + \sigma_I
+                            \right)^2
+                            - \frac{\sigma^2_v}
+                            {\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}
+                        \right]-1
+                    \\
+                    &\leq
+                        \mathcal{R}^{d}_0
+                        -\frac{1}{2}\left[
+                        \left(
+                            \sigma_L + \sigma_I
+                        \right)^2
+                        - \frac{\sigma^2_v}
+                        {\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2}
+                        \right] - 1.
+            \end{aligned}
+        \end{equation*}
+        Using definition of $\mathcal{R}^s_{\bullet}$, we get
+        \begin{equation*}
+            \begin{aligned}
+                \mathcal{L}V
+                    &\leq
+                        \mathcal{R}^{s}_{\bullet} - 1.
+                        \qquad \mbox{a.s.}
+            \end{aligned}
+        \end{equation*}
+	    Integrating diffusion operator $\mathcal{L} V$ from 0 to $t$,
+	    dividing for $t$, and taking expectation, we have
+        \begin{equation*}
+            \lim_{t \to \infty} \E{\frac{V(t)}{t}}
+            \leq \mathcal{R}^{s}_{\bullet} - 1.
+        \end{equation*}
+        Letting $t \to \infty$ we obtain
+        \begin{align*}
+            \lim\limits_{t \to\infty}
+                (S_p, L_p, I_p, S_v, I_v )^{\top}_{t}
+                =
+                (N_p, 0, 0, N^{\infty}_v, 0)
+        \end{align*}
+ 		    exponentially a.s.
+        <span class="right">
+            $\square$
+        </span>
+    </div>
+    <div class="remark">
+        <p>
+                If the stochastic reproductive number
+            is below one, then
+            <a href="#thm::Rs0Extinction">
+                this theorem
+            </a>
+            shows that infection will extinguish.
+        </p>
+    </div>
+++++
+
+[#sec:persistence]
+== Persistence
+++++
+    <p>
+            In this section, we obtain conditions under the solution of the system
+        \eqref{sys::StochasticSystem} is disease-persistent. In the deterministic
+        case, it is sufficient to obtain $\mathcal{R}^d_0>1$, but our stochastic
+        dynamics lacks of endemic fixed point. Then, we will prove that the
+        solution of system \eqref{sys::StochasticSystem} oscillates around the
+        fixed point $(S_p^{**}, L_p^{**}, I_p ^ {**},S_v^{**},I_v^{**})^\top$,
+        with an amplitude depending on the stochastic intensity of the perturbation.
+    </p>
+    <p>
+            We use the ideas, similar to {% cite Zhao2015a %}, to obtain oscillations.
+        First, we bound the distance between the solution and endemic fixed point
+        $EE$. Then, using \eqref{eqn:UpperBound} and Assumption 1, we will prove
+        that the inferior limit of time average of system \eqref{sys::StochasticSystem}
+        is positive. In addition, let us finish by applying the definition of persistence
+        in mean.
+
+    </p>
+
+    <p>
+            We use the definition given in {% cite{Zhao2015a --locator Def. 4.1 %} to prove the persistence
+        of the disease.
+    </p>
+    <div class="definition" id="def::persistence">
+        <p>
+            Let $x = \{S_p,L_p,I_p,S_v,I_v\}$ be the solution of
+            \eqref{sys::StochasticSystem}.
+            The solution process $x$ is persistent in mean if
+            \begin{equation*}
+                \liminf_{t \to \infty}\frac{1}{t}\int_0^t x(r) dr >0,\qquad a.s.
+            \end{equation*}
+        </p>
+    </div>
+    <p>
+            We use the following conditions to prove that system
+        \eqref{sys::StochasticSystem} is persistence in mean.
+        <div class="assumption" id="ass:perisistence">
+            <p>
+                 With notation of system \eqref{sys::StochasticSystem} we ask the following.
+            </p>
+            <ol class="custom">
+                <li value = "(ASS-1)">
+                    According to
+                    <a href="thm::NoiseExtinction">
+                        Thmeorem *.*
+                    </a>,
+                    we require the following conditions to
+                    avoid extinction by noise.
+                    \begin{equation}
+                        \label{eqn::NoiseBreak}
+                        \begin{aligned}
+                             \sigma^2_I <
+                                \frac{\sigma^2_L r^2_2}{2\sigma^{2}_{L}( r_1 - 2 \beta_p)- \beta^{2}_p},
+                            \qquad
+                            \sigma^2_v <
+                                \frac{\beta^{2}_v}{
+                                    2 [
+                                        (\gamma  + \gamma_f)
+                                        -
+                                        (\theta\mu + \beta_v)
+                                    ]
+                                },
+                        \end{aligned}
+                    \end{equation}
+                </li>
+                <li value="(ASS-2)">
+                    Case $\mathcal{R}^s_s$
+                        \begin{equation*}
+                            \label{eqn::RslessthanRd}
+                            (\sigma_L+\sigma_I)^2 > \frac{\sigma^2_v}
+                                    {\beta_v + \theta (\gamma +\gamma_f) + \sigma_v^2}.
+                        \end{equation*}
+                </li>
+                <li>
+                    Case $\mathcal{R}^s_a$
+                    \begin{equation*}\label{eqn::RsgreatherthanRd}
+                        (\sigma_L+\sigma_I)^2 < \frac{\sigma^2_v}
+                        {\beta_v + \theta (\gamma + \gamma_f)
+                        	 + \sigma_v^2}.
+                    \end{equation*}
+                </li>
+                <li>
+                    Define
+         	        \begin{equation*}
+         	            \begin{aligned}
+                            & \alpha_1 =
+                                \frac{1}{N_p^2}
+                                \left(
+                                    r_2-\frac{r_2}{\rho_1}
+                                \right),
+                                \quad
+                                \alpha_2 =
+                                \frac{1}{N_p^2}
+                                \left(
+                                     b + r_2 -
+                                     \rho_1 \frac{b + r_2}{2}
+                                \right),
+                            \\
+                            & \alpha_3 =
+                                \frac{(\gamma +\gamma_f)}{ (N^{\infty}_v) ^ 2}
+                                \left(
+         	 	 		            1 - \frac{1}{2 \rho_2}
+         	 	 	            \right),
+ 	 	 	                    \quad
+ 	 	 	                    \alpha_4 =
+ 	 	 	                    \frac{(\gamma +\gamma_f)}{(N^{\infty}_v)^2}
+         	 	 	            \left(
+         	 	 	                1 - \rho_2
+         	 	 	            \right),
+                            \\
+                            &
+                                C = 2  \frac{\sigma_L}{ N_p} \beta_p
+                	            +
+                        	    \frac{1}{2}
+                        	    \sigma_L^3
+                        	    \frac{L_p^{**}}{N_p ^ 2}
+                        	     +
+                        	    \frac{1}{2}
+                        	     \sigma_I^2
+                        	    +
+                	            \frac{1}{2}
+                	            \sigma_v ^2,
+         	            \end{aligned}
+         	        \end{equation*}
+                    and conforming to the deterministic endemic
+                    point $EE$,
+                    suppose that
+                    \begin{equation}
+                        \label{eqn::mimi}
+                            \min
+                            \left \{
+                                \alpha_1 (S_p ^{**}) ^ 2,
+                                \alpha_2 (L_p ^{**}) ^ 2,
+                             \alpha_3 (S_v ^{**} ) ^ 2,
+                             \alpha_4 (I_v ^{**} ) ^ 2
+                        \right\}
+                          \geq C.
+                    \end{equation}
+                </li>
+            </ol>
+        </div>
+    </p>
+    <p>
+        Condition (ASS-1) gives relations for which extinction by noise are broken.
+        Condition (ASS-2), assure the condition to use $\mathcal{R}^s_s$. Similar,
+        condition (ASS-3), gives a relation to deduce $\mathcal{R}^s_a$. Finally,
+        condition (ASS-4), is a lower bound used to prove that system
+        \eqref{sys::StochasticSystem} is persistence in mean.
+        <a href="#thm::UpperBound">
+            Theorem *.*
+        </a>
+        characterizes conditions for which superior limit of time
+        average of distance between solution and endemic fixed point is bounded.
+    </p>
+    <div class="theorem" id="thm::UpperBound">
+        <p>
+                Let conditions
+                <a href="#ass:perisistence">
+                    <strong>
+                        (ASS-1)-(ASS-2)
+                    </strong>
+                </a>
+            holds, and $\rho_1\in \left( 1,2\right)$,
+            $\rho_2 \in (\frac{1}{2}, 1)$. According to deterministic endemic
+            fixed point	$(S_p^{**}, L_p^{**}, I_p^{**}, S_v^{**}, I_v^{**}) ^ \top$,
+            if $\mathcal{R}^s_{\bullet}>1$, then
+            \begin{equation}\label{eqn:UpperBound}
+                \begin{aligned}
+                &
+                    \limsup
+                    \limits_{t \to 	\infty}
+                    \displaystyle\frac{1}{t}
+                    \int_{0}^{t}
+                        \left\{
+                        \alpha_1
+                        (S_p - S_p ^{**}) ^ 2 +
+                        \alpha_2
+                                (L_p - L_p ^{**}) ^ 2
+                            \right.
+                \\
+                &\left.
+                    + \alpha_3
+                    (S_v - S_v^{**})^2
+                    +\alpha_4(I_v-I_v^{**})^2
+                    \right\}
+                    dr 	\leq C
+                \qquad
+                \mathrm{a.s.,}
+                \end{aligned}
+            \end{equation}
+	        where
+	        $
+	            C = 2 \frac{\sigma_L}{ N_p} \beta_p +
+	            \frac{\sigma_L^3}{2}\frac{L^{**}_p}{N_p ^2}
+                + \frac{1}{2}\sigma^2_I + \frac{1}{2} \sigma_v ^2
+	        $ .
+        </p>
+    </div>
+    <div class="proof" id="prf:persistence_upper">
+        <p>
+            Using the following Lyapunov function,
+            \begin{equation}
+            \label{eqn::Lyapunov1}
+            \begin{aligned}
+                V(S_p,L_p,S_v,I_v)
+                    &=
+                        c_1
+                        \left[
+                            L_p - L_p^{**} -
+                            L_p^{**}\log
+                            \left(
+                                \frac{L_p}{L_p^{**}}
+                            \right)
+                        \right]
+                        \\
+                        &+
+                        \frac{c_2}{2}
+                        \left[
+                            (S_p - S_p^{**}) +
+                            (L_p - L_p^{**})
+                        \right]^2
+                        \\
+                    &+
+                        \frac{c_3}{2}
+                        \left[
+                            (S_v - S_v^{**}) +
+                            (I_v - I_v^{**})
+                        \right]^2,
+                \end{aligned}
+            \end{equation}
+            where $c_1 = \sigma_L/N_p^2$, $c_2 = 1/N_p^2$, and
+            $c_3 = 1/{N^{\infty}_v}^2$.
+        </p>
+        <p>
+                We will show that the distance between the solution and the endemic
+            fixed point is bounded.
+        </p>
+        <p>
+                Since system link:#eq:DeterministicSystem[(1)] has constant plant population,
+            let $I_p = N_p-S_p-L_p$, then we rewrite system
+            link:#eq:DeterministicSystem[(1)] as
+            \begin{equation}\label{sys::Stc4dSystem}
+                \begin{aligned}
+                    dS_p
+                        &=
+                            \left(
+                                -\beta_pS_p\frac{I_v}{N_v}+r_2 N_p
+                                - r_2 S_p + (r_1-r_2)L_p
+                                \right)dt
+                        \\
+                        &+
+                            \frac{S_p}{N_p}\left\{
+                            \sigma_L L_p+\sigma_I[N_p-(S_p+L_p)]
+                            \right\}dB_p,\\
+                    dL_p
+                        &=
+                            \left(
+                            \beta_pS_p\frac{I_v}{N_v}-(b+r_1)L_p
+                            \right)dt
+                            -\sigma_L\frac{S_p}{N_p}L_pdB_p,
+                        \\
+                    dS_v
+                        &=
+                            \left( -\frac{\beta_v}{N_p}S_v(N_p-S_p-L_p)
+                            -(\gamma +\gamma_f) S_v + (1-\theta)\mu\right)dt
+                            -\sigma_v S_vdB_v,
+                        \\
+                    dI_v
+                        &=
+                            \left( \frac{\beta_v}{N_p}S_v(N_p-S_p-L_p)
+                            - (\gamma +\gamma_f)  I_v +\theta \mu \right) dt
+                            - \sigma_v S_v dB_v.
+                \end{aligned}
+            \end{equation}
+        </p>
+        <p>
+            For the endemic fixed point of system link:#eq:DeterministicSystem[(1)],
+            $
+                (S_p^{**}, L_p^{**}, I_p^{**}, S_v^{**}, I_v^{**}) ^ \top
+            $,
+            we have the following relations:
+            \begin{align}
+                    -&
+                        \frac{\beta_p}{N_v}S^{**}_p I^{**}_v +
+                        r_2 N_p - r_2 S^{**}_p + (r_1 - r_2) L^{**}_p
+                        =0,\label{eqn::efp1}
+                        \\
+                    &
+                        \frac{\beta_p}{N_v}S^{**}_pI^{**}_v
+                        -(b+r_1)L^{**}_p
+                        = 0,\label{eqn::efp2}
+                    \\
+                    -&
+                        \frac{\beta_v}{N_p}S^{**}_v(N_p-S^{**}_p-L^{**}_p)-
+                        (\gamma + \gamma_f) S^{**}_v
+                        + (1-\theta)\mu=0,\label{eqn::efp3}
+                    \\
+                    &
+                        \frac{\beta_v}{N_p}S_v(N_p-S^{**}_p-L^{**}_p)-
+                        (\gamma + \gamma_f) I^{**}_v
+                        +\theta\mu=0 \label{eqn::efp4}.
+            \end{align}
+            In short notation, we rewrite the Lyapunov function \eqref{eqn::Lyapunov1} as
+            \begin{equation*}
+	            V(S_p,L_p,S_v,I_v) = c_1 V_1 + c_2 V_2 + c_3 V_3.
+	        \end{equation*}
+        </p>
+        <p>
+                We work with each component of the previous function individually. Applying the
+            diffusion operator to $V_1$, we have
+            \begin{equation*}
+                V_{1_{x}} = \left(1-\frac{L^{**}_p}{L_p}\right),\qquad
+                V_{1_{xx}} = \frac{L^{**}_p}{L_p},
+            \end{equation*}
+            using the equation $dL_p$ of \eqref{sys::Stc4dSystem}, and the
+            diffusion operator we obtain
+        	\begin{align*}
+		        \mathcal{L} V_1
+			        &=
+				    \left(
+					    1 -
+					    \frac{L_P^{**}}{L_p}
+				    \right)
+				    \left(
+					    \frac{\beta_p}{N_v}S_pI_v -
+					    (b+r_1) L_p
+				    \right) +
+				    \frac{1}{2}
+				    \frac{\sigma_L^2S_p^2L_p^{**}}{N_p^2}.
+	        \end{align*}
+            Since \eqref{eqn::efp2} satisfies,
+            $\beta_p S_p^{**} I^{**}_v /N_v = (b + r_1) L^{**}_p$, then
+            \begin{equation*}\label{eqn::Dv1}
+                    \begin{aligned}
+                \mathcal{L} V_1
+                    &=
+                        \left(
+                            1 - \frac{L_P^{**}}{L_p}
+                        \right)
+                        \left(
+                            \frac{\beta_p}{N_v} S_p I_v -
+                            \frac{\beta_p}{N_v} S_p ^ {**} I_v ^ {**}
+                            \frac{L_p}{L_p^{**}}
+                        \right) +
+                        \frac{1}{2}
+                        \frac{\sigma_L^2S_p^2L_p^{**}}{N_p^2}
+                    \\
+                    &=
+                        \frac{\beta_p}{N_v}
+                            \left(
+                                1 -
+                                \frac{L_P^{**}}{L_p}
+                            \right)
+                            \left(
+                                S_p I_v -
+                                S_p ^ {**} I_v ^ {**}
+                                \frac{L_p}{L_p ^ {**}}
+                        \right) +
+                        \frac{1}{2}
+                        \frac{\sigma_L^2S_p^2L_p^{**}}{N_p^2}
+                    \\
+                    &=
+                        \frac{\beta_p}{L_p N_v}
+                        \left(
+                            L_p - L_p^{**}
+                        \right)
+                        \left(
+                            S_p I_v - S_p ^{**} I_v^{**}
+                            \frac{L_p}{L_p^{**}}
+                        \right) +
+                        \frac{1}{2}
+                        \frac{\sigma_L^2 S_p^2 L_p^{**}}{N_p^2}
+                    \\
+                    &=
+                        \frac{\beta_p}{N_v}
+                        \left(
+                            S_pI_v - S_p ^{**} I_v^{**}\frac{L_p}{L^{**}_p}
+                            -S_pI_v\frac{L^{**}_p}{L_p}+S^{**}_pI^{**}_v
+                        \right) +
+                        \frac{1}{2}
+                        \frac{\sigma_L^2 S_p^2 L_p^{**}}{N_p^2}.
+                \end{aligned}
+            \end{equation*}
+        </p>
+        <p>
+            Omitting negative terms and using population size, we get
+            \begin{equation}\label{eqn::LV1}
+                \mathcal{L} V_1\leq 2\beta_pN_p+\frac{\sigma_L^2 }{2}L_p^{**}.
+            \end{equation}
+        </p>
+        <p>
+            Now, we work with $V_2$,
+            According to relation \eqref{eqn::Lyapunov1}, we have
+            \begin{equation*}
+                V_{2_{x}} = [(S_p - S_p ^{**} ) +
+                            (L_p - L_p ^{**})
+                            ]
+                            \left(
+                            1,1
+                            \right)^\top,\quad
+                V_{2_{xx}} = \begin{bmatrix}  1 & 1\\ 1 & 1 \end{bmatrix}.
+            \end{equation*}
+            Applying the diffusion operator to $V_2$, we obtain
+            \begin{align*}
+                \mathcal{L}V_2
+                    &=
+                        \left[
+                            (S_p - S_p ^{**} ) +
+                            (L_p - L_p ^{**})
+                        \right]
+                        \left(
+                            -\frac{\beta_p}{N_v}S_pI_v + r_2N_p+
+                            (r_1-r_2)L_p
+                        \right.\\
+                    &-
+                        \left.
+                            r_2 S_p+\frac{\beta_p}{N_v}
+                            S_pI_v - (b+r_1)L_p
+                        \right) +\frac{1}{2}
+                            \left\{\frac{S_p}{N_p}
+                                \left[
+                                    \sigma_I(N_p-S_p-L_p)
+                                \right]
+                            \right\}^2
+                        \\
+                    &=
+                        \left[
+                            (S_p - S_p^{**}) +
+                            (L_p - L_p^{**})
+                        \right]
+                        \left[
+                            (r_1-r_2)L_p+r_2N_p-r_2S_p-(b+r_1)L_p
+                        \right]
+                        \\
+                        &+
+                            \frac{1}{2}
+                            \left\{\frac{S_p}{N_p}
+                                \left[
+                                    \sigma_I(N_p-S_p-L_p)
+                                \right]
+                            \right\}^2.
+            \end{align*}
+        By \eqref{eqn::efp1} and \eqref{eqn::efp2} yields,
+        \begin{align*}
+            r_2 N_p &=
+                r_2 S ^ {**}_p - (r_1 - r_2)
+                L^{**}_p +
+                \frac{\beta_p S^{**}_p I^{**}_v}{N_v},
+            \\
+            \beta_p S^{**}_p I^{**}_v / N_v &= (b + r_1) L^{**}_p.
+        \end{align*}
+        Thus
+            \begin{align*}
+                \mathcal{L}V_2
+                    &=
+                        \left[
+                            (S_p - S_p^{**}) +
+                            (L_p - L_p^{**})
+                        \right]
+                        \left[
+                            (r_1-r_2)L_p-r_2S_p-(b+r_1)L_p+r_2S^{**}_p
+                            \right.
+                            \\
+                    &-\left.
+                            (r_1-r_2)L^{**}_p+(b+r_1)L^{**}_p
+                        \right]
+                    +
+                            \frac{1}{2}
+                            \left\{\frac{S_p}{N_p}
+                                \left[
+                                    \sigma_I(N_p-S_p-L_p)
+                                \right]
+                            \right\}^2
+                    \\
+                    &=
+                        \left[
+                            (S_p - S_p^{**}) +
+                            (L_p - L_p^{**})
+                        \right]
+                        \left[
+                            -r_2(S_p-S_p^{**})-(b+r_2)(L_p-L^{**}_p)
+                        \right]
+                        \\
+                        &+
+                            \frac{1}{2}
+                            \left\{\frac{S_p}{N_p}
+                                \left[
+                                    \sigma_I(N_p-S_p-L_p)
+                                \right]
+                            \right\}^2.
+            \end{align*}
+            Expanding the above equation, we have
+            \begin{equation}\label{eqn::LV2}
+                \begin{aligned}
+                    \mathcal{L}V_2
+                        &=
+                                -r_2(S_p-S_p^{**})^2
+                                -(b+2r_2)(S_p - S^{**}_p)(L_p - L^{**}_p)
+                            \\
+                            &-
+                                (b+r_2)(L_p - L^{**}_p)^2 +
+                                \frac{1}{2}
+                                \left\{\frac{S_p}{N_p}
+                                    \left[
+                                        \sigma_I(N_p-S_p-L_p)
+                                    \right]
+                                \right\}^2.
+                \end{aligned}
+            \end{equation}
+        </p>
+        <p>
+            Now, we bound
+            $
+                T_1 =
+                    -(b + 2r_2)
+                    (S_p - S ^ {**}_p)
+                    (L_p - L^{**}_p)
+            $.
+            Young's inequality implies
+            \begin{equation}\label{eqn::YoungLV1}
+                \begin{aligned}
+                    T_1
+                        &\leq
+                            (b+2r_2)|S_p-S^{**}_p||L_p-L^{**}_p|\frac{\sqrt{\rho_1}}{\sqrt{\rho_1}}
+                        \\
+                        &\leq
+                            (b+2r_2)
+                            \left[
+                                \frac{(S_p-S^{**}_p)^2}{2\rho_1}
+                                +\frac{\rho_1(L_p-L^{**}_p)^2}{2}
+                            \right].
+                \end{aligned}
+            \end{equation}
+            Combining \eqref{eqn::YoungLV1}, and \eqref{eqn::LV2}, we have
+            \begin{equation}\label{eqn::LV2*}
+	            \begin{aligned}
+                    \mathcal{L}V_2
+                        &\leq
+                            -\left[
+                                r_2-\frac{(b+2r_2)}{2\rho_1}
+                            \right](S_p-S_p^{**})^2
+                        \\
+                        &-
+                            \left[(b + r_2)
+                            -\frac{(b + 2r_2) \rho_1}{2}
+                            \right](L_p - L^{**}_p)^2
+                            +\frac{1}{2}\sigma^2_I N^2_p
+                    \\
+                        &\leq
+                            -\left[
+                                r_2-\frac{r_2}{\rho_1}
+                            \right](S_p-S_p^{**})^2
+                        \\
+                        &-
+                            \left[(b + r_2)
+                            -\frac{(b + r_2) \rho_1}{2}
+                            \right](L_p - L^{**}_p)^2
+                            +\frac{1}{2}\sigma^2_I N^2_p.
+                \end{aligned}
+            \end{equation}
+        </p>
+        <p>
+            Let
+            $
+                \rho_1$ such that $\rho_1 \in
+                \left(1, 2\right)
+            $.
+            Finally, we apply diffusion operator to $V_3$, thus
+        	\begin{equation*}
+	            V_{3_{x}} = \left[	(S_v - S_v ^{**} ) +
+					(I_p - I_p ^{**})
+					\right](1,1)^\top,\quad
+	            V_{3_{xx}} = \begin{bmatrix} 1 & 1\\ 1& 1 \end{bmatrix}.
+            \end{equation*}
+            Using $dS_v$, and $dI_v$ of \eqref{sys::Stc4dSystem}, we get
+        	\begin{align*}
+		        \mathcal{L}V_3
+			        =&
+				        \left[
+					        (S_v - S_v ^{**}) +
+					        (I_v - I_v ^{**})
+				        \right]
+				        \left[ -
+					        \frac{\beta_v}{N_p} S_vI_p -
+					        (\gamma +\gamma_f) S_v +
+					        (1 - \theta)
+					        \mu
+				        \right.
+                    \\
+			        &+
+				    \left.
+					    \frac{\beta_v}{N_p}
+					        S_v I_p -
+					        (\gamma +\gamma_f) I_v +
+					        \theta \mu
+				        \right] +
+				        \frac{1}{2}
+				        \sigma_v ^ 2 {N^{\infty}_v }^ 2.
+            \end{align*}
+	        Since \eqref{eqn::efp3} and \eqref{eqn::efp4} satisfies, and
+	        $
+	            \mu = (\gamma +\gamma_f) N^{\infty}_v\leq (
+	            \gamma +\gamma_f) ( S_v^{**} + I_v^{**})
+            $,
+	        we obtain
+	        \begin{equation}\label{eqn::LV3}
+                \begin{aligned}
+    		        \mathcal{L}V_3
+    			        &\leq
+    				        \left[
+    					        (S_v - S_v^{**}) +
+    					        (I_v - I_v^{**})
+    				        \right]
+    				        [
+    				            - (\gamma +\gamma_f)  S_v
+    				            + (\gamma +\gamma_f) S_v^{**}
+    				   \\
+    				    &-
+                            (\gamma +\gamma_f) I_v
+    				        + (\gamma +\gamma_f) I_v^{**}
+    				        ]
+    			            +
+    				        \frac{1}{2}
+    				        \sigma_v ^ 2 {N^{\infty}_v} ^ 2
+    			        \\
+    			        &=
+    				        \left[
+    					        (S_v - S_v ^{**}) +
+    					        (I_v - I_v ^{**})
+    				        \right]
+    				        [
+    					        -(\gamma +\gamma_f) (S_v - S_v^{**})
+    			        \\
+                        &-
+    				        (\gamma +\gamma_f) (I_v - I_v^{**})
+    				        ] +
+    				        \frac{1}{2}
+    				        \sigma_v ^ 2 {N^{\infty}_v }^ 2
+                        \\
+    			        &=
+    				        -(\gamma +\gamma_f) (S_v - S_v ^{**})^2
+    				        -2(\gamma +\gamma_f) (S_v - S_v ^{**})(I_v - I_v^{**})
+    			        \\
+    			            &- (\gamma +\gamma_f) (I_v - I_v^{**})^2
+    			            + \frac{1}{2}\sigma_v ^2 {N^{\infty}_v}^2.
+    	        \end{aligned}
+	        \end{equation}
+        </p>
+        <p>
+
+                We bound $T_2 =-2(\gamma +\gamma_f) (S_v - S_v ^{**})(I_v - I_v^{**})$
+            using Young's  inequality {% cite Hardy-Littlewood-Polya1952 --locator 61 %} as follows
+            \begin{equation}\label{eqn::YoungLV2}
+                \begin{aligned}
+                    T_2
+                        &\leq
+                            2(\gamma +\gamma_f)|S_v - S_v ^{**}||I_v - I_v^{**}|
+                        \\
+                        &\leq
+                            2 (\gamma +\gamma_f)
+                            \left[
+                                \frac{(S_v-S^{**}_v)^2}{2\rho_2}
+                                +
+                                \frac{\rho_2(I_v-I^{**}_v)^2}{2}
+                            \right].
+                \end{aligned}
+            \end{equation}
+        </p>
+        <p>
+
+                Substituting \eqref{eqn::YoungLV2} into \eqref{eqn::LV3} yields
+            \begin{equation}\label{eqn::LV4}
+                \begin{aligned}
+                    \mathcal{L}V_3
+                        &\leq
+                            -(\gamma +\gamma_f)
+                            \left(1-\frac{1}{2\rho_2}\right) (S_v - S_v ^{**})^2
+                        \\
+                        &-
+                            (\gamma +\gamma_f)\left(1-\rho_2\right) (I_v - I_v^{**})^2
+                             + \frac{1}{2} \sigma_v ^2 {N^{\infty}_v}^2,
+                \end{aligned}
+            \end{equation}
+            with $\rho_2 \in \left( \frac{1}{2},1\right )$.	Combining \eqref{eqn::LV1},
+            \eqref{eqn::LV2*}, and \eqref{eqn::LV4} we bound the diffusion operator in this way
+	        \begin{equation}\label{eqn::LV-1}
+                \begin{aligned}
+                    \mathcal{L}V
+                        &\leq
+                            -c_2\left[r_2-\frac{r_2}{\rho_1}\right](S_p-S_p^{**})^2
+                        \\
+                        & -
+                            c_2\left[(b+r_2)-\frac{(b+r_2)\rho_1}{2}\right](L_p-L^{**}_p)^2
+                        \\
+                        &-
+                            c_3(\gamma +\gamma_f) \left(1-\frac{1}{2\rho_2} \right)
+                            (S_v - S_v ^{**})^2
+                        \\
+                        &-
+                            c_3(\gamma +\gamma_f) \left(1-\rho_2\right)(I_v - I_v^{**})^2
+                        \\
+                        &+
+                            2c_1\beta_p N_p + c_1\frac{\sigma_L^2}{2}L^{**}_p
+                            +c_2\frac{1}{2}\sigma^2_I N^2_p+c_3\frac{1}{2}
+                            \sigma_v ^2 {N^{\infty}_v}^2.
+                \end{aligned}
+            \end{equation}
+        </p>
+        <p>
+                Define
+            $C = 2 c_1 \beta_p N_p + c_1 \sigma_L^2 L^{**}_p / 2
+            +c_2 \sigma^2_I N^2_p / 2+c_3 \sigma_v ^2 {N^{\infty}_v}^2 /2$.
+            Then, we bound \eqref{eqn::LV-1} in this fashion
+        	\begin{equation*}\label{eqn::LV-2}
+	        	\begin{aligned}
+		            \mathcal{L}V
+                        &\leq
+                            -c_2\left[
+                            r_2-\frac{r_2}{\rho_1}
+                            \right](S_p-S_p^{**})^2
+                        - c_2\left[
+                            (b+r_2)-\frac{(b+r_2)\rho_1}{2}
+                            \right](L_p-L^{**}_p)^2
+                        \\
+                        &-
+                            c_3(\gamma +\gamma_f) \left(
+                            1-\frac{1}{2\rho_2}
+                            \right) (S_v - S_v ^{**})^2
+                            - c_3(\gamma +\gamma_f)
+                            \left(
+                            1-\rho_2
+                            \right)(I_v - I_v^{**})^2 + C.
+                \end{aligned}
+            \end{equation*}
+        </p>
+        <p>
+            Define $F(t)$ as
+            \begin{align*}
+                F(t)
+                    &:=
+                    -c_2\left[
+                    r_2-\frac{r_2}{\rho_1}
+                    \right]
+                    (S_p-S_p^{**})^2
+                        -c_2\left[
+                        (b+r_2)-\frac{(b+r_2)\rho_1}{2}
+                        \right]
+                        (L_p-L^{**}_p)^2
+                       \\
+                     &-
+                        c_3(\gamma +\gamma_f) \left(
+                        1-\frac{1}{2\rho_2}
+                        \right) (S_v - S_v ^{**})^2
+                        -c_3 (\gamma +\gamma_f)
+                        \left(
+                        1-\rho_2
+                        \right)(I_v - I_v^{**})^2 + C.
+            \end{align*}
+            Applying Ito's formula, we obtain
+                \begin{align*}
+                    dV
+                        &\leq
+                            F(t)dt +
+                            \left(
+                                1-\frac{L^{**}_p}{L_p}
+                            \right)
+                            \left[
+                                -\sigma_L
+                                \frac{S_p}{N_p}
+                                L_p +
+                                \sigma_I
+                                \frac{S_p}{N_p}
+                                (N_p - S_p - L_p)
+                            \right]
+                             dB_p(t)
+                            \\
+                        &-
+                            \sigma_v N^{\infty}_v
+                            [
+                                (S_v-S_v^{**})+(I_v-I_v^{**})
+                            ] dB_v(t).
+                    \\
+                        &\leq
+                            F(t)dt +
+                                    \left[\sigma_I\frac{S_p}{N_p}(N_p-S_p-L_p)
+                                +\sigma_L\frac{S_p}{N_p}L^{**}_p\right]
+                             dB_p(t)
+                            \\
+                        &-
+                            \sigma_v N^{\infty}_v
+                            [(
+                                S_v-S_v^{**})+(I_v-I_v^{**})
+                            ] dB_v(t).
+                \end{align*}
+            Integrating both sides of above inequality yields
+            \begin{align*}
+                V_3(t) -
+                V_3(0)
+                &\leq
+                    \int_0^t F(s)ds
+                    +\int_0^t
+                        \left[\sigma_I\frac{S_p}{N_p}(N_p-S_p-L_p)
+                        +\sigma_L\frac{S_p}{N_p}L^{**}_p\right]dB_p(s)
+                \\
+                &-\int_0^t
+                     \sigma_v N^{\infty}_v
+                     [(S_v-S_v^{**})+(I_v-I_v^{**})]  dB_v(s).
+            \end{align*}
+        </p>
+	    <p>
+                Let
+             \begin{align*}
+                M_1(t)&:=
+                    \int_0^t
+                            \left[\sigma_I\frac{S_p}{N_p}(N_p-S_p-L_p)
+                            +\sigma_L\frac{S_p}{N_p}L^{**}_p\right]
+                         dB_p(s),
+                        \\
+                M_2(t)&:=
+                    -\int_0^t
+                         \sigma_v N^{\infty}_v
+                         [(S_v-S_v^{**})+(I_v-I_v^{**})] dB_v(s),
+            \end{align*}
+ 	        with quadratic variation
+            \begin{align*}
+                \langle M_1\rangle_t &:=
+                    \int_0^t
+                            \left[\sigma_I\frac{S_p}{N_p}(N_p-S_p-L_p)
+                            +\sigma_L\frac{S_p}{N_p}L^{**}_p\right]^2 ds,
+                        \\
+                \langle M_2\rangle_t &:=
+                    \int_0^t
+                         \sigma^2_v {N^{\infty}_v}^2
+                         [(S_v-S_v^{**})+(I_v-I_v^{**})]^2 ds.
+            \end{align*}
+
+            Now, we bound $\langle M_1\rangle_t$.
+            \begin{align*}
+                \langle M_1\rangle_t
+                &=\int_0^t
+                    \left[\sigma_I\frac{S_p}{N_p}(N_p-S_p-L_p)
+                            +\sigma_L\frac{S_p}{N_p}L^{**}_p\right]^2 ds
+                \\
+                &\leq
+                    \int_0^t
+                    \left[\sigma_I\frac{S_p}{N_p}N_p
+                            +\sigma_L S_p\right]^2 ds
+                \\
+                &\leq
+                \int_0^t
+                    \left(
+                        \sigma_I+\sigma_L
+                    \right)^2N^2_p ds,
+            \end{align*}
+            which $\langle M_1\rangle_t$ is finite in a finite interval. Similarly, for
+            $\langle M_2 \rangle_t$. Then, by Strong law of large numbers
+            {% cite Mao2008 --locator 12 %}, we get a.s.
+	        \begin{align*}
+	            &\lim
+	 	         \limits_{t \to \infty}
+	 		    \frac{M_1(t)}{t} = 0,
+	 	    	\qquad
+         	    \lim
+	 	    	\limits_{t\to \infty}
+	 		    \frac{M_2(t)}{t} = 0.
+	        \end{align*}
+            Then,
+            \begin{align*}
+                \limsup_{t\to\infty}\frac{1}{t}\int_{0}^{t} F(s) ds \geq 0,
+            \end{align*}
+            thus
+            \begin{align*}
+                \limsup_{t\to \infty}
+                \frac{1}{t}\int_{0}^{t} - F(s)ds \leq 0.
+            \end{align*}
+        	Substituting $\alpha_i$ value, we have
+            \begin{align*}
+                \limsup \limits_{t \to 	\infty}
+                    &\frac{1}{t} \int_{0}^{t}
+                    \biggl \{
+                        \alpha_1 (S_p - S_p ^ {**}) ^ 2
+                    \biggr.
+                        +
+                        \alpha_2
+                        (L_p - L ^ {**}_p)^2
+                        +
+                        (\gamma +\gamma_f)
+                        \alpha_3
+                        (S_v - S_v ^{**})^2
+                    \\
+                    &+
+                    \biggl.
+                        \alpha_4
+                        (\gamma +\gamma_f)
+                        (I_v - I_v ^ {**})^2
+                    \biggr\} dr
+                    \leq C
+                    \quad
+                    \text{a.s.}
+            \end{align*}
+ 	        That is the required inequality \eqref{eqn:UpperBound}.
+        </p>
+        <span class="right">
+            $\square$
+        </span>
+    </div>
+    <div class="remark" id="rmk:upper_bound">
+        <p>
+                <a href="#thm::UpperBound">
+                    Theorem *.*
+                </a>
+                shows that if the stochastic reprodctive number
+                is above one and condition \eqref{eqn::NoiseBreak} holds,
+                then the distance between the solution and endemic fixed point is
+                at most $C$.
+        </p>
+    </div>
+
+
+
+
+    <p>
+            The following result shows that, if Assumption 1 holds, and
+        $\mathcal{R}^d_{\bullet}>1$,
+        then the time average of SDE \eqref{sys::StochasticSystem} is positive.
+
+        <div class="theorem">
+            Let Assumption 1 holds. If	$\mathcal{R}^s_{\bullet}>1$,
+            then a.s.
+            \begin{equation} \label{eqn::LC}
+                \begin{aligned}
+                    &\liminf_{t \to \infty}
+                    \frac{1}{t}
+                    \int_0 ^ t S_p dr
+                    \geq
+                    \frac{S_p ^{**} }{2}
+                    -\frac{C}{2 \alpha_1 S_p^{**}}>0,
+                    \\
+                    &\liminf_{t\to \infty}
+                        \frac{1}{t}
+                        \int_0^t
+                            L_p dr
+                        \geq
+                        \frac{L_p ^{**}}{2}
+                        -\frac{C}{2\alpha_2 L^{**}_p}>0,
+                    \\
+                    &	\liminf\limits_{t \to \infty}
+                        \frac{1}{t}
+                        \int_{0} ^ {t} S_v dr
+                        \geq
+                        \frac{S_v ^{**}}{2}
+                        -\frac{C}{2\alpha_3 S_v^{**}}>0,
+                    \\
+                    &	\liminf
+                        \limits_{t \to \infty}
+                        \frac{1}{t}
+                        \int_{0} ^ {t}
+                            I_v dr
+                        \geq
+                        \frac{I_v ^{**}}{2}
+                        - \frac{C}{2 \alpha_4 I_v^{**}}>0.
+                \end{aligned}
+            \end{equation}
+        </div>
+        <a
+            class="btn btn-primary btn-sm"
+            data-bs-toggle="collapse"
+            href="#prf_persistence_lower"
+            role="button"
+            aria-expanded="false"
+            aria-controls="prf_persistence_lower"
+        >
+            Proof
+        </a>
+    </p>
+    <div class="collapse w-auto p-3" id="prf_persistence_lower">
+    </div>
+        <div class="card card-body">
+            <p>
+                    We prove the relations in \eqref{eqn::LC} using
+                <a href="thm::UpperBound">
+                        Theorem *.*
+                </a>.
+                Let $t\geq 0$ be arbitrary and fixed. After algebraic manipulations,
+                we see that
+                \begin{equation}
+                    \label{eqn::LC1}
+                     (S^{**}_p)^2+(S_p-S^{**}_p)^2 \geq 2S^{**}_p(S^{**}_p-S_p).
+                \end{equation}
+                From relation \eqref{eqn::LC1}, we obtain
+                \begin{equation}\label{eqn::LC2}
+                     S_p\geq \frac{S^{**}_p}{2}-\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}.
+                \end{equation}
+                Note that \eqref{eqn::LC2} holds for all $t\geq 0$. Hence,
+                \begin{align*}
+                   \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                     &\geq
+                         \liminf_{t \to \infty}\frac{1}{t}\int^t_0\frac{S^{**}_p}{2}dr
+                         -\liminf_{t \to \infty}\frac{1}{t}\int^t_0\frac{(S_p-S^{**}_p)^2}
+                         {2S^{**}_p}dr.
+                     \\
+                     &=
+                         \frac{S^{**}_p}{2}
+                         -\liminf_{t \to \infty}
+                         \frac{1}{t}\int^t_0\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}dr.
+                \end{align*}
+                Using {% cite Rudin1976 --locator 1.13 %}
+                and other relations we deduce
+                $$
+                    \limsup_{n \to \infty} (-x_n) = -\liminf_{n \to \infty} x_n,
+                $$ we get
+                \begin{equation}\label{eqn::LC3}
+                    \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                        \geq
+                            \frac{S^{**}_p}{2}
+                            +\limsup_{t \to\infty}
+                            \frac{1}{t}\int^t_0-\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}dr.
+                \end{equation}
+                By Assumption 1, thm::UpperBound implies relation \eqref{eqn:UpperBound}.
+                From this relation, we deduce
+                \begin{equation}\label{eqn::LC4}
+                       \limsup_{t \to \infty}\frac{1}{t}\int^t_0
+         	 		    \alpha_1 (S_p-S^{**}_p)^2dr
+                        \leq C \qquad a.s.
+                \end{equation}
+                Combining \eqref{eqn::LC3} and \eqref{eqn::LC4}, we have
+                \begin{equation*}
+                    \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                        \geq
+                            \frac{S^{**}_p}{2}
+                            -\frac{C}{2\alpha_1 S^{**}_p}.
+                 \end{equation*}
+                Observe relation \eqref{eqn::mimi} yields
+                \begin{equation*}
+                 \frac{\alpha_1(S^{**}_p)^2-C}{2\alpha_1 S^{**}_p }>0,
+                \end{equation*}
+                then
+                \begin{equation*}
+                   \liminf_{t \to \infty}\frac{1}{t}\int^t_0 S_p dr
+                     \geq
+                     \frac{S^{**}_p}{2}
+                     -\frac{C}{2\alpha_1 S^{**}_p}>0 \qquad a.s.
+                \end{equation*}
+                Therefore, we proved the desired inequality, the other relations in
+                \eqref{eqn::LC} can be proved similarly.
+                <span class="right">
+                    $\square$
+                </span>
+            </p>
+        </div>
+    </div>
+    <div class="remark">
+         This last result shows that if Assumptions 1 holds and the stochastic
+        reproductive number is above one. Then system \eqref{sys::StochasticSystem} has a
+        positive lower limit of the average time.
+    </div>
+    <p>
+        The following theorem is the main result of this section \textemdash it shows that
+        system \eqref{sys::StochasticSystem}
+        is persistent in mean, when we use $\mathcal{R}^s_s$.
+    </p>
+    <div class="theorem" id="thm::persistence">
+        <p>
+            Let assumptions (ASS-1), (ASS-2), (ASS-4) holds. If $\mathcal{R}^s_s>1$,
+	        then the solution process of model in SDE \eqref{sys::StochasticSystem}
+	        is persistent in mean.
+        </p>
+    </div>
+    <div class="proof">
+        	By condition  \eqref{eqn::NoiseBreak} and
+        <a href="thm::UpperBound">
+            Theorem *.*
+        </a>,
+        we obtain inequality	\eqref{eqn:UpperBound}.
+	    Since condition \eqref{eqn::mimi} holds,
+        <a href="thm::LowerBound">
+            Theorem *.*
+        </a>,
+	    guarantees relations \eqref{eqn::LC}. Therefore, definition
+	    \eqref{def::persistence} implies that system \eqref{sys::StochasticSystem}
+	    is persistence in mean.
+    </div>
+    <p>
+        <a href="#thm::persistence">
+            The above result
+        </a>
+        gives conditions to satisfy definition
+        \ref{def::persistence}.
+        To conclude this section, we enunciate an analog result that uses $\mathcal{R}^s_a$.
+        Its proof is similar to the above result.
+    </p>
+    <div class="theorem", id="thm::persistence2">
+
+            Let conditions (ASS-1), (ASS-3), (ASS-4) holds, and $\mathcal{R}^d_0>1$.
+            If $\mathcal{R}^s_a > 1$, then the solution process of model in SDE
+            \eqref{sys::StochasticSystem} is persistent in mean.
+    </div>
+++++
+
+[#sec:numerics]
+== Numerical Experiments
+++++
+    <p>
+            In this section, we illustrate the results obtained in the previous sections
+        by numerical simulations.
+    </p>
+    <p>
+            We find noise intensities and parameter value of
+        \autoref{tbl:deterministic_tbl}
+        that satisfies each result: extinction by noise, extinction by stochastic
+        reproductive number, and persistence.
+    </p>
+
+    \input{Table3}
+    \autoref{tbl:table_noise_ext} shows parameter value that satisfies
+    \autoref{thm::NoiseExtinction}. This theorem need satisfies relations
+    of equation \eqref{eqn::NoiseCond} provided of $\mathcal{R}^d_0 > 1$.
+    We find values for $\beta_p$, $\beta_v$, $\gamma_f$ to illustrate
+    \autoref{thm::NoiseExtinction}.
+++++
+
+[fig:ExtinctionByNoise]
+
+.Figure 3. Extinction by noise. Blue line represents deterministic persistence, while red line extinction in stochastic environment. \autoref{tbl:table_noise_ext} display parameter values of this figure. Electronic figure available in https://plotly.com/~AdrianSalcedo/187/[]
+
+lightbox::example-standalone[ 800, {data-image-figure-3}, role="mb-4" ]
+
+link:#fig:ExtinctionByNoise[Fig. 3] exhibit noise extinction simulations.
+We consider that the disease persists in the deterministic dynamics,
+$\mathcal{R}^d_0 = \numprint{1.10526}$, while due to large noise intensities
+we cause the disease to die out. See \autoref{tbl:table_sub_noise} and \autoref{tbl:table_add_noise} for values
+of the parameters to obtain extinction and persistence by stochastic reproductive
+number.
+
+[fig:Rs0_Extinction]
+
+.Figure 4. Sample paths for stochastic reproductive number extinction. Blue, red, green line produces deterministic persistence, stochastic $\mathcal{R}^s_s$, and $\mathcal{R}^s_a$ simulations. Set of parameter values in \autoref{tbl:table_sub_noise}, and \autoref{tbl:table_add_noise}. Image available in https://plotly.com/~AdrianSalcedo/228/[].
+
+lightbox::example-standalone[ 800, {data-image-figure-4}, role="mb-4" ]
+
+fig:Rs0_Extinction illustrates the extinction by stochastic
+reproductive number established by the thm::Rs0Extinction.
+We consider the cases using $ \mathcal{R}^s_s$ and $\mathcal{R}^s_a$.
+The red line shows the simulation when $ \mathcal{R}^s_s = \numprint{0.395216}$ and
+$\mathcal{R}^d_0 = \numprint{1.2605}$. While the green line, we consider
+$\mathcal{R}^s_a = \numprint{0.381448}$ and $\mathcal{R}^d_0 = \numprint{0.378151}$.
+Notice that, in both cases, due to the noise intensities the stochastic dynamics
+tends to die out, even when the deterministic dynamics persists.
+
+[fig:Rs0_Persistence]
+
+.Figure 5. Simulation likened of deterministic and stochastic paths under stochastic reproductive number persistence. Blue, red, and green line means deterministic, stochastic $\mathcal{R}^s_s$, $\mathcal{R}^s_a$ simulations. Observe \autoref{tbl:table_sub_noise}, and \autoref{tbl:table_add_noise} for parameters values. The digital figure goes to https://plotly.com/~AdrianSalcedo/229/[].
+
+lightbox::example-standalone[800, {data-image-figure-5}, role="mb-4" ]
+
+\autoref{fig:Rs0_Persistence} display the persistence via stochastic reproductive
+number established by the \autoref{thm::UpperBound}. Similar to extinction, we
+simulated using $ \mathcal{R}^s_s$ and $\mathcal{R}^s_a$. The red line shows the
+simulation when $ \mathcal{R}^s_s = \numprint{1.10436}$ and
+$\mathcal{R}^d_0 = \numprint{1.2605}$, we see that the stochastic dynamics has a
+behaviour similar to the deterministic, oscillating around the deterministic
+simulation. The amplitude of oscillation for this case is $ C = \numprint{1.27424}$.
+Green line we consider $\mathcal{R}^s_a = \numprint{1.30711}$ and
+$\mathcal{R}^d_0=\numprint{1.2605}$. Also, the stochastic dynamics oscillates around
+the deterministic dynamics with oscillation amplitude $ C = \numprint{1.30663}$.
+We observe that stochastic dynamics are better suited than deterministic dynamic to
+the tomato data.
+
+[fig:LA1582fit]
+
+.Confidence band likening of deterministic and stochastic model to cumulative incidence data. ($\color{darkblue}{\blacksquare}$) LA 1582 specie data.The orange shaded region shows 95\% confidence band in the deterministic case, and the blue shaded region the 95\% confidence band in the stochastic case. Red, and blue lines represent deterministic, and stochastic median incidence curve, respectively. For parameters values, see <a href="tbl:parameter_value">Table 2<a>. Figure accessible in\href{https://plotly.com/~AdrianSalcedo/367/}
+
+lightbox::example-standalone[800, {data-image-figure-6}, role="mb-4" ]
+
+\autoref{fig:LA1582fit} show the likening of deterministic and stochastic
+confidence band cumulative incidence LA 1582 specie data for model \eqref{sys::DeterministicSystem} and \eqref{sys::StochasticSystem}.
+The results show that the stochastic model capture better the tomato data than
+the deterministic model.
+
+[fig:Tykingfit]
+
+.Figure 7. Comparison of deterministic and stochastic confidence band of cumulative incidence to Tyking data. Blue and orange shaded region band perform 95\% of confidence. $\color{orange}{\bullet}$) means Tyking specie data. The blue and red line exhibit eterministic and stochastic median incidence solution, respectively}. Parameters value in \autoref{tbl:parameter_value}. Electronic figure usable in https://plotly.com/~AdrianSalcedo/368/[]
+
+lightbox::example-standalone[800, {data-image-figure-7}, role="mb-4" ]
+
+\autoref{fig:Tykingfit} present the cumulative disease incidence of Tyking specie
+data, and the $95\%$ deterministic and stochastic credibility band.
+Similar to \autoref{fig:LA1582fit}, the data are inside the $95\%$ stochastic
+confidence band, and capture almost all Tyking specie data. Whiles, the
+deterministic model fail to capture the data appropriately.
+
+== Conclusion
+++++
+    <p>
+            We obtained a stochastic extension of the plant-vector structure
+        presented by Holt and Muniyappa in {% cite Holt1999 %}. Our formulation
+        relies on a stochastic perturbation by Brownian motion on the
+        replanting and vector-fumigation-death rates. This perturbation captures
+        the uncertain nature of the underlying replanting and fumigation
+        control strategies. In addition, we characterized conditions
+        over the noise intensities to assure the extinction and persistence
+        of the TYCLV disease.
+    </p>
+    <p>
+            Our analysis also considers a stochastic version of the so-called
+        van Den Driesshe reproductive number. Here, we deduce a stochastic
+        version that preserves the threshold nature of this deterministic
+        object. We studied two cases that generalize additive structures like
+        the proposed by Cao in {% cite Cao2016a %}. Our results assure
+        extinction of TYLCV according to :
+        <ol>
+            <li value="(a)">
+                $ \displaystyle
+                    \mathcal{R}_s^s:=
+                        \mathcal{R}^{d}_0
+                        -\frac{1}{2}
+                    \left[
+                        \left(
+                            \sigma_L
+                            +\sigma_I
+                            \right)^2
+                            -
+                            \frac{\sigma^2_v}{
+                                (\beta_v + \theta (\gamma + \gamma_f) + \sigma_v^2)
+                            }
+                    \right ]
+                $,
+            </li>
+            <li value="(b)">
+                $
+                    \displaystyle
+                    \mathcal{R}_a^s:= \mathcal{R}^{d}_0
+                        + \frac{1}{2}
+                            \left[
+                                \left(
+                                    \sigma_L
+                                    +\sigma_I
+                                \right)^2
+                                -
+                                \frac{\sigma^2_v}{
+                                (\beta_v +
+                                    \theta
+                                    (\gamma + \gamma_f) +
+                                    \sigma_v^2)
+                                }
+                        \right]
+                $.
+            </li>
+        </ol>
+        In both cases, these parameters preserve the threshold nature of the
+        deterministic reproductive number. That is, under appropriate
+        conditions  $\mathcal{R}_{\bullet}^s <1$
+        implies extinction while, $\mathcal{R}_{\bullet}^s > 1$
+        implicates persistence, $\bullet = a, s$.
+        Further, we have been verified our results by simulation.
+    </p>
+    <p>
+            We illustrated how the noise intensities could drive the TYLCV
+        dynamics from an endemic state to extinction. Furthermore,
+        notice that soil deficiency in iron or phosphate leads to similar
+        TYLCV symptoms, and tomato replanting usually lacks previous
+        lab confirmation. Then we can say that these control strategies are
+        uncertain \textemdash a farmer could be replanting a healthy
+        plant instead of an infected one. Consequently, it is relevant
+        to describe the implications of these noisy effects. Furthermore,
+        these effects could apply to other similar diseases transmitted
+        by white-fly as African cassava mosaic virus (ACMV)
+        {% cite Eni2021 %},
+        zucchini yellow mosaic virus (ZYMV) {% cite Shrestha2021 %},
+        cucumber mosaic virus (CMV) {%cite Ashwathappa2021 %}, and potato
+        virus Y (PVY) {% cite Shah2021 %}.
+
+    </p>
+    <p>
+            This work is related to {% cite Jackson2017 Hebert2016 Stella2019 %}.
+        Jackson et al. report a numeric study for a model based on SDEs
+        with delay {% cite Jackson2017 %}. Hebert et al. {% cite Hebert2016 %}
+        study the vector aggregation and dispersal with stochastic
+        models based on continuous-time Markov chains (CTMC).
+        Recently, with this same CTMC framework, Stella et al. study
+        tomato diseases in {% cite Stella2019 %}.
+    </p>
+    <p>
+            Our simulations showed similar behaviour, additionally, we developed
+        threshold theory to assure extinction and persistence with probability
+        one \textemdash instead of extinction-persistence results with positive
+        probability. In other words, our contribution complements the results from
+        We conclude that uncertainty due to environmental
+        noise would change the stability of a given solution. This change occurs
+        as a trade-off  between persistence and extinction\textemdash
+        with oscillations around  the regarding deterministic fixed point.
+        Further, we proposed a stochastic reproductive number that generalizes and
+        complements the ideas from Cao and Denu {% cite Cao2016a %},
+        and Agarwal et al. {% cite Agarwal2019 %}. For example, in {% cite Agarwal2019 %}
+        the authors use noise intensities as the oscillation amplitude.
+        At the same time, our proposal involves these intensities as part of the
+        stochastic threshold.
+    </p>
+    <p>
+            Following the approach of {% cite Agarwal2019 %}, we see plausible
+        extends of our work as a stochastic control problem. Our main objective
+        would be the formulation of the control strategies as Markov decision
+        processes. We are preparing a manuscript in this line for optimal
+        replanting-fumigation policies in discrete time.
+    </p>
+++++
+
+== Software and supplementary data availability
+++++
+    <p>
+            We refer the reader to {% cite GitHubJuliaSourcesForTYCLD %}
+        for Julia source code of all figures and simulation data. Also, for  complementary
+        calculates of fixed points, and proofs of
+        <a href="thm:positive_invariance">
+            Theorem
+        </a>,
+        <a href="thm::existence-unique">
+            Theorem
+        </a>,
+        <a href="thm::NoiseExtinction">
+            Theorem
+        </a>,
+        <a href="thm::LowerBound">
+            Theorem
+        </a>,
+        see {% cite Salcedo-varela2021 %}.
+    </p>
+++++
+
+== References
+
+++++
+{% bibliography --file References.bib --cited %}
+++++
+
+
+

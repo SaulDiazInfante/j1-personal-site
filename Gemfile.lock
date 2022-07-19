@@ -200,7 +200,7 @@ DEPENDENCIES
   execjs (~> 2.7)
   htmlbeautifier (>= 1.2.1)
   j1-paginator (>= 2021.1.1)
-  j1-template (~> 2022.4.4)
+  j1-template (~> 2022.4, >= 2022.4.8)
   jekyll (~> 4.2)
   jekyll-asciidoc (>= 3.0.0)
   jekyll-scholar

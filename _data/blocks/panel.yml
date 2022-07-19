@@ -48,19 +48,22 @@ settings:
         animate:                        false
         properties:                     mt-5 mb-5
 
-        title:                          Content
+        title:                          All in One
         title_translate:                notranslate                             # translate|notranslate
-        tagline:                        Talks, short courses and preprints
+        tagline:                        top features
         description_properties:         mt-3 mr-3 mb-3
         description: >
-          <p class="dropcap">
-            People also can access to some
-            talks and short courses related with
-            my work.
-          </p>
-          <p>
-            Be awere for new content.
-          </p>
+                                        <p class="dropcap">
+                                          People quite often ask if static websites make sense
+                                          for anything beyond a one-page website. Some others see in
+                                          static websites the stone age of the World Wide Web. What's
+                                          about static websites today? What's achievable?
+                                        </p>
+                                        <p>
+                                          This board highlights top features, which make static webs
+                                          not only an option, but an attractive method to create fast,
+                                          secure, and sophisticated websites for many use cases.
+                                        </p>
 
         style:                          flat
         raised:
@@ -80,19 +83,16 @@ settings:
               icon_size:                3x
               icon_color:
               text: >
-                <p class="dropcap mt-3">
-                    Current Technology and Design with
-                  Python, R, Julia, Markdown combined
-                  to produce codebeautify kind
-                  Interactive documents like
-                  jupyter-Book or Rmarkdown.
-                </p>
+                                        <p class="dropcap mt-3">
+                                          Current Technology and Design. Excellent performance in running
+                                          a website. Use Jekyll One to present your content at its best.
+                                        </p>
 
               buttons:
                 - name:                 Read More
                   button:
                     type:               text
-                    text:               Towards Data Science
+                    text:               Make your Web Site unique
                     class:
                     icon:
                     icon_size:
@@ -111,19 +111,17 @@ settings:
               icon_size:                3x
               icon_color:
               text: >
-                <p class="dropcap mt-3">
-                  The Web is everywhere. This Template supports modern web browsers
-                  on all devices for best results on PCs, Tablets, and SmartPhones.
-                  Here we employ edge LaTex package to deploy STEM content along
-                  with the common HTML framework like MathJax and Rmarkdown. 
-                </p>
+                                        <p class="dropcap mt-3">
+                                          The Web is everywhere. J1 Template supports modern web browsers
+                                          on all devices for best results on PCs, Tablets, and SmartPhones.
+                                        </p>
 
               buttons:
 
                 - name:                 Read More
                   button:
                     type:               text
-                    text:               MathJax and Friends
+                    text:               Follow Your Visitors
                     class:
                     icon:
                     icon_size:
@@ -142,10 +140,11 @@ settings:
               icon_size:                3x
               icon_color:
               text: >
-                <p class="dropcap mt-3">
-                  Material enclosed in this site
-                  is work in progress.
-                </p>
+                                        <p class="dropcap mt-3">
+                                          No programming is needed to start using J1. The Template
+                                          provides a large number of building blocks to develop
+                                          modern web pages in minutes.
+                                        </p>
 
               buttons:
                 - name:                 Read More
@@ -400,13 +399,16 @@ settings:
               tagline:                  general features
               header_translate:         notranslate
               text: >
-                <p class="dropcap mt-3">
-                  Current Technology and Design.
-                  Python, R, Julia, Markdown combined
-                  to produce codebeautify kind
-                  Interactive documents like
-                  jupyter-Book or Rmarkdown.
-                </p>
+                                        <p class="dropcap mt-3">
+                                          Current software counts. Excellent tools in their latest versions
+                                          make the rocket engine for each and every website. Jekyll One
+                                          is using current software in their latest versions. All of them
+                                          are OpenSource and free to use. No license issues for private or
+                                          professional use.
+                                        </p>
+                                        <p>
+                                          The base of J1.
+                                        </p>
 
               services:
 
@@ -493,11 +495,13 @@ settings:
                     id:                 A3
                     description: >
                                         <p>
-                                          The Web is everywhere. This Template supports modern web browsers 
-                                          on all devices namely PCs Tablets, and SmartPhones.
+                                          The Web is everywhere. J1 Template supports modern web browsers on all devices
+                                          for best results on PCs, Tablets, and SmartPhones.
                                         </p>
                                         <p>
-                                            Here we employ MathJax along with edge LaTex packages for STEM documents
+                                          Mobile devices are great for Apps designed for these platforms. Using a web
+                                          browser to surf websites is often frustrating on mobiles. Jekyll One provides
+                                          navigation systems that cover both worlds: desktops and mobiles.
                                         </p>
                                         <p>
                                           Performance is a key factor for all users. To not get visitors  lost, J1
@@ -661,7 +665,7 @@ settings:
 
     - name:                             Home News Panel
       panel:
-        enabled:                        false
+        enabled:                        true
 
         id:                             home_news_panel
         comment:                        Home News Panel

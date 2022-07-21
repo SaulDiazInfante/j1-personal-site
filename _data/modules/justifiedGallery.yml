@@ -204,6 +204,46 @@ settings:
           lightbox:                     lg
           mode:                         lg-fade
           cssEasing:                    cubic-bezier(0.25, 0, 0.25, 1)
+    # ----------------------------------------------------------------------------
+    # Sotchastic TYCL modelling
+    #
+    - gallery:
+        enabled:                        true
+        type:                           image
+        id:                             jg_sto_tycl
+        show_delay:                     200
+        title:                          Figures Stochastic TYLCD model
+        css_classes:                    mb-3
+        images_path:                    assets/images/pages/preprints/sto_tycl/figures/figure_01.jpg
+        thumb_path:                     assets/images/pages/preprints/sto_tycl/figures/figure_01.jpg
+        images:                         [
+          figure_01.jpg, figure_02.jpg,
+          figure_03.jpg, figure_04.jpg,
+          figure_05.jpg, figure_06.jpg,
+          figure_07.jpg
+        ]
+        captions_gallery:              [
+
+          "Figure 1",
+          "Figure 2",
+          "Figure 3",
+          "Figure 4",
+          "Figure 5",
+          "Figure 6",
+          "Figure 7"
+        ]
+        captions_lightbox:              []
+        gallery_options:
+          rowHeight:                    200
+          margins:                      5
+        lightbox_options:
+          lightbox:                     lg
+          mode:                         lg-fade
+          cssEasing:                    cubic-bezier(0.25, 0, 0.25, 1)
+
+
+
+
 
 
     # ==========================================================================

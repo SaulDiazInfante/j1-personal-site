@@ -243,6 +243,8 @@ resource_options:
     }
 </style>
 ++++
+.Figures
+carousel::figs_sto_tylc[role="mb-3"]
 
 
 == Abstract

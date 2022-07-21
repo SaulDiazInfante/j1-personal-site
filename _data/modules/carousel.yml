@@ -275,6 +275,46 @@ settings:
           slideSpeed:                   300
           paginationSpeed:              400
           items:                        2
+    # --------------------------------------------------------------------------
+    # figs_sto_tylc
+    #
+    - show:
+        enabled:                        true
+        id:                             figs_sto_tylc
+        #     title:                          Figures
+        slide_space_between:            3
+        slide_border:                   true
+        lightbox:                       true
+        type:                           image
+        images_path:                    /assets/images/modules/carousel/sto_tycl/figures
+        images:                         [
+                                          figure_01.jpg, figure_02.jpg,
+                                          figure_03.jpg, figure_04.jpg,
+                                          figure_05.jpg, figure_06.jpg,
+                                          figure_07.jpg
+                                        ]
+        links:                          [
+                                          "#void", "#void",
+                                          "#void", "#void",
+                                          "#void", "#void",
+                                          "#void"
+                                        ]
+        lb_caption:                     [
+                                          "Figure 1", "Figure 2",
+                                          "Figure 3", "Figure 4",
+                                          "Figure 5", "Figure 6",
+                                          "Figure 7"
+                                        ]
+        options:
+          navigation:                   false
+          itemsCustom:                  [
+            [0, 1], [400, 1], [700, 2],
+            [1000, 2], [1200, 2], [1600, 2]
+          ]
+          slideSpeed:                   300
+          paginationSpeed:              400
+          items:                        2
+
 
     # --------------------------------------------------------------------------
     # demo_simple

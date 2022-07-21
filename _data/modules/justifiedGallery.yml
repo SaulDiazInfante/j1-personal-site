@@ -263,26 +263,22 @@ settings:
         image_path:                     /assets/videos/gallery
         thumb_path:                     /assets/videos/gallery
         videos:                         [
-                                          "//youtube.com/watch?v=X5Cfi7U4eL4",
-                                          "//youtube.com/watch?v=Nck6BZga7TQ",
-                                          "//youtube.com/watch?v=F2SXmzk8ve4",
-                                          "//youtube.com/watch?v=ln3wAdRAim4"
+                                          "//youtube.com/watch?v=Lj-SKxkxge4&t=2107s",
+                                          "//youtube.com/watch?v=YiF544oDNOc",
+                                          "//youtube.com/watch?v=TZFDM86bqKU&t=3s"
                                         ]
         captions_gallery:               [
-                                          "Carpool Karaoke - Lady Gaga",
-                                          "Carpool Karaoke - Adele",
-                                          "Carpool Karaoke - Gwen Stefani",
-                                          "Carpool Karaoke - First Lady Michelle Obama"
+                                          "EMCAPB SDEs", "EMCAPB Simulation", "EMCAPB Analysis"
                                         ]
         captions_lightbox:              [
-                                          "<p>Lady Gaga joins James for a drive through Los Angeles singing her classics and tracks from her new album</p>",
-                                          "<p>James Corden is about the holidays in London and gets Adele off for a ride through the city. On the way they sing some of their biggest hits and Adele raps Nicki Minaj's <b>monster</b></p>",
-                                          "<p>Gwen Stefani, Julia Roberts, George Clooney and James Corden singing Holla back girl, there's nothing left to see</p>",
-                                          "<p>James Corden's White House tour takes an unthinkable turn when First Lady Michelle Obama joins him for a drive around the grounds singing Stevie Wonder and Beyonce</p>"
+                                          "<p> Nov 13</p>",
+                                          "<p> Nov 14</p>",
+                                          "<p> Nov 15</p>"
                                         ]
         poster:                         [
-                                          video_gaga-poster.jpg, video_adele-poster.jpg,
-                                          video_gwen-poster.jpg, video_michelle-poster.jpg
+                                          video-first-day-poster.jpg,
+                                          video-first-day-poster.jpg,
+                                          video-first-day-poster.jpg
                                         ]
         gallery_options:
           rowHeight:                    200

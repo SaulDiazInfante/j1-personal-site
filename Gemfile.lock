@@ -47,7 +47,7 @@ GEM
       concurrent-ruby (~> 1.0)
     j1-paginator (2021.1.1)
       jekyll (>= 3.6, < 5.0)
-    j1-template (2022.4.8)
+    j1-template (2022.4.9)
       bump (~> 0.8)
       colorator (~> 1.0)
       date (~> 2.0)
@@ -176,7 +176,7 @@ GEM
     terminal-table (2.0.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     tilt (2.0.10)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
@@ -225,4 +225,4 @@ DEPENDENCIES
   warden (~> 1.2)
 
 BUNDLED WITH
-   2.3.17
+   2.3.18

@@ -248,6 +248,7 @@ carousel::figs_sto_tylc[role="mb-3"]
 
 
 == Abstract
+****
 Diseases transmitted by vectors in crops represent a severe risk to
 the farmer, causing low production and lower quality, which results
 in a drastic reduction in crop yield. Here we study a stochastic
@@ -266,7 +267,7 @@ suffer considerable uncertainty.
 Here, we quantify and study the impact and consequences of this uncertainty.
 We conclude that environmental noise promotes dramatic stability
 changes.
-
+****
 === Keywords
     Tomato yellow curl virus disease, stochastic Model, threshold behaviour,
     vector-plant-host, persistence, extinction, Brownian motion
@@ -485,14 +486,16 @@ we verify and illustrate our theory with numerical experiments.
 ++++
 
 
-[tbl:deterministic_tbl]
+[:tbl:deterministic_tbl:]
 
 [caption="Table 1. "]
-.Parameters description of deterministic ODE \eqref{eq:DeterministicSystem}.
+.Parameters description of deterministic ODE $\eqref{eq:DeterministicSystem}$.
 
-[cols="1,1,1"]
+[%header,cols="2,2,1"]
 |===
-| Par.| Description| Reference sources
+| Par.
+| Description
+|Reference sources
 
 | $\beta_p$
 |infection rate of susceptible plants by infected vectors
@@ -520,10 +523,8 @@ we verify and illustrate our theory with numerical experiments.
 
 | $\theta$
 | proportion of infected vector from migration
-| +++{% cite ramappa1994 %}+++ +++{% cite Ramappa1998%}+++}
+| +++{% cite ramappa1994 %}+++ +++{% cite Ramappa1998%}+++
 |===
-
-
 
 ++++
     <span id="fig:fitnonresistance">
@@ -3401,7 +3402,7 @@ confidence band cumulative incidence LA 1582 specie data for model \eqref{sys::D
 The results show that the stochastic model capture better the tomato data than
 the deterministic model.
 
-[fig:Tykingfit]
+[:fig:Tykingfit:]
 
 .Figure 7. Comparison of deterministic and stochastic confidence band of cumulative incidence to Tyking data. Blue and orange shaded region band perform 95\% of confidence. $\color{orange}{\bullet}$) means Tyking specie data. The blue and red line exhibit eterministic and stochastic median incidence solution, respectively}. Parameters value in \autoref{tbl:parameter_value}. Electronic figure usable in https://plotly.com/~AdrianSalcedo/368/[]
 //

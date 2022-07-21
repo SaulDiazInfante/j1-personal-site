@@ -15,7 +15,10 @@ scrollbar:                              false
 permalink:                              /pages/public/resume/site/
 regenerate:                             false
 
-resources:                              []
+resources:                              [
+                                          animate, lightGallery, justifiedGallery, video_js,
+                                          vimeo_player, vimeo_froogaloop
+                                        ]
 resource_options:
   - attic:
       padding_top:                      400
@@ -140,6 +143,89 @@ lorem:sentences[5]
 
 == Professional affiliations and memberships
 AMS, mex-SIAM, SMM
+
+== online Presentations
+
+++++
+<!-- insert Google Ad (Displayanzeige): horizontal-2, adSlot="5128488466" -->
+<div class="5128488466 mb-5">
+  <ins class="adsbygoogle"
+    style="display: block;"
+    data-ad-client="ca-pub-3885670015316130"
+    data-ad-slot="5128488466"
+    data-ad-format="auto"
+    data-adtest="on"
+    data-full-width-responsive="true">
+  </ins>
+</div>
+++++
+
+++++
+<script>
+
+  $(document).ready(function() {
+    var logger              = log4javascript.getLogger('j1.google.ads');
+    var autoHideOnUnfilled  = true;
+
+    var dependencies_met_page_ready = setInterval (function (options) {
+      if ( j1.getState() === 'finished' ) {
+
+        // monitor for state changes on the ad
+        // ---------------------------------------------------------------------
+        $('.adsbygoogle').attrchange({
+          trackValues: true,
+          callback: function (event) {
+            if (event.newValue === 'unfilled') {
+              var elm = event.target.dataset;
+              if (elm.adClient) {
+                logger.warn('\n' + 'initialized ad detected as: ' + event.newValue);
+                if (autoHideOnUnfilled) {
+                  logger.info('\n' + ' hide ad for slot: ' + elm.adSlot);
+                  $('.' + elm.adSlot ).hide();
+                }
+              }
+            }
+          }
+        });
+
+        // manage uncaught execeptions
+        // ---------------------------------------------------------------------
+        // window.onerror = function (msg, url, line) {
+        //    alert("Message : " + msg );
+        //    alert("url : " + url );
+        //    alert("Line number : " + line );
+        // }
+
+        logger.info('\n' + 'initialize Google Ad on slot: ' + '5128488466');
+        (adsbygoogle = window.adsbygoogle || []).push({});
+
+        clearInterval(dependencies_met_page_ready);
+      }
+   });
+
+  });
+
+</script>
+++++
+
+// Include sub-documents (if any)
+// -----------------------------------------------------------------------------
+[role="dropcap"]
+Playing video on web pages seems not that special since you can already
+watch videos on web pages through plugins like _Flash Player_, _Quicktime_,
+or _Silverlight_. A new standard goes to HTML5 Video, a pure HTML way to
+show video on the web, instead of the previous de facto standard of using
+proprietary software.
+
+== Online Video content
+
+=== YouTube
+
+.Short Course
+gallery::jg_video_online_youtube[role="mb-5"]
+
+
+gallery::jg_video_online_youtube[role="mb-5"]
 
 == Attendance at conferences and seminars
 

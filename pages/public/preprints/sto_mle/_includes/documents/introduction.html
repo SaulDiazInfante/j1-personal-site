@@ -1,0 +1,107 @@
+<h1 id="sc:introduction">Introduction</h1>
+<p>
+    Epidemiological surveillance of the COVID-19 epidemic has generated a
+    large amount of information regarding the dynamics of the indicators
+    used for its control and monitoring. One of the most important
+    indicators has been the instantaneous reproductive number or
+    <span class="math inline">
+                \(R_t\)
+            </span>. This number measures the number of
+    secondary infections generated, on average, by a typical infectious
+    individual.
+    <span class="math inline">\(R_t\)</span> has shown
+    characteristic behaviors in different regions of the world. In some,
+    such as Mexico and several other Latin American countries, the <span
+        class="math inline">\(R_t\)</span> has remained consistently around 1
+    with increases and decreases associated with epidemic outbreaks or waves
+    of infection. Another index that has been used in this epidemic has been
+    the infection risk index.</p>
+<p><span class="citation" data-cites="Chande2020"></span> introduce a
+    risk index for monitoring the pandemic that gives the probability of
+    finding at time <span class="math inline">\(t\)</span> an infected
+    person in a group of <span class="math inline">\(k\)</span> individuals.
+    The formula is <span class="math display">\[\label{eq:risk_index}
+    C_k(t^*) = 1 - \left(1 - \frac{I(t^*)}{N(t^*)}\right)^k\]</span>
+    where <span class="math inline">\(\frac{I(t^*)}{N(t^*)}\)</span> is the
+    number of active cases present in a given locality or region on day
+    <span class="math inline">\(t^*\)</span>. In <span class="citation"
+                                                       data-cites="Chande2020"></span> the number of active cases is computed
+    using the ascertainment ratio derived from data on seroprevalence and
+    contact tracing. Our data from Mexico shows that daily risk and <span
+            class="math inline">\(R_t\)</span>, the instantaneous reproductive
+    number, undergo sustained oscillations. Figure <a href="#fig.bolitas"
+                                                      data-reference-type="ref" data-reference="fig.bolitas">[fig.bolitas]</a>
+    plots all the Mexican states in the <span
+            class="math inline">\(R_t\)</span>-risk plane divided into four
+    quadrants: I. low transmission (<span class="math inline">\(R_t
+&lt;1\)</span>), low risk (<span
+            class="math inline">\(C_{100}&lt;50\%)\)</span>, II. high transmission
+    (<span class="math inline">\(R_t &gt;1\)</span>), low risk (<span
+            class="math inline">\(C_{100}&lt;50\%)\)</span>, III. high transmission
+    (<span class="math inline">\(R_t &gt;1\)</span>), high risk (<span
+            class="math inline">\(C_{100}&gt;50\%)\)</span>, and IV low transmission
+    (<span class="math inline">\(R_t &lt;1\)</span>), high risk (<span
+            class="math inline">\(C_{100}&gt;50\%)\)</span>. Two different dates are
+    shown about a month apart (10 October and 7 November). In general, the
+    trajectory of the states goes in a counter clockwise direction moving
+    from <span class="math inline">\(I\to II \to III \to IV\)</span>
+    although, in high transmission events, the states may move back and
+    forth between quadrants III and IV. Since risk depends on the number of
+    active cases and the depletion of these depends on the size of the
+    active cases pool, then even if <span class="math inline">\(R_t\)</span>
+    is slightly below 1, high risk events may still occur. Lastly, by late
+    December, most states have increased their <span
+            class="math inline">\(R_t\)</span> and and on their way of experiencing
+    an increase of their risk in the following weeks (passing from <span
+            class="math inline">\(II\to III\)</span>) which, on time, would
+    correspond to the Omicron wave of late December.</p>
+<table>
+    <tbody>
+    <tr class="odd">
+        <td style="text-align: center;">A</td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr class="even">
+        <td style="text-align: center;"><img src="figs/RtRisk1010.jpeg"
+                                             style="width:12cm;height:7.5cm" alt="image" /></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr class="odd">
+        <td style="text-align: center;">B</td>
+        <td style="text-align: center;"></td>
+    </tr>
+    <tr class="even">
+        <td style="text-align: center;"><img src="figs/RtRisk1107.jpeg"
+                                             style="width:12cm;height:7.5cm" alt="image" /></td>
+        <td style="text-align: center;"></td>
+    </tr>
+    </tbody>
+</table>
+<p>This behavior has motivated us to propose an epidemiological traffic
+    light system based on the risk of contagion and the value of <span
+            class="math inline">\(R_t\)</span>. In what follows, we present a
+    mathematical model of a traffic light based on the Kermack-McKendrick
+    equations that accounts for these two variables and their temporal
+    dynamics in the presence of a relatively long-lasting epidemic.</p>
+<h1 id="methods">Methods</h1>
+<h2 id="mathematical-model-formulation">Mathematical model
+    formulation</h2>
+<p>We propose an extension of the classic Kermack-McKendrick
+    mathematical model (see ). Our formulation considers that the total
+    population <span class="math inline">\(N(t)\)</span> is split into four
+    compartments: susceptible (S(t)), infected (I(t)), recovered (R(t)), and
+    vaccinated (V(t)). Disease dynamics is modeled as follows: susceptible
+    individuals can become infected when interacting with an infectious
+    individual. After a period of time <span
+            class="math inline">\((1/\gamma)\)</span>, infected people recover.
+    Recovered people lose their natural immunity after a period of time
+    <span class="math inline">\(1/\theta\)</span>. Regarding vaccination
+    dynamics, we consider that the susceptible people are vaccinated with a
+    vaccination rate equal to <span class="math inline">\(\phi\)</span>. The
+    vaccine is imperfect. For this reason, there is a vaccine efficacy <span
+            class="math inline">\(\sigma\)</span> which reduces the number of
+    vaccinated people who can acquire the disease. Finally, those vaccinated
+    people, that do not acquire the disease, lost their vaccine-induced
+    immunity after a period of time <span
+            class="math inline">\(1/\omega\)</span>. In addition, our model presents
+    vital dynamics.</p>

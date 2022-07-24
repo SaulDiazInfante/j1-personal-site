@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros', '[tex]/mhchem']},
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                tags: 'ams',
+                packages: {'[+]': ['textmacros', 'mhchem']},
+                macros: {
+                    oe: '\u0153',
+                    OE: '\u0152',
+                    ae: '\u00E6',
+                    AE: '\u00C6',
+                    aa: '\u00E5',
+                    AA: '\u00C5',
+                    o: '\u00F8',
+                    O: '\u00D8',
+                    l: '\u0142',
+                    L: '\u0141',
+                    ss: '\u00DF',
+                    SS: '\u1E9E',
+                    dag: '\u2020',
+                    ddag: '\u2021',
+                    P: '\u00B6',
+                    copyright: '\u00A9',
+                    pounds: '\u00A3'
+                }
+            },
+            chtml: {
+                mtextInheritFont: true
+            },
+            sag: {
+                mtextInheritFont: true
+            },
+            svg: {fontCache: 'global'}
+        };
+    </script>
+    <head>
+<!--        <script type="text/javascript">
+            if (window.hljs) {
+                hljs.configure({languages: []});
+                hljs.initHighlightingOnLoad();
+                if (document.readyState && document.readyState === "complete") {
+                    window.setTimeout(function () {
+                        hljs.initHighlighting();
+                    }, 0);
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            // manage active state of menu based on current page
+            $(document).ready(function () {
+                // active menu anchor
+                href = window.location.pathname
+                href = href.substr(href.lastIndexOf('/') + 1)
+                if (href === "")
+                    href = "index.html";
+                var menuAnchor = $('a[href="' + href + '"]');
+            
+                // mark it active
+                menuAnchor.tab('show');
+            
+                // if it's got a parent navbar menu mark it active as well
+                menuAnchor.closest('li.dropdown').addClass('active');
+            
+                // Navbar adjustments
+                var navHeight = $(".navbar").first().height() + 15;
+                var style = document.createElement('style');
+                var pt = "padding-top: " + navHeight + "px; ";
+                var mt = "margin-top: -" + navHeight + "px; ";
+                var css = "";
+                // offset scroll position for anchor links (for fixed navbar)
+                for (var i = 1; i <= 6; i++) {
+                    css += ".section h" + i + "{ " + pt + mt + "}\n";
+                }
+                style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+                document.head.appendChild(style);
+            });
+        </script>-->
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'>
+        </script>
+<!--        <style>
+            h1 {
+                font-size: 34px;
+            }
+            h1.title {
+                font-size: 38px;
+            }
+            h2 {
+                font-size: 30px;
+            }
+            h3 {
+                font-size: 24px;
+            }
+            h4 {
+                font-size: 18px;
+            }
+            h5 {
+                font-size: 16px;
+            }
+            h6 {
+                font-size: 12px;
+            }
+            code {
+                color: inherit;
+                background-color: rgba(0, 0, 0, 0.04);
+            }
+            pre:not([class]) {
+                background-color: white
+            }
+            code {
+                white-space: pre-wrap;
+            }
+            
+            span.smallcaps {
+                font-variant: small-caps;
+            }
+            
+            span.underline {
+                text-decoration: underline;
+            }
+            div.column {
+                display: inline-block;
+                vertical-align: top;
+                width: 50%;
+            }
+            
+            div.hanging-indent {
+                margin-left: 1.5em;
+                text-indent: -1.5em;
+            }
+            
+            ul.task-list {
+                list-style: none;
+            }
+            code {
+                white-space: pre;
+            }
+            .tab { margin-left: 40px; }
+        </style>
+        <style>
+            .tabset-dropdown > .nav-tabs {
+                display: inline-table;
+                max-height: 500px;
+                min-height: 44px;
+                overflow-y: auto;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            .tabset-dropdown > .nav-tabs > li.active:before {
+                content: "";
+                font-family: 'Glyphicons Halflings';
+                display: inline-block;
+                padding: 10px;
+                border-right: 1px solid #ddd;
+            }
+            .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+                content: "&#xe258;";
+                border: none;
+            }
+            .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+                content: "";
+                font-family: 'Glyphicons Halflings';
+                display: inline-block;
+                padding: 10px;
+                border-right: 1px solid #ddd;
+            }
+            .tabset-dropdown > .nav-tabs > li.active {
+                display: block;
+            }
+            .tabset-dropdown > .nav-tabs > li > a,
+            .tabset-dropdown > .nav-tabs > li > a:focus,
+            .tabset-dropdown > .nav-tabs > li > a:hover {
+                border: none;
+                display: inline-block;
+                border-radius: 4px;
+                background-color: transparent;
+            }
+            .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+                display: block;
+                float: none;
+            }
+            .tabset-dropdown > .nav-tabs > li {
+                display: none;
+            }
+            p {
+                text-indent: 30px;
+            }
+        </style>
+        <style>
+            img {
+                max-width: 100%;
+            }
+            .tabbed-pane {
+                padding-top: 12px;
+            }
+            .html-widget {
+                margin-bottom: 20px;
+            }
+            button.code-folding-btn:focus {
+                outline: none;
+            }
+            summary {
+                display: list-item;
+            }
+            details > summary > p:only-child {
+                display: inline;
+            }
+            pre code {
+                padding: 0;
+            }
+            .dropdown-submenu {
+                position: relative;
+            }
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -6px;
+                margin-left: -1px;
+                border-radius: 0 6px 6px 6px;
+            }
+            .dropdown-submenu:hover > .dropdown-menu {
+                display: block;
+            }
+            .dropdown-submenu > a:after {
+                display: block;
+                content: " ";
+                float: right;
+                width: 0;
+                height: 0;
+                border-color: transparent;
+                border-style: solid;
+                border-left-color: #cccccc;
+                margin-top: 5px;
+                margin-right: -10px;
+            }
+            .dropdown-submenu:hover > a:after {
+                border-left-color: #adb5bd;
+            }
+            .dropdown-submenu.pull-left {
+                float: none;
+            }
+            .dropdown-submenu.pull-left > .dropdown-menu {
+                left: -100%;
+                margin-left: 10px;
+                border-radius: 6px 0 6px 6px;
+            }
+            .theorem {
+                display: block;
+                font-style: italic;
+            }
+            .theorem:before {
+                content: "Theorem. ";
+                font-weight: bold;
+                font-style: normal;
+            }
+            .theorem[text]:before {
+                content: "Theorem (" attr(text) ") ";
+            }
+            .definition {
+                display: block;
+                font-style: italic;
+            }
+            .definition:before {
+                content: "Definition. ";
+                font-weight: bold;
+                font-style: normal;
+            }
+            .definition[text]:before {
+                content: "Definition (" attr(text) ") ";
+            }
+            .proof {
+                display: block;
+                font-style: italic;
+            }
+            .proof:before {
+                content: "Proof. ";
+                font-weight: bold;
+                font-style: normal;
+            }
+            .proof[text]:before {
+                content: "Proof (" attr(text) ") ";
+            }
+            .example {
+                display: block;
+                font-style: italic;
+            }
+            .example:before {
+                content: "Example. ";
+                font-weight: bold;
+                font-style: normal;
+            }
+            .example[text]:before {
+                content: "Example (" attr(text) ") ";
+            }
+            span.right{
+                float:right;
+            }
+        </style>-->
+    </head>
+    <body>
+        <!--<header id="title-block-header">
+            <p class="author">Author Name</p>
+            <p class="author">ahtors name</p>
+            <p class="author">ahtors name</p>
+            <div class="abstract">
+                <div class="abstract-title">
+                    Abstract
+                </div>
+                <p>
+                    Setup.
+                    Contribution.
+                </p>
+            </div>
+        </header>-->
+        <!--&lt;!&ndash;        <nav id="TOC" role="doc-toc">
+                    <ul>
+                        <li>
+                            <a
+                                    href="./introduction.html#sc:introduction"
+                                    id="toc-sc:introduction"
+                            >
+                                Introduction
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#methods" id="toc-methods">Methods</a>
+                            <ul>
+                                <li>
+                                    <a
+                                        href="#mathematical-model-formulation"
+                                        id="toc-mathematical-model-formulation">
+                                    Mathematical model formulation
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                            href="#reproductive-number"
+                                            id="toc-reproductive-number"
+                                    >
+                                        Reproductive Number
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                            href="#light-traffic-policies-and-best-response-optimal-control"
+                                            id="toc-light-traffic-policies-and-best-response-optimal-control"
+                                    >
+                                        Light Traffic Policies and Best Response Optimal Control
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#results" id="toc-results">
+                                Results
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#conclusions" id="toc-conclusions">
+                                Conclusions
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#appendix" id="toc-appendix">
+                                Appendix
+                            </a>
+                        </li>
+                    </ul>
+                </nav>&ndash;&gt;
+                <p>
+                    [ type=editor, auid=000, bioid=1, prefix=Sir,
+                    orcid=0000-0000-0000-0000, linkedin= , ]</p>
+                <p>[]</p>
+                <p>[]</p>
+                <div class="highlights">
+                <p>H1</p>
+                <p>H2</p>
+                <p>H3</p>
+        <div class="keywords">
+            <p>,Key1,key2 ,</p>
+        </div>
+      -->  <!--<div>
+        <?php require 'frontmater.html';?>
+    </div>-->
+        <div id="myDiv">
+        </div>
+        <script>
+            d3.csv(
+                "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv",
+                function(err, rows){
+                        function unpack(rows, key) {
+                            return rows.map(function(row) { return row[key]; });
+                        }
+                        
+                        var trace1 = {
+                            type: "scatter",
+                            mode: "lines",
+                            name: 'AAPL High',
+                            x: unpack(rows, 'Date'),
+                            y: unpack(rows, 'AAPL.High'),
+                            line: {color: '#17BECF'}
+                        }
+        
+                        var trace2 = {
+                            type: "scatter",
+                            mode: "lines",
+                            name: 'AAPL Low',
+                            x: unpack(rows, 'Date'),
+                            y: unpack(rows, 'AAPL.Low'),
+                            line: {color: '#7F7F7F'}
+                        }
+       
+                       var data = [trace1, trace2];
+                
+                    var layout = {
+                        title: 'Time Series with Rangeslider',
+                        xaxis: {
+                            autorange: true,
+                            range: ['2015-02-17', '2017-02-16'],
+                            rangeselector: {
+                                buttons: [
+                                    {
+                                        count: 1,
+                                        label: '1m',
+                                        step: 'month',
+                                        stepmode: 'backward'
+                                    },
+                                    {
+                                        count: 6,
+                                        label: '6m',
+                                        step: 'month',
+                                        stepmode: 'backward'
+                                    },
+                                    {step: 'all'}
+                                ]
+                            },
+                            rangeslider: {range: ['2015-02-17', '2017-02-16']},
+                            type: 'date'
+                        },
+                        yaxis: {
+                            autorange: true,
+                            range: [86.8700008333, 138.870004167],
+                            type: 'linear'
+                        }
+                    };
+                    var config = {responsive: true};
+                    TESTER = document.getElementById('myDiv');
+                    Plotly.newPlot(TESTER, data, layout, config);
+                }
+            )
+        </script>
+    </body>
+</html>

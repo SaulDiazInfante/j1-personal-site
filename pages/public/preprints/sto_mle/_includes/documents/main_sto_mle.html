@@ -40,6 +40,8 @@
     };
 </script>
     <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
         <style>
             h1 {
                 font-size: 34px;
@@ -98,6 +100,29 @@
             white-space: pre;
             }
             .tab { margin-left: 40px; }
+            .material-icons {
+                font-family: 'Material Icons';
+                font-weight: normal;
+                font-style: normal;
+                font-size: 24px;  /* Preferred icon size */
+                display: inline-block;
+                line-height: 1;
+                text-transform: none;
+                letter-spacing: normal;
+                word-wrap: normal;
+                white-space: nowrap;
+                direction: ltr;
+                /* Support for all WebKit browsers. */
+                -webkit-font-smoothing: antialiased;
+                /* Support for Safari and Chrome. */
+                text-rendering: optimizeLegibility;
+    
+                /* Support for Firefox. */
+                -moz-osx-font-smoothing: grayscale;
+    
+                /* Support for IE. */
+                font-feature-settings: 'liga';
+            }
         </style>
         <script type="text/javascript">
             if (window.hljs) {
@@ -302,15 +327,17 @@
     </head>
     
     <div class="container-fluid main-container">
-        <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+        <div class="navbar navbar-dark bg-primary" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle
-                        collapsed" data-toggle="collapse"
-                            data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-toggle="collapse"
+                            data-bs-toggle="collapse"
+                            data-target="#navbar"
+                            data-bs-target="#navbar"
+                    >
+                        <span class="material-icons">toc</span>
                     </button>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
@@ -386,19 +413,26 @@
                     Maximum likelihood estimation for a stochastic SEIR
                     system for COVID-19
             </h1>
-                <p class="author">
+            <div>
+                <span class="badge rounded-pill bg-primary">
                     Fernando Baltazar-Larios
-                </p>
-                <p class="author">
+                </span>
+                <span class="badge rounded-pill bg-secondary">
                     Francisco Delgado-Vences
-                </p>
-                <p class="author">
-                    Saul Diaz-Infante*
+                    <span class="badge bg-warning text-dark">
+                        *
+                    </span>
+                </span>
+                <span class="badge rounded-pill bg-success">
+                    Saul Diaz-Infante
+                </span>
+            </div>
+            
                 </p>
                 <div class="abstract">
                     <div class="abstract-title">
-                        Abstract
-                </div>
+                        <h3>Abstract</h3>
+                    </div>
                     <p>
                         The parameter estimation of epidemic data-driven models is a crucial
                         task. In some cases, we can formulate a better model by describing

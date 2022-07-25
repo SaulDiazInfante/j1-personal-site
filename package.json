@@ -139,6 +139,7 @@
   "dependencies": {
     "cross-env": "^7.0.3",
     "cross-var": "^1.1.0",
+    "d3": "^7.6.1",
     "getos": "^3.2.1",
     "getos-cli": "^1.0.0",
     "if-env": "^1.0.4",

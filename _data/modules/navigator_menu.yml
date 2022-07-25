@@ -1,259 +1,259 @@
-# ------------------------------------------------------------------------------
-# ~/_data/modules/j1_navigator_menu.yml (run-time)
-# Configuration of the J1 NAV Module for the main navigation bar
-#
-# Product/Info:
-# https://jekyll.one
-#
-# Copyright (C) 2022 Juergen Adams
-#
-# J1 Template is licensed under the MIT License.
-# See: https://github.com/jekyll-one-org/J1 Template/blob/master/LICENSE
-#
-# ------------------------------------------------------------------------------
-# NOTE:
-#   For general navigation settings, see navigator.yml
-# ------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------
+  # ~/_data/modules/j1_navigator_menu.yml (run-time)
+  # Configuration of the J1 NAV Module for the main navigation bar
+  #
+  # Product/Info:
+  # https://jekyll.one
+  #
+  # Copyright (C) 2022 Juergen Adams
+  #
+  # J1 Template is licensed under the MIT License.
+  # See: https://github.com/jekyll-one-org/J1 Template/blob/master/LICENSE
+  #
+  # ------------------------------------------------------------------------------
+  # NOTE:
+  #   For general navigation settings, see navigator.yml
+  # ------------------------------------------------------------------------------
+  
+  # ------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------
+  # Menu BLOG
+  #
+  - item:                                 Blog
+    sublevel:
+      - title:                            Blog Navigator
+        href:                             /pages/public/blog/navigator/
+        icon:                             near-me
+      - title:                            Categories
+        href:                             /pages/public/blog/navigator/archive/categoryview/
+        icon:                             pin
+      - title:                            Date
+        href:                             /pages/public/blog/navigator/archive/dateview/
+        icon:                             calendar
+      - title:                            Archive
+        href:                             /pages/public/blog/navigator/archive/
+        icon:                             archive
 
-# ------------------------------------------------------------------------------
-# ------------------------------------------------------------------------------
-# Menu BLOG
-#
-- item:                                 Blog
-  sublevel:
-    - title:                            Blog Navigator
-      href:                             /pages/public/blog/navigator/
-      icon:                             near-me
-    - title:                            Categories
-      href:                             /pages/public/blog/navigator/archive/categoryview/
-      icon:                             pin
-    - title:                            Date
-      href:                             /pages/public/blog/navigator/archive/dateview/
-      icon:                             calendar
-    - title:                            Archive
-      href:                             /pages/public/blog/navigator/archive/
-      icon:                             archive
+  # ------------------------------------------------------------------------------
+  # Menu Themes
+  #
+  - item:                                 Themes
+    theme_select:
+      - local_themes:                     enabled
+        title:                            Jekyll One
+        icon:                             alpha-j-box
+      - bootswatch_themes:                enabled
+        title:                            Bootswatch
+        icon:                             bootstrap
+      - preview:                          enabled
+        title:                            Previewer
+        href:                             /pages/public/previewer/theme/
+        icon:                             eye
+  # ------------------------------------------------------------------------------
+  # Menu MANUALS
+  #
+  - item:                                 Manuals
+    sublevel:
 
-# ------------------------------------------------------------------------------
-# Menu Themes
-#
-- item:                                 Themes
-  theme_select:
-    - local_themes:                     enabled
-      title:                            Jekyll One
-      icon:                             alpha-j-box
-    - bootswatch_themes:                enabled
-      title:                            Bootswatch
-      icon:                             bootstrap
-    - preview:                          enabled
-      title:                            Previewer
-      href:                             /pages/public/previewer/theme/
-      icon:                             eye
-# ------------------------------------------------------------------------------
-# Menu MANUALS
-#
-- item:                                 Manuals
-  sublevel:
+      - title:                            Pandoc
+        href:                             "https://jekyll.one/pages/public/manuals/pandoc/"
+        icon:                             cog-transfer
+        target:                           _blank
 
-    - title:                            Pandoc
-      href:                             "https://jekyll.one/pages/public/manuals/pandoc/"
-      icon:                             cog-transfer
-      target:                           _blank
+      # --------------------------------------------------------------------------
+      # Modules
+      #
+      - title:                            Modules
+        icon:                             view-module
+        dropdown:
 
-    # --------------------------------------------------------------------------
-    # Modules
-    #
-    - title:                            Modules
-      icon:                             view-module
-      dropdown:
+          - title:                        Master Slider
+            href:                         "https://jekyll.one/pages/public/manuals/modules/masterslider/"
+            icon:                         gesture-swipe
+            target:                       _blank
+          - title:                        Range Sliders
+            href:                         "https://jekyll.one/pages/public/manuals/modules/range-slider/"
+            icon:                         view-module-outline
+            target:                       _blank
+          - title:                        Rouge
+            href:                         "https://jekyll.one/pages/public/manuals/rouge/user_guide/"
+            icon:                         format-color-fill
+            target:                       _blank
+          - title:                        msDropdown
+            href:                         "https://jekyll.one/pages/public/manuals/msdropdown/"
+            icon:                         form-dropdown
+            target:                       _blank
+          - title:                        Mobile Menu
+            href:                         "https://jekyll.one/pages/public/manuals/mmenu/"
+            icon:                         menu
+            target:                       _blank
+          - title:                        Platform
+            href:                         "https://jekyll.one/pages/public/manuals/platform/"
+            icon:                         folder-information
+            target:                       _blank
 
-        - title:                        Master Slider
-          href:                         "https://jekyll.one/pages/public/manuals/modules/masterslider/"
-          icon:                         gesture-swipe
-          target:                       _blank
-        - title:                        Range Sliders
-          href:                         "https://jekyll.one/pages/public/manuals/modules/range-slider/"
-          icon:                         view-module-outline
-          target:                       _blank
-        - title:                        Rouge
-          href:                         "https://jekyll.one/pages/public/manuals/rouge/user_guide/"
-          icon:                         format-color-fill
-          target:                       _blank
-        - title:                        msDropdown
-          href:                         "https://jekyll.one/pages/public/manuals/msdropdown/"
-          icon:                         form-dropdown
-          target:                       _blank
-        - title:                        Mobile Menu
-          href:                         "https://jekyll.one/pages/public/manuals/mmenu/"
-          icon:                         menu
-          target:                       _blank
-        - title:                        Platform
-          href:                         "https://jekyll.one/pages/public/manuals/platform/"
-          icon:                         folder-information
-          target:                       _blank
+          # ----------------------------------------------------------------------
+          # Documentation
+          #
+          - title:                        NBI Documentation
+            icon:                         head-lightbulb
+            dropdown:
 
-        # ----------------------------------------------------------------------
-        # Documentation
-        #
-        - title:                        NBI Documentation
-          icon:                         head-lightbulb
-          dropdown:
+              - title:                    NBI Integration
+                href:                     "https://jekyll.one/pages/public/jupyter/docs/j1-nbinteract-docs/"
+                icon:                     alpha-j-box
+                target:                   _blank
+              - title:                    NBI Wigets
+                href:                     "https://jekyll.one/pages/public/jupyter/docs/nbi-widgets/"
+                icon:                     alpha-j-box
+                target:                   _blank
+              - title:                    BinderHub API
+                href:                     "https://jekyll.one/pages/public/jupyter/docs/binderhub/"
+                icon:                     book
+                target:                   _blank
+              - title:                    JupyterHub API
+                href:                     "https://jekyll.one/pages/public/jupyter/docs/jupyterhub/"
+                icon:                     book
+                target:                   _blank
 
-            - title:                    NBI Integration
-              href:                     "https://jekyll.one/pages/public/jupyter/docs/j1-nbinteract-docs/"
-              icon:                     alpha-j-box
-              target:                   _blank
-            - title:                    NBI Wigets
-              href:                     "https://jekyll.one/pages/public/jupyter/docs/nbi-widgets/"
-              icon:                     alpha-j-box
-              target:                   _blank
-            - title:                    BinderHub API
-              href:                     "https://jekyll.one/pages/public/jupyter/docs/binderhub/"
-              icon:                     book
-              target:                   _blank
-            - title:                    JupyterHub API
-              href:                     "https://jekyll.one/pages/public/jupyter/docs/jupyterhub/"
-              icon:                     book
-              target:                   _blank
+      # --------------------------------------------------------------------------
+      # Resources
+      #
+      - title:                            Resources
+        icon:                             video-input-component
+        dropdown:
 
-    # --------------------------------------------------------------------------
-    # Resources
-    #
-    - title:                            Resources
-      icon:                             video-input-component
-      dropdown:
+          - title:                        MD Color Palette
+            href:                         "https://jekyll.one/pages/public/manuals/resources/color_palette/"
+            icon:                         format-color-fill
+            target:                       _blank
 
-        - title:                        MD Color Palette
-          href:                         "https://jekyll.one/pages/public/manuals/resources/color_palette/"
-          icon:                         format-color-fill
-          target:                       _blank
+      # --------------------------------------------------------------------------
+      # Jekyll
+      #
+      - title:                            Jekyll
+        icon:                             flask
+        dropdown:
 
-    # --------------------------------------------------------------------------
-    # Jekyll
-    #
-    - title:                            Jekyll
-      icon:                             flask
-      dropdown:
+          - title:                        Liquid User Guide
+            href:                         "https://jekyll.one/pages/public/manuals/liquid/user_guide/"
+            icon:                         trello
+            target:                       _blank
 
-        - title:                        Liquid User Guide
-          href:                         "https://jekyll.one/pages/public/manuals/liquid/user_guide/"
-          icon:                         trello
-          target:                       _blank
+          - title:                        Jekyll User Guide
+            icon:                         book-open-page-variant
+            dropdown:
 
-        - title:                        Jekyll User Guide
-          icon:                         book-open-page-variant
-          dropdown:
+              - title:                    Commandline
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/commandline/"
+                icon:                     console-line
+                target:                   _blank
+              - title:                    Configuration
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/configuration/"
+                icon:                     code-braces
+                target:                   _blank
+              - title:                    Managing Pages
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_pages/"
+                icon:                     book-open-page-variant
+                target:                   _blank
+              - title:                    Managing Posts
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_posts/"
+                icon:                     blogger
+                target:                   _blank
+              - title:                    Managing Collections
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_collections/"
+                icon:                     collage
+                target:                   _blank
+              - title:                    Jekyll Date formats
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/date_formats/"
+                icon:                     calendar-blank
+                target:                   _blank
 
-            - title:                    Commandline
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/commandline/"
-              icon:                     console-line
-              target:                   _blank
-            - title:                    Configuration
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/configuration/"
-              icon:                     code-braces
-              target:                   _blank
-            - title:                    Managing Pages
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_pages/"
-              icon:                     book-open-page-variant
-              target:                   _blank
-            - title:                    Managing Posts
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_posts/"
-              icon:                     blogger
-              target:                   _blank
-            - title:                    Managing Collections
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/managing_collections/"
-              icon:                     collage
-              target:                   _blank
-            - title:                    Jekyll Date formats
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/user_guide/date_formats/"
-              icon:                     calendar-blank
-              target:                   _blank
+          - title:                        Jekyll Plugins
+            icon:                         power-plug
+            dropdown:
 
-        - title:                        Jekyll Plugins
-          icon:                         power-plug
-          dropdown:
+              - title:                    Asciidoctor
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/plugin/asciidoctor/"
+                icon:                     hospital
+                target:                   _blank
+              - title:                    Paginator V2
+                href:                     "https://jekyll.one/pages/public/manuals/jekyll/plugins/paginator_v2/"
+                icon:                     page-last
+                target:                   _blank
 
-            - title:                    Asciidoctor
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/plugin/asciidoctor/"
-              icon:                     hospital
-              target:                   _blank
-            - title:                    Paginator V2
-              href:                     "https://jekyll.one/pages/public/manuals/jekyll/plugins/paginator_v2/"
-              icon:                     page-last
-              target:                   _blank
+      # --------------------------------------------------------------------------
+      # AsciiDoc
+      #
+      - title:                            AsciiDoc
+        icon:                             format-color-text
+        dropdown:
 
-    # --------------------------------------------------------------------------
-    # AsciiDoc
-    #
-    - title:                            AsciiDoc
-      icon:                             format-color-text
-      dropdown:
+          - title:                        AsciiDoc Language
+            href:                         "https://docs.asciidoctor.org/asciidoc/latest/"
+            icon:                         alert-outline
+            target:                       _blank
 
-        - title:                        AsciiDoc Language
-          href:                         "https://docs.asciidoctor.org/asciidoc/latest/"
-          icon:                         alert-outline
-          target:                       _blank
+          - title:                        Asciidoctor User Guide
+            href:                         "https://docs.asciidoctor.org/asciidoctor/latest/"
+            icon:                         book-open-page-variant
+            target:                       _blank
 
-        - title:                        Asciidoctor User Guide
-          href:                         "https://docs.asciidoctor.org/asciidoctor/latest/"
-          icon:                         book-open-page-variant
-          target:                       _blank
+          - title:                        Asciidoctor CLI
+            href:                         "https://docs.asciidoctor.org/asciidoctor/latest/cli/"
+            icon:                         keyboard-variant
+            target:                       _blank
 
-        - title:                        Asciidoctor CLI
-          href:                         "https://docs.asciidoctor.org/asciidoctor/latest/cli/"
-          icon:                         keyboard-variant
-          target:                       _blank
+      # --------------------------------------------------------------------------
+      # YAML
+      #
+      - title:                            YAML
+        icon:                             format-align-right
+        dropdown:
 
-    # --------------------------------------------------------------------------
-    # YAML
-    #
-    - title:                            YAML
-      icon:                             format-align-right
-      dropdown:
+          - title:                        User Guide
+            href:                         "https://jekyll.one/pages/public/manuals/yaml/user_guide/"
+            icon:                         book-open-page-variant
+            target:                       _blank
+          - title:                        YAML Reference Guide
+            href:                         "https://jekyll.one/pages/public/manuals/yaml/quick_reference/"
+            icon:                         book-open
+            target:                       _blank
 
-        - title:                        User Guide
-          href:                         "https://jekyll.one/pages/public/manuals/yaml/user_guide/"
-          icon:                         book-open-page-variant
-          target:                       _blank
-        - title:                        YAML Reference Guide
-          href:                         "https://jekyll.one/pages/public/manuals/yaml/quick_reference/"
-          icon:                         book-open
-          target:                       _blank
+  # ------------------------------------------------------------------------------
+  # Menu ABOUT
+  #
+  # ------------------------------------------------------------------------------
+  # Menu ABOUT
+  #
+  - item:                                 About
+    sublevel:
+      - title:                            This site
+        icon:                             home-variant-outline
+        href:                             /pages/public/about/site/
+      - title:                            Privacy
+        icon:                             heart
+        href:                             /pages/public/legal/en/privacy/
+      - title:                            Impress
+        icon:                             gavel
+        href:                             /pages/public/legal/en/impress/
+      - title:                            Resume
+        icon:                             badge-account-horizontal-outline
+        href:                             /pages/public/resume/site/
 
-# ------------------------------------------------------------------------------
-# Menu ABOUT
-#
-# ------------------------------------------------------------------------------
-# Menu ABOUT
-#
-- item:                                 About
-  sublevel:
-    - title:                            This site
-      icon:                             home-variant-outline
-      href:                             /pages/public/about/site/
-    - title:                            Privacy
-      icon:                             heart
-      href:                             /pages/public/legal/en/privacy/
-    - title:                            Impress
-      icon:                             gavel
-      href:                             /pages/public/legal/en/impress/
-    - title:                            Resume
-      icon:                             badge-account-horizontal-outline
-      href:                             /pages/public/resume/site/
-
-#
-# ------------------------------------------------------------------------------
-# Menu Work in Progress
-- item:                                 Work in Progress
-  sublevel:
-    - title:                            MLE estimation of a stochastic SEIR structure
-      icon:                             image-edit-outline
-      href:                             /pages/public/preprints/sto_mle/multi/
-    - title:                            Traffic-Light COVID-19 Policies
-      icon:                             image-edit-outline
-      href:                             /pages/public/preprints/covid_19_otlp/multi/
-    - title:                            Threshold behaviour of a stochastic vector plant 
-                                        model for Tomato Yellow Curl Leaves disease
-      icon:                             image-edit-outline
-      href:                             /pages/public/preprints/sto_mle/main_sto_tycl/
-# END config
+  #
+  # ------------------------------------------------------------------------------
+  # Menu Work in Progress
+  - item:                                 Work in Progress
+    sublevel:
+      - title:                            MLE estimation of a stochastic SEIR structure
+        icon:                             image-edit-outline
+        href:                             /pages/public/preprints/sto_mle/multi/
+      - title:                            Traffic-Light COVID-19 Policies
+        icon:                             image-edit-outline
+        href:                             /pages/public/preprints/covid_19_otlp/multi/
+      - title:                            Threshold behaviour of a stochastic vector plant
+          model for Tomato Yellow Curl Leaves disease
+        icon:                             image-edit-outline
+        href:                             /pages/public/preprints/sto_mle/main_sto_tycl/
+  # END config

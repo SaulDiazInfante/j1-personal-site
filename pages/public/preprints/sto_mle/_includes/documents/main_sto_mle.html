@@ -3,42 +3,49 @@
     const Cite = require('citation-js')
 </script>
 <html lang="EN">
-<script>
-    MathJax = {
-        loader: {load: ['[tex]/textmacros', '[tex]/mhchem']},
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']],
-            tags: 'ams',
-            packages: {'[+]': ['textmacros', 'mhchem']},
-            macros: {
-                oe: '\u0153',
-                OE: '\u0152',
-                ae: '\u00E6',
-                AE: '\u00C6',
-                aa: '\u00E5',
-                AA: '\u00C5',
-                o: '\u00F8',
-                O: '\u00D8',
-                l: '\u0142',
-                L: '\u0141',
-                ss: '\u00DF',
-                SS: '\u1E9E',
-                dag: '\u2020',
-                ddag: '\u2021',
-                P: '\u00B6',
-                copyright: '\u00A9',
-                pounds: '\u00A3'
-            }
-        },
-        chtml: {
-            mtextInheritFont: true
-        },
-        sag: {
-            mtextInheritFont: true
-        },
-        svg: {fontCache: 'global'}
-    };
-</script>
+    <script>
+        MathJax = {
+            loader: {load: ['[tex]/textmacros', '[tex]/newcommand', '[tex]/configmacros', '[tex]/mhchem']},
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                tags: 'ams',
+                packages: {'[+]': ['textmacros', 'newcommand', 'configmacros', 'mhchem']},
+                macros: {
+                    oe: '\u0153',
+                    OE: '\u0152',
+                    ae: '\u00E6',
+                    AE: '\u00C6',
+                    aa: '\u00E5',
+                    AA: '\u00C5',
+                    o: '\u00F8',
+                    O: '\u00D8',
+                    l: '\u0142',
+                    L: '\u0141',
+                    ss: '\u00DF',
+                    SS: '\u1E9E',
+                    dag: '\u2020',
+                    ddag: '\u2021',
+                    P: '\u00B6',
+                    copyright: '\u00A9',
+                    pounds: '\u00A3',
+                    EX:["{ \\mathbb{E}{ {#1}} \\left[ {#2} \\right] }", 2],
+                    E:["{ \\mathbb{E} \\left[ {#1} \\right] }", 1],
+                    probX:[ "{ \\mathbb{P}{ {#1} } \\left[ {#2} \\right] }", 2 ]
+                }
+            },
+            chtml: {
+                mtextInheritFont: true
+            },
+            sag: {
+                mtextInheritFont: true
+            },
+            svg: {fontCache: 'global'}
+        };
+    </script>
+    <script
+            async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
               rel="stylesheet">
@@ -262,7 +269,7 @@
                 menuAnchor.closest('li.dropdown').addClass('active');
                 
                 // Navbar adjustments
-                var navHeight = $(".navbar").first().height() + 15;
+                var navHeight = $(".navdocumentsbar").first().height() + 15;
                 var style = document.createElement('style');
                 var pt = "padding-top: " + navHeight + "px; ";
                 var mt = "margin-top: -" + navHeight + "px; ";
@@ -358,7 +365,7 @@
                                     </a>
                                 </ul>
                             </li>
-                            <li>
+                            <li>documents
                                 <a href = "#stochastic-perturbation">
                                     Stochastic Perturbation
                                 </a>

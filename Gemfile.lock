@@ -100,7 +100,7 @@ GEM
       rexml
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
-    latex-decode (0.3.2)
+    latex-decode (0.4.0)
     liquid (4.0.3)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
@@ -225,4 +225,4 @@ DEPENDENCIES
   warden (~> 1.2)
 
 BUNDLED WITH
-   2.3.17
+   2.3.18

@@ -199,12 +199,12 @@ settings:
         type:                           text
 
         text:                           [
-                                          "<big>Jekyll One Template</big>         </br> <i>Clean, responsive and fully featured Template made for Jekyll</i>",
-                                          "<big>Jekyll meets Bootstrap</big>      </br> <i>Best of OpenSource and commercial software for the Web</i>",
-                                          "<big>J1 is Open Source</big>           </br> <i>No pain for private or professional use</i>",
-                                          "<big>Explore this site</big>           </br> <i>Learn what's possible if you go the Jekyll Way</i>",
-                                          "<big>Create modern static sites</big>  </br> <i>Secure, powerful and fast<i>"
-                                        ]
+          "<big>Jekyll One Template</big>         </br> <i>Clean, responsive and fully featured Template made for Jekyll</i>",
+          "<big>Jekyll meets Bootstrap</big>      </br> <i>Best of OpenSource and commercial software for the Web</i>",
+          "<big>J1 is Open Source</big>           </br> <i>No pain for private or professional use</i>",
+          "<big>Explore this site</big>           </br> <i>Learn what's possible if you go the Jekyll Way</i>",
+          "<big>Create modern static sites</big>  </br> <i>Secure, powerful and fast<i>"
+        ]
         options:
           autoPlay:                     5000
           singleItem:                   true
@@ -229,12 +229,12 @@ settings:
         gridify:                        true
 
         text:                           [
-                                          "<big>Jekyll One Template</big>         </br> <i>Clean, responsive and fully featured Template made for Jekyll</i>",
-                                          "<big>Jekyll meets Bootstrap</big>      </br> <i>Best of OpenSource and commercial software for the Web</i>",
-                                          "<big>J1 is Open Source</big>           </br> <i>No pain for private or professional use</i>",
-                                          "<big>Explore this site</big>           </br> <i>Learn what's possible if you go the Jekyll Way</i>",
-                                          "<big>Create modern static sites</big>  </br> <i>Secure, powerful and fast<i>"
-                                        ]
+          "<big>Jekyll One Template</big>         </br> <i>Clean, responsive and fully featured Template made for Jekyll</i>",
+          "<big>Jekyll meets Bootstrap</big>      </br> <i>Best of OpenSource and commercial software for the Web</i>",
+          "<big>J1 is Open Source</big>           </br> <i>No pain for private or professional use</i>",
+          "<big>Explore this site</big>           </br> <i>Learn what's possible if you go the Jekyll Way</i>",
+          "<big>Create modern static sites</big>  </br> <i>Secure, powerful and fast<i>"
+        ]
         options:
           autoPlay:                     5000
           singleItem:                   true
@@ -246,32 +246,32 @@ settings:
     - show:
         enabled:                        true
         id:                             demo_cats
-  #     title:                          Nice cats
+        #     title:                          Nice cats
         slide_space_between:            3
         slide_border:                   true
         lightbox:                       true
         type:                           image
         images_path:                    /assets/images/modules/carousel/cats
         images:                         [
-                                          cat-1.jpg, cat-2.jpg,
-                                          cat-3.jpg, cat-4.jpg
-                                        ]
+          cat-1.jpg, cat-2.jpg,
+          cat-3.jpg, cat-4.jpg
+        ]
         links:                          [
-                                          "#void", "#void",
-                                          "#void", "#void"
-                                        ]
+          "#void", "#void",
+          "#void", "#void"
+        ]
         lb_caption:                     [
-                                          "You see cat #1",
-                                          "You see cat #2",
-                                          "You see cat #3",
-                                          "You see cat #4"
-                                        ]
+          "You see cat #1",
+          "You see cat #2",
+          "You see cat #3",
+          "You see cat #4"
+        ]
         options:
           navigation:                   false
           itemsCustom:                  [
-                                          [0, 1], [400, 1], [700, 2],
-                                          [1000, 2], [1200, 2], [1600, 2]
-                                        ]
+            [0, 1], [400, 1], [700, 2],
+            [1000, 2], [1200, 2], [1600, 2]
+          ]
           slideSpeed:                   300
           paginationSpeed:              400
           items:                        2
@@ -288,23 +288,23 @@ settings:
         type:                           image
         images_path:                    /assets/images/modules/carousel/sto_tycl/figures
         images:                         [
-                                          figure_01.jpg, figure_02.jpg,
-                                          figure_03.jpg, figure_04.jpg,
-                                          figure_05.jpg, figure_06.jpg,
-                                          figure_07.jpg
-                                        ]
+          figure_01.jpg, figure_02.jpg,
+          figure_03.jpg, figure_04.jpg,
+          figure_05.jpg, figure_06.jpg,
+          figure_07.jpg
+        ]
         links:                          [
-                                          "#void", "#void",
-                                          "#void", "#void",
-                                          "#void", "#void",
-                                          "#void"
-                                        ]
+          "#void", "#void",
+          "#void", "#void",
+          "#void", "#void",
+          "#void"
+        ]
         lb_caption:                     [
-                                          "Figure 1", "Figure 2",
-                                          "Figure 3", "Figure 4",
-                                          "Figure 5", "Figure 6",
-                                          "Figure 7"
-                                        ]
+          "Figure 1", "Figure 2",
+          "Figure 3", "Figure 4",
+          "Figure 5", "Figure 6",
+          "Figure 7"
+        ]
         options:
           navigation:                   false
           itemsCustom:                  [
@@ -326,16 +326,16 @@ settings:
         type:                           image
         images_path:                    /assets/images/modules/carousel/mega_cities
         images:                         [
-                                          andreas-brucker_b.jpg,
-                                          denys-nevozhai-1_b.jpg,
-                                          denys-nevozhai-2_b.jpg,
-                                          luca-bravo_b.jpg,
-                                          thomas-tucker_b.jpg
-                                        ]
+          andreas-brucker_b.jpg,
+          denys-nevozhai-1_b.jpg,
+          denys-nevozhai-2_b.jpg,
+          luca-bravo_b.jpg,
+          thomas-tucker_b.jpg
+        ]
         links:                          [
-                                          "#void", "#void", "#void", "#void",
-                                          "#void", "#void", "#void", "#void"
-                                        ]
+          "#void", "#void", "#void", "#void",
+          "#void", "#void", "#void", "#void"
+        ]
         options:
           autoPlay:                     3000
           items:                        3
@@ -356,12 +356,12 @@ settings:
         lightbox:                       true
         images_path:                    /assets/images/modules/carousel/mega_cities
         images:                         [
-                                          andreas-brucker_b.jpg,
-                                          denys-nevozhai-1_b.jpg,
-                                          denys-nevozhai-2_b.jpg,
-                                          luca-bravo_b.jpg,
-                                          thomas-tucker_b.jpg
-                                        ]
+          andreas-brucker_b.jpg,
+          denys-nevozhai-1_b.jpg,
+          denys-nevozhai-2_b.jpg,
+          luca-bravo_b.jpg,
+          thomas-tucker_b.jpg
+        ]
         options:
           navigation:                   true
           slideSpeed:                   300

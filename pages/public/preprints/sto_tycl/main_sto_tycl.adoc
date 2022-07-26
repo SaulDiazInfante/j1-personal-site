@@ -3217,7 +3217,7 @@ disease extinction.
                          \frac{S^{**}_p}{2}
                          -\liminf_{t \to \infty}
                          \frac{1}{t}\int^t_0\frac{(S_p-S^{**}_p)^2}{2S^{**}_p}dr.
-                \end{align*}
+                \end{align*}documents
                 Using {% cite Rudin1976 --locator 1.13 %}
                 and other relations we deduce
                 $$

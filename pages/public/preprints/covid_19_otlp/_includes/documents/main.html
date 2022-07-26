@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="EN">
     <script>
         MathJax = {
-            loader: {load: ['[tex]/textmacros', '[tex]/mhchem']},
+            loader: {load: ['[tex]/textmacros', '[tex]/newcommand', '[tex]/configmacros', '[tex]/mhchem']},
             tex: {
                 inlineMath: [['$', '$'], ['\\(', '\\)']],
                 tags: 'ams',
-                packages: {'[+]': ['textmacros', 'mhchem']},
+                packages: {'[+]': ['textmacros', 'newcommand', 'configmacros', 'mhchem']},
                 macros: {
                     oe: '\u0153',
                     OE: '\u0152',
@@ -24,7 +24,10 @@
                     ddag: '\u2021',
                     P: '\u00B6',
                     copyright: '\u00A9',
-                    pounds: '\u00A3'
+                    pounds: '\u00A3',
+                    EX:["{ \\mathbb{E}{ {#1}} \\left[ {#2} \\right] }", 2],
+                    E:["{ \\mathbb{E} \\left[ {#1} \\right] }", 1],
+                    probX:[ "{ \\mathbb{P}{ {#1} } \\left[ {#2} \\right] }", 2 ]
                 }
             },
             chtml: {
@@ -36,8 +39,12 @@
             svg: {fontCache: 'global'}
         };
     </script>
+    <script
+            async id="MathJax-script"
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
     <head>
-<!--        <script type="text/javascript">
+        <script type="text/javascript">
             if (window.hljs) {
                 hljs.configure({languages: []});
                 hljs.initHighlightingOnLoad();
@@ -54,7 +61,7 @@
                 // active menu anchor
                 href = window.location.pathname
                 href = href.substr(href.lastIndexOf('/') + 1)
-                if (href === "")
+                if (href === "")</p>
                     href = "index.html";
                 var menuAnchor = $('a[href="' + href + '"]');
             
@@ -77,11 +84,10 @@
                 style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
                 document.head.appendChild(style);
             });
-        </script>-->
-        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'>
         </script>
-<!--        <style>
+        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+        <style>
             h1 {
                 font-size: 34px;
             }
@@ -104,7 +110,7 @@
                 font-size: 12px;
             }
             code {
-                color: inherit;
+                color: inherit;</span>
                 background-color: rgba(0, 0, 0, 0.04);
             }
             pre:not([class]) {
@@ -145,7 +151,7 @@
                 display: inline-table;
                 max-height: 500px;
                 min-height: 44px;
-                overflow-y: auto;
+                overflow-y: auto;</span>
                 border: 1px solid #ddd;
                 border-radius: 4px;
             }
@@ -298,10 +304,10 @@
             span.right{
                 float:right;
             }
-        </style>-->
+        </style>
     </head>
     <body>
-        <!--<header id="title-block-header">
+        <header id="title-block-header">
             <p class="author">Author Name</p>
             <p class="author">ahtors name</p>
             <p class="author">ahtors name</p>
@@ -314,143 +320,628 @@
                     Contribution.
                 </p>
             </div>
-        </header>-->
-        <!--&lt;!&ndash;        <nav id="TOC" role="doc-toc">
+        </header>
+        <nav id="TOC" role="doc-toc">
+            <ul>
+                <li>
+                    <a
+                            href="sc:introduction"
+                            id="toc-sc:introduction"
+                    >
+                        Introduction
+                    </a>
+                </li>
+                <li>
+                    <a href="#methods" id="toc-methods">Methods</a>
                     <ul>
                         <li>
                             <a
-                                    href="./introduction.html#sc:introduction"
-                                    id="toc-sc:introduction"
+                                href="#mathematical-model-formulation"
+                                id="toc-mathematical-model-formulation">
+                            Mathematical model formulation
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                    href="#reproductive-number"
+                                    id="toc-reproductive-number"
                             >
-                                Introduction
+                                Reproductive Number
                             </a>
                         </li>
                         <li>
-                            <a href="#methods" id="toc-methods">Methods</a>
-                            <ul>
-                                <li>
-                                    <a
-                                        href="#mathematical-model-formulation"
-                                        id="toc-mathematical-model-formulation">
-                                    Mathematical model formulation
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                            href="#reproductive-number"
-                                            id="toc-reproductive-number"
-                                    >
-                                        Reproductive Number
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                            href="#light-traffic-policies-and-best-response-optimal-control"
-                                            id="toc-light-traffic-policies-and-best-response-optimal-control"
-                                    >
-                                        Light Traffic Policies and Best Response Optimal Control
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#results" id="toc-results">
-                                Results
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#conclusions" id="toc-conclusions">
-                                Conclusions
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#appendix" id="toc-appendix">
-                                Appendix
+                            <a
+                                    href="#light-traffic-policies-and-best-response-optimal-control"
+                                    id="toc-light-traffic-policies-and-best-response-optimal-control"
+                            >
+                                Light Traffic Policies and Best Response Optimal Control
                             </a>
                         </li>
                     </ul>
-                </nav>&ndash;&gt;
-                <p>
-                    [ type=editor, auid=000, bioid=1, prefix=Sir,
-                    orcid=0000-0000-0000-0000, linkedin= , ]</p>
-                <p>[]</p>
-                <p>[]</p>
-                <div class="highlights">
-                <p>H1</p>
-                <p>H2</p>
-                <p>H3</p>
+                </li>
+                <li>
+                    <a href="#results" id="toc-results">
+                        Results
+                    </a>
+                </li>
+                <li>
+                    <a href="#conclusions" id="toc-conclusions">
+                        Conclusions
+                    </a>
+                </li>
+                <li>
+                    <a href="#appendix" id="toc-appendix">
+                        Appendix
+                    </a>
+                </li>
+            </ul>
+        </nav>
+<!--            <p>
+                [ type=editor, auid=000, bioid=1, prefix=Sir,
+                orcid=0000-0000-0000-0000, linkedin= , ]
+            </p>
+            <p>[]</p>
+            <p>[]</p>
+            <div class="highlights">
+            <p>H1</p>
+            <p>H2</p>
+            <p>H3</p>
+            -->
         <div class="keywords">
             <p>,Key1,key2 ,</p>
         </div>
-      -->  <!--<div>
-        <?php require 'frontmater.html';?>
-    </div>-->
-        <div id="myDiv">
-        </div>
-        <script>
-            d3.csv(
-                "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv",
-                function(err, rows){
-                        function unpack(rows, key) {
-                            return rows.map(function(row) { return row[key]; });
-                        }
-                        
-                        var trace1 = {
-                            type: "scatter",
-                            mode: "lines",
-                            name: 'AAPL High',
-                            x: unpack(rows, 'Date'),
-                            y: unpack(rows, 'AAPL.High'),
-                            line: {color: '#17BECF'}
-                        }
         
-                        var trace2 = {
-                            type: "scatter",
-                            mode: "lines",
-                            name: 'AAPL Low',
-                            x: unpack(rows, 'Date'),
-                            y: unpack(rows, 'AAPL.Low'),
-                            line: {color: '#7F7F7F'}
-                        }
-       
-                       var data = [trace1, trace2];
-                
-                    var layout = {
-                        title: 'Time Series with Rangeslider',
-                        xaxis: {
-                            autorange: true,
-                            range: ['2015-02-17', '2017-02-16'],
-                            rangeselector: {
-                                buttons: [
-                                    {
-                                        count: 1,
-                                        label: '1m',
-                                        step: 'month',
-                                        stepmode: 'backward'
-                                    },
-                                    {
-                                        count: 6,
-                                        label: '6m',
-                                        step: 'month',
-                                        stepmode: 'backward'
-                                    },
-                                    {step: 'all'}
-                                ]
-                            },
-                            rangeslider: {range: ['2015-02-17', '2017-02-16']},
-                            type: 'date'
-                        },
-                        yaxis: {
-                            autorange: true,
-                            range: [86.8700008333, 138.870004167],
-                            type: 'linear'
-                        }
-                    };
-                    var config = {responsive: true};
-                    TESTER = document.getElementById('myDiv');
-                    Plotly.newPlot(TESTER, data, layout, config);
-                }
-            )
-        </script>
+        <div id="sc:introduction_div">
+            <h1 id="sc:introduction">
+                Introduction
+            </h1>
+            <p>
+                    Epidemiological surveillance of the COVID-19 epidemic has generated a
+                large amount of information regarding the dynamics of the indicators
+                used for its control and monitoring. One of the most important
+                indicators has been the instantaneous reproductive number or
+                $
+                    R_t
+                $
+                . This number measures the number of
+                secondary infections generated, on average, by a typical infectious
+                individual.
+                <span class="math inline">\(R_t\)</span> has shown
+                characteristic behaviors in different regions of the world. In some,
+                such as Mexico and several other Latin American countries, the
+                <span class="math inline">\(R_t\)</span> has remained consistently around 1
+                with increases and decreases associated with epidemic outbreaks or waves
+                of infection. Another index that has been used in this epidemic has been
+                the infection risk index.
+            </p>
+            <p>
+                    <span class="citation" data-cites="Chande2020">
+                    </span>
+                introduce a risk index for monitoring the pandemic that gives the probability of
+                finding at time
+                <span class="math inline">\(t\)</span>
+                an infected person in a group of
+                <span class="math inline">\(k\)</span> individuals.
+                The formula is
+                \begin{equation}
+                    \label{eq:risk_index}
+                    C_k(t^*) = 1 - \left(1 - \frac{I(t^*)}{N(t^*)}\right)^k
+                \end{equation}
+                where
+                <span class="math inline">
+                    \(\frac{I(t^*)}{N(t^*)}\)
+                </span> is the
+                number of active cases present in a given locality or region on day
+                <span class="math inline">
+                    \(t^*\)
+                </span>.
+                In
+                <span class="citation" data-cites="Chande2020">
+                </span> the number of active cases is computed
+                using the ascertainment ratio derived from data on seroprevalence and
+                contact tracing. Our data from Mexico shows that daily risk and
+                <span class="math inline">\(R_t\)</span>, the instantaneous reproductive
+                number, undergo sustained oscillations.
+                Figure
+                <a href="#fig.bolitas"
+                   data-reference-type="ref"
+                   data-reference="fig.bolitas"
+                >
+                    [fig.bolitas]
+                </a>
+                plots all the Mexican states in the
+                <span class="math inline">
+                    \(R_t\)
+                </span>-risk plane divided into four
+                quadrants: I. low transmission (
+                    <span class="math inline">
+                        \(R_t &lt;1\)
+                    </span>), low risk
+                (<span class="math inline">\(C_{100}&lt;50\%)\)
+                </span>,
+                II. high transmission
+                (<span class="math inline">\(R_t &gt;1\)</span>),
+                low risk (</p>
+                    <span class="math inline">
+                        \(C_{100}&lt;50\%)\)
+                    </span>
+                ),
+                III. high transmission
+                (<span class="math inline">\(R_t &gt;1\)</span>),
+                high risk
+                (<span class="math inline">\(C_{100}&gt;50\%)\)</span>,
+                and IV low transmission
+                (<span class="math inline">\(R_t &lt;1\)</span>), high risk
+                (<span class="math inline">\(C_{100}&gt;50\%)\)</span>.
+                Two different dates are shown about a month apart (10 October and 7 November).
+                In general, the trajectory of the states goes in a counter
+                clockwise direction moving from
+                <span class="math inline">\(I\to II \to III \to IV\)</span>
+                although, in high transmission events, the states may move back and
+                forth between quadrants III and IV.
+                Since risk depends on the number of active cases and the depletion of these
+                depends on the size of the active cases pool, then even if
+                <span class="math inline">\(R_t\)</span></p>
+                is slightly below 1, high risk events may still occur. Lastly,
+                by late December, most states have increased their
+                <span class="math inline">\(R_t\)</span>
+                and and on their way of experiencing an increase of their risk in the
+                following weeks (passing from
+                <span class="math inline">\(II\to III\)</span>)
+                which, on time, would correspond to the Omicron wave of late December.
+            </p>
+    <!--        <table>
+                <tbody>
+                <tr class="odd">
+                    <td style="text-align: center;">A</td>
+                    <td style="text-align: center;"></td>
+                </tr>
+                <tr class="even">
+                    <td style="text-align: center;">
+                        <img
+                                src="figs/RtRisk1010.jpeg"
+                                style="width:12cm;height:7.5cm" alt="image" />
+                    </td>
+                    <td style="text-align: center;"></td>
+                </tr>
+                <tr class="odd">
+                    <td style="text-align: center;">B</td>
+                    <td style="text-align: center;"></td>
+                </tr>
+                <tr class="even">
+                    <td style="text-align: center;">
+                        <img
+                                src="figs/RtRisk1107.jpeg"
+                                style="width:12cm;
+                                height:7.5cm"
+                                alt="image"
+                        />
+                    </td>
+                    <td style="text-align: center;"></td>
+                </tr>
+                </tbody>
+            </table>-->
+            <p>
+                    This behavior has motivated us to propose an epidemiological traffic
+                light system based on the risk of contagion and the value of
+                <span class="math inline">
+                    \(R_t\)
+                </span>. In what follows, we present a mathematical model of a traffic light based on the Kermack-McKendrick
+                equations that accounts for these two variables and their temporal dynamics in the presence of a relatively
+                long-lasting epidemic.
+            </p>
+        </div>
+        <div id="sc:methods">
+            <h1 id="methods">
+                Methods
+            </h1>
+            <h2 id="mathematical-model-formulation">
+                Mathematical model formulation
+            </h2>
+            <p>
+                    We propose an extension of the classic Kermack-McKendrick
+                mathematical model (see ). Our formulation considers that the total
+                population
+                <span class="math inline">
+                    \(N(t)\)
+                </span> is split into four
+                compartments: susceptible (S(t)), infected (I(t)), recovered (R(t)), and
+                vaccinated (V(t)). Disease dynamics is modeled as follows: susceptible
+                individuals can become infected when interacting with an infectious
+                individual. After a period of time
+                <span class="math inline">
+                    \((1/\gamma)\)
+                </span>,
+                infected people recover. Recovered people lose their natural immunity
+                after a period of time
+                <span class="math inline">
+                    \(1/\theta\)
+                </span>.
+                Regarding vaccination dynamics, we consider that the susceptible people
+                are vaccinated with a vaccination rate equal to
+                <span class="math inline">
+                    \(\phi\)
+                </span>.
+                The vaccine is imperfect. For this reason, there is a vaccine efficacy
+                <span class="math inline">
+                    \(\sigma\)
+                </span>
+                which reduces the number of
+                vaccinated people who can acquire the disease. Finally, those vaccinated
+                people, that do not acquire the disease, lost their vaccine-induced
+                immunity after a period of time
+                <span class="math inline">
+                    \(1/\omega\)
+                </span>.
+                In addition, our model presents vital dynamics.
+            </p>
+            <p>
+            <figure>
+                <embed src="figs/Compartmental_Diagram.pdf" id="fig:Diagram" />
+                <figcaption aria-hidden="true">
+                    Compartmental diagram of disease
+                    transmission dynamics which including vaccination. Red connections
+                    represent transmission dynamics which include a risk variable
+                    <span class="math inline">
+                        \((C(t))\)</span>.
+                </figcaption>
+            </figure>
+        </div>
+        <div>
+            <h4 id="risk-variable"><strong>Risk variable</strong></h4>
+            <p>Remember us index risk for a time <span
+                    class="math inline">\(t^*\)</span> is given in . Thus, for each instant
+                of time <span class="math inline">\(t\)</span>, this index is defined as
+                <span class="math display">
+                    \[C(t) = 1 - \left(1 -
+                \frac{I(t)}{N(t)}\right)^k.\]
+                </span>
+            </p>
+            <p>
+                    We assume that this index influences the transmission dynamics. This
+                hypothesis emerges because a low-risk index may imply a safety
+                perception in the population (relaxation of measures) and, consequently,
+                increase the transmission contact rate. A high-risk index will imply an
+                opposite effect. Thus, the infectious force is given by
+                <span class="math display">
+                    \[
+                        \label{eq:TR}
+                        \lambda(t) = \beta(t) (1 - C(t)) \frac{I(t)}{N(t)},\]
+                </span>
+                with
+                <span class="math inline">
+                    \(
+                        \beta(t) =
+                            \left(
+                                1 + a
+                                \cos
+                                    \left(
+                                        \frac{2\pi}{365}t
+                                    \right)
+                            \right)
+                        \beta
+                    \)
+                </span> and
+                <span class="math inline">
+                    \(
+                        N(t) = S(t) + V(t) + I(t) + R(t)\)
+                </span>.
+            </p>
+            <p>
+                    It is important to highlight that, with the objective of control
+                parameter <span class="math inline">\(k\)</span>,
+                we will couple this index with the system under study.
+                Thus, we obtain the following equation regarding risk index dynamics:
+                <span class="math display">
+                    \[
+                        C&#39; = k (1 - C) ^ {\left(1 - \frac{1}{k}\right)}
+                        \left(1 - (1 - C)^{\frac{1}{k}}\right)
+                        \left(
+                            \lambda(t)
+                                (
+                                    S + (1 - \sigma)V)
+                                    \frac{1}{I} - (\gamma + \mu)\right).
+                    \]
+                </span>
+            </p>
+            <p>
+                    Therefore, the mathematical model that describes disease dynamics is
+                given by the following system:
+                <span class="math display">
+                    \[
+                        \label{eq.model}
+                        \begin{split}
+                            S&#39; &amp;=
+                                \mu N - \lambda(t)S - (\phi + \mu) S + \omega V +
+                                    \theta R ,
+                            \\
+                            V&#39; &amp;=
+                                \phi S - (1 - \sigma) \lambda(t)V
+                                - (\omega \mu) V ,
+                            \\
+                            I&#39; &amp;=
+                                \lambda(t) (S + (1 - \sigma)V) - (\gamma + \mu) I,
+                            \\
+                            R&#39; &amp;=
+                                \gamma I - (\theta + \mu) R ,
+                            \\
+                            C&#39; &amp;=
+                                k (1 - C)^{\left(1 - \frac{1}{k}\right)}
+                                \left(
+                                    1 - (1 - C)^{\frac{1}{k}}\right)
+                                    \left(
+                                        \lambda(t)
+                                        (S + (1 - \sigma)V)
+                                        \frac{1}{I} - (\gamma + \mu)\right).
+                        \end{split}
+                    \]
+                </span>
+                where
+                <span class="math inline">
+                    \(\lambda(t)\)
+                </span>
+                is defined as in \eqref{eq.model}
+                is defined in the positively
+                invariant region
+                <span class="math display">
+                    \[
+                        \begin{aligned}
+                            \Omega &amp;=
+                                \left\{(S, V, I, R, C)\in \mathbb{R}^5_+: 0\leq
+                                        C\leq 1,\ 0\leq S,\ 0\leq V,\ 0\leq I,\ 0\leq R,\ S+V+I+R = N
+                                \right\}.
+	                \end{aligned}\]
+                </span>
+            </p>
+        </div>
+        <div>
+            <h2 id="reproductive-number">Reproductive Number</h2>
+            <p>
+                    Using the methodology presented in
+                <span class="citation" data-cites="Driessche2002"></span>,
+                we calculate the basic reproduction
+                number <span class="math inline">\(({\cal R}_0)\)</span>, which is given
+                by
+                <span class="math display">
+                    \[
+                        {\cal R}_0 =
+                            \frac{
+                                \beta_0(1 - C^*)
+                                (S^*+ (1 - \sigma)V^*)
+                            }{
+                                N(\gamma + \mu)
+                            }.
+                    \]
+                </span>
+                <em>(HAY QUE CHECAR EL VALOR DEL DFE)</em>
+            </p>
+            <p>
+                    The parameter
+                <span class="math inline">\(\beta_0\)</span>
+                is the constant contact rate at the beginning of the disease.
+                After this period of time
+                <span class="math inline">\(\beta(t)\)</span>
+                is the time-varying contact rate.
+                Thus, the effective reproduction number in each time is
+                <span class="math display">
+                    \[
+                        \begin{aligned}
+                            \label{eq.Rt}
+                            {\cal R}_t(t) =
+                                \frac{\beta(t)(1 - C(t))(S(t) + (1 - \sigma)V(t))}{N(\gamma + \mu)}.
+                        \end{aligned}
+                    \]
+                </span>
+            </p>
+        </div>
+        <div id="sc:best_respond_policies">
+            <h2 id="light-traffic-policies-and-best-response-optimal-control">Light
+                Traffic Policies and Best Response Optimal Control
+            </h2>
+            <p>
+                    The number of individual in a gathering could play an important role
+                for control the spread of COVID-19. By controlling the size of meetings,
+                we can mitigate the propagation of new infections. However, this sort of
+                restrictions has to be aligned with a delicate balance between the
+                social and political implications. Then epidemiologists and government
+                consuls has to deduce a policy accordingly. That is, balance between the
+                cost and profit to limit the size of meetings and restrictions that
+                affect the mobility, mask wearing and others NPIs.
+            </p>
+                <h4 id="notation">Notation</h4>
+            <p>
+                    We denote by
+                <span class="math inline">
+                    \(u=u(\varphi(x^\top))\)
+                </span>
+                the control function regarding the implicit state
+                <span class="math inline">\(x\)</span>.
+                Here the function
+                <span class="math inline">\(\varphi\)</span>
+                classifies the dynamic state
+                <span class="math inline">\(x=x(t)\)</span>
+                according to light traffic green, yellow, orange, red. This colors
+                corresponds to the severity and risk of the actual outbreak and
+                according to the following criteria. Conforming to the prevalence
+                <span class="math inline">\(I(t)\)</span>, Risk
+                <span class="math inline">\(C(I)\)</span>,
+                and time reproductive number
+                <span class="math inline">\(R_t\)</span>
+                we classify the state
+                <span class="math inline">\(x_0^\top = (S, I, V, R, C)\)</span> as
+                TODO:
+            </p>
+            <dl>
+                <dt>Green</dt>
+                <dd>
+                    <p>
+                        The prevalence is less than <span class="math inline">\(10\%\)</span>
+                        of the active population, the Risk index is below 0.3 and
+                        <span class="math inline">
+                            \(R_t\)
+                        </span> oscillates between
+                        <span class="math inline">
+                            \([0, 0.7]\)
+                        </span>.
+                    </p>
+                </dd>
+                <dt>Yellow</dt>
+                <dd>
+                </dd>
+                <dt>Orange</dt>
+                <dd>
+                </dd>
+                <dt>Red</dt>
+                <dd>
+                </dd>
+            </dl>
+            <p>
+                    Then the function <span class="math inline">\(\varphi\)</span> maps
+                the initial state <span class="math inline">\(x_0\)</span> to a
+                light-traffic’s color, that is,
+                <span class="math display">
+                    \[
+                        \varphi: x_0
+                            \to
+                            \{
+                            \text{green},
+                            \text{yelolw},
+                            \text{orange},
+                            \text{red}\}
+                    \]
+                </span>.
+                    To evaluate the performance of each strategy, we
+                define the following cost functional.
+                <span class="math display">
+                    \[
+                        J(x,u_{\beta}, u_k):=
+                        \underbrace{
+                            \int_{0}^T
+                                a_I I(s) + a_C C(s)
+                        }_{YLD+Risk}
+                        ds
+                        +
+                        \underbrace{
+                            \int_{0}^T
+                                a_{\beta} u_{\beta}^2(s)
+                            +
+                            a_k u_k(s)^2
+                        }_{\text{political and economic implications}}
+                    ds\]
+                </span>
+                    Here we understand the politic and economic impact
+                by apply a given light traffic policy as the cost that implies its
+                application and we describe it by the quadratic form
+                <span class="math display">
+                    \[
+                        a_{\beta} u_{beta} ^2 + a_k u_k^2
+                    \]
+                </span>
+            </p>
+            <h4 id="control-measures">Control measures</h4>
+            <p>
+                    In the same line we define mitigation protocols according to the
+                color of light-traffic being:
+            </p>
+            <dl>
+                <dt>Green</dt>
+                <dd>
+                    <p>Only prevail the mask wearing and health distance</p>
+                </dd>
+                <dt>Yellow</dt>
+                <dd>
+                    <p>We understand this set of strategies as a preventive. Social events
+                        restricted and mobility diminished, so that the conventional mobility
+                        and other protocols reduce the nominal transmission rate <span
+                                class="math inline">\(\beta_0\)</span> and meeting-size <span
+                                class="math inline">\(k\)</span> to its <span
+                                class="math inline">\(85\%\)</span>.</p>
+                </dd>
+                <dt>Orange</dt>
+                <dd>
+                    <p>The strategies enclosed in this category aim to apply more
+                        restrictive protocols to quickly reduce the prevalence, but at the same
+                        time allows enough mobility. Here, the decision maker tray to minimize
+                        the impact of economic implications.
+                    </p>
+                </dd>
+                <dt>Red</dt>
+                <dd>
+                    <p>
+                        This set of strategies responds to an emergency state. Here the
+                        infection prevalence points to exceed the response of Health services.
+                        Thus the decision maker reduce to the minimum the mobility and size of
+                        meetings.
+                    </p>
+                </dd>
+            </dl>
+            <h4 id="light-traffic-policies">Light Traffic Policies</h4>
+            <h4 id="problem-set-up">Problem set up</h4>
+            <p>Let <span class="math inline">
+                \(
+                    x_0 =(S(0), I(0), V(0), R(0),
+                    C(0)
+                    )^{\top}
+                \)
+            </span>
+                the initial state of system
+                <a href="#eq.model" data-reference-type="eqref" data-reference="eq.model">[eq.model]
+                </a>.
+                Thus, according to the above classification, we assign an initial color
+                for the light-traffic controller. We assume the following
+                hypothesis.</p>
+                <div class="hypothesis">
+                    <p><strong>Hypotesis 1</strong>. </p>
+                    <ol>
+                        <li><p><em>The decision maker only choose a strategy of the mentioned
+                            above and accordingly to the light traffic protocol. That is, the
+                            controller decides which color from the plausible light-traffic action
+                            being {green, yellow, orange, red } the available actions.</em></p></li>
+                        <li>
+                            <p>
+                                <em>
+                                    The corresponding authorities meet every certain number of
+                                    weeks on a regular basis and takes a decision.
+                                </em>
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <em>
+                                    The taken decision minimize the functional
+                                    <span class="math inline">
+                                        \(J\)
+                                    </span>
+                                    <a
+                                            href="#eqn:functional"
+                                            data-reference-type="eqref"
+                                                                data-reference="eqn:functional">[eqn:functional]
+                                    </a>
+                                    subject to the dynamics of model
+                                    <a href="#eq.model" data-reference-type="eqref"
+                                             data-reference="eq.model">[eq.model]
+                                    </a>.
+                                </em>
+                            </p>
+                        </li>
+                </ol>
+            </div>
+            <p>
+                    Then, under the above Hypothesis, our simulation algorithm follows
+                    the next algorithm.
+            </p>
+            <h4 id="rolling">Rolling</h4>
+            <h4 id="functional-cost-and-weights-meaning">Functional cost and weights
+                meaning</h4>
+            <h1 id="results">Results</h1>
+            <h1 id="conclusions">Conclusions</h1>
+            <div class="theorem">
+                <p><strong>Theorem 1</strong>. </p>
+            </div>
+            <div class="lemma">
+                <p><strong>Lemma 2</strong>. </p>
+            </div>
+            <h1 id="appendix">Appendix</h1>
+        </div>
     </body>
 </html>

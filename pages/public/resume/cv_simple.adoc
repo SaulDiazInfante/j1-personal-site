@@ -12,12 +12,12 @@ categories:                             [ Software, Platforms, Contributers ]
 
 scrollbar:                              false
 
-permalink:                              /pages/public/resume/site/
+permalink:                              /pages/public/resume/
 regenerate:                             false
 
 resources:                              [
                                           animate, lightGallery, justifiedGallery, video_js,
-                                          vimeo_player, vimeo_froogaloop
+                                          vimeo_player, vimeo_froogaloop, clipboard, lightbox, rouge
                                         ]
 resource_options:
   - attic:
@@ -36,7 +36,7 @@ resource_options:
 // Set (local) page attributes here
 // -----------------------------------------------------------------------------
 // :page--attr:                         <attr-value>
-:badges-enabled:                        false
+:badges-enabled:                        true
 
 //  Load Liquid procedures
 // -----------------------------------------------------------------------------
@@ -127,9 +127,147 @@ lorem:sentences[5]
 == Funding
 lorem:sentences[5]
 
-== teaching
+== Teaching
+
 ++++
-include::pages/public/resume/Cursos.html[]
+<table>
+    <tr>
+        <td></td>
+        <td>Key</td>
+        <td>subject-matter</td>
+        <td>DEPARTAMENTO</td>
+        <td>Hours/week</td>
+        <td>LEVEL</td>
+    </tr>
+    <tr>
+        <td>CINVESTAV-Monterrey</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2016-1</td>
+        <td>---</td>
+        <td>Systems Biology</td>
+        <td></td>
+        <td>4</td>
+        <td>Master</td>
+    </tr>
+    <tr>
+        <td>UNIVERSIDAD DE SONORA</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2016-2</td>
+        <td>01626</td>
+        <td>SELECTED PROBABILITY TOPICS</td>
+        <td>Math</td>
+        <td>8</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2017-1</td>
+        <td>01627</td>
+        <td>SELECT TOPICS OF STOCHASTIC PROCESSES</td>
+        <td>Math</td>
+        <td>8</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2017-2</td>
+        <td>01635</td>
+        <td>SELECT TOPICS IN NUMERICAL ANALYSIS</td>
+        <td>Math</td>
+        <td>8</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2018-1</td>
+        <td>01633</td>
+        <td>CONTROL THEORY</td>
+        <td>Math</td>
+        <td>4</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2018-2</td>
+        <td>01636</td>
+        <td>SELECT TOPICS IN APPLIED MATHEMATICS</td>
+        <td>Math</td>
+        <td>8</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2019-1</td>
+        <td>01634</td>
+        <td>NUMERICAL ANALYSIS</td>
+        <td>Math</td>
+        <td>4</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2019-1</td>
+        <td>01638</td>
+        <td>THESIS SEMINAR</td>
+        <td>Math</td>
+        <td>4</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2019-2</td>
+        <td>01627</td>
+        <td>SELECT TOPICS OF STOCHASTIC PROCESSES</td>
+        <td>Math</td>
+        <td>8</td>
+        <td>Master's degree</td>
+    </tr>
+    <tr>
+        <td>2020-1</td>
+        <td>00164</td>
+        <td>RESEARCH SEMINAR IV</td>
+        <td>Math</td>
+        <td>4</td>
+        <td>doctor's degree</td>
+    </tr>
+    <tr>
+        <td>2020-2</td>
+        <td>01631</td>
+        <td>OPTIMIZATION</td>
+        <td>Math</td>
+        <td>8</td>
+        <td>doctor's degree</td>
+    </tr>
+    <tr>
+        <td>2021-1</td>
+        <td>01633</td>
+        <td>CONTROL THEORY</td>
+        <td>Math</td>
+        <td>4</td>
+        <td>doctor's degree</td>
+    </tr>
+    <tr>
+        <td>2021-2</td>
+        <td>01635</td>
+        <td>SELECT TOPICS IN NUMERICAL ANALYSIS</td>
+        <td>Math</td>
+        <td>8</td>
+        <td>doctor's degree</td>
+    </tr>
+    <tr>
+        <td>2022-1</td>
+        <td>00270</td>
+        <td>MATHEMATICAL PROGRAMMING</td>
+        <td>Math</td>
+        <td>6</td>
+        <td>Bachelor's degree</td>
+    </tr>
+</table>
 ++++
 
 == Administrative Experience
@@ -145,81 +283,62 @@ lorem:sentences[5]
 AMS, mex-SIAM, SMM
 
 == online Presentations
-+++++
-+<!-- insert Google Ad (Displayanzeige): horizontal-2, adSlot="5128488466" -->
-+<div class="5128488466 mb-5">
-+  <ins class="adsbygoogle"
-+    style="display: block;"
-+    data-ad-client="ca-pub-3885670015316130"
-+    data-ad-slot="5128488466"
-+    data-ad-format="auto"
-+    data-adtest="on"
-+    data-full-width-responsive="true">
-+  </ins>
-+</div>
-+++++
-
-
-
-
-
+++++
+<!-- insert Google Ad (Displayanzeige): horizontal-2, adSlot="5128488466" -->
+<div class="5128488466 mb-5">
+  <ins class="adsbygoogle"
+    style="display: block;"
+    data-ad-client="ca-pub-3885670015316130"
+    data-ad-slot="5128488466"
+    data-ad-format="auto"
+    data-adtest="on"
+    data-full-width-responsive="true">
+  </ins>
+</div>
+++++
 
 ++++
 <script>
-
-  $(document).ready(function() {
-    var logger              = log4javascript.getLogger('j1.google.ads');
-    var autoHideOnUnfilled  = true;
-
-    var dependencies_met_page_ready = setInterval (function (options) {
-      if ( j1.getState() === 'finished' ) {
-
-        // monitor for state changes on the ad
-        // ---------------------------------------------------------------------
-        $('.adsbygoogle').attrchange({
-          trackValues: true,
-          callback: function (event) {
-            if (event.newValue === 'unfilled') {
-              var elm = event.target.dataset;
-              if (elm.adClient) {
-                logger.warn('\n' + 'initialized ad detected as: ' + event.newValue);
-                if (autoHideOnUnfilled) {
-                  logger.info('\n' + ' hide ad for slot: ' + elm.adSlot);
-                  $('.' + elm.adSlot ).hide();
+  $(document).ready(
+    function() {
+        var logger              = log4javascript.getLogger('j1.google.ads');
+        var autoHideOnUnfilled  = true;
+        var dependencies_met_page_ready = setInterval (
+            function (options) {
+                if ( j1.getState() === 'finished' ) {
+                    // monitor for state changes on the ad
+                    // ---------------------------------------------------------------------
+                    $('.adsbygoogle').attrchange({
+                      trackValues: true,
+                        callback: function (event) {
+                            if (event.newValue === 'unfilled') {
+                                var elm = event.target.dataset;
+                                if (elm.adClient) {
+                                    logger.warn('\n' + 'initialized ad detected as: ' + event.newValue);
+                                    if (autoHideOnUnfilled) {
+                                        logger.info('\n' + ' hide ad for slot: ' + elm.adSlot);
+                                        $('.' + elm.adSlot ).hide();
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    logger.info('\n' + 'initialize Google Ad on slot: ' + '5128488466');
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    clearInterval(dependencies_met_page_ready);
                 }
-              }
             }
-          }
-        });
-
-        // manage uncaught execeptions
-        // ---------------------------------------------------------------------
-        // window.onerror = function (msg, url, line) {
-        //    alert("Message : " + msg );
-        //    alert("url : " + url );
-        //    alert("Line number : " + line );
-        // }
-
-        logger.info('\n' + 'initialize Google Ad on slot: ' + '5128488466');
-        (adsbygoogle = window.adsbygoogle || []).push({});
-
-        clearInterval(dependencies_met_page_ready);
-      }
-   });
-
-  });
-
+        );
+    }
+  );
 </script>
 ++++
 
 // Include sub-documents (if any)
 // -----------------------------------------------------------------------------
 [role="dropcap"]
-Playing video on web pages seems not that special since you can already
-watch videos on web pages through plugins like _Flash Player_, _Quicktime_,
-or _Silverlight_. A new standard goes to HTML5 Video, a pure HTML way to
-show video on the web, instead of the previous de facto standard of using
-proprietary software.
+Mini Course on modelling and numerics with SDEs at the School of
+Optimal Control Applies to Biolgical Processes.
 
 == Online Video content
 
@@ -271,6 +390,9 @@ gallery::jg_video_online_youtube[role="mb-5"]
 
 ++++
 {% bibliography --file references.bib --query @Unpublished[year=2022] %}
+++++
+
+++++
 <script>
     $(document).ready(function(){
         var str =$(this).attr('id');
@@ -288,7 +410,7 @@ gallery::jg_video_online_youtube[role="mb-5"]
 == References
 
 ++++
-include::./references.html[]
+include::./pages/public/resume/references.html[]
 ++++
 
 == Appendices

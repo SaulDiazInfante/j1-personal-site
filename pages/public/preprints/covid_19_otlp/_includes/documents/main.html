@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<meta charset="utf-8" />
 <html lang="EN">
     <script>
         MathJax = {
@@ -42,73 +43,9 @@
     <script
             async id="MathJax-script"
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-    </script>)
+    </script>
     <head>
-        <script type="text/javascript">
-            if (window.hljs) {
-                hljs.configure({languages: []});
-                hljs.initHighlightingOnLoad();
-                if (document.readyState && document.readyState === "complete") {
-                    window.setTimeout(function () {
-                        hljs.initHighlighting();
-                    }, 0);
-                }
-            }
-        </script>
-        <script type="text/javascript">
-            // manage active state of menu based on current page
-            $(document).ready(function () {
-                // active menu anchor
-                href = window.location.pathname
-                href = href.substr(href.lastIndexOf('/') + 1)
-                if (href === "")
-                    href = "index.html";
-                var menuAnchor = $('a[href="' + href + '"]');
-            
-                // mark it active
-                menuAnchor.tab('show');
-            
-                // if it's got a parent navbar menu mark it active as well
-                menuAnchor.closest('li.dropdown').addClass('active');
-            
-                // Navbar adjustments
-                var navHeight = $(".navbar").first().height() + 15;
-                var style = document.createElement('style');
-                var pt = "padding-top: " + navHeight + "px; ";
-                var mt = "margin-top: -" + navHeight + "px; ";
-                var css = "";
-                // offset scroll position for anchor links (for fixed navbar)
-                for (var i = 1; i <= 6; i++) {
-                    css += ".section h" + i + "{ " + pt + mt + "}\n";
-                }
-                style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
-                document.head.appendChild(style);
-            });
-        </script>
-        <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
         <style>
-            h1 {
-                font-size: 34px;
-            }
-            h1.title {
-                font-size: 38px;
-            }
-            h2 {
-                font-size: 30px;
-            }
-            h3 {
-                font-size: 24px;
-            }
-            h4 {
-                font-size: 18px;
-            }
-            h5 {
-                font-size: 16px;
-            }
-            h6 {
-                font-size: 12px;
-            }
             code {
                 color: inherit;
                 background-color: rgba(0, 0, 0, 0.04);
@@ -147,50 +84,6 @@
             .tab { margin-left: 40px; }
         </style>
         <style>
-            .tabset-dropdown > .nav-tabs {
-                display: inline-table;
-                max-height: 500px;
-                min-height: 44px;
-                overflow-y: auto;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-            }
-            .tabset-dropdown > .nav-tabs > li.active:before {
-                content: "";
-                font-family: 'Glyphicons Halflings';
-                display: inline-block;
-                padding: 10px;
-                border-right: 1px solid #ddd;
-            }
-            .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-                content: "&#xe258;";
-                border: none;
-            }
-            .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-                content: "";
-                font-family: 'Glyphicons Halflings';
-                display: inline-block;
-                padding: 10px;
-                border-right: 1px solid #ddd;
-            }
-            .tabset-dropdown > .nav-tabs > li.active {
-                display: block;
-            }
-            .tabset-dropdown > .nav-tabs > li > a,
-            .tabset-dropdown > .nav-tabs > li > a:focus,
-            .tabset-dropdown > .nav-tabs > li > a:hover {
-                border: none;
-                display: inline-block;
-                border-radius: 4px;
-                background-color: transparent;
-            }
-            .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
-                display: block;
-                float: none;
-            }
-            .tabset-dropdown > .nav-tabs > li {
-                display: none;
-            }
             p {
                 text-indent: 30px;
             }
@@ -587,113 +480,113 @@
                 </figcaption>
             </figure>
         </div>
-        <div>
-            <h4 id="risk-variable"><strong>Risk variable</strong></h4>
-            <p>Remember us index risk for a time <span
-                    class="math inline">\(t^*\)</span> is given in . Thus, for each instant
-                of time <span class="math inline">\(t\)</span>, this index is defined as
-                <span class="math display">
-                    \[C(t) = 1 - \left(1 -
-                \frac{I(t)}{N(t)}\right)^k.\]
-                </span>
-            </p>
-            <p>
-                    We assume that this index influences the transmission dynamics. This
-                hypothesis emerges because a low-risk index may imply a safety
-                perception in the population (relaxation of measures) and, consequently,
-                increase the transmission contact rate. A high-risk index will imply an
-                opposite effect. Thus, the infectious force is given by
-                <span class="math display">
-                    \[
-                        \label{eq:TR}
-                        \lambda(t) = \beta(t) (1 - C(t)) \frac{I(t)}{N(t)},\]
-                </span>
-                with
-                <span class="math inline">
-                    \(
-                        \beta(t) =
-                            \left(
-                                1 + a
-                                \cos
-                                    \left(
-                                        \frac{2\pi}{365}t
-                                    \right)
-                            \right)
-                        \beta
-                    \)
-                </span> and
-                <span class="math inline">
-                    \(
-                        N(t) = S(t) + V(t) + I(t) + R(t)\)
-                </span>.
-            </p>
-            <p>
-                    It is important to highlight that, with the objective of control
-                parameter <span class="math inline">\(k\)</span>,
-                we will couple this index with the system under study.
-                Thus, we obtain the following equation regarding risk index dynamics:
-                <span class="math display">
-                    \[
-                        C&#39; = k (1 - C) ^ {\left(1 - \frac{1}{k}\right)}
-                        \left(1 - (1 - C)^{\frac{1}{k}}\right)
-                        \left(
-                            \lambda(t)
-                                (
-                                    S + (1 - \sigma)V)
-                                    \frac{1}{I} - (\gamma + \mu)\right).
-                    \]
-                </span>
-            </p>
-            <p>
-                    Therefore, the mathematical model that describes disease dynamics is
-                given by the following system:
-                <span class="math display">
-                    \[
-                        \label{eq.model}
-                        \begin{split}
-                            S&#39; &amp;=
-                                \mu N - \lambda(t)S - (\phi + \mu) S + \omega V +
-                                    \theta R ,
-                            \\
-                            V&#39; &amp;=
-                                \phi S - (1 - \sigma) \lambda(t)V
-                                - (\omega \mu) V ,
-                            \\
-                            I&#39; &amp;=
-                                \lambda(t) (S + (1 - \sigma)V) - (\gamma + \mu) I,
-                            \\
-                            R&#39; &amp;=
-                                \gamma I - (\theta + \mu) R ,
-                            \\
-                            C&#39; &amp;=
-                                k (1 - C)^{\left(1 - \frac{1}{k}\right)}
+            <div>
+                <h4 id="risk-variable"><strong>Risk variable</strong></h4>
+                <p>Remember us index risk for a time <span
+                        class="math inline">\(t^*\)</span> is given in . Thus, for each instant
+                    of time <span class="math inline">\(t\)</span>, this index is defined as
+                    <span class="math display">
+                        \[C(t) = 1 - \left(1 -
+                    \frac{I(t)}{N(t)}\right)^k.\]
+                    </span>
+                </p>
+                <p>
+                        We assume that this index influences the transmission dynamics. This
+                    hypothesis emerges because a low-risk index may imply a safety
+                    perception in the population (relaxation of measures) and, consequently,
+                    increase the transmission contact rate. A high-risk index will imply an
+                    opposite effect. Thus, the infectious force is given by
+                    <span class="math display">
+                        \[
+                            \label{eq:TR}
+                            \lambda(t) = \beta(t) (1 - C(t)) \frac{I(t)}{N(t)},\]
+                    </span>
+                    with
+                    <span class="math inline">
+                        \(
+                            \beta(t) =
                                 \left(
-                                    1 - (1 - C)^{\frac{1}{k}}\right)
-                                    \left(
-                                        \lambda(t)
-                                        (S + (1 - \sigma)V)
+                                    1 + a
+                                    \cos
+                                        \left(
+                                            \frac{2\pi}{365}t
+                                        \right)
+                                \right)
+                            \beta
+                        \)
+                    </span> and
+                    <span class="math inline">
+                        \(
+                            N(t) = S(t) + V(t) + I(t) + R(t)\)
+                    </span>.
+                </p>
+                <p>
+                        It is important to highlight that, with the objective of control
+                    parameter <span class="math inline">\(k\)</span>,
+                    we will couple this index with the system under study.
+                    Thus, we obtain the following equation regarding risk index dynamics:
+                    <span class="math display">
+                        \[
+                            C&#39; = k (1 - C) ^ {\left(1 - \frac{1}{k}\right)}
+                            \left(1 - (1 - C)^{\frac{1}{k}}\right)
+                            \left(
+                                \lambda(t)
+                                    (
+                                        S + (1 - \sigma)V)
                                         \frac{1}{I} - (\gamma + \mu)\right).
-                        \end{split}
-                    \]
-                </span>
-                where
-                <span class="math inline">
-                    \(\lambda(t)\)
-                </span>
-                is defined as in \eqref{eq.model}
-                is defined in the positively
-                invariant region
-                <span class="math display">
-                    \[
-                        \begin{aligned}
-                            \Omega &amp;=
-                                \left\{(S, V, I, R, C)\in \mathbb{R}^5_+: 0\leq
-                                        C\leq 1,\ 0\leq S,\ 0\leq V,\ 0\leq I,\ 0\leq R,\ S+V+I+R = N
-                                \right\}.
-	                \end{aligned}\]
-                </span>
-            </p>
-        </div>
+                        \]
+                    </span>
+                </p>
+                <p>
+                        Therefore, the mathematical model that describes disease dynamics is
+                    given by the following system:
+                    <span class="math display">
+                        \[
+                            \label{eq.model}
+                            \begin{split}
+                                S&#39; &amp;=
+                                    \mu N - \lambda(t)S - (\phi + \mu) S + \omega V +
+                                        \theta R ,
+                                \\
+                                V&#39; &amp;=
+                                    \phi S - (1 - \sigma) \lambda(t)V
+                                    - (\omega \mu) V ,
+                                \\
+                                I&#39; &amp;=
+                                    \lambda(t) (S + (1 - \sigma)V) - (\gamma + \mu) I,
+                                \\
+                                R&#39; &amp;=
+                                    \gamma I - (\theta + \mu) R ,
+                                \\
+                                C&#39; &amp;=
+                                    k (1 - C)^{\left(1 - \frac{1}{k}\right)}
+                                    \left(
+                                        1 - (1 - C)^{\frac{1}{k}}\right)
+                                        \left(
+                                            \lambda(t)
+                                            (S + (1 - \sigma)V)
+                                            \frac{1}{I} - (\gamma + \mu)\right).
+                            \end{split}
+                        \]
+                    </span>
+                    where
+                    <span class="math inline">
+                        \(\lambda(t)\)
+                    </span>
+                    is defined as in \eqref{eq.model}
+                    is defined in the positively
+                    invariant region
+                    <span class="math display">
+                        \[
+                            \begin{aligned}
+                                \Omega &amp;=
+                                    \left\{(S, V, I, R, C)\in \mathbb{R}^5_+: 0\leq
+                                            C\leq 1,\ 0\leq S,\ 0\leq V,\ 0\leq I,\ 0\leq R,\ S+V+I+R = N
+                                    \right\}.
+                        \end{aligned}\]
+                    </span>
+                </p>
+            </div>
         <div>
             <h2 id="reproductive-number">Reproductive Number</h2>
             <p>
@@ -877,19 +770,21 @@
             </dl>
             <h4 id="light-traffic-policies">Light Traffic Policies</h4>
             <h4 id="problem-set-up">Problem set up</h4>
-            <p>Let <span class="math inline">
-                \(
-                    x_0 =(S(0), I(0), V(0), R(0),
-                    C(0)
-                    )^{\top}
-                \)
-            </span>
+            <p>Let
+                <span class="math inline">
+                    \(
+                        x_0 =(S(0), I(0), V(0), R(0),
+                        C(0)
+                        )^{\top}
+                    \)
+                </span>
                 the initial state of system
                 <a href="#eq.model" data-reference-type="eqref" data-reference="eq.model">[eq.model]
                 </a>.
                 Thus, according to the above classification, we assign an initial color
                 for the light-traffic controller. We assume the following
-                hypothesis.</p>
+                hypothesis.
+            </p>
                 <div class="hypothesis">
                     <p><strong>Hypotesis 1</strong>. </p>
                     <ol>
@@ -931,9 +826,13 @@
                     the next algorithm.
             </p>
             <h4 id="rolling">Rolling</h4>
-            <h4 id="functional-cost-and-weights-meaning">Functional cost and weights
-                meaning</h4>
-            <h1 id="results">Results</h1>
+            <h4 id="functional-cost-and-weights-meaning">
+                Functional cost and weights meaning
+            </h4>
+            <h1 id="results">
+                Results
+            </h1>
+            <iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~sauld/63.embed"></iframe>
             <h1 id="conclusions">Conclusions</h1>
             <div class="theorem">
                 <p><strong>Theorem 1</strong>. </p>
